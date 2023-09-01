@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 @export var walking_speed = 6
-@export var gravity = 9.8
+@export var gravity = 15
 @export var jump_impulse = 10
 @export var mouse_sensibility = 0.05
 

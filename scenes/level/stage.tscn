@@ -1,6 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://dge6x4c50ffb7"]
+[gd_scene load_steps=7 format=3 uid="uid://dge6x4c50ffb7"]
 
 [ext_resource type="PackedScene" uid="uid://cday53347fn87" path="res://scenes/characters/playable_char.tscn" id="1_nkfxt"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_01toj"]
+sky_top_color = Color(0.670588, 0.345098, 0.188235, 1)
+sky_horizon_color = Color(0.719608, 0.626471, 0.589216, 1)
+ground_bottom_color = Color(0.207843, 0.160784, 0.168627, 1)
+ground_horizon_color = Color(0.719608, 0.626471, 0.589216, 1)
+
+[sub_resource type="Sky" id="Sky_gf2jv"]
+sky_material = SubResource("ProceduralSkyMaterial_01toj")
+
+[sub_resource type="Environment" id="Environment_8ps4j"]
+background_mode = 2
+sky = SubResource("Sky_gf2jv")
+tonemap_mode = 2
+glow_enabled = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gw0vc"]
 size = Vector3(50, 1, 50)
@@ -9,6 +24,9 @@ size = Vector3(50, 1, 50)
 size = Vector2(50, 50)
 
 [node name="stage_1" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8ps4j")
 
 [node name="Ground" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
