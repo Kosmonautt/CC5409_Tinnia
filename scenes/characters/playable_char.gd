@@ -57,7 +57,7 @@ func _physics_process(delta):
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			showing_mouse = false
 					
-	var dir_input = Input.get_vector("move_left", "move_right", "move_backwards", "move_fowards")
+	var dir_input = Input.get_vector("move_left", "move_right", "move_backwards", "move_forwards")
 	
 	# direction we are meant to move	
 	direction += transform.basis.z * -dir_input.y
