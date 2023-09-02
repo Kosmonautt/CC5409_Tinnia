@@ -11,3 +11,11 @@ player_scene = ExtResource("2_ra4jt")
 [node name="Players" type="Node3D" parent="."]
 
 [node name="stage_1" parent="." instance=ExtResource("2_by83c")]
+
+[node name="Spawn" type="Node3D" parent="."]
+
+[node name="Marker_P1" type="Marker3D" parent="Spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
+
+[node name="Marker_P2" type="Marker3D" parent="Spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0)
