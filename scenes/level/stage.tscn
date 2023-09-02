@@ -1,4 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://dge6x4c50ffb7"]
+[gd_scene load_steps=12 format=3 uid="uid://dge6x4c50ffb7"]
+
+[ext_resource type="Texture2D" uid="uid://c0bdnj6cvqsmg" path="res://resources/textures/Tile_17-128x128.png" id="1_0c6k4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_01toj"]
 sky_top_color = Color(0.670588, 0.345098, 0.188235, 1)
@@ -18,10 +20,27 @@ glow_enabled = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_gw0vc"]
 size = Vector3(100, 1, 100)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hieyo"]
+albedo_texture = ExtResource("1_0c6k4")
+uv1_scale = Vector3(60, 60, 60)
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_i3rw4"]
+material = SubResource("StandardMaterial3D_hieyo")
 size = Vector2(100, 100)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_6rmkf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cbux2"]
+albedo_color = Color(0.211765, 0.211765, 0.211765, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_fp16y"]
+material = SubResource("StandardMaterial3D_cbux2")
+radius = 6.0
+height = 12.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_a0ygo"]
+radius = 6.0
+height = 12.0
 
 [node name="stage_1" type="Node3D"]
 
@@ -47,3 +66,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.891999, -5.87021)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
 mesh = SubResource("CylinderMesh_6rmkf")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.3162, 4.09721, -21.5479)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2"]
+mesh = SubResource("SphereMesh_fp16y")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.6761, 0, -11.3149)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.45909, -10.6214)
+mesh = SubResource("SphereMesh_a0ygo")

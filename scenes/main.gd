@@ -6,7 +6,9 @@ extends Node3D
 
 func _ready() -> void:
 	# we sort the player correctly
-	#Game.players.sort_custom(func (a, b): return a.id < b.id)
+	
+	Game.players.sort_custom(func (a, b): return a.id < b.id)
+	
 	# a playable character is created for each player
 	for i in Game.players.size():
 		# we get the palyer data
@@ -19,6 +21,9 @@ func _ready() -> void:
 		player.setup(player_data)
 		# we give each player a different position on the map
 		player.global_position = spawn.get_child(i).global_position
+		
+		Debug.dprint("Player id: %s" % player_data.id,30)
+		Debug.dprint("Player position: %s" % player.global_position, 30)
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

@@ -17,6 +17,9 @@ var target_velocity = Vector3.ZERO
 # we get the head node
 @onready var head = $Head
 
+# we get the camera node 
+@onready var camera = $Head/Camera3D
+
 # showing mouse or not
 var showing_mouse = false
 
@@ -27,6 +30,12 @@ var second_jump = false
 func setup(player_data: Game.PlayerData):
 	# multiplayer authority with the given id
 	set_multiplayer_authority(player_data.id)
+	# if the character is not being controlled by the player, the it doesn't detect their input
+	set_process_input(player_data.id == multiplayer.get_unique_id()) 
+	# we deactivate physics process for the character not controlled by the player
+	set_physics_process(player_data.id == multiplayer.get_unique_id())
+	# we only activate the apropiate cameras
+	camera.current = player_data.id == multiplayer.get_unique_id()
 	# the name also gets saved
 	name = str(player_data.id)
 
@@ -35,69 +44,65 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _input(event):
-	# this code only apllies if it's being controlled by it's player
-	if is_multiplayer_authority():
-		# if we detect mouse movement
-		if event is InputEventMouseMotion:
-			# we rotate the whole player horizontally
-			rotate_y(deg_to_rad(-event.relative.x * mouse_sensibility))
-			# we rotate just the head vertically so the rotations don't mess up with eachother
-			head.rotate_x(deg_to_rad(-event.relative.y * mouse_sensibility))
-			# we clamp so we can look at most straight down and straight up
-			head.rotation.x = clamp(head.rotation.x, -PI/2, PI/2 )
+	# if we detect mouse movement
+	if event is InputEventMouseMotion:
+		# we rotate the whole player horizontally
+		rotate_y(deg_to_rad(-event.relative.x * mouse_sensibility))
+		# we rotate just the head vertically so the rotations don't mess up with eachother
+		head.rotate_x(deg_to_rad(-event.relative.y * mouse_sensibility))
+		# we clamp so we can look at most straight down and straight up
+		head.rotation.x = clamp(head.rotation.x, -PI/2, PI/2 )
 	
 
 func _physics_process(delta):	
-	# this code only apllies if it's being controlled by it's player
-	if is_multiplayer_authority():
-		# direction vector of movement
-		direction = Vector3.ZERO
-		# direction vector of input
-		dir_input = Vector2.ZERO
-		
-		# real movement speed of the character
-		var player_speed = walking_speed
-		
-		# if we try to exit
-		if Input.is_action_just_pressed("ui_cancel"):
-			if not showing_mouse:
-				# the mouse becomes visible so we can click the X
-				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-				showing_mouse = true
-			else:
-				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-				showing_mouse = false
-						
-		var dir_input = Input.get_vector("move_left", "move_right", "move_backwards", "move_forwards")
-		
-		# direction we are meant to move	
-		direction += transform.basis.z * -dir_input.y
-		direction += transform.basis.x * dir_input.x
-		
-		# when sprinting
-		if Input.is_action_pressed("sprint") and is_on_floor():
-			player_speed = 3 * walking_speed
-		
-		# jumping
-		if Input.is_action_just_pressed("jump") and is_on_floor():
-			target_velocity.y = jump_impulse
-			
-		# wall jump
-		if Input.is_action_just_pressed("jump") and is_on_wall() and !second_jump:
-			second_jump = true
-			target_velocity.y = jump_impulse
-			
-		if is_on_floor():
-			second_jump = false
-		
-		# gravity
-		if not is_on_floor():
-			target_velocity.y -= gravity * delta
-		
-		# we get the velocity vector of movement	
-		target_velocity.x = direction.x * player_speed
-		target_velocity.z = direction.z * player_speed
-		
-		velocity = target_velocity
+	# direction vector of movement
+	direction = Vector3.ZERO
+	# direction vector of input
+	dir_input = Vector2.ZERO
 	
-		move_and_slide()
+	# real movement speed of the character
+	var player_speed = walking_speed
+	
+	# if we try to exit
+	if Input.is_action_just_pressed("ui_cancel"):
+		if not showing_mouse:
+			# the mouse becomes visible so we can click the X
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			showing_mouse = true
+		else:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			showing_mouse = false
+					
+	var dir_input = Input.get_vector("move_left", "move_right", "move_backwards", "move_forwards")
+	
+	# direction we are meant to move	
+	direction += transform.basis.z * -dir_input.y
+	direction += transform.basis.x * dir_input.x
+	
+	# when sprinting
+	if Input.is_action_pressed("sprint") and is_on_floor():
+		player_speed = 3 * walking_speed
+	
+	# jumping
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		target_velocity.y = jump_impulse
+		
+	# wall jump
+	if Input.is_action_just_pressed("jump") and is_on_wall() and !second_jump:
+		second_jump = true
+		target_velocity.y = jump_impulse
+		
+	if is_on_floor():
+		second_jump = false
+	
+	# gravity
+	if not is_on_floor():
+		target_velocity.y -= gravity * delta
+	
+	# we get the velocity vector of movement	
+	target_velocity.x = direction.x * player_speed
+	target_velocity.z = direction.z * player_speed
+	
+	velocity = target_velocity
+
+	move_and_slide()
