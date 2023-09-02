@@ -1,6 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dge6x4c50ffb7"]
-
-[ext_resource type="PackedScene" uid="uid://cday53347fn87" path="res://scenes/characters/playable_char.tscn" id="1_nkfxt"]
+[gd_scene load_steps=6 format=3 uid="uid://dge6x4c50ffb7"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_01toj"]
 sky_top_color = Color(0.670588, 0.345098, 0.188235, 1)
@@ -37,9 +35,6 @@ shape = SubResource("BoxShape3D_gw0vc")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh = SubResource("PlaneMesh_i3rw4")
-
-[node name="character_1" parent="." instance=ExtResource("1_nkfxt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.0319702, -0.697478, 0.715893, 0.0311168, 0.716606, 0.696783, -0.999004, 1.8645e-09, 0.0446133, 54.715, 46.7639, 0)
