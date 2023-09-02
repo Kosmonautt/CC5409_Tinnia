@@ -23,13 +23,20 @@ var showing_mouse = false
 # second jump
 var second_jump = false
 
+# this function gets called when players are playable characters are assigned to each player
+func setup(player_data: Game.PlayerData):
+	# multiplayer authority with the given id
+	set_multiplayer_authority(player_data.id)
+	# the name also gets saved
+	name = str(player_data.name)
+
 func _ready():
 	# we hide cursor so we can move the camera freely
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _input(event):
-#	# this code only apllies if it's being controlled by it's player
-#	if is_multiplayer_authority():
+	# this code only apllies if it's being controlled by it's player
+	if is_multiplayer_authority():
 		# if we detect mouse movement
 		if event is InputEventMouseMotion:
 			# we rotate the whole player horizontally
@@ -41,8 +48,8 @@ func _input(event):
 	
 
 func _physics_process(delta):	
-#	# this code only apllies if it's being controlled by it's player
-#	if is_multiplayer_authority():
+	# this code only apllies if it's being controlled by it's player
+	if is_multiplayer_authority():
 		# direction vector of movement
 		direction = Vector3.ZERO
 		# direction vector of input

@@ -14,7 +14,8 @@ func _ready() -> void:
 		# it gets added as a child of "players" node
 		players.add_child(player)
 		# setup for authority and other settings
-		#player.setup(player_data)
+		player.setup(player_data)
+		# we give each player a different position on the map
 		player.global_position = spawn.get_child(i).global_position
 	
 
