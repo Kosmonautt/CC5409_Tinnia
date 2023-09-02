@@ -1,4 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dge6x4c50ffb7"]
+[gd_scene load_steps=11 format=3 uid="uid://dge6x4c50ffb7"]
+
+[ext_resource type="Texture2D" uid="uid://c5q1it05ijuva" path="res://resources/cobblestone_floor_04_diff_4k.png" id="1_yyre6"]
+[ext_resource type="Texture2D" uid="uid://ha3aip1xq36l" path="res://resources/cobblestone_floor_04_nor_gl_4k.png" id="2_liqvc"]
+[ext_resource type="Texture2D" uid="uid://d75r4ddmmp5g" path="res://resources/cobblestone_floor_04_rough_4k.png" id="3_34tmi"]
+[ext_resource type="PackedScene" uid="uid://cday53347fn87" path="res://scenes/characters/playable_char.tscn" id="4_41ghr"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_01toj"]
 sky_top_color = Color(0.670588, 0.345098, 0.188235, 1)
@@ -16,10 +21,18 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gw0vc"]
-size = Vector3(50, 1, 50)
+size = Vector3(100, 1, 100)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7pp6d"]
+albedo_texture = ExtResource("1_yyre6")
+roughness_texture = ExtResource("3_34tmi")
+normal_enabled = true
+normal_texture = ExtResource("2_liqvc")
+uv1_scale = Vector3(60, 60, 60)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_i3rw4"]
-size = Vector2(50, 50)
+material = SubResource("StandardMaterial3D_7pp6d")
+size = Vector2(100, 100)
 
 [node name="stage_1" type="Node3D"]
 
@@ -37,4 +50,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh = SubResource("PlaneMesh_i3rw4")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.0319702, -0.697478, 0.715893, 0.0311168, 0.716606, 0.696783, -0.999004, 1.8645e-09, 0.0446133, 54.715, 46.7639, 0)
+transform = Transform3D(0.601819, -0.684013, 0.412239, -0.102997, 0.445395, 0.88939, -0.791963, -0.577711, 0.197596, 4.87358, 41.6662, 42.2514)
+shadow_enabled = true
+
+[node name="character_1" parent="." instance=ExtResource("4_41ghr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

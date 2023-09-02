@@ -28,65 +28,69 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _input(event):
-	# if we detect mouse movement
-	if event is InputEventMouseMotion:
-		# we rotate the whole player horizontally
-		rotate_y(deg_to_rad(-event.relative.x * mouse_sensibility))
-		# we rotate just the head vertically so the rotations don't mess up with eachother
-		head.rotate_x(deg_to_rad(-event.relative.y * mouse_sensibility))
-		# we clamp so we can look at most straight down and straight up
-		head.rotation.x = clamp(head.rotation.x, -PI/2, PI/2 )
+#	# this code only apllies if it's being controlled by it's player
+#	if is_multiplayer_authority():
+		# if we detect mouse movement
+		if event is InputEventMouseMotion:
+			# we rotate the whole player horizontally
+			rotate_y(deg_to_rad(-event.relative.x * mouse_sensibility))
+			# we rotate just the head vertically so the rotations don't mess up with eachother
+			head.rotate_x(deg_to_rad(-event.relative.y * mouse_sensibility))
+			# we clamp so we can look at most straight down and straight up
+			head.rotation.x = clamp(head.rotation.x, -PI/2, PI/2 )
 	
 
 func _physics_process(delta):	
-	# direction vector of movement
-	direction = Vector3.ZERO
-	# direction vector of input
-	dir_input = Vector2.ZERO
-	
-	# real movement speed of the character
-	var player_speed = walking_speed
-	
-	# if we try to exit
-	if Input.is_action_just_pressed("ui_cancel"):
-		if not showing_mouse:
-			# the mouse becomes visible so we can click the X
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-			showing_mouse = true
-		else:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-			showing_mouse = false
-					
-	var dir_input = Input.get_vector("move_left", "move_right", "move_backwards", "move_forwards")
-	
-	# direction we are meant to move	
-	direction += transform.basis.z * -dir_input.y
-	direction += transform.basis.x * dir_input.x
-	
-	# when sprinting
-	if Input.is_action_pressed("sprint") and is_on_floor():
-		player_speed = 3 * walking_speed
-	
-	# jumping
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		target_velocity.y = jump_impulse
+#	# this code only apllies if it's being controlled by it's player
+#	if is_multiplayer_authority():
+		# direction vector of movement
+		direction = Vector3.ZERO
+		# direction vector of input
+		dir_input = Vector2.ZERO
 		
-	# wall jump
-	if Input.is_action_just_pressed("jump") and is_on_wall() and !second_jump:
-		second_jump = true
-		target_velocity.y = jump_impulse
+		# real movement speed of the character
+		var player_speed = walking_speed
 		
-	if is_on_floor():
-		second_jump = false
-	
-	# gravity
-	if not is_on_floor():
-		target_velocity.y -= gravity * delta
-	
-	# we get the velocity vector of movement	
-	target_velocity.x = direction.x * player_speed
-	target_velocity.z = direction.z * player_speed
-	
-	velocity = target_velocity
+		# if we try to exit
+		if Input.is_action_just_pressed("ui_cancel"):
+			if not showing_mouse:
+				# the mouse becomes visible so we can click the X
+				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+				showing_mouse = true
+			else:
+				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+				showing_mouse = false
+						
+		var dir_input = Input.get_vector("move_left", "move_right", "move_backwards", "move_forwards")
+		
+		# direction we are meant to move	
+		direction += transform.basis.z * -dir_input.y
+		direction += transform.basis.x * dir_input.x
+		
+		# when sprinting
+		if Input.is_action_pressed("sprint") and is_on_floor():
+			player_speed = 3 * walking_speed
+		
+		# jumping
+		if Input.is_action_just_pressed("jump") and is_on_floor():
+			target_velocity.y = jump_impulse
 			
-	move_and_slide()
+		# wall jump
+		if Input.is_action_just_pressed("jump") and is_on_wall() and !second_jump:
+			second_jump = true
+			target_velocity.y = jump_impulse
+			
+		if is_on_floor():
+			second_jump = false
+		
+		# gravity
+		if not is_on_floor():
+			target_velocity.y -= gravity * delta
+		
+		# we get the velocity vector of movement	
+		target_velocity.x = direction.x * player_speed
+		target_velocity.z = direction.z * player_speed
+		
+		velocity = target_velocity
+	
+		move_and_slide()
