@@ -5,6 +5,8 @@ extends Node3D
 @onready var spawn: Node3D = $Spawn
 
 func _ready() -> void:
+	# we sort the player correctly
+	#Game.players.sort_custom(func (a, b): return a.id < b.id)
 	# a playable character is created for each player
 	for i in Game.players.size():
 		# we get the palyer data
@@ -17,9 +19,7 @@ func _ready() -> void:
 		player.setup(player_data)
 		# we give each player a different position on the map
 		player.global_position = spawn.get_child(i).global_position
-	
-
-
+		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass

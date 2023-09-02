@@ -1,8 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dge6x4c50ffb7"]
-
-[ext_resource type="Texture2D" uid="uid://c5q1it05ijuva" path="res://resources/cobblestone_floor_04_diff_4k.png" id="1_yyre6"]
-[ext_resource type="Texture2D" uid="uid://ha3aip1xq36l" path="res://resources/cobblestone_floor_04_nor_gl_4k.png" id="2_liqvc"]
-[ext_resource type="Texture2D" uid="uid://d75r4ddmmp5g" path="res://resources/cobblestone_floor_04_rough_4k.png" id="3_34tmi"]
+[gd_scene load_steps=7 format=3 uid="uid://dge6x4c50ffb7"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_01toj"]
 sky_top_color = Color(0.670588, 0.345098, 0.188235, 1)
@@ -22,16 +18,10 @@ glow_enabled = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_gw0vc"]
 size = Vector3(100, 1, 100)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7pp6d"]
-albedo_texture = ExtResource("1_yyre6")
-roughness_texture = ExtResource("3_34tmi")
-normal_enabled = true
-normal_texture = ExtResource("2_liqvc")
-uv1_scale = Vector3(60, 60, 60)
-
 [sub_resource type="PlaneMesh" id="PlaneMesh_i3rw4"]
-material = SubResource("StandardMaterial3D_7pp6d")
 size = Vector2(100, 100)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_6rmkf"]
 
 [node name="stage_1" type="Node3D"]
 
@@ -51,3 +41,9 @@ mesh = SubResource("PlaneMesh_i3rw4")
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.601819, -0.684013, 0.412239, -0.102997, 0.445395, 0.88939, -0.791963, -0.577711, 0.197596, 4.87358, 41.6662, 42.2514)
 shadow_enabled = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.891999, -5.87021)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("CylinderMesh_6rmkf")

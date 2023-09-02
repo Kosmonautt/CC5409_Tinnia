@@ -28,7 +28,7 @@ func setup(player_data: Game.PlayerData):
 	# multiplayer authority with the given id
 	set_multiplayer_authority(player_data.id)
 	# the name also gets saved
-	name = str(player_data.name)
+	name = str(player_data.id)
 
 func _ready():
 	# we hide cursor so we can move the camera freely
