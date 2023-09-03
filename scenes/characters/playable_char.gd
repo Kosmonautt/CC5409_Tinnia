@@ -85,7 +85,7 @@ func _physics_process(delta):
 	
 	# jumping
 	if Input.is_action_just_pressed("jump") and is_on_floor():
-		target_velocity.y = jump_impulse
+		target_velocity.y += jump_impulse
 		
 	# wall jump
 	if Input.is_action_just_pressed("jump") and is_on_wall() and !second_jump:
