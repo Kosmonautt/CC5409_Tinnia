@@ -20,6 +20,12 @@ var target_velocity = Vector3.ZERO
 # we get the camera node 
 @onready var camera = $Head/Camera3D
 
+# set the model
+@onready var playable_character = $Playable_characters
+
+# model that change
+var model
+
 # showing mouse or not
 var showing_mouse = false
 
@@ -38,6 +44,17 @@ func setup(player_data: Game.PlayerData):
 	camera.current = player_data.id == multiplayer.get_unique_id()
 	# the name also gets saved
 	name = str(player_data.id)
+	# Setting up model character
+	if player_data.role == 1:
+		model = load("res://resources/playable_character/mage.tscn").instantiate() as Node3D
+	else:
+		model = load("res://resources/playable_character/rogue.tscn").instantiate() as Node3D
+	model.rotation = Vector3(0, PI, 0)
+	playable_character.add_child(model)
+	# Setting up model visibility
+	if is_multiplayer_authority():
+		model.visible = false
+	
 
 func _ready():
 	# we hide cursor so we can move the camera freely

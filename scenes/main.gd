@@ -24,6 +24,7 @@ func _ready() -> void:
 		
 		Debug.dprint("Player id: %s" % player_data.id,30)
 		Debug.dprint("Player position: %s" % player.global_position, 30)
+		Debug.dprint("Player role: %s" % player_data.role, 30)
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
