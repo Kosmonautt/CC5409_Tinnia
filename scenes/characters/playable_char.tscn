@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cday53347fn87"]
+[gd_scene load_steps=7 format=3 uid="uid://cday53347fn87"]
 
 [ext_resource type="Script" path="res://scenes/characters/playable_char.gd" id="1_7gvk3"]
 [ext_resource type="Texture2D" uid="uid://c0bdnj6cvqsmg" path="res://resources/textures/Tile_17-128x128.png" id="2_xh5po"]
@@ -10,6 +10,16 @@ albedo_texture = ExtResource("2_xh5po")
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_7j8bt"]
 material = SubResource("StandardMaterial3D_dll0r")
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_clwe1"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/sync = true
+properties/1/watch = false
 
 [node name="character_1" type="CharacterBody3D"]
 script = ExtResource("1_7gvk3")
@@ -24,3 +34,6 @@ mesh = SubResource("CapsuleMesh_7j8bt")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.65, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_clwe1")
