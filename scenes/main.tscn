@@ -11,6 +11,7 @@ player_scene = ExtResource("2_ra4jt")
 [node name="Players" type="Node3D" parent="."]
 
 [node name="stage_1" parent="." instance=ExtResource("2_by83c")]
+transform = Transform3D(1.82069, 0, 0, 0, 1.82069, 0, 0, 0, 1.82069, 0, 0, 0)
 
 [node name="Spawn" type="Node3D" parent="."]
 
