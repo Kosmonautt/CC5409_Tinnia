@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://dge6x4c50ffb7"]
+[gd_scene load_steps=15 format=3 uid="uid://dge6x4c50ffb7"]
 
 [ext_resource type="Texture2D" uid="uid://c86fnd40qecf7" path="res://resources/textures/ground/Grass_10-128x128.png" id="1_vcqrr"]
 [ext_resource type="Texture2D" uid="uid://bkiqqpym0o4mi" path="res://resources/textures/walls/Bricks_17-128x128.png" id="2_gib22"]
+[ext_resource type="PackedScene" uid="uid://d3nda536kgo6k" path="res://resources/assets/stairs.gltf.glb" id="3_t0l5m"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_01toj"]
 sky_top_color = Color(0.670588, 0.345098, 0.188235, 1)
@@ -40,6 +41,12 @@ orientation = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_55jws"]
 size = Vector3(80, 10, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_030ii"]
+size = Vector3(4.5, 3.8, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dvc10"]
+size = Vector3(4, 4, 1)
 
 [node name="stage_1" type="Node3D"]
 
@@ -105,3 +112,16 @@ mesh = SubResource("PlaneMesh_5602d")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/StaticBody3D2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -1)
 shape = SubResource("BoxShape3D_55jws")
+
+[node name="stairs_gltf" parent="." instance=ExtResource("3_t0l5m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.302396, 0, -6.62463)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="stairs_gltf"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="stairs_gltf/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.096, 0.511)
+shape = SubResource("BoxShape3D_030ii")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="stairs_gltf/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 0.681066, 0.732222, 0, -0.732222, 0.681066, 0, 1.95453, 1.86637)
+shape = SubResource("BoxShape3D_dvc10")

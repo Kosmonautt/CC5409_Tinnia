@@ -5,7 +5,6 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kjoxj"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6noi1"]
-load_path = "res://.godot/imported/Tile_17-128x128.png-099ed4476a58ca3f8e81293d3dfb2a60.s3tc.ctex"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dll0r"]
 albedo_texture = SubResource("CompressedTexture2D_6noi1")
