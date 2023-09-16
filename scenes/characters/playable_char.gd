@@ -4,33 +4,34 @@ extends CharacterBody3D
 @export var gravity = 15
 @export var jump_impulse = 10
 @export var mouse_sensibility = 0.05
+@export var target_velocity = Vector3.ZERO
 
 # direction of the player
-var direction
-
+var direction : Vector3
 # direction input
-var dir_input
-
-# velocity of the player
-var target_velocity = Vector3.ZERO
+var dir_input : Vector2
+# model that change
+var model
+# showing mouse or not
+var showing_mouse = false
+# second jump
+var second_jump = false
+# animation_player
+var player_animation
 
 # we get the head node
 @onready var head = $Head
-
 # we get the camera node 
 @onready var camera = $Head/Camera3D
-
 # set the model
 @onready var playable_character = $Playable_characters
+# we get the animation tree
+@onready var anim_tree : AnimationTree = $AnimationTree
+# we get the animation playback of the animation tree 
+@onready var playback : AnimationNodeStateMachinePlayback = anim_tree.get("parameters/playback")
+# we get the area to pass the bomb
+@onready var area = $Area3D
 
-# model that change
-var model
-
-# showing mouse or not
-var showing_mouse = false
-
-# second jump
-var second_jump = false
 
 # this function gets called when players are playable characters are assigned to each player
 func setup(player_data: Game.PlayerData):
@@ -45,20 +46,31 @@ func setup(player_data: Game.PlayerData):
 	# the name also gets saved
 	name = str(player_data.id)
 	# Setting up model character
-	if player_data.role == 1:
-		model = load("res://resources/playable_character/mage.tscn").instantiate() as Node3D
-	else:
-		model = load("res://resources/playable_character/rogue.tscn").instantiate() as Node3D
+	setup_model(player_data.role)
+
+func setup_model(role):
+	match role:
+		1:
+			model = load("res://resources/playable_character/mage.tscn").instantiate() as Node3D
+		2:
+			model = load("res://resources/playable_character/knight.tscn").instantiate() as Node3D
+		3:
+			model = load("res://resources/playable_character/rogue.tscn").instantiate() as Node3D
+
 	model.rotation = Vector3(0, PI, 0)
 	playable_character.add_child(model)
 	# Setting up model visibility
 	if is_multiplayer_authority():
-		model.visible = false
+		model.visible = true
 	
+	player_animation = model.get_child(1)
+	anim_tree.anim_player = player_animation.get_path()
 
 func _ready():
 	# we hide cursor so we can move the camera freely
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	# set animation tree to active
+	anim_tree.active = true
 
 func _input(event):
 	# if we detect mouse movement
@@ -69,9 +81,16 @@ func _input(event):
 		head.rotate_x(deg_to_rad(-event.relative.y * mouse_sensibility))
 		# we clamp so we can look at most straight down and straight up
 		head.rotation.x = clamp(head.rotation.x, -PI/2, PI/2 )
+		
 	
+func _process(_delta):
+	# process the animations
+	update_animation_tree()
 
-func _physics_process(delta):	
+func _physics_process(delta):
+	# return other players physics
+	if not is_multiplayer_authority():
+		return
 	# direction vector of movement
 	direction = Vector3.ZERO
 	# direction vector of input
@@ -89,12 +108,22 @@ func _physics_process(delta):
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			showing_mouse = false
-					
-	var dir_input = Input.get_vector("move_left", "move_right", "move_backwards", "move_forwards")
+	
+	dir_input = Input.get_vector("move_left", "move_right", "move_backwards", "move_forwards")
 	
 	# direction we are meant to move	
 	direction += transform.basis.z * -dir_input.y
 	direction += transform.basis.x * dir_input.x
+	
+	# when passing the bomb
+	if Input.is_action_just_pressed("ui_accept") and name == Global.bomb_carrier:
+		for i in area.get_overlapping_bodies():
+			if i == self:
+				continue
+			elif i is CharacterBody3D:
+				Debug.dprint("pass to %s" % i.name)
+				i.pass_the_bomb(i.name)
+				break
 	
 	# when sprinting
 	if Input.is_action_pressed("sprint") and is_on_floor():
@@ -121,5 +150,18 @@ func _physics_process(delta):
 	target_velocity.z = direction.z * player_speed
 	
 	velocity = target_velocity
-
+	
 	move_and_slide()
+	
+func update_animation_tree():
+#	if Input.is_action_pressed("sprint"):
+#		playback.travel("Dash")
+
+	if target_velocity.x != 0 and target_velocity.z != 0:
+		playback.travel("Walk")
+	
+	if target_velocity.x == 0 and target_velocity.z == 0:
+		playback.travel("Idle")
+
+func pass_the_bomb(player_id):
+	Global.update_the_bomb.rpc(player_id)

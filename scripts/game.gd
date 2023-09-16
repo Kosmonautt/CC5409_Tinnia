@@ -7,6 +7,7 @@ enum Role {
 	NONE,
 	ROLE_A,
 	ROLE_B
+#	ROLE_C
 }
 
 # [ {id: int, name: string, rol: Rol} ]
@@ -107,3 +108,4 @@ class PlayerData:
 			"name": name,
 			"role": role
 		}
+	

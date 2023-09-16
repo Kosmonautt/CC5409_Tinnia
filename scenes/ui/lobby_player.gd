@@ -7,7 +7,6 @@ extends MarginContainer
 
 var player_id: int
 
-
 func _ready() -> void:
 	player_role.hide()
 	ready_texture.hide()

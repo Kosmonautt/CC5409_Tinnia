@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=3 uid="uid://utys7bhb5cx5"]
+
+[ext_resource type="Script" path="res://scripts/GUI.gd" id="1_521sh"]
+[ext_resource type="Texture2D" uid="uid://d3p5yw4ctrta6" path="res://icon.svg" id="2_1dwve"]
+
+[node name="GUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_521sh")
+
+[node name="bomb_sprite" type="Sprite2D" parent="."]
+position = Vector2(1087, 582)
+texture = ExtResource("2_1dwve")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 26.0
+grow_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/HBoxContainer"]
+layout_mode = 2
+text = "Explode in "
+
+[node name="TimerLabel" type="Label" parent="CenterContainer/HBoxContainer"]
+layout_mode = 2
+text = "Inserte timer aqui
+"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Vel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Dir" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Dir_inp" type="Label" parent="VBoxContainer"]
+layout_mode = 2
