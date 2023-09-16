@@ -1,6 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://cday53347fn87"]
 
 [ext_resource type="Script" path="res://scenes/characters/playable_char.gd" id="1_7gvk3"]
+
 [ext_resource type="PackedScene" uid="uid://utys7bhb5cx5" path="res://scenes/ui/gui.tscn" id="2_usxjd"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kjoxj"]
