@@ -1,7 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://cday53347fn87"]
+[gd_scene load_steps=29 format=3 uid="uid://cday53347fn87"]
 
 [ext_resource type="Script" path="res://scenes/characters/playable_char.gd" id="1_7gvk3"]
-
 [ext_resource type="PackedScene" uid="uid://utys7bhb5cx5" path="res://scenes/ui/gui.tscn" id="2_usxjd"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kjoxj"]
@@ -20,51 +19,110 @@ properties/2/spawn = true
 properties/2/sync = true
 properties/2/watch = false
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_2n0gf"]
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cgdtt"]
 animation = &"Idle"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8rejc"]
-animation = &"Walking_Backwards"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4y2ik"]
+animation = &"Jump_Idle"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ciq2k"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7c0ja"]
+animation = &"Jump_Land"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fn11s"]
+animation = &"Jump_Start"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cco0d"]
 animation = &"Walking_A"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ddgbn"]
-animation = &"Walking_B"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_it1kd"]
-animation = &"Walking_B"
-
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_1cx7v"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_8rejc")
-blend_point_0/pos = Vector2(0, -1)
-blend_point_1/node = SubResource("AnimationNodeAnimation_ciq2k")
-blend_point_1/pos = Vector2(0, 1)
-blend_point_2/node = SubResource("AnimationNodeAnimation_ddgbn")
-blend_point_2/pos = Vector2(1, 0)
-blend_point_3/node = SubResource("AnimationNodeAnimation_it1kd")
-blend_point_3/pos = Vector2(-1, 0)
-blend_mode = 1
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oh00f"]
+animation = &"Walking_Backwards"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cnmn8"]
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rree0"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s2x47"]
+advance_mode = 2
+advance_condition = &"is_walking"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_d723e"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nltb8"]
+advance_mode = 2
+advance_condition = &"is_idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gioeh"]
 switch_mode = 2
+advance_mode = 2
+advance_condition = &"is_falling"
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ebav3"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_krvd5"]
+advance_mode = 2
+advance_condition = &"is_landing"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fijua"]
+advance_mode = 2
+advance_condition = &"is_jumping"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yd4cs"]
+advance_mode = 2
+advance_condition = &"is_jumping"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6kb5m"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"is_walking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8vkbs"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"is_idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x70ph"]
+advance_mode = 2
+advance_condition = &"is_falling"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mtujy"]
+advance_mode = 2
+advance_condition = &"is_falling"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2uqby"]
+advance_mode = 2
+advance_condition = &"is_walking_b"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tm3af"]
+advance_mode = 2
+advance_condition = &"is_idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3r538"]
+advance_mode = 2
+advance_condition = &"is_walking_b"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tgq3o"]
+advance_mode = 2
+advance_condition = &"is_walking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tswy6"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"is_walking_b"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_haevw"]
 states/End/position = Vector2(879, 107)
 states/Idle/node = SubResource("AnimationNodeAnimation_cgdtt")
 states/Idle/position = Vector2(376, 107)
+states/Jump_Idle/node = SubResource("AnimationNodeAnimation_4y2ik")
+states/Jump_Idle/position = Vector2(440.14, 217)
+states/Jump_Land/node = SubResource("AnimationNodeAnimation_7c0ja")
+states/Jump_Land/position = Vector2(752.14, 217)
+states/Jump_Start/node = SubResource("AnimationNodeAnimation_fn11s")
+states/Jump_Start/position = Vector2(232, 217)
 states/Start/position = Vector2(232, 107)
-states/Walk/node = SubResource("AnimationNodeBlendSpace2D_1cx7v")
-states/Walk/position = Vector2(600, 107)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_cnmn8"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_rree0"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_d723e")]
-graph_offset = Vector2(-54, 6)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_2n0gf"]
+states/Walking_A/node = SubResource("AnimationNodeAnimation_cco0d")
+states/Walking_A/position = Vector2(559.14, 107)
+states/Walking_Backwards/node = SubResource("AnimationNodeAnimation_oh00f")
+states/Walking_Backwards/position = Vector2(559.14, 18.646)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_cnmn8"), "Idle", "Walking_A", SubResource("AnimationNodeStateMachineTransition_s2x47"), "Walking_A", "Idle", SubResource("AnimationNodeStateMachineTransition_nltb8"), "Jump_Start", "Jump_Idle", SubResource("AnimationNodeStateMachineTransition_gioeh"), "Jump_Idle", "Jump_Land", SubResource("AnimationNodeStateMachineTransition_krvd5"), "Idle", "Jump_Start", SubResource("AnimationNodeStateMachineTransition_fijua"), "Walking_A", "Jump_Start", SubResource("AnimationNodeStateMachineTransition_yd4cs"), "Jump_Land", "Walking_A", SubResource("AnimationNodeStateMachineTransition_6kb5m"), "Jump_Land", "Idle", SubResource("AnimationNodeStateMachineTransition_8vkbs"), "Idle", "Jump_Idle", SubResource("AnimationNodeStateMachineTransition_x70ph"), "Walking_A", "Jump_Idle", SubResource("AnimationNodeStateMachineTransition_mtujy"), "Idle", "Walking_Backwards", SubResource("AnimationNodeStateMachineTransition_2uqby"), "Walking_Backwards", "Idle", SubResource("AnimationNodeStateMachineTransition_tm3af"), "Walking_A", "Walking_Backwards", SubResource("AnimationNodeStateMachineTransition_3r538"), "Walking_Backwards", "Walking_A", SubResource("AnimationNodeStateMachineTransition_tgq3o"), "Jump_Land", "Walking_Backwards", SubResource("AnimationNodeStateMachineTransition_tswy6")]
+graph_offset = Vector2(80.14, -27.354)
 
 [node name="character_1" type="CharacterBody3D"]
 script = ExtResource("1_7gvk3")
@@ -85,10 +143,6 @@ current = true
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_clwe1")
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource("AnimationNodeStateMachine_ebav3")
-parameters/Walk/blend_position = Vector2(-0.7792, -0.781659)
-
 [node name="GUI" parent="." instance=ExtResource("2_usxjd")]
 
 [node name="Area3D" type="Area3D" parent="."]
@@ -96,3 +150,13 @@ parameters/Walk/blend_position = Vector2(-0.7792, -0.781659)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1)
 shape = SubResource("BoxShape3D_2n0gf")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_haevw")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/is_falling = false
+parameters/conditions/is_idle = false
+parameters/conditions/is_jumping = false
+parameters/conditions/is_landing = false
+parameters/conditions/is_walking = false
+parameters/conditions/is_walking_b = false

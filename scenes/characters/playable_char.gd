@@ -84,8 +84,7 @@ func _input(event):
 		
 	
 func _process(_delta):
-	# process the animations
-	update_animation_tree()
+	pass
 
 func _physics_process(delta):
 	# return other players physics
@@ -115,6 +114,9 @@ func _physics_process(delta):
 	direction += transform.basis.z * -dir_input.y
 	direction += transform.basis.x * dir_input.x
 	
+	if is_on_floor():
+		target_velocity.y = 0
+	
 	# when passing the bomb
 	if Input.is_action_just_pressed("ui_accept") and name == Global.bomb_carrier:
 		for i in area.get_overlapping_bodies():
@@ -130,14 +132,13 @@ func _physics_process(delta):
 		player_speed = 3 * walking_speed
 	
 	# jumping
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		target_velocity.y += jump_impulse
-		
-	# wall jump
-	if Input.is_action_just_pressed("jump") and is_on_wall() and !second_jump:
-		second_jump = true
-		target_velocity.y = jump_impulse
-		
+	if Input.is_action_just_pressed("jump"):
+		if is_on_floor():
+			target_velocity.y += jump_impulse
+		elif is_on_wall() and !second_jump:
+			second_jump = true
+			target_velocity.y += jump_impulse/2
+	
 	if is_on_floor():
 		second_jump = false
 	
@@ -151,17 +152,13 @@ func _physics_process(delta):
 	
 	velocity = target_velocity
 	
+	anim_tree.set("parameters/conditions/is_idle", dir_input == Vector2.ZERO && is_on_floor())
+	anim_tree.set("parameters/conditions/is_walking", dir_input!= Vector2.ZERO && is_on_floor())
+	anim_tree.set("parameters/conditions/is_walking_b", dir_input.x < 0 && is_on_floor())
+#	anim_tree.set("parameters/conditions/is_jumping", is_on_floor())
+	anim_tree.set("parameters/conditions/is_falling", !is_on_floor())
+	anim_tree.set("parameters/conditions/is_landing", is_on_floor())
 	move_and_slide()
-	
-func update_animation_tree():
-#	if Input.is_action_pressed("sprint"):
-#		playback.travel("Dash")
-
-	if target_velocity.x != 0 and target_velocity.z != 0:
-		playback.travel("Walk")
-	
-	if target_velocity.x == 0 and target_velocity.z == 0:
-		playback.travel("Idle")
 
 func pass_the_bomb(player_id):
 	Global.update_the_bomb.rpc(player_id)
