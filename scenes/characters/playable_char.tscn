@@ -18,6 +18,30 @@ properties/2/path = NodePath(".:target_velocity")
 properties/2/spawn = true
 properties/2/sync = true
 properties/2/watch = false
+properties/3/path = NodePath("AnimationTree:parameters/conditions/is_walking")
+properties/3/spawn = true
+properties/3/sync = true
+properties/3/watch = false
+properties/4/path = NodePath("AnimationTree:parameters/conditions/is_jumping")
+properties/4/spawn = true
+properties/4/sync = true
+properties/4/watch = false
+properties/5/path = NodePath("AnimationTree:parameters/conditions/is_idle")
+properties/5/spawn = true
+properties/5/sync = true
+properties/5/watch = false
+properties/6/path = NodePath("AnimationTree:parameters/conditions/is_falling")
+properties/6/spawn = true
+properties/6/sync = true
+properties/6/watch = false
+properties/7/path = NodePath("AnimationTree:parameters/conditions/is_landing")
+properties/7/spawn = true
+properties/7/sync = true
+properties/7/watch = false
+properties/8/path = NodePath("AnimationTree:parameters/conditions/is_walking_b")
+properties/8/spawn = true
+properties/8/sync = true
+properties/8/watch = false
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2n0gf"]
 
