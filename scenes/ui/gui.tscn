@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://utys7bhb5cx5"]
+[gd_scene load_steps=13 format=3 uid="uid://utys7bhb5cx5"]
 
 [ext_resource type="Script" path="res://scripts/GUI.gd" id="1_521sh"]
 [ext_resource type="Texture2D" uid="uid://b4nx8xytfn4uj" path="res://resources/assets/bomb/Sprite-0002.png" id="2_cijuq"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cc12kgk6w4tek" path="res://resources/assets/bomb/Sprite-0006.png" id="7_bt12k"]
 [ext_resource type="Texture2D" uid="uid://dq5ey8nd3lrsp" path="res://resources/assets/bomb/Sprite-0007.png" id="8_ohm2c"]
 [ext_resource type="Texture2D" uid="uid://cn0bkfg4puwc1" path="res://resources/assets/bomb/Sprite-0008.png" id="9_wp7hm"]
+[ext_resource type="Texture2D" uid="uid://c02v2s4ncikqf" path="res://resources/assets/chronometer/Sprite-0003.png" id="10_tyct0"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jhrwt"]
 animations = [{
@@ -41,6 +42,9 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5r6e6"]
+font_size = 50
 
 [node name="GUI" type="Control"]
 layout_mode = 3
@@ -76,14 +80,18 @@ grow_horizontal = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CenterContainer/HBoxContainer"]
-layout_mode = 2
-text = "Explode in "
+[node name="chronometer_sprite" type="Sprite2D" parent="CenterContainer/HBoxContainer"]
+position = Vector2(-46, 40)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("10_tyct0")
 
 [node name="TimerLabel" type="Label" parent="CenterContainer/HBoxContainer"]
 layout_mode = 2
 text = "Inserte timer aqui
 "
+label_settings = SubResource("LabelSettings_5r6e6")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0

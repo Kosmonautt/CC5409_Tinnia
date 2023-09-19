@@ -137,7 +137,7 @@ shape = SubResource("CapsuleShape3D_kjoxj")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
-transform = Transform3D(-0.996335, -2.90382e-09, 0.0855386, 0.0314514, 0.92995, 0.366339, -0.0795466, 0.367686, -0.926542, 0, 1.25615, -2.42381)
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 2.5, 2.5)
 current = true
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
