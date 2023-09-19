@@ -155,9 +155,11 @@ func _physics_process(delta):
 	anim_tree.set("parameters/conditions/is_idle", dir_input == Vector2.ZERO && is_on_floor())
 	anim_tree.set("parameters/conditions/is_walking", dir_input!= Vector2.ZERO && is_on_floor())
 	anim_tree.set("parameters/conditions/is_walking_b", dir_input.x < 0 && is_on_floor())
-#	anim_tree.set("parameters/conditions/is_jumping", is_on_floor())
+	anim_tree.set("parameters/conditions/is_jumping", Input.is_action_just_pressed("jump")) # adjust animation
 	anim_tree.set("parameters/conditions/is_falling", !is_on_floor())
 	anim_tree.set("parameters/conditions/is_landing", is_on_floor())
+	anim_tree.set("parameters/conditions/is_interact", Input.is_action_just_pressed("ui_accept") && name == Global.bomb_carrier)
+	
 	move_and_slide()
 
 func pass_the_bomb(player_id):
