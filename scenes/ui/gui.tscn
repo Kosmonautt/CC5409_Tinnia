@@ -1,7 +1,46 @@
-[gd_scene load_steps=3 format=3 uid="uid://utys7bhb5cx5"]
+[gd_scene load_steps=11 format=3 uid="uid://utys7bhb5cx5"]
 
 [ext_resource type="Script" path="res://scripts/GUI.gd" id="1_521sh"]
-[ext_resource type="Texture2D" uid="uid://d3p5yw4ctrta6" path="res://icon.svg" id="2_1dwve"]
+[ext_resource type="Texture2D" uid="uid://b4nx8xytfn4uj" path="res://resources/assets/bomb/Sprite-0002.png" id="2_cijuq"]
+[ext_resource type="Texture2D" uid="uid://0jjienyapijm" path="res://resources/assets/bomb/Sprite-0001.png" id="2_yhhfi"]
+[ext_resource type="Texture2D" uid="uid://jcyic0mjku1p" path="res://resources/assets/bomb/Sprite-0003.png" id="4_5qh8w"]
+[ext_resource type="Texture2D" uid="uid://bjhyu5kt4ja0t" path="res://resources/assets/bomb/Sprite-0004.png" id="5_bgqx5"]
+[ext_resource type="Texture2D" uid="uid://b56hxk3t02tib" path="res://resources/assets/bomb/Sprite-0005.png" id="6_yo077"]
+[ext_resource type="Texture2D" uid="uid://cc12kgk6w4tek" path="res://resources/assets/bomb/Sprite-0006.png" id="7_bt12k"]
+[ext_resource type="Texture2D" uid="uid://dq5ey8nd3lrsp" path="res://resources/assets/bomb/Sprite-0007.png" id="8_ohm2c"]
+[ext_resource type="Texture2D" uid="uid://cn0bkfg4puwc1" path="res://resources/assets/bomb/Sprite-0008.png" id="9_wp7hm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jhrwt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_yhhfi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_cijuq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_5qh8w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_bgqx5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_yo077")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_bt12k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ohm2c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_wp7hm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="GUI" type="Control"]
 layout_mode = 3
@@ -12,9 +51,18 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_521sh")
 
-[node name="bomb_sprite" type="Sprite2D" parent="."]
-position = Vector2(1087, 582)
-texture = ExtResource("2_1dwve")
+[node name="bomb_sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(1046, 543)
+scale = Vector2(0.65, 0.65)
+sprite_frames = SubResource("SpriteFrames_jhrwt")
+autoplay = "default"
+frame_progress = 0.0592929
+
+[node name="_bomb_sprite" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1064, 565)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_yhhfi")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
