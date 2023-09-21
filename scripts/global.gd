@@ -42,6 +42,7 @@ func _on_global_timer_timeout():
 	players_alive.erase(bomb_carrier.to_int())
 #	if players_alive.size() == 1:
 #		Debug.dprint("GANASTE")
+#	else:
 	# nuevo jugador que tiene la bomba
 	var i = players_alive[randi() % players_alive.size()]
 	Debug.dprint("ASIGNO RANDOM A %s" % i)

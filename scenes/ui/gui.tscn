@@ -61,6 +61,7 @@ scale = Vector2(0.65, 0.65)
 sprite_frames = SubResource("SpriteFrames_jhrwt")
 autoplay = "default"
 frame_progress = 0.0592929
+speed_scale = 2.0
 
 [node name="_bomb_sprite" type="Sprite2D" parent="."]
 visible = false

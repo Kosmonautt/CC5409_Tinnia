@@ -220,7 +220,7 @@ states/Walking_A/position = Vector2(559.14, 107)
 states/Walking_Backwards/node = SubResource("AnimationNodeAnimation_oh00f")
 states/Walking_Backwards/position = Vector2(559.14, -73.354)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_cnmn8"), "Idle", "Walking_A", SubResource("AnimationNodeStateMachineTransition_s2x47"), "Walking_A", "Idle", SubResource("AnimationNodeStateMachineTransition_nltb8"), "Jump_Start", "Jump_Idle", SubResource("AnimationNodeStateMachineTransition_gioeh"), "Jump_Idle", "Jump_Land", SubResource("AnimationNodeStateMachineTransition_krvd5"), "Idle", "Jump_Start", SubResource("AnimationNodeStateMachineTransition_fijua"), "Walking_A", "Jump_Start", SubResource("AnimationNodeStateMachineTransition_yd4cs"), "Jump_Land", "Walking_A", SubResource("AnimationNodeStateMachineTransition_6kb5m"), "Jump_Land", "Idle", SubResource("AnimationNodeStateMachineTransition_8vkbs"), "Idle", "Jump_Idle", SubResource("AnimationNodeStateMachineTransition_x70ph"), "Walking_A", "Jump_Idle", SubResource("AnimationNodeStateMachineTransition_mtujy"), "Idle", "Walking_Backwards", SubResource("AnimationNodeStateMachineTransition_2uqby"), "Walking_Backwards", "Idle", SubResource("AnimationNodeStateMachineTransition_tm3af"), "Walking_A", "Walking_Backwards", SubResource("AnimationNodeStateMachineTransition_3r538"), "Walking_Backwards", "Walking_A", SubResource("AnimationNodeStateMachineTransition_tgq3o"), "Jump_Land", "Walking_Backwards", SubResource("AnimationNodeStateMachineTransition_tswy6"), "Idle", "Interact", SubResource("AnimationNodeStateMachineTransition_j5qf5"), "Walking_A", "Interact", SubResource("AnimationNodeStateMachineTransition_16g43"), "Walking_Backwards", "Interact", SubResource("AnimationNodeStateMachineTransition_bf487"), "Interact", "Idle", SubResource("AnimationNodeStateMachineTransition_vtm55"), "Interact", "Walking_A", SubResource("AnimationNodeStateMachineTransition_mmufv"), "Interact", "Walking_Backwards", SubResource("AnimationNodeStateMachineTransition_wkscr"), "Interact", "Jump_Start", SubResource("AnimationNodeStateMachineTransition_4hdgy"), "Idle", "Death_A", SubResource("AnimationNodeStateMachineTransition_421al"), "Interact", "Death_A", SubResource("AnimationNodeStateMachineTransition_7ytwu"), "Walking_Backwards", "Death_A", SubResource("AnimationNodeStateMachineTransition_4vmln"), "Jump_Land", "Death_A", SubResource("AnimationNodeStateMachineTransition_bi5pv"), "Jump_Start", "Death_A", SubResource("AnimationNodeStateMachineTransition_5uw73"), "Walking_A", "Death_A", SubResource("AnimationNodeStateMachineTransition_pi6nf")]
-graph_offset = Vector2(106.14, -15.354)
+graph_offset = Vector2(244.14, -98.354)
 
 [node name="character_1" type="CharacterBody3D"]
 script = ExtResource("1_7gvk3")
@@ -251,7 +251,6 @@ shape = SubResource("BoxShape3D_2n0gf")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_gy6k1")
-anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/is_dead = false
 parameters/conditions/is_falling = false
 parameters/conditions/is_idle = false

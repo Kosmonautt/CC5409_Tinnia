@@ -164,14 +164,21 @@ func _physics_process(delta):
 	anim_tree.set("parameters/conditions/is_falling", !is_on_floor())
 	anim_tree.set("parameters/conditions/is_landing", is_on_floor())
 	anim_tree.set("parameters/conditions/is_interact", Input.is_action_just_pressed("ui_accept") && name == Global.bomb_carrier)
+	anim_tree.set("parameters/conditions/is_dead", !is_alive(name.to_int()))
 	
 	move_and_slide()
 
 func pass_the_bomb(player_id):
 	Global.update_the_bomb.rpc(player_id)
 	
+func is_alive(player_id):
+	for i in Global.players_alive:
+		if i == player_id:
+			return true
+	return false
+	
 func player_die():
-#	anim_tree.set("parameters/conditions/is_dead", name == Global.bomb_carrier)
+#	playback.travel("Death_A")
 	# disable input and process
 	set_process_unhandled_input(false)
 #	set_physics_process(false)
