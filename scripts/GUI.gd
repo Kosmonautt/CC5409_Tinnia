@@ -5,9 +5,9 @@ extends Control
 @onready var anim_player = $AnimationPlayer
 
 # DEBUG
-@onready var vel = $VBoxContainer/Vel
-@onready var dir = $VBoxContainer/Dir
-@onready var dir_input = $VBoxContainer/Dir_inp
+@onready var bomb = $VBoxContainer/Label
+@onready var pa = $VBoxContainer/Label2
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,12 +20,9 @@ func _process(_delta):
 	
 	# DEBUG
 	if is_multiplayer_authority():
-		var velocity = get_parent().target_velocity
-		vel.text = str("VEL: %s %s %s" % [velocity.x, velocity.y, velocity.z])
-		var di = get_parent().direction
-		dir.text = str("DIR: %s %s %s" % [di.x, di.y, di.z])
-		var di_i = get_parent().dir_input
-		dir_input.text = str("DIR INP: %s %s" % [di_i.x, di_i.y])
+		var bomba = Global.bomb_carrier 
+		bomb.text = str("BOMB CARRIER: %s" % bomba)
+
 
 func update_gui():
 	if StringName("%s" % Game.get_current_player().id) == Global.bomb_carrier:

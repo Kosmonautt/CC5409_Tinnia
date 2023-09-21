@@ -23,12 +23,9 @@ func _ready() -> void:
 
 	Global.game_ready()
 	
-	set_random_bomb()
+	if multiplayer.is_server(): 
+		Global.start_bomb.rpc(Game.players[randi() % Game.players.size()].id)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
-
-func set_random_bomb():
-	if multiplayer.is_server(): 
-		Global.start_bomb.rpc(Game.players[randi() % Game.players.size()].id)

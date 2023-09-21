@@ -74,7 +74,8 @@ func _ready():
 	# set animation tree to active
 	anim_tree.active = true
 	# connect to the global_timer timeout
-	Global.global_timer.timeout.connect(_on_global_timer_timeout)
+	if is_multiplayer_authority(): 
+		Global.die.connect(player_die)
 
 func _input(event):
 	# if we detect mouse movement
@@ -88,8 +89,6 @@ func _input(event):
 		
 	
 func _process(_delta):
-#	if Global.global_timer.is_stopped() and Global.bomb_carrier == name:
-#		player_die()
 	pass
 
 func _physics_process(delta):
@@ -165,7 +164,6 @@ func _physics_process(delta):
 	anim_tree.set("parameters/conditions/is_falling", !is_on_floor())
 	anim_tree.set("parameters/conditions/is_landing", is_on_floor())
 	anim_tree.set("parameters/conditions/is_interact", Input.is_action_just_pressed("ui_accept") && name == Global.bomb_carrier)
-	anim_tree.set("parameters/conditions/is_dead", timeout && name == Global.bomb_carrier)
 	
 	move_and_slide()
 
@@ -173,19 +171,7 @@ func pass_the_bomb(player_id):
 	Global.update_the_bomb.rpc(player_id)
 	
 func player_die():
+#	anim_tree.set("parameters/conditions/is_dead", name == Global.bomb_carrier)
 	# disable input and process
 	set_process_unhandled_input(false)
-	set_process(false)
 #	set_physics_process(false)
-	# set the timer again
-	Global.new_timer()
-	# set the bomb to random (except me)
-#	var ind = StringName("%s" % Game.players[randi() % Game.players.size()].id)
-#	while ind == name:
-#		ind = StringName("%s" % Game.players[randi() % Game.players.size()].id)
-#	Global.update_the_bomb.rpc(ind)
-	
-func _on_global_timer_timeout():
-	if name == Global.bomb_carrier:
-		timeout = true
-		player_die()

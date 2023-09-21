@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scripts/global.gd" id="1_fqa38"]
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_f6ho0"]
-properties/0/path = NodePath(".:Global.bomb_carrier")
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_wouul"]
+properties/0/path = NodePath(".:players_alive")
 properties/0/spawn = true
 properties/0/sync = true
 properties/0/watch = false
@@ -12,4 +12,4 @@ properties/0/watch = false
 script = ExtResource("1_fqa38")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_f6ho0")
+replication_config = SubResource("SceneReplicationConfig_wouul")
