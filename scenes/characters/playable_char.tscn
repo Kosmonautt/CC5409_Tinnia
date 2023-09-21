@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://cday53347fn87"]
+[gd_scene load_steps=44 format=3 uid="uid://cday53347fn87"]
 
 [ext_resource type="Script" path="res://scenes/characters/playable_char.gd" id="1_7gvk3"]
 [ext_resource type="PackedScene" uid="uid://utys7bhb5cx5" path="res://scenes/ui/gui.tscn" id="2_usxjd"]
@@ -46,8 +46,15 @@ properties/9/path = NodePath("AnimationTree:parameters/conditions/is_interact")
 properties/9/spawn = true
 properties/9/sync = true
 properties/9/watch = false
+properties/10/path = NodePath("AnimationTree:parameters/conditions/is_dead")
+properties/10/spawn = true
+properties/10/sync = true
+properties/10/watch = false
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2n0gf"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qo01g"]
+animation = &"Death_A"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cgdtt"]
 animation = &"Idle"
@@ -169,7 +176,33 @@ switch_mode = 2
 advance_mode = 2
 advance_condition = &"is_jumping"
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_cscp0"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_421al"]
+advance_mode = 2
+advance_condition = &"is_dead"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7ytwu"]
+advance_mode = 2
+advance_condition = &"is_dead"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4vmln"]
+advance_mode = 2
+advance_condition = &"is_dead"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bi5pv"]
+advance_mode = 2
+advance_condition = &"is_dead"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5uw73"]
+advance_mode = 2
+advance_condition = &"is_dead"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pi6nf"]
+advance_mode = 2
+advance_condition = &"is_dead"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_gy6k1"]
+states/Death_A/node = SubResource("AnimationNodeAnimation_qo01g")
+states/Death_A/position = Vector2(879, 18.646)
 states/End/position = Vector2(879, 107)
 states/Idle/node = SubResource("AnimationNodeAnimation_cgdtt")
 states/Idle/position = Vector2(376, 107)
@@ -185,9 +218,9 @@ states/Start/position = Vector2(87, 107)
 states/Walking_A/node = SubResource("AnimationNodeAnimation_cco0d")
 states/Walking_A/position = Vector2(559.14, 107)
 states/Walking_Backwards/node = SubResource("AnimationNodeAnimation_oh00f")
-states/Walking_Backwards/position = Vector2(559.14, 18.646)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_cnmn8"), "Idle", "Walking_A", SubResource("AnimationNodeStateMachineTransition_s2x47"), "Walking_A", "Idle", SubResource("AnimationNodeStateMachineTransition_nltb8"), "Jump_Start", "Jump_Idle", SubResource("AnimationNodeStateMachineTransition_gioeh"), "Jump_Idle", "Jump_Land", SubResource("AnimationNodeStateMachineTransition_krvd5"), "Idle", "Jump_Start", SubResource("AnimationNodeStateMachineTransition_fijua"), "Walking_A", "Jump_Start", SubResource("AnimationNodeStateMachineTransition_yd4cs"), "Jump_Land", "Walking_A", SubResource("AnimationNodeStateMachineTransition_6kb5m"), "Jump_Land", "Idle", SubResource("AnimationNodeStateMachineTransition_8vkbs"), "Idle", "Jump_Idle", SubResource("AnimationNodeStateMachineTransition_x70ph"), "Walking_A", "Jump_Idle", SubResource("AnimationNodeStateMachineTransition_mtujy"), "Idle", "Walking_Backwards", SubResource("AnimationNodeStateMachineTransition_2uqby"), "Walking_Backwards", "Idle", SubResource("AnimationNodeStateMachineTransition_tm3af"), "Walking_A", "Walking_Backwards", SubResource("AnimationNodeStateMachineTransition_3r538"), "Walking_Backwards", "Walking_A", SubResource("AnimationNodeStateMachineTransition_tgq3o"), "Jump_Land", "Walking_Backwards", SubResource("AnimationNodeStateMachineTransition_tswy6"), "Idle", "Interact", SubResource("AnimationNodeStateMachineTransition_j5qf5"), "Walking_A", "Interact", SubResource("AnimationNodeStateMachineTransition_16g43"), "Walking_Backwards", "Interact", SubResource("AnimationNodeStateMachineTransition_bf487"), "Interact", "Idle", SubResource("AnimationNodeStateMachineTransition_vtm55"), "Interact", "Walking_A", SubResource("AnimationNodeStateMachineTransition_mmufv"), "Interact", "Walking_Backwards", SubResource("AnimationNodeStateMachineTransition_wkscr"), "Interact", "Jump_Start", SubResource("AnimationNodeStateMachineTransition_4hdgy")]
-graph_offset = Vector2(-177.86, 18.646)
+states/Walking_Backwards/position = Vector2(559.14, -73.354)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_cnmn8"), "Idle", "Walking_A", SubResource("AnimationNodeStateMachineTransition_s2x47"), "Walking_A", "Idle", SubResource("AnimationNodeStateMachineTransition_nltb8"), "Jump_Start", "Jump_Idle", SubResource("AnimationNodeStateMachineTransition_gioeh"), "Jump_Idle", "Jump_Land", SubResource("AnimationNodeStateMachineTransition_krvd5"), "Idle", "Jump_Start", SubResource("AnimationNodeStateMachineTransition_fijua"), "Walking_A", "Jump_Start", SubResource("AnimationNodeStateMachineTransition_yd4cs"), "Jump_Land", "Walking_A", SubResource("AnimationNodeStateMachineTransition_6kb5m"), "Jump_Land", "Idle", SubResource("AnimationNodeStateMachineTransition_8vkbs"), "Idle", "Jump_Idle", SubResource("AnimationNodeStateMachineTransition_x70ph"), "Walking_A", "Jump_Idle", SubResource("AnimationNodeStateMachineTransition_mtujy"), "Idle", "Walking_Backwards", SubResource("AnimationNodeStateMachineTransition_2uqby"), "Walking_Backwards", "Idle", SubResource("AnimationNodeStateMachineTransition_tm3af"), "Walking_A", "Walking_Backwards", SubResource("AnimationNodeStateMachineTransition_3r538"), "Walking_Backwards", "Walking_A", SubResource("AnimationNodeStateMachineTransition_tgq3o"), "Jump_Land", "Walking_Backwards", SubResource("AnimationNodeStateMachineTransition_tswy6"), "Idle", "Interact", SubResource("AnimationNodeStateMachineTransition_j5qf5"), "Walking_A", "Interact", SubResource("AnimationNodeStateMachineTransition_16g43"), "Walking_Backwards", "Interact", SubResource("AnimationNodeStateMachineTransition_bf487"), "Interact", "Idle", SubResource("AnimationNodeStateMachineTransition_vtm55"), "Interact", "Walking_A", SubResource("AnimationNodeStateMachineTransition_mmufv"), "Interact", "Walking_Backwards", SubResource("AnimationNodeStateMachineTransition_wkscr"), "Interact", "Jump_Start", SubResource("AnimationNodeStateMachineTransition_4hdgy"), "Idle", "Death_A", SubResource("AnimationNodeStateMachineTransition_421al"), "Interact", "Death_A", SubResource("AnimationNodeStateMachineTransition_7ytwu"), "Walking_Backwards", "Death_A", SubResource("AnimationNodeStateMachineTransition_4vmln"), "Jump_Land", "Death_A", SubResource("AnimationNodeStateMachineTransition_bi5pv"), "Jump_Start", "Death_A", SubResource("AnimationNodeStateMachineTransition_5uw73"), "Walking_A", "Death_A", SubResource("AnimationNodeStateMachineTransition_pi6nf")]
+graph_offset = Vector2(1.14, -75.354)
 
 [node name="character_1" type="CharacterBody3D"]
 script = ExtResource("1_7gvk3")
@@ -217,8 +250,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1)
 shape = SubResource("BoxShape3D_2n0gf")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource("AnimationNodeStateMachine_cscp0")
+tree_root = SubResource("AnimationNodeStateMachine_gy6k1")
 anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/is_dead = false
 parameters/conditions/is_falling = false
 parameters/conditions/is_idle = false
 parameters/conditions/is_interact = false
