@@ -49,6 +49,9 @@ func setup(player_data: Game.PlayerData):
 	name = str(player_data.id)
 	# Setting up model character
 	setup_model(player_data.role)
+	# connect to the emit die
+	if is_multiplayer_authority(): 
+		Global.die.connect(player_die)
 
 func setup_model(role):
 	match role:
@@ -73,9 +76,6 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	# set animation tree to active
 	anim_tree.active = true
-	# connect to the global_timer timeout
-	if is_multiplayer_authority(): 
-		Global.die.connect(player_die)
 
 func _input(event):
 	# if we detect mouse movement
@@ -87,7 +87,6 @@ func _input(event):
 		# we clamp so we can look at most straight down and straight up
 		head.rotation.x = clamp(head.rotation.x, -PI/2, PI/2 )
 		
-	
 func _process(_delta):
 	pass
 
@@ -128,7 +127,6 @@ func _physics_process(delta):
 			if i == self:
 				continue
 			elif i is CharacterBody3D:
-				Debug.dprint("pass to %s" % i.name)
 				i.pass_the_bomb(i.name)
 				break
 	
@@ -164,21 +162,14 @@ func _physics_process(delta):
 	anim_tree.set("parameters/conditions/is_falling", !is_on_floor())
 	anim_tree.set("parameters/conditions/is_landing", is_on_floor())
 	anim_tree.set("parameters/conditions/is_interact", Input.is_action_just_pressed("ui_accept") && name == Global.bomb_carrier)
-	anim_tree.set("parameters/conditions/is_dead", !is_alive(name.to_int()))
 	
 	move_and_slide()
 
 func pass_the_bomb(player_id):
 	Global.update_the_bomb.rpc(player_id)
 	
-func is_alive(player_id):
-	for i in Global.players_alive:
-		if i == player_id:
-			return true
-	return false
-	
 func player_die():
-#	playback.travel("Death_A")
+	anim_tree.set("parameters/conditions/is_dead", true)
 	# disable input and process
 	set_process_unhandled_input(false)
 #	set_physics_process(false)
