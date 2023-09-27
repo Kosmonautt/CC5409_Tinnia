@@ -1,8 +1,8 @@
 extends Node
 
-@onready var global_timer : Timer = Timer.new()
-var bomb_carrier : StringName
 @export var players_alive : Array = []
+@onready var global_timer : Timer = Timer.new()
+var bomb_carrier : int
 
 # signal that connect to timeout
 signal die()
@@ -15,7 +15,7 @@ func _ready():
 func _process(_delta):
 	pass
 
-func game_ready():
+func game_ready() -> void:
 	players_alive = Game.players.map(func(value): return value.id)
 	add_child(global_timer)
 	global_timer.start(30)
@@ -24,23 +24,23 @@ func game_ready():
 		global_timer.timeout.connect(_on_global_timer_timeout)
 
 @rpc("call_local")
-func start_bomb(player_id):
-	bomb_carrier = StringName("%s" % player_id)
+func start_bomb(player_id : int):
+	bomb_carrier = player_id
 
 @rpc("any_peer", "call_local", "reliable")
-func update_the_bomb(player_id):
+func update_the_bomb(player_id : int):
 	bomb_carrier = player_id
 	
 @rpc("call_local")
-func emit_die():
+func emit_die() -> void:
 	die.emit()
 	
 func _on_global_timer_timeout():
-	emit_die.rpc_id(bomb_carrier.to_int())
-	players_alive.erase(bomb_carrier.to_int())
+	emit_die.rpc_id(bomb_carrier)
+	players_alive.erase(bomb_carrier)
 #	if players_alive.size() == 1:
 #		Debug.dprint("GANASTE")
 #	else:
 	# nuevo jugador que tiene la bomba
-	var i = players_alive[randi() % players_alive.size()]
-	update_the_bomb.rpc(StringName("%s" % i))
+	var i : int = players_alive[randi() % players_alive.size()]
+	update_the_bomb.rpc(i)

@@ -1,10 +1,10 @@
 extends CharacterBody3D
 
-@export var walking_speed = 6
-@export var gravity = 15
-@export var jump_impulse = 10
-@export var mouse_sensibility = 0.05
-@export var target_velocity = Vector3.ZERO
+@export var walking_speed : int = 6
+@export var gravity : int = 15
+@export var jump_impulse : int = 10
+@export var mouse_sensibility : float = 0.05
+@export var target_velocity : Vector3 = Vector3.ZERO
 
 # direction of the player
 var direction : Vector3
@@ -13,18 +13,18 @@ var dir_input : Vector2
 # model that change
 var model
 # showing mouse or not
-var showing_mouse = false
+var showing_mouse : bool = false
 # second jump
-var second_jump = false
+var second_jump : bool = false
 # animation_player
 var player_animation
 # timeout
-var timeout = false
+var timeout : bool = false
 
 # we get the head node
 @onready var head = $Head
 # we get the camera node 
-@onready var camera = $Head/Camera3D
+@onready var camera : Camera3D = $Head/Camera3D
 # set the model
 @onready var playable_character = $Playable_characters
 # we get the animation tree
@@ -32,11 +32,11 @@ var timeout = false
 # we get the animation playback of the animation tree 
 @onready var playback : AnimationNodeStateMachinePlayback = anim_tree.get("parameters/playback")
 # we get the area to pass the bomb
-@onready var area = $Area3D
+@onready var area : Area3D = $Area3D
 
 
 # this function gets called when players are playable characters are assigned to each player
-func setup(player_data: Game.PlayerData):
+func setup(player_data: Game.PlayerData) -> void:
 	# multiplayer authority with the given id
 	set_multiplayer_authority(player_data.id)
 	# if the character is not being controlled by the player, the it doesn't detect their input
@@ -53,7 +53,7 @@ func setup(player_data: Game.PlayerData):
 	if is_multiplayer_authority(): 
 		Global.die.connect(player_die)
 
-func setup_model(role):
+func setup_model(role) -> void:
 	match role:
 		1:
 			model = load("res://resources/playable_character/mage.tscn").instantiate() as Node3D
@@ -100,7 +100,7 @@ func _physics_process(delta):
 	dir_input = Vector2.ZERO
 	
 	# real movement speed of the character
-	var player_speed = walking_speed
+	var player_speed : int = walking_speed
 	
 	# if we try to exit
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -122,12 +122,12 @@ func _physics_process(delta):
 		target_velocity.y = 0
 	
 	# when passing the bomb
-	if Input.is_action_just_pressed("ui_accept") and name == Global.bomb_carrier:
+	if Input.is_action_just_pressed("ui_accept") and name.to_int() == Global.bomb_carrier:
 		for i in area.get_overlapping_bodies():
 			if i == self:
 				continue
 			elif i is CharacterBody3D:
-				i.pass_the_bomb(i.name)
+				i.pass_the_bomb(i.name.to_int())
 				break
 	
 	# when sprinting
@@ -161,14 +161,14 @@ func _physics_process(delta):
 	anim_tree.set("parameters/conditions/is_jumping", Input.is_action_just_pressed("jump")) # adjust animation
 	anim_tree.set("parameters/conditions/is_falling", !is_on_floor())
 	anim_tree.set("parameters/conditions/is_landing", is_on_floor())
-	anim_tree.set("parameters/conditions/is_interact", Input.is_action_just_pressed("ui_accept") && name == Global.bomb_carrier)
+	anim_tree.set("parameters/conditions/is_interact", Input.is_action_just_pressed("ui_accept") && name.to_int() == Global.bomb_carrier)
 	
 	move_and_slide()
 
-func pass_the_bomb(player_id):
+func pass_the_bomb(player_id : int) -> void:
 	Global.update_the_bomb.rpc(player_id)
 	
-func player_die():
+func player_die() -> void:
 	anim_tree.set("parameters/conditions/is_dead", true)
 	# disable input and process
 	set_process_unhandled_input(false)
