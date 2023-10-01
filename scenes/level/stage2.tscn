@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dk8i1qc01clil" path="res://resources/assets/wall/wall_shelves.gltf.glb" id="4_6m7dp"]
 [ext_resource type="PackedScene" uid="uid://bvvjc6m7h42kf" path="res://resources/assets/wall/pillar.gltf.glb" id="8_q4chr"]
 [ext_resource type="PackedScene" uid="uid://c5qv02tuvh5gx" path="res://resources/assets/wall/wall_window_open.gltf.glb" id="10_2na5a"]
+[ext_resource type="PackedScene" uid="uid://epatm1clfpjt" path="res://resources/assets/floor/floor_wood_large.gltf.glb" id="10_mkkxb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_01toj"]
 sky_top_color = Color(0.670588, 0.345098, 0.188235, 1)
@@ -30,10 +31,6 @@ size = Vector3(80, 1, 80)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_i3rw4"]
 size = Vector2(80, 80)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_5602d"]
-size = Vector2(80, 10)
-orientation = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_55jws"]
 size = Vector3(80, 10, 2)
@@ -74,49 +71,461 @@ mesh = SubResource("PlaneMesh_i3rw4")
 
 [node name="Walls" type="Node3D" parent="."]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Walls"]
+[node name="wall_1" type="Node3D" parent="Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -40)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
-mesh = SubResource("PlaneMesh_5602d")
+[node name="StaticBody3D" type="StaticBody3D" parent="Walls/wall_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.6)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/wall_1/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -1)
 shape = SubResource("BoxShape3D_55jws")
 
-[node name="StaticBody3D3" type="StaticBody3D" parent="Walls"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -40, 0, 0)
+[node name="mesh" type="Node3D" parent="Walls/wall_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/StaticBody3D3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
-mesh = SubResource("PlaneMesh_5602d")
+[node name="half_1" type="Node3D" parent="Walls/wall_1/mesh"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/StaticBody3D3"]
+[node name="wall_arched_gltf" parent="Walls/wall_1/mesh/half_1" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 5, 0)
+
+[node name="wall_gltf" parent="Walls/wall_1/mesh/half_1" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
+
+[node name="wall_arched_gltf2" parent="Walls/wall_1/mesh/half_1" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 5, 5, 0)
+
+[node name="wall_gltf2" parent="Walls/wall_1/mesh/half_1" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 5, 0, 0)
+
+[node name="wall_arched_gltf3" parent="Walls/wall_1/mesh/half_1" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 10, 5, 0)
+
+[node name="wall_gltf3" parent="Walls/wall_1/mesh/half_1" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 10, 0, 0)
+
+[node name="wall_arched_gltf4" parent="Walls/wall_1/mesh/half_1" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 15, 5, 0)
+
+[node name="wall_gltf4" parent="Walls/wall_1/mesh/half_1" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 15, 0, 0)
+
+[node name="wall_arched_gltf5" parent="Walls/wall_1/mesh/half_1" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 20, 5, 0)
+
+[node name="wall_gltf5" parent="Walls/wall_1/mesh/half_1" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 20, 0, 0)
+
+[node name="wall_arched_gltf6" parent="Walls/wall_1/mesh/half_1" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 25, 5, 0)
+
+[node name="wall_gltf6" parent="Walls/wall_1/mesh/half_1" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 25, 0, 0)
+
+[node name="wall_arched_gltf7" parent="Walls/wall_1/mesh/half_1" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 30, 5, 0)
+
+[node name="wall_gltf7" parent="Walls/wall_1/mesh/half_1" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 30, 0, 0)
+
+[node name="wall_arched_gltf8" parent="Walls/wall_1/mesh/half_1" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 35, 5, 0)
+
+[node name="wall_gltf8" parent="Walls/wall_1/mesh/half_1" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 35, 0, 0)
+
+[node name="half_2" type="Node3D" parent="Walls/wall_1/mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, 0)
+
+[node name="wall_arched_gltf" parent="Walls/wall_1/mesh/half_2" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 5, 0)
+
+[node name="wall_gltf" parent="Walls/wall_1/mesh/half_2" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
+
+[node name="wall_arched_gltf2" parent="Walls/wall_1/mesh/half_2" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 5, 5, 0)
+
+[node name="wall_gltf2" parent="Walls/wall_1/mesh/half_2" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 5, 0, 0)
+
+[node name="wall_arched_gltf3" parent="Walls/wall_1/mesh/half_2" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 10, 5, 0)
+
+[node name="wall_gltf3" parent="Walls/wall_1/mesh/half_2" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 10, 0, 0)
+
+[node name="wall_arched_gltf4" parent="Walls/wall_1/mesh/half_2" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 15, 5, 0)
+
+[node name="wall_gltf4" parent="Walls/wall_1/mesh/half_2" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 15, 0, 0)
+
+[node name="wall_arched_gltf5" parent="Walls/wall_1/mesh/half_2" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 20, 5, 0)
+
+[node name="wall_gltf5" parent="Walls/wall_1/mesh/half_2" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 20, 0, 0)
+
+[node name="wall_arched_gltf6" parent="Walls/wall_1/mesh/half_2" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 25, 5, 0)
+
+[node name="wall_gltf6" parent="Walls/wall_1/mesh/half_2" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 25, 0, 0)
+
+[node name="wall_arched_gltf7" parent="Walls/wall_1/mesh/half_2" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 30, 5, 0)
+
+[node name="wall_gltf7" parent="Walls/wall_1/mesh/half_2" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 30, 0, 0)
+
+[node name="wall_arched_gltf8" parent="Walls/wall_1/mesh/half_2" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 35, 5, 0)
+
+[node name="wall_gltf8" parent="Walls/wall_1/mesh/half_2" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 35, 0, 0)
+
+[node name="wall_2" type="Node3D" parent="Walls"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 40)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Walls/wall_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.6)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/wall_2/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -1)
 shape = SubResource("BoxShape3D_55jws")
 
-[node name="StaticBody3D4" type="StaticBody3D" parent="Walls"]
+[node name="mesh" type="Node3D" parent="Walls/wall_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 0)
+
+[node name="half_1" type="Node3D" parent="Walls/wall_2/mesh"]
+
+[node name="wall_arched_gltf" parent="Walls/wall_2/mesh/half_1" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 5, 0)
+
+[node name="wall_gltf" parent="Walls/wall_2/mesh/half_1" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
+
+[node name="wall_arched_gltf2" parent="Walls/wall_2/mesh/half_1" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 5, 5, 0)
+
+[node name="wall_gltf2" parent="Walls/wall_2/mesh/half_1" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 5, 0, 0)
+
+[node name="wall_arched_gltf3" parent="Walls/wall_2/mesh/half_1" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 10, 5, 0)
+
+[node name="wall_gltf3" parent="Walls/wall_2/mesh/half_1" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 10, 0, 0)
+
+[node name="wall_arched_gltf4" parent="Walls/wall_2/mesh/half_1" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 15, 5, 0)
+
+[node name="wall_gltf4" parent="Walls/wall_2/mesh/half_1" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 15, 0, 0)
+
+[node name="wall_arched_gltf5" parent="Walls/wall_2/mesh/half_1" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 20, 5, 0)
+
+[node name="wall_gltf5" parent="Walls/wall_2/mesh/half_1" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 20, 0, 0)
+
+[node name="wall_arched_gltf6" parent="Walls/wall_2/mesh/half_1" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 25, 5, 0)
+
+[node name="wall_gltf6" parent="Walls/wall_2/mesh/half_1" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 25, 0, 0)
+
+[node name="wall_arched_gltf7" parent="Walls/wall_2/mesh/half_1" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 30, 5, 0)
+
+[node name="wall_gltf7" parent="Walls/wall_2/mesh/half_1" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 30, 0, 0)
+
+[node name="wall_arched_gltf8" parent="Walls/wall_2/mesh/half_1" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 35, 5, 0)
+
+[node name="wall_gltf8" parent="Walls/wall_2/mesh/half_1" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 35, 0, 0)
+
+[node name="half_2" type="Node3D" parent="Walls/wall_2/mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, 0)
+
+[node name="wall_arched_gltf" parent="Walls/wall_2/mesh/half_2" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 5, 0)
+
+[node name="wall_gltf" parent="Walls/wall_2/mesh/half_2" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
+
+[node name="wall_arched_gltf2" parent="Walls/wall_2/mesh/half_2" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 5, 5, 0)
+
+[node name="wall_gltf2" parent="Walls/wall_2/mesh/half_2" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 5, 0, 0)
+
+[node name="wall_arched_gltf3" parent="Walls/wall_2/mesh/half_2" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 10, 5, 0)
+
+[node name="wall_gltf3" parent="Walls/wall_2/mesh/half_2" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 10, 0, 0)
+
+[node name="wall_arched_gltf4" parent="Walls/wall_2/mesh/half_2" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 15, 5, 0)
+
+[node name="wall_gltf4" parent="Walls/wall_2/mesh/half_2" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 15, 0, 0)
+
+[node name="wall_arched_gltf5" parent="Walls/wall_2/mesh/half_2" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 20, 5, 0)
+
+[node name="wall_gltf5" parent="Walls/wall_2/mesh/half_2" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 20, 0, 0)
+
+[node name="wall_arched_gltf6" parent="Walls/wall_2/mesh/half_2" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 25, 5, 0)
+
+[node name="wall_gltf6" parent="Walls/wall_2/mesh/half_2" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 25, 0, 0)
+
+[node name="wall_arched_gltf7" parent="Walls/wall_2/mesh/half_2" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 30, 5, 0)
+
+[node name="wall_gltf7" parent="Walls/wall_2/mesh/half_2" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 30, 0, 0)
+
+[node name="wall_arched_gltf8" parent="Walls/wall_2/mesh/half_2" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 35, 5, 0)
+
+[node name="wall_gltf8" parent="Walls/wall_2/mesh/half_2" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 35, 0, 0)
+
+[node name="wall_3" type="Node3D" parent="Walls"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 40, 0, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/StaticBody3D4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
-mesh = SubResource("PlaneMesh_5602d")
+[node name="StaticBody3D" type="StaticBody3D" parent="Walls/wall_3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.6)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/StaticBody3D4"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/wall_3/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -1)
 shape = SubResource("BoxShape3D_55jws")
 
-[node name="StaticBody3D2" type="StaticBody3D" parent="Walls"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 40)
+[node name="mesh" type="Node3D" parent="Walls/wall_3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/StaticBody3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
-mesh = SubResource("PlaneMesh_5602d")
+[node name="half_1" type="Node3D" parent="Walls/wall_3/mesh"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/StaticBody3D2"]
+[node name="wall_arched_gltf" parent="Walls/wall_3/mesh/half_1" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 5, 0)
+
+[node name="wall_gltf" parent="Walls/wall_3/mesh/half_1" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
+
+[node name="wall_arched_gltf2" parent="Walls/wall_3/mesh/half_1" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 5, 5, 0)
+
+[node name="wall_gltf2" parent="Walls/wall_3/mesh/half_1" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 5, 0, 0)
+
+[node name="wall_arched_gltf3" parent="Walls/wall_3/mesh/half_1" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 10, 5, 0)
+
+[node name="wall_gltf3" parent="Walls/wall_3/mesh/half_1" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 10, 0, 0)
+
+[node name="wall_arched_gltf4" parent="Walls/wall_3/mesh/half_1" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 15, 5, 0)
+
+[node name="wall_gltf4" parent="Walls/wall_3/mesh/half_1" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 15, 0, 0)
+
+[node name="wall_arched_gltf5" parent="Walls/wall_3/mesh/half_1" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 20, 5, 0)
+
+[node name="wall_gltf5" parent="Walls/wall_3/mesh/half_1" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 20, 0, 0)
+
+[node name="wall_arched_gltf6" parent="Walls/wall_3/mesh/half_1" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 25, 5, 0)
+
+[node name="wall_gltf6" parent="Walls/wall_3/mesh/half_1" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 25, 0, 0)
+
+[node name="wall_arched_gltf7" parent="Walls/wall_3/mesh/half_1" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 30, 5, 0)
+
+[node name="wall_gltf7" parent="Walls/wall_3/mesh/half_1" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 30, 0, 0)
+
+[node name="wall_arched_gltf8" parent="Walls/wall_3/mesh/half_1" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 35, 5, 0)
+
+[node name="wall_gltf8" parent="Walls/wall_3/mesh/half_1" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 35, 0, 0)
+
+[node name="half_2" type="Node3D" parent="Walls/wall_3/mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, 0)
+
+[node name="wall_arched_gltf" parent="Walls/wall_3/mesh/half_2" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 5, 0)
+
+[node name="wall_gltf" parent="Walls/wall_3/mesh/half_2" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
+
+[node name="wall_arched_gltf2" parent="Walls/wall_3/mesh/half_2" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 5, 5, 0)
+
+[node name="wall_gltf2" parent="Walls/wall_3/mesh/half_2" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 5, 0, 0)
+
+[node name="wall_arched_gltf3" parent="Walls/wall_3/mesh/half_2" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 10, 5, 0)
+
+[node name="wall_gltf3" parent="Walls/wall_3/mesh/half_2" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 10, 0, 0)
+
+[node name="wall_arched_gltf4" parent="Walls/wall_3/mesh/half_2" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 15, 5, 0)
+
+[node name="wall_gltf4" parent="Walls/wall_3/mesh/half_2" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 15, 0, 0)
+
+[node name="wall_arched_gltf5" parent="Walls/wall_3/mesh/half_2" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 20, 5, 0)
+
+[node name="wall_gltf5" parent="Walls/wall_3/mesh/half_2" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 20, 0, 0)
+
+[node name="wall_arched_gltf6" parent="Walls/wall_3/mesh/half_2" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 25, 5, 0)
+
+[node name="wall_gltf6" parent="Walls/wall_3/mesh/half_2" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 25, 0, 0)
+
+[node name="wall_arched_gltf7" parent="Walls/wall_3/mesh/half_2" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 30, 5, 0)
+
+[node name="wall_gltf7" parent="Walls/wall_3/mesh/half_2" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 30, 0, 0)
+
+[node name="wall_arched_gltf8" parent="Walls/wall_3/mesh/half_2" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 35, 5, 0)
+
+[node name="wall_gltf8" parent="Walls/wall_3/mesh/half_2" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 35, 0, 0)
+
+[node name="wall_4" type="Node3D" parent="Walls"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -40, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Walls/wall_4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.6)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/wall_4/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -1)
 shape = SubResource("BoxShape3D_55jws")
+
+[node name="mesh" type="Node3D" parent="Walls/wall_4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 0)
+
+[node name="half_1" type="Node3D" parent="Walls/wall_4/mesh"]
+
+[node name="wall_arched_gltf" parent="Walls/wall_4/mesh/half_1" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 5, 0)
+
+[node name="wall_gltf" parent="Walls/wall_4/mesh/half_1" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
+
+[node name="wall_arched_gltf2" parent="Walls/wall_4/mesh/half_1" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 5, 5, 0)
+
+[node name="wall_gltf2" parent="Walls/wall_4/mesh/half_1" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 5, 0, 0)
+
+[node name="wall_arched_gltf3" parent="Walls/wall_4/mesh/half_1" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 10, 5, 0)
+
+[node name="wall_gltf3" parent="Walls/wall_4/mesh/half_1" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 10, 0, 0)
+
+[node name="wall_arched_gltf4" parent="Walls/wall_4/mesh/half_1" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 15, 5, 0)
+
+[node name="wall_gltf4" parent="Walls/wall_4/mesh/half_1" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 15, 0, 0)
+
+[node name="wall_arched_gltf5" parent="Walls/wall_4/mesh/half_1" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 20, 5, 0)
+
+[node name="wall_gltf5" parent="Walls/wall_4/mesh/half_1" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 20, 0, 0)
+
+[node name="wall_arched_gltf6" parent="Walls/wall_4/mesh/half_1" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 25, 5, 0)
+
+[node name="wall_gltf6" parent="Walls/wall_4/mesh/half_1" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 25, 0, 0)
+
+[node name="wall_arched_gltf7" parent="Walls/wall_4/mesh/half_1" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 30, 5, 0)
+
+[node name="wall_gltf7" parent="Walls/wall_4/mesh/half_1" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 30, 0, 0)
+
+[node name="wall_arched_gltf8" parent="Walls/wall_4/mesh/half_1" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 35, 5, 0)
+
+[node name="wall_gltf8" parent="Walls/wall_4/mesh/half_1" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 35, 0, 0)
+
+[node name="half_2" type="Node3D" parent="Walls/wall_4/mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, 0)
+
+[node name="wall_arched_gltf" parent="Walls/wall_4/mesh/half_2" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 5, 0)
+
+[node name="wall_gltf" parent="Walls/wall_4/mesh/half_2" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
+
+[node name="wall_arched_gltf2" parent="Walls/wall_4/mesh/half_2" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 5, 5, 0)
+
+[node name="wall_gltf2" parent="Walls/wall_4/mesh/half_2" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 5, 0, 0)
+
+[node name="wall_arched_gltf3" parent="Walls/wall_4/mesh/half_2" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 10, 5, 0)
+
+[node name="wall_gltf3" parent="Walls/wall_4/mesh/half_2" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 10, 0, 0)
+
+[node name="wall_arched_gltf4" parent="Walls/wall_4/mesh/half_2" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 15, 5, 0)
+
+[node name="wall_gltf4" parent="Walls/wall_4/mesh/half_2" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 15, 0, 0)
+
+[node name="wall_arched_gltf5" parent="Walls/wall_4/mesh/half_2" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 20, 5, 0)
+
+[node name="wall_gltf5" parent="Walls/wall_4/mesh/half_2" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 20, 0, 0)
+
+[node name="wall_arched_gltf6" parent="Walls/wall_4/mesh/half_2" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 25, 5, 0)
+
+[node name="wall_gltf6" parent="Walls/wall_4/mesh/half_2" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 25, 0, 0)
+
+[node name="wall_arched_gltf7" parent="Walls/wall_4/mesh/half_2" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 30, 5, 0)
+
+[node name="wall_gltf7" parent="Walls/wall_4/mesh/half_2" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 30, 0, 0)
+
+[node name="wall_arched_gltf8" parent="Walls/wall_4/mesh/half_2" instance=ExtResource("1_spe86")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 35, 5, 0)
+
+[node name="wall_gltf8" parent="Walls/wall_4/mesh/half_2" instance=ExtResource("3_lxrxj")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 35, 0, 0)
 
 [node name="tower" type="Node3D" parent="."]
 
@@ -713,3 +1122,32 @@ shape = SubResource("BoxShape3D_swgls")
 
 [node name="pillar_gltf" parent="tower/floor_3/corners/corner_front_right" instance=ExtResource("8_q4chr")]
 transform = Transform3D(0.7, 0, 0, 0, 1, 0, 0, 0, 0.7, 0, 0, 0)
+
+[node name="floor" type="Node3D" parent="tower"]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, -0.1)
+
+[node name="floor_wood_large_gltf" parent="tower/floor" instance=ExtResource("10_mkkxb")]
+
+[node name="floor_wood_large_gltf2" parent="tower/floor" instance=ExtResource("10_mkkxb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="floor_wood_large_gltf3" parent="tower/floor" instance=ExtResource("10_mkkxb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+
+[node name="floor_wood_large_gltf4" parent="tower/floor" instance=ExtResource("10_mkkxb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="floor_wood_large_gltf5" parent="tower/floor" instance=ExtResource("10_mkkxb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 4)
+
+[node name="floor_wood_large_gltf6" parent="tower/floor" instance=ExtResource("10_mkkxb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 4)
+
+[node name="floor_wood_large_gltf7" parent="tower/floor" instance=ExtResource("10_mkkxb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="floor_wood_large_gltf8" parent="tower/floor" instance=ExtResource("10_mkkxb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -4)
+
+[node name="floor_wood_large_gltf9" parent="tower/floor" instance=ExtResource("10_mkkxb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -4)
