@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://h43fd1cnt4me"]
+
+[ext_resource type="PackedScene" uid="uid://brabk2idnwgkg" path="res://resources/assets/gltf_deco/floor_tile_large.gltf.glb" id="1_ax47m"]
+
+[node name="menu_bg" type="Node3D"]
+
+[node name="GridMap" type="GridMap" parent="."]
+cell_size = Vector3(4, 4, 4)
+
+[node name="floor_tile_large_gltf" parent="GridMap" instance=ExtResource("1_ax47m")]

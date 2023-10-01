@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://bslhrv3eo36wd"]
+[gd_scene load_steps=6 format=3 uid="uid://bslhrv3eo36wd"]
 
+[ext_resource type="FontFile" uid="uid://cwodf4onhr88y" path="res://resources/fonts/MedievalSharp/MedievalSharp-Regular.ttf" id="1_6x3k7"]
 [ext_resource type="Script" path="res://scenes/lobby.gd" id="1_g2fmt"]
 [ext_resource type="PackedScene" uid="uid://chbh4lxk8rmmd" path="res://scenes/ui/lobby_player.tscn" id="2_060bj"]
+
+[sub_resource type="Theme" id="Theme_b1wbc"]
+default_font = ExtResource("1_6x3k7")
+
+[sub_resource type="Theme" id="Theme_0ew0f"]
 
 [node name="Lobby" type="MarginContainer"]
 anchors_preset = 15
@@ -9,22 +15,31 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_b1wbc")
 script = ExtResource("1_g2fmt")
 lobby_player_scene = ExtResource("2_060bj")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
 
 [node name="Menus" type="MarginContainer" parent="PanelContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = SubResource("Theme_0ew0f")
 
 [node name="StartMenu" type="VBoxContainer" parent="PanelContainer/Menus"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
+
+[node name="Tittle" type="Label" parent="PanelContainer/Menus/StartMenu"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_type_variation = &"HeaderLarge"
+theme_override_fonts/font = ExtResource("1_6x3k7")
+theme_override_font_sizes/font_size = 116
+text = "Tiña"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Label" type="Label" parent="PanelContainer/Menus/StartMenu"]
 layout_mode = 2
@@ -57,7 +72,17 @@ visible = false
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="PanelContainer/Menus/JoinMenu"]
+[node name="Tittle" type="Label" parent="PanelContainer/Menus/JoinMenu"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_type_variation = &"HeaderLarge"
+theme_override_fonts/font = ExtResource("1_6x3k7")
+theme_override_font_sizes/font_size = 116
+text = "Tiña"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IP_label" type="Label" parent="PanelContainer/Menus/JoinMenu"]
 layout_mode = 2
 text = "IP:
 "
@@ -91,6 +116,16 @@ unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
+
+[node name="Tittle" type="Label" parent="PanelContainer/Menus/ReadyMenu"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_type_variation = &"HeaderLarge"
+theme_override_fonts/font = ExtResource("1_6x3k7")
+theme_override_font_sizes/font_size = 116
+text = "Tiña"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Label" type="Label" parent="PanelContainer/Menus/ReadyMenu"]
 layout_mode = 2
