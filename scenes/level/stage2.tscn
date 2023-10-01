@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bvvjc6m7h42kf" path="res://resources/assets/wall/pillar.gltf.glb" id="8_q4chr"]
 [ext_resource type="PackedScene" uid="uid://c5qv02tuvh5gx" path="res://resources/assets/wall/wall_window_open.gltf.glb" id="10_2na5a"]
 [ext_resource type="PackedScene" uid="uid://epatm1clfpjt" path="res://resources/assets/floor/floor_wood_large.gltf.glb" id="10_mkkxb"]
+[ext_resource type="PackedScene" uid="uid://bks8u62qchdp0" path="res://resources/assets/floor/floor_tile_large.gltf.glb" id="11_unvqt"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_01toj"]
 sky_top_color = Color(0.670588, 0.345098, 0.188235, 1)
@@ -25,12 +26,6 @@ background_mode = 2
 sky = SubResource("Sky_gf2jv")
 tonemap_mode = 2
 glow_enabled = true
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_gw0vc"]
-size = Vector3(80, 1, 80)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_i3rw4"]
-size = Vector2(80, 80)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_55jws"]
 size = Vector3(80, 10, 2)
@@ -50,6 +45,9 @@ size = Vector3(1, 4, 1.5)
 [sub_resource type="BoxShape3D" id="BoxShape3D_swgls"]
 size = Vector3(1, 4, 1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_gw0vc"]
+size = Vector3(80, 1, 80)
+
 [node name="stage_1" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -58,16 +56,6 @@ environment = SubResource("Environment_8ps4j")
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.601819, -0.684012, 0.412239, -0.102997, 0.445395, 0.88939, -0.791963, -0.577711, 0.197596, 4.87358, 41.6662, 42.2514)
 shadow_enabled = true
-
-[node name="Ground" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
-shape = SubResource("BoxShape3D_gw0vc")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-mesh = SubResource("PlaneMesh_i3rw4")
 
 [node name="Walls" type="Node3D" parent="."]
 
@@ -528,6 +516,7 @@ transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 35, 5, 0)
 transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 35, 0, 0)
 
 [node name="tower" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 
 [node name="floor_1" type="Node3D" parent="tower"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
@@ -1151,3 +1140,517 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -4)
 
 [node name="floor_wood_large_gltf9" parent="tower/floor" instance=ExtResource("10_mkkxb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -4)
+
+[node name="ground" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="Ground" type="StaticBody3D" parent="ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ground/Ground"]
+shape = SubResource("BoxShape3D_gw0vc")
+
+[node name="half1" type="Node3D" parent="ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="mesh" type="Node3D" parent="ground/half1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.5, 0)
+
+[node name="half" type="Node3D" parent="ground/half1/mesh"]
+
+[node name="floor_tile_large_gltf" parent="ground/half1/mesh/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="floor_tile_large_gltf2" parent="ground/half1/mesh/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 8, 0, 0)
+
+[node name="floor_tile_large_gltf3" parent="ground/half1/mesh/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 16, 0, 0)
+
+[node name="floor_tile_large_gltf4" parent="ground/half1/mesh/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 24, 0, 0)
+
+[node name="floor_tile_large_gltf5" parent="ground/half1/mesh/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="floor_tile_large_gltf6" parent="ground/half1/mesh/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="floor_tile_large_gltf7" parent="ground/half1/mesh/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="half2" type="Node3D" parent="ground/half1/mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, 0)
+
+[node name="floor_tile_large_gltf" parent="ground/half1/mesh/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="floor_tile_large_gltf2" parent="ground/half1/mesh/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 8, 0, 0)
+
+[node name="floor_tile_large_gltf3" parent="ground/half1/mesh/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 16, 0, 0)
+
+[node name="floor_tile_large_gltf4" parent="ground/half1/mesh/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 24, 0, 0)
+
+[node name="floor_tile_large_gltf5" parent="ground/half1/mesh/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="floor_tile_large_gltf6" parent="ground/half1/mesh/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="floor_tile_large_gltf7" parent="ground/half1/mesh/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="mesh2" type="Node3D" parent="ground/half1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.5, 8)
+
+[node name="half" type="Node3D" parent="ground/half1/mesh2"]
+
+[node name="floor_tile_large_gltf" parent="ground/half1/mesh2/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="floor_tile_large_gltf2" parent="ground/half1/mesh2/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 8, 0, 0)
+
+[node name="floor_tile_large_gltf3" parent="ground/half1/mesh2/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 16, 0, 0)
+
+[node name="floor_tile_large_gltf4" parent="ground/half1/mesh2/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 24, 0, 0)
+
+[node name="floor_tile_large_gltf5" parent="ground/half1/mesh2/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="floor_tile_large_gltf6" parent="ground/half1/mesh2/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="floor_tile_large_gltf7" parent="ground/half1/mesh2/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="half2" type="Node3D" parent="ground/half1/mesh2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, 0)
+
+[node name="floor_tile_large_gltf" parent="ground/half1/mesh2/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="floor_tile_large_gltf2" parent="ground/half1/mesh2/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 8, 0, 0)
+
+[node name="floor_tile_large_gltf3" parent="ground/half1/mesh2/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 16, 0, 0)
+
+[node name="floor_tile_large_gltf4" parent="ground/half1/mesh2/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 24, 0, 0)
+
+[node name="floor_tile_large_gltf5" parent="ground/half1/mesh2/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="floor_tile_large_gltf6" parent="ground/half1/mesh2/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="floor_tile_large_gltf7" parent="ground/half1/mesh2/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="mesh3" type="Node3D" parent="ground/half1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.5, 16)
+
+[node name="half" type="Node3D" parent="ground/half1/mesh3"]
+
+[node name="floor_tile_large_gltf" parent="ground/half1/mesh3/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="floor_tile_large_gltf2" parent="ground/half1/mesh3/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 8, 0, 0)
+
+[node name="floor_tile_large_gltf3" parent="ground/half1/mesh3/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 16, 0, 0)
+
+[node name="floor_tile_large_gltf4" parent="ground/half1/mesh3/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 24, 0, 0)
+
+[node name="floor_tile_large_gltf5" parent="ground/half1/mesh3/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="floor_tile_large_gltf6" parent="ground/half1/mesh3/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="floor_tile_large_gltf7" parent="ground/half1/mesh3/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="half2" type="Node3D" parent="ground/half1/mesh3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, 0)
+
+[node name="floor_tile_large_gltf" parent="ground/half1/mesh3/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="floor_tile_large_gltf2" parent="ground/half1/mesh3/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 8, 0, 0)
+
+[node name="floor_tile_large_gltf3" parent="ground/half1/mesh3/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 16, 0, 0)
+
+[node name="floor_tile_large_gltf4" parent="ground/half1/mesh3/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 24, 0, 0)
+
+[node name="floor_tile_large_gltf5" parent="ground/half1/mesh3/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="floor_tile_large_gltf6" parent="ground/half1/mesh3/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="floor_tile_large_gltf7" parent="ground/half1/mesh3/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="mesh4" type="Node3D" parent="ground/half1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.5, 24)
+
+[node name="half" type="Node3D" parent="ground/half1/mesh4"]
+
+[node name="floor_tile_large_gltf" parent="ground/half1/mesh4/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="floor_tile_large_gltf2" parent="ground/half1/mesh4/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 8, 0, 0)
+
+[node name="floor_tile_large_gltf3" parent="ground/half1/mesh4/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 16, 0, 0)
+
+[node name="floor_tile_large_gltf4" parent="ground/half1/mesh4/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 24, 0, 0)
+
+[node name="floor_tile_large_gltf5" parent="ground/half1/mesh4/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="floor_tile_large_gltf6" parent="ground/half1/mesh4/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="floor_tile_large_gltf7" parent="ground/half1/mesh4/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="half2" type="Node3D" parent="ground/half1/mesh4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, 0)
+
+[node name="floor_tile_large_gltf" parent="ground/half1/mesh4/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="floor_tile_large_gltf2" parent="ground/half1/mesh4/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 8, 0, 0)
+
+[node name="floor_tile_large_gltf3" parent="ground/half1/mesh4/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 16, 0, 0)
+
+[node name="floor_tile_large_gltf4" parent="ground/half1/mesh4/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 24, 0, 0)
+
+[node name="floor_tile_large_gltf5" parent="ground/half1/mesh4/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="floor_tile_large_gltf6" parent="ground/half1/mesh4/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="floor_tile_large_gltf7" parent="ground/half1/mesh4/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="mesh5" type="Node3D" parent="ground/half1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.5, 32)
+
+[node name="half" type="Node3D" parent="ground/half1/mesh5"]
+
+[node name="floor_tile_large_gltf" parent="ground/half1/mesh5/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="floor_tile_large_gltf2" parent="ground/half1/mesh5/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 8, 0, 0)
+
+[node name="floor_tile_large_gltf3" parent="ground/half1/mesh5/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 16, 0, 0)
+
+[node name="floor_tile_large_gltf4" parent="ground/half1/mesh5/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 24, 0, 0)
+
+[node name="floor_tile_large_gltf5" parent="ground/half1/mesh5/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="floor_tile_large_gltf6" parent="ground/half1/mesh5/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="floor_tile_large_gltf7" parent="ground/half1/mesh5/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="half2" type="Node3D" parent="ground/half1/mesh5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, 0)
+
+[node name="floor_tile_large_gltf" parent="ground/half1/mesh5/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="floor_tile_large_gltf2" parent="ground/half1/mesh5/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 8, 0, 0)
+
+[node name="floor_tile_large_gltf3" parent="ground/half1/mesh5/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 16, 0, 0)
+
+[node name="floor_tile_large_gltf4" parent="ground/half1/mesh5/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 24, 0, 0)
+
+[node name="floor_tile_large_gltf5" parent="ground/half1/mesh5/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="floor_tile_large_gltf6" parent="ground/half1/mesh5/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="floor_tile_large_gltf7" parent="ground/half1/mesh5/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="half2" type="Node3D" parent="ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -36)
+
+[node name="mesh" type="Node3D" parent="ground/half2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.5, 0)
+
+[node name="half" type="Node3D" parent="ground/half2/mesh"]
+
+[node name="floor_tile_large_gltf" parent="ground/half2/mesh/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="floor_tile_large_gltf2" parent="ground/half2/mesh/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 8, 0, 0)
+
+[node name="floor_tile_large_gltf3" parent="ground/half2/mesh/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 16, 0, 0)
+
+[node name="floor_tile_large_gltf4" parent="ground/half2/mesh/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 24, 0, 0)
+
+[node name="floor_tile_large_gltf5" parent="ground/half2/mesh/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="floor_tile_large_gltf6" parent="ground/half2/mesh/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="floor_tile_large_gltf7" parent="ground/half2/mesh/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="half2" type="Node3D" parent="ground/half2/mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, 0)
+
+[node name="floor_tile_large_gltf" parent="ground/half2/mesh/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="floor_tile_large_gltf2" parent="ground/half2/mesh/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 8, 0, 0)
+
+[node name="floor_tile_large_gltf3" parent="ground/half2/mesh/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 16, 0, 0)
+
+[node name="floor_tile_large_gltf4" parent="ground/half2/mesh/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 24, 0, 0)
+
+[node name="floor_tile_large_gltf5" parent="ground/half2/mesh/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="floor_tile_large_gltf6" parent="ground/half2/mesh/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="floor_tile_large_gltf7" parent="ground/half2/mesh/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="mesh2" type="Node3D" parent="ground/half2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.5, 8)
+
+[node name="half" type="Node3D" parent="ground/half2/mesh2"]
+
+[node name="floor_tile_large_gltf" parent="ground/half2/mesh2/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="floor_tile_large_gltf2" parent="ground/half2/mesh2/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 8, 0, 0)
+
+[node name="floor_tile_large_gltf3" parent="ground/half2/mesh2/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 16, 0, 0)
+
+[node name="floor_tile_large_gltf4" parent="ground/half2/mesh2/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 24, 0, 0)
+
+[node name="floor_tile_large_gltf5" parent="ground/half2/mesh2/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="floor_tile_large_gltf6" parent="ground/half2/mesh2/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="floor_tile_large_gltf7" parent="ground/half2/mesh2/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="half2" type="Node3D" parent="ground/half2/mesh2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, 0)
+
+[node name="floor_tile_large_gltf" parent="ground/half2/mesh2/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="floor_tile_large_gltf2" parent="ground/half2/mesh2/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 8, 0, 0)
+
+[node name="floor_tile_large_gltf3" parent="ground/half2/mesh2/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 16, 0, 0)
+
+[node name="floor_tile_large_gltf4" parent="ground/half2/mesh2/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 24, 0, 0)
+
+[node name="floor_tile_large_gltf5" parent="ground/half2/mesh2/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="floor_tile_large_gltf6" parent="ground/half2/mesh2/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="floor_tile_large_gltf7" parent="ground/half2/mesh2/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="mesh3" type="Node3D" parent="ground/half2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.5, 16)
+
+[node name="half" type="Node3D" parent="ground/half2/mesh3"]
+
+[node name="floor_tile_large_gltf" parent="ground/half2/mesh3/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="floor_tile_large_gltf2" parent="ground/half2/mesh3/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 8, 0, 0)
+
+[node name="floor_tile_large_gltf3" parent="ground/half2/mesh3/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 16, 0, 0)
+
+[node name="floor_tile_large_gltf4" parent="ground/half2/mesh3/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 24, 0, 0)
+
+[node name="floor_tile_large_gltf5" parent="ground/half2/mesh3/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="floor_tile_large_gltf6" parent="ground/half2/mesh3/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="floor_tile_large_gltf7" parent="ground/half2/mesh3/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="half2" type="Node3D" parent="ground/half2/mesh3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, 0)
+
+[node name="floor_tile_large_gltf" parent="ground/half2/mesh3/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="floor_tile_large_gltf2" parent="ground/half2/mesh3/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 8, 0, 0)
+
+[node name="floor_tile_large_gltf3" parent="ground/half2/mesh3/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 16, 0, 0)
+
+[node name="floor_tile_large_gltf4" parent="ground/half2/mesh3/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 24, 0, 0)
+
+[node name="floor_tile_large_gltf5" parent="ground/half2/mesh3/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="floor_tile_large_gltf6" parent="ground/half2/mesh3/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="floor_tile_large_gltf7" parent="ground/half2/mesh3/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="mesh4" type="Node3D" parent="ground/half2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.5, 24)
+
+[node name="half" type="Node3D" parent="ground/half2/mesh4"]
+
+[node name="floor_tile_large_gltf" parent="ground/half2/mesh4/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="floor_tile_large_gltf2" parent="ground/half2/mesh4/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 8, 0, 0)
+
+[node name="floor_tile_large_gltf3" parent="ground/half2/mesh4/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 16, 0, 0)
+
+[node name="floor_tile_large_gltf4" parent="ground/half2/mesh4/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 24, 0, 0)
+
+[node name="floor_tile_large_gltf5" parent="ground/half2/mesh4/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="floor_tile_large_gltf6" parent="ground/half2/mesh4/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="floor_tile_large_gltf7" parent="ground/half2/mesh4/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="half2" type="Node3D" parent="ground/half2/mesh4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, 0)
+
+[node name="floor_tile_large_gltf" parent="ground/half2/mesh4/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="floor_tile_large_gltf2" parent="ground/half2/mesh4/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 8, 0, 0)
+
+[node name="floor_tile_large_gltf3" parent="ground/half2/mesh4/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 16, 0, 0)
+
+[node name="floor_tile_large_gltf4" parent="ground/half2/mesh4/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 24, 0, 0)
+
+[node name="floor_tile_large_gltf5" parent="ground/half2/mesh4/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="floor_tile_large_gltf6" parent="ground/half2/mesh4/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="floor_tile_large_gltf7" parent="ground/half2/mesh4/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="mesh5" type="Node3D" parent="ground/half2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.5, 32)
+
+[node name="half" type="Node3D" parent="ground/half2/mesh5"]
+
+[node name="floor_tile_large_gltf" parent="ground/half2/mesh5/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="floor_tile_large_gltf2" parent="ground/half2/mesh5/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 8, 0, 0)
+
+[node name="floor_tile_large_gltf3" parent="ground/half2/mesh5/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 16, 0, 0)
+
+[node name="floor_tile_large_gltf4" parent="ground/half2/mesh5/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 24, 0, 0)
+
+[node name="floor_tile_large_gltf5" parent="ground/half2/mesh5/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="floor_tile_large_gltf6" parent="ground/half2/mesh5/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="floor_tile_large_gltf7" parent="ground/half2/mesh5/half" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="half2" type="Node3D" parent="ground/half2/mesh5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, 0)
+
+[node name="floor_tile_large_gltf" parent="ground/half2/mesh5/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="floor_tile_large_gltf2" parent="ground/half2/mesh5/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 8, 0, 0)
+
+[node name="floor_tile_large_gltf3" parent="ground/half2/mesh5/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 16, 0, 0)
+
+[node name="floor_tile_large_gltf4" parent="ground/half2/mesh5/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 24, 0, 0)
+
+[node name="floor_tile_large_gltf5" parent="ground/half2/mesh5/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="floor_tile_large_gltf6" parent="ground/half2/mesh5/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
+
+[node name="floor_tile_large_gltf7" parent="ground/half2/mesh5/half2" instance=ExtResource("11_unvqt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
