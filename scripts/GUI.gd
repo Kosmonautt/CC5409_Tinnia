@@ -1,6 +1,6 @@
 extends Control
 
-@onready var bomb_sprite : AnimatedSprite2D = $bomb_sprite
+@onready var bomb_sprite : AnimatedSprite2D = $bomb/bomb_sprite
 @onready var time_label : Label = $CenterContainer/HBoxContainer/TimerLabel
 @onready var anim_player : AnimationPlayer = $AnimationPlayer
 
