@@ -44,3 +44,9 @@ func _on_global_timer_timeout():
 	# nuevo jugador que tiene la bomba
 	var i : int = players_alive[randi() % players_alive.size()]
 	update_the_bomb.rpc(i)
+
+func is_player_alive(player_id : int) -> bool:
+	for i in players_alive:
+		if i == player_id:
+			return true
+	return false

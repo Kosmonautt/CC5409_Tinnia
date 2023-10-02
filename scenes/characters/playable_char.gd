@@ -126,12 +126,12 @@ func _physics_process(delta):
 		for i in area.get_overlapping_bodies():
 			if i == self:
 				continue
-			elif i is CharacterBody3D:
+			elif i is CharacterBody3D and Global.is_player_alive(i.name.to_int()):
 				i.pass_the_bomb(i.name.to_int())
 				break
 	
 	# when sprinting
-	if Input.is_action_pressed("sprint") and is_on_floor():
+	if Input.is_action_pressed("sprint"):
 		player_speed = 3 * walking_speed
 	
 	# jumping
