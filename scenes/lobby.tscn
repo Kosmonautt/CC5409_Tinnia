@@ -1,13 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://bslhrv3eo36wd"]
+[gd_scene load_steps=9 format=3 uid="uid://bslhrv3eo36wd"]
 
-[ext_resource type="FontFile" uid="uid://cwodf4onhr88y" path="res://resources/fonts/MedievalSharp/MedievalSharp-Regular.ttf" id="1_6x3k7"]
+[ext_resource type="FontFile" uid="uid://t00yitfijw7j" path="res://resources/fonts/MedievalSharp/MedievalSharp-Regular.ttf" id="1_6x3k7"]
 [ext_resource type="Script" path="res://scenes/lobby.gd" id="1_g2fmt"]
 [ext_resource type="PackedScene" uid="uid://chbh4lxk8rmmd" path="res://scenes/ui/lobby_player.tscn" id="2_060bj"]
+[ext_resource type="Texture2D" uid="uid://qgn8qwfs1ynr" path="res://resources/assets/gui/Castle_Road.png" id="4_y5uva"]
+[ext_resource type="FontFile" uid="uid://doyevmoka06gy" path="res://resources/fonts/Medieval Sharp/MedievalSharp-Bold.ttf" id="5_k3wah"]
 
 [sub_resource type="Theme" id="Theme_b1wbc"]
 default_font = ExtResource("1_6x3k7")
 
+[sub_resource type="Theme" id="Theme_646nv"]
+
 [sub_resource type="Theme" id="Theme_0ew0f"]
+default_font = ExtResource("5_k3wah")
 
 [node name="Lobby" type="MarginContainer"]
 anchors_preset = 15
@@ -21,23 +26,31 @@ lobby_player_scene = ExtResource("2_060bj")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 2
+theme = SubResource("Theme_646nv")
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer"]
+layout_mode = 2
+texture = ExtResource("4_y5uva")
+expand_mode = 3
 
 [node name="Menus" type="MarginContainer" parent="PanelContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme = SubResource("Theme_0ew0f")
 
 [node name="StartMenu" type="VBoxContainer" parent="PanelContainer/Menus"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
+alignment = 1
 
 [node name="Tittle" type="Label" parent="PanelContainer/Menus/StartMenu"]
 layout_mode = 2
 size_flags_vertical = 0
-theme_type_variation = &"HeaderLarge"
-theme_override_fonts/font = ExtResource("1_6x3k7")
-theme_override_font_sizes/font_size = 116
-text = "Tiña"
+theme_override_font_sizes/font_size = 100
+text = "TIÑA"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -68,17 +81,14 @@ text = "Join"
 
 [node name="JoinMenu" type="VBoxContainer" parent="PanelContainer/Menus"]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 
 [node name="Tittle" type="Label" parent="PanelContainer/Menus/JoinMenu"]
 layout_mode = 2
 size_flags_vertical = 0
-theme_type_variation = &"HeaderLarge"
-theme_override_fonts/font = ExtResource("1_6x3k7")
-theme_override_font_sizes/font_size = 116
-text = "Tiña"
+theme_override_font_sizes/font_size = 100
+text = "TIÑA"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -108,7 +118,6 @@ size_flags_horizontal = 3
 text = "Join"
 
 [node name="Info" type="Label" parent="PanelContainer/Menus/JoinMenu"]
-visible = false
 layout_mode = 2
 
 [node name="ReadyMenu" type="VBoxContainer" parent="PanelContainer/Menus"]
@@ -120,10 +129,8 @@ layout_mode = 2
 [node name="Tittle" type="Label" parent="PanelContainer/Menus/ReadyMenu"]
 layout_mode = 2
 size_flags_vertical = 0
-theme_type_variation = &"HeaderLarge"
-theme_override_fonts/font = ExtResource("1_6x3k7")
-theme_override_font_sizes/font_size = 116
-text = "Tiña"
+theme_override_font_sizes/font_size = 100
+text = "TIÑA"
 horizontal_alignment = 1
 vertical_alignment = 1
 

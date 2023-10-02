@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://t00yitfijw7j"
-path="res://.godot/imported/MedievalSharp-Regular.ttf-05dfddb02efbdebd226f36c312a1d664.fontdata"
+uid="uid://4a6hhc8vggeu"
+path="res://.godot/imported/MedievalSharp-BoldOblique.ttf-2d789295c1b8425edd23173803156e24.fontdata"
 
 [deps]
 
-source_file="res://resources/fonts/MedievalSharp/MedievalSharp-Regular.ttf"
-dest_files=["res://.godot/imported/MedievalSharp-Regular.ttf-05dfddb02efbdebd226f36c312a1d664.fontdata"]
+source_file="res://resources/fonts/Medieval Sharp/MedievalSharp-BoldOblique.ttf"
+dest_files=["res://.godot/imported/MedievalSharp-BoldOblique.ttf-2d789295c1b8425edd23173803156e24.fontdata"]
 
 [params]
 
