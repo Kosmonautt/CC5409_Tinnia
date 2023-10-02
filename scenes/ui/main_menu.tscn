@@ -1,49 +1,84 @@
-[gd_scene format=3 uid="uid://cstlj4mmuhde"]
+[gd_scene load_steps=5 format=3 uid="uid://cstlj4mmuhde"]
 
-[node name="MainMenu" type="MarginContainer"]
-anchors_preset = 8
-anchor_left = 0.5
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_1wwee"]
+[ext_resource type="Texture2D" uid="uid://dy7rakrir0a22" path="res://resources/textures/Castle Road.png" id="1_boc4a"]
+[ext_resource type="FontFile" uid="uid://cvif5a82vufdb" path="res://resources/fonts/Medieval Sharp/MedievalSharp-Bold.ttf" id="2_a2n3a"]
+[ext_resource type="FontFile" uid="uid://48t2v35cqk4t" path="res://resources/fonts/Medieval Sharp/MedievalSharp-Book.ttf" id="3_7dyfh"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_1wwee")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1792.0
+offset_bottom = 1024.0
+scale = Vector2(0.642826, 0.632898)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_boc4a")
+
+[node name="MainMenu" type="MarginContainer" parent="."]
+layout_direction = 1
+anchors_preset = 14
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -75.0
-offset_top = -123.0
-offset_right = 75.0
-offset_bottom = 123.0
+offset_top = -172.0
+offset_bottom = 172.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu"]
+layout_mode = 2
+
+[node name="Game_name" type="Label" parent="MainMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_a2n3a")
+theme_override_font_sizes/font_size = 100
+text = "TIÑA"
+
+[node name="PanelContainer" type="PanelContainer" parent="MainMenu/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0)
 show_behind_parent = true
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MainMenu/VBoxContainer/PanelContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/VBoxContainer/PanelContainer/MarginContainer"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_vertical = 4
 alignment = 1
 
-[node name="Game_name" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Start" type="Button" parent="MainMenu/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 4
-text = "TIÑA"
-
-[node name="Start" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
+theme_override_fonts/font = ExtResource("3_7dyfh")
+theme_override_font_sizes/font_size = 25
 text = "Start"
 
-[node name="Settings" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Settings" type="Button" parent="MainMenu/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_7dyfh")
+theme_override_font_sizes/font_size = 25
 text = "Settings"
 
-[node name="Credits" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Credits" type="Button" parent="MainMenu/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_7dyfh")
+theme_override_font_sizes/font_size = 25
 text = "Credits"
 
-[node name="Exit" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Exit" type="Button" parent="MainMenu/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_7dyfh")
+theme_override_font_sizes/font_size = 25
 text = "Exit"
+
+[connection signal="pressed" from="MainMenu/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="MainMenu/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
