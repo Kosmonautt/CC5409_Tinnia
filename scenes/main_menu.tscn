@@ -1,0 +1,92 @@
+[gd_scene load_steps=5 format=3 uid="uid://cstlj4mmuhde"]
+
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_1wwee"]
+[ext_resource type="Texture2D" uid="uid://r3hktoiv7fbn" path="res://resources/textures/background/Castle_Road.png" id="2_bnyg1"]
+[ext_resource type="FontFile" uid="uid://lybuas372tda" path="res://resources/fonts/Medieval Sharp/MedievalSharp-Bold.ttf" id="3_ml1xi"]
+[ext_resource type="Theme" uid="uid://bwgdrcgopd0s1" path="res://resources/theme.tres" id="4_ruyvi"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_stretch_ratio = 0.0
+script = ExtResource("1_1wwee")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_bnyg1")
+expand_mode = 3
+
+[node name="MainMenu" type="MarginContainer" parent="."]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -165.0
+offset_right = 165.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Game_name" type="Label" parent="MainMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_ml1xi")
+theme_override_font_sizes/font_size = 100
+text = "TIÑA"
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("4_ruyvi")
+alignment = 1
+
+[node name="Start" type="Button" parent="MainMenu/VBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Start"
+
+[node name="Settings" type="Button" parent="MainMenu/VBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Settings"
+
+[node name="Credits" type="Button" parent="MainMenu/VBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Credits"
+
+[node name="Exit" type="Button" parent="MainMenu/VBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Exit"
+
+[connection signal="pressed" from="MainMenu/VBoxContainer/MarginContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="MainMenu/VBoxContainer/MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

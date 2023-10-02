@@ -1,6 +1,9 @@
-[gd_resource type="Theme" format=3 uid="uid://bwgdrcgopd0s1"]
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bwgdrcgopd0s1"]
+
+[ext_resource type="FontFile" uid="uid://lybuas372tda" path="res://resources/fonts/Medieval Sharp/MedievalSharp-Bold.ttf" id="1_437w3"]
 
 [resource]
+default_font = ExtResource("1_437w3")
 MarginContainer/constants/margin_bottom = 20
 MarginContainer/constants/margin_left = 20
 MarginContainer/constants/margin_right = 20
