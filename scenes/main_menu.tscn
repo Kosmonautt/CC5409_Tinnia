@@ -1,11 +1,32 @@
 [gd_scene load_steps=5 format=3 uid="uid://cstlj4mmuhde"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_1wwee"]
-[ext_resource type="Texture2D" uid="uid://r3hktoiv7fbn" path="res://resources/textures/background/Castle_Road.png" id="2_bnyg1"]
+[ext_resource type="PackedScene" uid="uid://cds31t0ynkb6x" path="res://scenes/level/stage2.tscn" id="2_5vcc3"]
 [ext_resource type="FontFile" uid="uid://lybuas372tda" path="res://resources/fonts/Medieval Sharp/MedievalSharp-Bold.ttf" id="3_ml1xi"]
 [ext_resource type="Theme" uid="uid://bwgdrcgopd0s1" path="res://resources/theme.tres" id="4_ruyvi"]
 
-[node name="Control" type="Control"]
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="Background" parent="." instance=ExtResource("2_5vcc3")]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="SubViewport" type="SubViewport" parent="Background/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Background/SubViewportContainer/SubViewport"]
+transform = Transform3D(-1, 5.61943e-08, -6.69697e-08, 0, 0.766044, 0.642788, 8.74228e-08, 0.642788, -0.766044, 0, 30, -40)
+fov = 60.0
+
+[node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,78 +36,58 @@ grow_vertical = 2
 size_flags_stretch_ratio = 0.0
 script = ExtResource("1_1wwee")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="MainMenu" type="MarginContainer" parent="Control"]
+layout_direction = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("2_bnyg1")
-expand_mode = 3
+theme_override_constants/margin_left = 400
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 400
+theme_override_constants/margin_bottom = 50
 
-[node name="MainMenu" type="MarginContainer" parent="."]
-layout_direction = 1
-layout_mode = 1
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -165.0
-offset_right = 165.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 4
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu"]
+[node name="Game_name" type="Label" parent="Control/MainMenu"]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="Game_name" type="Label" parent="MainMenu/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
+size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("3_ml1xi")
 theme_override_font_sizes/font_size = 100
 text = "TIÑA"
 
-[node name="MarginContainer" type="MarginContainer" parent="MainMenu/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/VBoxContainer/MarginContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control/MainMenu"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("4_ruyvi")
 alignment = 1
 
-[node name="Start" type="Button" parent="MainMenu/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="Start" type="Button" parent="Control/MainMenu/VBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "Start"
 
-[node name="Settings" type="Button" parent="MainMenu/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="Settings" type="Button" parent="Control/MainMenu/VBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "Settings"
 
-[node name="Credits" type="Button" parent="MainMenu/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="Credits" type="Button" parent="Control/MainMenu/VBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "Credits"
 
-[node name="Exit" type="Button" parent="MainMenu/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="Exit" type="Button" parent="Control/MainMenu/VBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "Exit"
 
-[connection signal="pressed" from="MainMenu/VBoxContainer/MarginContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="MainMenu/VBoxContainer/MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="Control/MainMenu/VBoxContainer2/Start" to="Control" method="_on_start_pressed"]
+[connection signal="pressed" from="Control/MainMenu/VBoxContainer2/Exit" to="Control" method="_on_exit_pressed"]

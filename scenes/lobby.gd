@@ -288,3 +288,7 @@ func _back_to_first_menu() -> void:
 		first.show()
 	if Game.is_online():
 		_disconnect()
+
+
+func _on_main_menu_pressed():
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
