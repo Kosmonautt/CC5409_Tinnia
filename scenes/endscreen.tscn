@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbeb3ybqcik63"]
+
+[ext_resource type="Script" path="res://scenes/endscreen.gd" id="1_6qiv3"]
+
+[node name="endscreen" type="Node2D"]
+script = ExtResource("1_6qiv3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "The Winner is"
+
+[node name="WinnerLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "xd por ahora"
