@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://bslhrv3eo36wd"]
 
-[ext_resource type="PackedScene" uid="uid://cds31t0ynkb6x" path="res://scenes/level/stage2.tscn" id="1_44xha"]
-[ext_resource type="Script" path="res://scenes/lobby.gd" id="1_g2fmt"]
-[ext_resource type="PackedScene" uid="uid://chbh4lxk8rmmd" path="res://scenes/ui/lobby_player.tscn" id="2_060bj"]
-[ext_resource type="FontFile" uid="uid://lybuas372tda" path="res://resources/fonts/Medieval Sharp/MedievalSharp-Bold.ttf" id="4_52dd4"]
+[ext_resource type="PackedScene" uid="uid://cds31t0ynkb6x" path="res://scenes/level/stage2.tscn" id="1_o53xg"]
+[ext_resource type="Script" path="res://scripts/lobby.gd" id="2_6v4q1"]
+[ext_resource type="PackedScene" uid="uid://chbh4lxk8rmmd" path="res://scenes/ui/lobby_player.tscn" id="3_r1sja"]
+[ext_resource type="FontFile" uid="uid://lybuas372tda" path="res://resources/fonts/Medieval Sharp/MedievalSharp-Bold.ttf" id="4_1dj2f"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 
-[node name="Background" parent="." instance=ExtResource("1_44xha")]
+[node name="Background" parent="." instance=ExtResource("1_o53xg")]
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="Background"]
 anchors_preset = 15
@@ -36,14 +36,14 @@ theme_override_constants/margin_left = 400
 theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 400
 theme_override_constants/margin_bottom = 50
-script = ExtResource("1_g2fmt")
-lobby_player_scene = ExtResource("2_060bj")
+script = ExtResource("2_6v4q1")
+lobby_player_scene = ExtResource("3_r1sja")
 
 [node name="Game_name" type="Label" parent="Lobby"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-theme_override_fonts/font = ExtResource("4_52dd4")
+theme_override_fonts/font = ExtResource("4_1dj2f")
 theme_override_font_sizes/font_size = 100
 text = "TIÑA"
 
