@@ -17,7 +17,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 10),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(21.8091, 2.85828, -23.4611), Vector3(-22, 2.858, -23.461)]
+"values": [Vector3(21.8091, 2.85828, -23.4611), Vector3(-21, 2.858, -23.461)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4l4va"]
@@ -54,7 +54,7 @@ size = Vector2i(2304, 1296)
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="Control/stage_1/SubViewportContainer/SubViewport"]
-transform = Transform3D(-0.999985, -0.000108777, -0.00540942, 1.15912e-10, 0.999798, -0.0201048, 0.00541051, -0.0201045, -0.999783, -15.4286, 2.85804, -23.461)
+transform = Transform3D(-0.999985, -0.000108777, -0.00540942, 1.15912e-10, 0.999798, -0.0201048, 0.00541051, -0.0201045, -0.999783, 21.8091, 2.85828, -23.4611)
 fov = 74.0276
 
 [node name="ControlScreen" type="Control" parent="."]
