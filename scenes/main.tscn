@@ -18,4 +18,13 @@ player_scene = ExtResource("2_ra4jt")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 1, 0)
 
 [node name="Marker_P2" type="Marker3D" parent="Spawn"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 2, 0)
+
+[node name="Marker_P3" type="Marker3D" parent="Spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 15)
+
+[node name="Marker_P4" type="Marker3D" parent="Spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -15)
+
+[node name="Marker_P5" type="Marker3D" parent="Spawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

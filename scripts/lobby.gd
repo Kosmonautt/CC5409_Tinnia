@@ -1,7 +1,7 @@
 extends MarginContainer
 
 
-const MAX_PLAYERS = 2
+const MAX_CLIENTS = 3
 const PORT = 5409
 
 @onready var user = %User
@@ -15,7 +15,7 @@ const PORT = 5409
 
 @onready var role_a: Button = %RoleA
 @onready var role_b: Button = %RoleB
-#@onready var role_c: Button = %RoleC
+@onready var role_c: Button = %RoleC
 
 @onready var back_ready: Button = %BackReady
 @onready var ready_toggle: Button = %Ready
@@ -48,8 +48,8 @@ func _ready():
 	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
 	multiplayer.server_disconnected.connect(_on_server_disconnected)
 	
-	Game.player_updated.connect(func(_id) : _check_ready())
-	Game.players_updated.connect(_check_ready)
+#	Game.player_updated.connect(func(_id) : _check_ready())
+#	Game.players_updated.connect(_check_ready)
 	
 	host.pressed.connect(_on_host_pressed)
 	join.pressed.connect(_on_join_pressed)
@@ -59,9 +59,9 @@ func _ready():
 	back_join.pressed.connect(_back_menu)
 	back_ready.pressed.connect(_back_menu)
 	
-	role_a.pressed.connect(func(): Game.set_current_player_role(Game.Role.ROLE_A))
-	role_b.pressed.connect(func(): Game.set_current_player_role(Game.Role.ROLE_B))
-#	role_c.pressed.connect(func(): Game.set_current_player_role(Game.Role.ROLE_C))
+	role_a.pressed.connect(_on_role_selected.bind(Game.Role.ROLE_A))
+	role_b.pressed.connect(_on_role_selected.bind(Game.Role.ROLE_B))
+	role_c.pressed.connect(_on_role_selected.bind(Game.Role.ROLE_C))
 	
 	ready_toggle.pressed.connect(_on_ready_toggled)
 	
@@ -72,8 +72,7 @@ func _ready():
 
 	_go_to_menu(start_menu)
 	
-	user.text = OS.get_environment("USERNAME") + (str(randi() % 1000) if Engine.is_editor_hint()
- else "")
+	user.text = OS.get_environment("USERNAME") + (str(randi() % 1000) if Engine.is_editor_hint() else "")
 	
 	Game.upnp_completed.connect(_on_upnp_completed)
 
@@ -94,7 +93,7 @@ func _on_upnp_completed(_status) -> void:
 func _on_host_pressed() -> void:
 	var peer = ENetMultiplayerPeer.new()
 	
-	var err = peer.create_server(PORT, MAX_PLAYERS)
+	var err = peer.create_server(PORT, MAX_CLIENTS)
 	if err:
 		Debug.dprint("Host Error: %d" %err)
 		return
@@ -220,7 +219,7 @@ func set_player_ready(id: int, value: bool):
 func starting_game(value: bool):
 	role_a.disabled = value
 	role_b.disabled = value
-#	role_c.disabled = value
+	role_c.disabled = value
 	back_ready.disabled = value
 	time_container.visible = value
 	if value:
@@ -235,12 +234,12 @@ func start_game() -> void:
 
 
 
-func _check_ready() -> void:
-	var roles = []
-	for player in Game.players:
-		if not player.role in roles and player.role != Game.Role.NONE:
-			roles.push_back(player.role)
-	ready_toggle.disabled = roles.size() != Game.Role.size() - 1
+#func _check_ready() -> void:
+#	var roles = []
+#	for player in Game.players:
+#		if not player.role in roles and player.role != Game.Role.NONE:
+#			roles.push_back(player.role)
+#	ready_toggle.disabled = roles.size() != Game.Role.size() - 1
 
 
 func _disconnect():
@@ -292,3 +291,8 @@ func _back_to_first_menu() -> void:
 
 func _on_main_menu_pressed():
 	get_tree().change_scene_to_file("res://scenes/ui/main_menu.tscn")
+
+
+func _on_role_selected(role: Game.Role) -> void:
+	ready_toggle.disabled = false
+	Game.set_current_player_role(role)

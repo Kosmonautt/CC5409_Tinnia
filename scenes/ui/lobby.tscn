@@ -163,6 +163,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Role B"
 
+[node name="RoleC" type="Button" parent="Lobby/PanelContainer/Menus/ReadyMenu/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Role C"
+
 [node name="HBoxContainer2" type="HBoxContainer" parent="Lobby/PanelContainer/Menus/ReadyMenu"]
 layout_mode = 2
 

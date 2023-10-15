@@ -3,6 +3,7 @@ extends Node
 @export var players_alive : Array = []
 @onready var global_timer : Timer = Timer.new()
 var bomb_carrier : int
+@onready var winner_id : int = -1
 
 # signal that connect to timeout
 signal die()
@@ -39,7 +40,7 @@ func _on_global_timer_timeout():
 	emit_die.rpc_id(bomb_carrier)
 	players_alive.erase(bomb_carrier)
 	if players_alive.size() == 1:
-		game_end.rpc()
+		game_end.rpc(players_alive[0])
 	else:
 		var i : int = players_alive[randi() % players_alive.size()]
 		update_the_bomb.rpc(i)
@@ -51,6 +52,8 @@ func is_player_alive(player_id : int) -> bool:
 	return false
 
 @rpc("any_peer", "call_local", "reliable")
-func game_end():
+func game_end(id: int):
+	winner_id = id
 	get_tree().change_scene_to_file("res://scenes/ui/endscreen.tscn")
+	Debug.dprint(id, 60)
 	global_timer.stop()
