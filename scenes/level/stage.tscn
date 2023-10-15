@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://c86fnd40qecf7" path="res://resources/textures/ground/Grass_10-128x128.png" id="1_vcqrr"]
 [ext_resource type="Texture2D" uid="uid://bkiqqpym0o4mi" path="res://resources/textures/walls/Bricks_17-128x128.png" id="2_gib22"]
-[ext_resource type="PackedScene" uid="uid://d3nda536kgo6k" path="res://resources/assets/stairs.gltf.glb" id="3_t0l5m"]
+[ext_resource type="PackedScene" uid="uid://lqfdwkdfeyyg" path="res://resources/assets/stairs/stairs.gltf.glb" id="3_t0l5m"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_01toj"]
 sky_top_color = Color(0.670588, 0.345098, 0.188235, 1)
