@@ -1,18 +1,129 @@
-[gd_scene load_steps=2 format=3 uid="uid://bbeb3ybqcik63"]
+[gd_scene load_steps=6 format=3 uid="uid://bbeb3ybqcik63"]
 
 [ext_resource type="Script" path="res://scripts/endscreen.gd" id="1_6hfbm"]
+[ext_resource type="PackedScene" uid="uid://cds31t0ynkb6x" path="res://scenes/level/stage2.tscn" id="1_cp7bg"]
+[ext_resource type="FontFile" uid="uid://cxqg41eudgk1d" path="res://resources/fonts/Medieval Sharp/MedievalSharp-BoldOblique.ttf" id="2_efjeg"]
 
-[node name="endscreen" type="Node2D"]
+[sub_resource type="Animation" id="Animation_1wt4j"]
+resource_name = "background_move"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/stage_1/SubViewportContainer/SubViewport/Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(21.8091, 2.85828, -23.4611), Vector3(-22, 2.858, -23.461)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4l4va"]
+_data = {
+"background_move": SubResource("Animation_1wt4j")
+}
+
+[node name="EndScreen" type="CanvasLayer"]
 script = ExtResource("1_6hfbm")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="stage_1" parent="Control" instance=ExtResource("1_cp7bg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.75314)
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Control/stage_1"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="SubViewport" type="SubViewport" parent="Control/stage_1/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(2304, 1296)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Control/stage_1/SubViewportContainer/SubViewport"]
+transform = Transform3D(-0.999985, -0.000108777, -0.00540942, 1.15912e-10, 0.999798, -0.0201048, 0.00541051, -0.0201045, -0.999783, -15.4286, 2.85804, -23.461)
+fov = 74.0276
+
+[node name="ControlScreen" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ControlScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ControlScreen/MarginContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ControlScreen/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="ControlScreen/MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_efjeg")
+theme_override_font_sizes/font_size = 60
 text = "The Winner is"
+horizontal_alignment = 1
 
-[node name="WinnerLabel" type="Label" parent="VBoxContainer"]
+[node name="WinnerLabel" type="Label" parent="ControlScreen/MarginContainer/VBoxContainer2/VBoxContainer"]
 layout_mode = 2
-text = "xd por ahora"
+theme_override_fonts/font = ExtResource("2_efjeg")
+theme_override_font_sizes/font_size = 40
+text = "Trolazo"
+horizontal_alignment = 1
+
+[node name="space" type="Label" parent="ControlScreen/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+text = "
+
+"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ControlScreen/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="mainmenu_bottom" type="Button" parent="ControlScreen/MarginContainer/VBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 25
+text = "Main Menu"
+
+[node name="Exit" type="Button" parent="ControlScreen/MarginContainer/VBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Exit
+"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4l4va")
+}
+
+[connection signal="pressed" from="ControlScreen/MarginContainer/VBoxContainer2/VBoxContainer2/mainmenu_bottom" to="." method="_on_mainmenu_bottom_pressed"]
+[connection signal="pressed" from="ControlScreen/MarginContainer/VBoxContainer2/VBoxContainer2/Exit" to="." method="_on_exit_pressed"]
