@@ -122,7 +122,7 @@ func _physics_process(delta):
 		target_velocity.y = 0
 	
 	# when passing the bomb
-	if Input.is_action_just_pressed("ui_accept") and name.to_int() == Global.bomb_carrier:
+	if Input.is_action_just_pressed("action_1") and name.to_int() == Global.bomb_carrier:
 		for i in area.get_overlapping_bodies():
 			if i == self:
 				continue
