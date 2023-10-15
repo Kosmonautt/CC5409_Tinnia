@@ -5,11 +5,11 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_wqorb"]
 size = Vector3(0.3, 3.5, 0.3)
 
-[node name="stone_wood" type="Node3D"]
+[node name="wood_stair" type="Node3D"]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
-[node name="stairs_wood_gltf" parent="StaticBody3D" instance=ExtResource("1_ybclt")]
+[node name="stairs_wood_gltf" parent="StaticBody3D" instance=ExtResource("1_hso1h")]
 
 [node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="StaticBody3D"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)

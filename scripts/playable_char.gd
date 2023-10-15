@@ -122,7 +122,7 @@ func _physics_process(delta):
 		target_velocity.y = 0
 	
 	# when passing the bomb
-	if Input.is_action_just_pressed("ui_accept") and name.to_int() == Global.bomb_carrier:
+	if Input.is_action_just_pressed("action_1") and name.to_int() == Global.bomb_carrier:
 		for i in area.get_overlapping_bodies():
 			if i == self:
 				continue
@@ -149,7 +149,7 @@ func _physics_process(delta):
 	if not is_on_floor():
 		target_velocity.y -= gravity * delta
 	
-	# we get the velocity vector of movement	
+	# we get the velocity vector of movement
 	target_velocity.x = direction.x * player_speed
 	target_velocity.z = direction.z * player_speed
 	
@@ -157,8 +157,8 @@ func _physics_process(delta):
 	
 	anim_tree.set("parameters/conditions/is_idle", dir_input == Vector2.ZERO && is_on_floor())
 	anim_tree.set("parameters/conditions/is_walking", dir_input!= Vector2.ZERO && is_on_floor())
-	anim_tree.set("parameters/conditions/is_walking_b", dir_input.x < 0 && is_on_floor())
-	anim_tree.set("parameters/conditions/is_jumping", Input.is_action_just_pressed("jump")) # adjust animation
+#	anim_tree.set("parameters/conditions/is_walking_b", dir_input.x < 0 && is_on_floor())
+	anim_tree.set("parameters/conditions/is_jumping", Input.is_action_just_pressed("jump"))
 	anim_tree.set("parameters/conditions/is_falling", !is_on_floor())
 	anim_tree.set("parameters/conditions/is_landing", is_on_floor())
 	anim_tree.set("parameters/conditions/is_interact", Input.is_action_just_pressed("ui_accept") && name.to_int() == Global.bomb_carrier)
