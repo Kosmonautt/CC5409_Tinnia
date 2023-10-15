@@ -2,7 +2,7 @@ extends CanvasLayer
 
 @onready var winner_label : Label = $ControlScreen/MarginContainer/VBoxContainer2/VBoxContainer/WinnerLabel
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
-@onready var mainmenu_button : Button = $ControlScreen/MarginContainer/VBoxContainer2/mainmenu_bottom
+@onready var mainmenu_button : Button = $ControlScreen/MarginContainer/VBoxContainer2/VBoxContainer2/mainmenu_bottom
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
