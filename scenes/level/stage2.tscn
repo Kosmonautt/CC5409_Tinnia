@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cds31t0ynkb6x"]
+[gd_scene load_steps=29 format=3 uid="uid://cds31t0ynkb6x"]
 
 [ext_resource type="PackedScene" uid="uid://bew4vnfpunit4" path="res://resources/assets/wall/wall_cracked.gltf.glb" id="1_gj1cu"]
 [ext_resource type="PackedScene" uid="uid://djjo27y3rf0j6" path="res://resources/assets/wall/wall_arched.gltf.glb" id="1_spe86"]
@@ -13,9 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://ve1rxssjv5o5" path="res://resources/assets/others/column.gltf.glb" id="10_8pho1"]
 [ext_resource type="PackedScene" uid="uid://epatm1clfpjt" path="res://resources/assets/floor/floor_wood_large.gltf.glb" id="10_mkkxb"]
 [ext_resource type="PackedScene" uid="uid://bks8u62qchdp0" path="res://resources/assets/floor/floor_tile_large.gltf.glb" id="11_unvqt"]
-[ext_resource type="PackedScene" uid="uid://dhxjqrbb8l2lx" path="res://scenes/level/stone_stair.tscn" id="12_mhg78"]
 [ext_resource type="PackedScene" uid="uid://savb2v45hjns" path="res://resources/assets/others/banner_shield_red.gltf.glb" id="13_f1a26"]
-[ext_resource type="PackedScene" uid="uid://da6p4xjwdvljc" path="res://scenes/level/stone_wood.tscn" id="13_ym684"]
+[ext_resource type="PackedScene" uid="uid://da6p4xjwdvljc" path="res://scenes/level/wood_stair.tscn" id="13_ym684"]
 [ext_resource type="PackedScene" uid="uid://d8elxravslw0" path="res://resources/assets/floor/floor_tile_extralarge_grates_open.gltf.glb" id="15_2gspj"]
 [ext_resource type="PackedScene" uid="uid://c8r8i1h8bhxlr" path="res://scenes/level/gate.tscn" id="15_ylvud"]
 
@@ -2766,14 +2765,17 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32, 0, 0)
 [node name="stairs" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11.1046)
 
-[node name="stone_stair" parent="stairs" instance=ExtResource("12_mhg78")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.887, 0, 0)
-
-[node name="stone_wood" parent="stairs" instance=ExtResource("13_ym684")]
+[node name="wood_stair" parent="stairs" instance=ExtResource("13_ym684")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14, 0, -11.5)
 
-[node name="stone_wood2" parent="stairs" instance=ExtResource("13_ym684")]
+[node name="wood_stair3" parent="stairs" instance=ExtResource("13_ym684")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -15, 0, -11.5)
+
+[node name="wood_stair2" parent="stairs" instance=ExtResource("13_ym684")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 14, 0, -11.5)
+
+[node name="wood_stair4" parent="stairs" instance=ExtResource("13_ym684")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 15, 0, -11.5)
 
 [node name="bridge" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
