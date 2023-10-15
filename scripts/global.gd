@@ -19,7 +19,7 @@ func _process(_delta):
 func game_ready() -> void:
 	players_alive = Game.players.map(func(value): return value.id)
 	add_child(global_timer)
-	global_timer.start(10)
+	global_timer.start(100)
 	# manage the timer on the multiplayer authority
 	if is_multiplayer_authority():
 		global_timer.timeout.connect(_on_global_timer_timeout)
