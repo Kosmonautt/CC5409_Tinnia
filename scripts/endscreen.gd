@@ -24,8 +24,12 @@ func _process(_delta : float) -> void:
 
 
 func _on_mainmenu_bottom_pressed():
-	get_tree().change_scene_to_file("res://scenes/ui/main_menu.tscn") # Replace with function body.
+	get_tree().change_scene_to_file("res://scenes/ui/main_menu.tscn")
 
 
 func _on_exit_pressed():
-	get_tree().quit() # Replace with function body.
+	get_tree().quit()
+
+
+func _on_play_again_pressed():
+	get_tree().change_scene_to_file("res://scenes/ui/lobby.tscn")
