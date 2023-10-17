@@ -108,6 +108,10 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
+[node name="PlayAgain" type="Button" parent="ControlScreen/MarginContainer/VBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+text = "Play Again"
+
 [node name="mainmenu_bottom" type="Button" parent="ControlScreen/MarginContainer/VBoxContainer2/VBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -125,5 +129,6 @@ libraries = {
 "": SubResource("AnimationLibrary_4l4va")
 }
 
+[connection signal="pressed" from="ControlScreen/MarginContainer/VBoxContainer2/VBoxContainer2/PlayAgain" to="." method="_on_play_again_pressed"]
 [connection signal="pressed" from="ControlScreen/MarginContainer/VBoxContainer2/VBoxContainer2/mainmenu_bottom" to="." method="_on_mainmenu_bottom_pressed"]
 [connection signal="pressed" from="ControlScreen/MarginContainer/VBoxContainer2/VBoxContainer2/Exit" to="." method="_on_exit_pressed"]
