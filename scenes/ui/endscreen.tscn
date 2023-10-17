@@ -110,6 +110,7 @@ size_flags_vertical = 4
 
 [node name="PlayAgain" type="Button" parent="ControlScreen/MarginContainer/VBoxContainer2/VBoxContainer2"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 25
 text = "Play Again"
 
 [node name="mainmenu_bottom" type="Button" parent="ControlScreen/MarginContainer/VBoxContainer2/VBoxContainer2"]

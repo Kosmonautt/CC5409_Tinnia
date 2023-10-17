@@ -1,15 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://bslhrv3eo36wd"]
+[gd_scene load_steps=6 format=3 uid="uid://bslhrv3eo36wd"]
 
 [ext_resource type="PackedScene" uid="uid://cds31t0ynkb6x" path="res://scenes/level/stage2.tscn" id="1_o53xg"]
+[ext_resource type="PackedScene" uid="uid://cim65d4ta5cyp" path="res://scenes/ui/character_selector.tscn" id="1_qou6y"]
 [ext_resource type="Script" path="res://scripts/lobby.gd" id="2_6v4q1"]
 [ext_resource type="PackedScene" uid="uid://chbh4lxk8rmmd" path="res://scenes/ui/lobby_player.tscn" id="3_r1sja"]
 [ext_resource type="FontFile" uid="uid://lybuas372tda" path="res://resources/fonts/Medieval Sharp/MedievalSharp-Bold.ttf" id="4_1dj2f"]
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 400.0
+offset_top = 50.0
+offset_right = 752.0
+offset_bottom = 598.0
 
-[node name="Background" parent="." instance=ExtResource("1_o53xg")]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="Background"]
+[node name="Background" parent="CanvasLayer" instance=ExtResource("1_o53xg")]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer/Background"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -17,16 +26,43 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="SubViewport" type="SubViewport" parent="Background/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/Background/SubViewportContainer"]
 handle_input_locally = false
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
-[node name="Camera3D" type="Camera3D" parent="Background/SubViewportContainer/SubViewport"]
+[node name="Camera3D" type="Camera3D" parent="CanvasLayer/Background/SubViewportContainer/SubViewport"]
 transform = Transform3D(-1, 5.61943e-08, -6.69697e-08, 0, 0.766044, 0.642788, 8.74228e-08, 0.642788, -0.766044, 0, 30, -40)
 fov = 60.0
 
-[node name="Lobby" type="MarginContainer" parent="."]
+[node name="CanvasLayer2" type="CanvasLayer" parent="CanvasLayer"]
+
+[node name="character_selector" parent="CanvasLayer/CanvasLayer2" instance=ExtResource("1_qou6y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 0)
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer/CanvasLayer2/character_selector"]
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -358.0
+offset_top = -359.0
+offset_right = 154.0
+offset_bottom = 153.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.7, 0.7)
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/CanvasLayer2/character_selector/SubViewportContainer"]
+handle_input_locally = false
+render_target_update_mode = 0
+
+[node name="Camera3D" type="Camera3D" parent="CanvasLayer/CanvasLayer2/character_selector/SubViewportContainer/SubViewport"]
+transform = Transform3D(0.923425, 0, 0.38378, 0, 1, 0, -0.38378, 0, 0.923425, 101.448, 1.36788, 3.55606)
+
+[node name="Lobby" type="MarginContainer" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -39,7 +75,7 @@ theme_override_constants/margin_bottom = 50
 script = ExtResource("2_6v4q1")
 lobby_player_scene = ExtResource("3_r1sja")
 
-[node name="Game_name" type="Label" parent="Lobby"]
+[node name="Game_name" type="Label" parent="CanvasLayer/Lobby"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -47,163 +83,163 @@ theme_override_fonts/font = ExtResource("4_1dj2f")
 theme_override_font_sizes/font_size = 100
 text = "TIÑA"
 
-[node name="PanelContainer" type="PanelContainer" parent="Lobby"]
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Lobby"]
 self_modulate = Color(0.156863, 0.156863, 0.156863, 1)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Menus" type="MarginContainer" parent="Lobby/PanelContainer"]
+[node name="Menus" type="MarginContainer" parent="CanvasLayer/Lobby/PanelContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="StartMenu" type="VBoxContainer" parent="Lobby/PanelContainer/Menus"]
+[node name="StartMenu" type="VBoxContainer" parent="CanvasLayer/Lobby/PanelContainer/Menus"]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Lobby/PanelContainer/Menus/StartMenu"]
+[node name="Label" type="Label" parent="CanvasLayer/Lobby/PanelContainer/Menus/StartMenu"]
 layout_mode = 2
 text = "Name:
 "
 
-[node name="User" type="LineEdit" parent="Lobby/PanelContainer/Menus/StartMenu"]
+[node name="User" type="LineEdit" parent="CanvasLayer/Lobby/PanelContainer/Menus/StartMenu"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Player"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Lobby/PanelContainer/Menus/StartMenu"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Lobby/PanelContainer/Menus/StartMenu"]
 layout_mode = 2
 
-[node name="Host" type="Button" parent="Lobby/PanelContainer/Menus/StartMenu/HBoxContainer"]
+[node name="Host" type="Button" parent="CanvasLayer/Lobby/PanelContainer/Menus/StartMenu/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Host"
 
-[node name="Join" type="Button" parent="Lobby/PanelContainer/Menus/StartMenu/HBoxContainer"]
+[node name="Join" type="Button" parent="CanvasLayer/Lobby/PanelContainer/Menus/StartMenu/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Join"
 
-[node name="Main_Menu" type="Button" parent="Lobby/PanelContainer/Menus/StartMenu"]
+[node name="Main_Menu" type="Button" parent="CanvasLayer/Lobby/PanelContainer/Menus/StartMenu"]
 layout_mode = 2
 text = "Main Menu"
 
-[node name="JoinMenu" type="VBoxContainer" parent="Lobby/PanelContainer/Menus"]
+[node name="JoinMenu" type="VBoxContainer" parent="CanvasLayer/Lobby/PanelContainer/Menus"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="Lobby/PanelContainer/Menus/JoinMenu"]
+[node name="Label2" type="Label" parent="CanvasLayer/Lobby/PanelContainer/Menus/JoinMenu"]
 layout_mode = 2
 text = "IP:
 "
 
-[node name="IP" type="LineEdit" parent="Lobby/PanelContainer/Menus/JoinMenu"]
+[node name="IP" type="LineEdit" parent="CanvasLayer/Lobby/PanelContainer/Menus/JoinMenu"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "127.0.0.1"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Lobby/PanelContainer/Menus/JoinMenu"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Lobby/PanelContainer/Menus/JoinMenu"]
 layout_mode = 2
 
-[node name="BackJoin" type="Button" parent="Lobby/PanelContainer/Menus/JoinMenu/HBoxContainer"]
+[node name="BackJoin" type="Button" parent="CanvasLayer/Lobby/PanelContainer/Menus/JoinMenu/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Back"
 
-[node name="ConfirmJoin" type="Button" parent="Lobby/PanelContainer/Menus/JoinMenu/HBoxContainer"]
+[node name="ConfirmJoin" type="Button" parent="CanvasLayer/Lobby/PanelContainer/Menus/JoinMenu/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Join"
 
-[node name="Info" type="Label" parent="Lobby/PanelContainer/Menus/JoinMenu"]
+[node name="Info" type="Label" parent="CanvasLayer/Lobby/PanelContainer/Menus/JoinMenu"]
 visible = false
 layout_mode = 2
 
-[node name="Main_Menu" type="Button" parent="Lobby/PanelContainer/Menus/JoinMenu"]
+[node name="Main_Menu" type="Button" parent="CanvasLayer/Lobby/PanelContainer/Menus/JoinMenu"]
 layout_mode = 2
 text = "Main Menu"
 
-[node name="ReadyMenu" type="VBoxContainer" parent="Lobby/PanelContainer/Menus"]
+[node name="ReadyMenu" type="VBoxContainer" parent="CanvasLayer/Lobby/PanelContainer/Menus"]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Lobby/PanelContainer/Menus/ReadyMenu"]
+[node name="Label" type="Label" parent="CanvasLayer/Lobby/PanelContainer/Menus/ReadyMenu"]
 layout_mode = 2
 text = "Players:
 "
 
-[node name="PanelContainer" type="PanelContainer" parent="Lobby/PanelContainer/Menus/ReadyMenu"]
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Lobby/PanelContainer/Menus/ReadyMenu"]
 layout_mode = 2
 
-[node name="Players" type="VBoxContainer" parent="Lobby/PanelContainer/Menus/ReadyMenu/PanelContainer"]
+[node name="Players" type="VBoxContainer" parent="CanvasLayer/Lobby/PanelContainer/Menus/ReadyMenu/PanelContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Lobby/PanelContainer/Menus/ReadyMenu"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Lobby/PanelContainer/Menus/ReadyMenu"]
 layout_mode = 2
 
-[node name="RoleA" type="Button" parent="Lobby/PanelContainer/Menus/ReadyMenu/HBoxContainer"]
+[node name="RoleA" type="Button" parent="CanvasLayer/Lobby/PanelContainer/Menus/ReadyMenu/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Role A"
 
-[node name="RoleB" type="Button" parent="Lobby/PanelContainer/Menus/ReadyMenu/HBoxContainer"]
+[node name="RoleB" type="Button" parent="CanvasLayer/Lobby/PanelContainer/Menus/ReadyMenu/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Role B"
 
-[node name="RoleC" type="Button" parent="Lobby/PanelContainer/Menus/ReadyMenu/HBoxContainer"]
+[node name="RoleC" type="Button" parent="CanvasLayer/Lobby/PanelContainer/Menus/ReadyMenu/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Role C"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Lobby/PanelContainer/Menus/ReadyMenu"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Lobby/PanelContainer/Menus/ReadyMenu"]
 layout_mode = 2
 
-[node name="BackReady" type="Button" parent="Lobby/PanelContainer/Menus/ReadyMenu/HBoxContainer2"]
+[node name="BackReady" type="Button" parent="CanvasLayer/Lobby/PanelContainer/Menus/ReadyMenu/HBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Back
 "
 
-[node name="Ready" type="Button" parent="Lobby/PanelContainer/Menus/ReadyMenu/HBoxContainer2"]
+[node name="Ready" type="Button" parent="CanvasLayer/Lobby/PanelContainer/Menus/ReadyMenu/HBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Ready"
 
-[node name="TimeContainer" type="HBoxContainer" parent="Lobby/PanelContainer/Menus/ReadyMenu"]
+[node name="TimeContainer" type="HBoxContainer" parent="CanvasLayer/Lobby/PanelContainer/Menus/ReadyMenu"]
 unique_name_in_owner = true
 layout_mode = 2
 alignment = 1
 
-[node name="Label2" type="Label" parent="Lobby/PanelContainer/Menus/ReadyMenu/TimeContainer"]
+[node name="Label2" type="Label" parent="CanvasLayer/Lobby/PanelContainer/Menus/ReadyMenu/TimeContainer"]
 layout_mode = 2
 text = "Starting in:"
 
-[node name="Time" type="Label" parent="Lobby/PanelContainer/Menus/ReadyMenu/TimeContainer"]
+[node name="Time" type="Label" parent="CanvasLayer/Lobby/PanelContainer/Menus/ReadyMenu/TimeContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "5"
 
-[node name="Main_Menu" type="Button" parent="Lobby/PanelContainer/Menus/ReadyMenu"]
+[node name="Main_Menu" type="Button" parent="CanvasLayer/Lobby/PanelContainer/Menus/ReadyMenu"]
 layout_mode = 2
 text = "Main Menu"
 
-[node name="StartTimer" type="Timer" parent="Lobby"]
+[node name="StartTimer" type="Timer" parent="CanvasLayer/Lobby"]
 
-[connection signal="pressed" from="Lobby/PanelContainer/Menus/StartMenu/Main_Menu" to="Lobby" method="_on_main_menu_pressed"]
-[connection signal="pressed" from="Lobby/PanelContainer/Menus/JoinMenu/Main_Menu" to="Lobby" method="_on_main_menu_pressed"]
-[connection signal="pressed" from="Lobby/PanelContainer/Menus/ReadyMenu/Main_Menu" to="Lobby" method="_on_main_menu_pressed"]
+[connection signal="pressed" from="CanvasLayer/Lobby/PanelContainer/Menus/StartMenu/Main_Menu" to="CanvasLayer/Lobby" method="_on_main_menu_pressed"]
+[connection signal="pressed" from="CanvasLayer/Lobby/PanelContainer/Menus/JoinMenu/Main_Menu" to="CanvasLayer/Lobby" method="_on_main_menu_pressed"]
+[connection signal="pressed" from="CanvasLayer/Lobby/PanelContainer/Menus/ReadyMenu/Main_Menu" to="CanvasLayer/Lobby" method="_on_main_menu_pressed"]
