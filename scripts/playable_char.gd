@@ -33,6 +33,8 @@ var timeout : bool = false
 @onready var playback : AnimationNodeStateMachinePlayback = anim_tree.get("parameters/playback")
 # we get the area to pass the bomb
 @onready var area : Area3D = $Area3D
+# bomb sprite texture
+@onready var bomb_png : AnimatedSprite3D = $Playable_characters/Bomb_Sprite
 
 
 # this function gets called when players are playable characters are assigned to each player
@@ -76,6 +78,8 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	# set animation tree to active
 	anim_tree.active = true
+	# show bomb png
+	bomb_png.play()
 
 func _input(event):
 	# if we detect mouse movement
@@ -88,7 +92,10 @@ func _input(event):
 		head.rotation.x = clamp(head.rotation.x, -PI/2, PI/2 )
 		
 func _process(_delta):
-	pass
+	if Global.bomb_carrier == name.to_int():
+		bomb_png.visible = true
+	else:
+		bomb_png.visible = false
 
 func _physics_process(delta):
 	# return other players physics
