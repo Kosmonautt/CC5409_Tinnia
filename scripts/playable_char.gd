@@ -93,7 +93,10 @@ func _input(event):
 		
 func _process(_delta):
 	if Global.bomb_carrier == name.to_int():
-		bomb_png.visible = true
+		if is_multiplayer_authority():
+			bomb_png.visible = false
+		else:
+			bomb_png.visible = true
 	else:
 		bomb_png.visible = false
 
