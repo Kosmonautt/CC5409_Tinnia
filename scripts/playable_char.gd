@@ -171,7 +171,7 @@ func _physics_process(delta):
 	anim_tree.set("parameters/conditions/is_jumping", Input.is_action_just_pressed("jump"))
 	anim_tree.set("parameters/conditions/is_falling", !is_on_floor())
 	anim_tree.set("parameters/conditions/is_landing", is_on_floor())
-	anim_tree.set("parameters/conditions/is_interact", Input.is_action_just_pressed("ui_accept") && name.to_int() == Global.bomb_carrier)
+	anim_tree.set("parameters/conditions/is_interact", Input.is_action_just_pressed("action_1") && name.to_int() == Global.bomb_carrier)
 	
 	move_and_slide()
 
