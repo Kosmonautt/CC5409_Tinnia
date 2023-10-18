@@ -21,6 +21,10 @@ Debug="*res://scripts/debug.gd"
 Game="*res://scripts/game.gd"
 Global="*res://scripts/global.gd"
 
+[display]
+
+window/stretch/mode="viewport"
+
 [gui]
 
 theme/custom="res://resources/theme.tres"
