@@ -11,31 +11,30 @@ func _ready():
 func _process(delta):
 	pass
 	
-func change_visible(role : Game.Role) -> void:
-	
+func change_visible(role) -> void:
 	match role:
-		0 : 
+		0: 
 			$Characters/Mage.visible = false
 			$Characters/Barbarian.visible = false
 			$Characters/Rogue.visible = false
 			$Characters/Knight.visible = false
 			
-		1 : 
+		1: 
 			$Characters/Mage.visible = true
 			$Characters/Barbarian.visible = false
 			$Characters/Rogue.visible = false
 			$Characters/Knight.visible = false
-		2 : 
+		2: 
 			$Characters/Mage.visible = false
 			$Characters/Barbarian.visible = false
 			$Characters/Rogue.visible = false
 			$Characters/Knight.visible = true
-		3 : 
+		3: 
 			$Characters/Mage.visible = false
 			$Characters/Barbarian.visible = false
 			$Characters/Rogue.visible = true
 			$Characters/Knight.visible = false
-		4 :
+		4:
 			$Characters/Mage.visible = false
 			$Characters/Barbarian.visible = true
 			$Characters/Rogue.visible = false
