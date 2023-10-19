@@ -55,7 +55,7 @@ func setup(player_data: Game.PlayerData) -> void:
 	if is_multiplayer_authority(): 
 		Global.die.connect(player_die)
 
-func setup_model(role) -> void:
+func setup_model(role : Game.Role) -> void:
 	match role:
 		1:
 			model = load("res://resources/playable_character/mage.tscn").instantiate() as Node3D
@@ -63,6 +63,8 @@ func setup_model(role) -> void:
 			model = load("res://resources/playable_character/knight.tscn").instantiate() as Node3D
 		3:
 			model = load("res://resources/playable_character/rogue.tscn").instantiate() as Node3D
+		4:
+			model = load("res://resources/playable_character/barbarian.tscn").instantiate() as Node3D
 
 	model.rotation = Vector3(0, PI, 0)
 	playable_character.add_child(model)

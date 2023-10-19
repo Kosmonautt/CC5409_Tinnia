@@ -35,5 +35,9 @@ func change_visible(role : Game.Role) -> void:
 			$Characters/Barbarian.visible = false
 			$Characters/Rogue.visible = true
 			$Characters/Knight.visible = false
-	
+		4 :
+			$Characters/Mage.visible = false
+			$Characters/Barbarian.visible = true
+			$Characters/Rogue.visible = false
+			$Characters/Knight.visible = false
 	

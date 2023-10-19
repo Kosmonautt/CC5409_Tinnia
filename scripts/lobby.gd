@@ -16,6 +16,7 @@ const PORT = 5409
 @onready var role_a: Button = %RoleA
 @onready var role_b: Button = %RoleB
 @onready var role_c: Button = %RoleC
+@onready var role_d: Button = %RoleD
 
 @onready var back_ready: Button = %BackReady
 @onready var ready_toggle: Button = %Ready
@@ -62,6 +63,7 @@ func _ready():
 	role_a.pressed.connect(_on_role_selected.bind(Game.Role.ROLE_A))
 	role_b.pressed.connect(_on_role_selected.bind(Game.Role.ROLE_B))
 	role_c.pressed.connect(_on_role_selected.bind(Game.Role.ROLE_C))
+	role_d.pressed.connect(_on_role_selected.bind(Game.Role.ROLE_D))
 	
 	ready_toggle.pressed.connect(_on_ready_toggled)
 	
@@ -224,6 +226,7 @@ func starting_game(value: bool):
 	role_a.disabled = value
 	role_b.disabled = value
 	role_c.disabled = value
+	role_d.disabled = value
 	back_ready.disabled = value
 	time_container.visible = value
 	if value:
