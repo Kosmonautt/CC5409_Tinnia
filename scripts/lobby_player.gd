@@ -36,14 +36,14 @@ func _set_player_name(value: String) -> void:
 func _set_player_role(value: Game.Role) -> void:
 	player_role.visible = value != Game.Role.NONE
 	match value:
-		Game.Role.ROLE_A:
-			player_role.text = "Role A"
-		Game.Role.ROLE_B:
-			player_role.text = "Role B"
-		Game.Role.ROLE_C:
-			player_role.text = "Role C"
-		Game.Role.ROLE_D:
-			player_role.text = "Role D"
+		Game.Role.MAGE:
+			player_role.text = "Mage"
+		Game.Role.KNIGHT:
+			player_role.text = "Knight"
+		Game.Role.HUNTER:
+			player_role.text = "Hunter"
+		Game.Role.BARBARIAN:
+			player_role.text = "Barbarian"
 
 
 func set_ready(value: bool) -> void:

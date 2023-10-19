@@ -184,4 +184,4 @@ func player_die() -> void:
 	anim_tree.set("parameters/conditions/is_dead", true)
 	# disable input and process
 	set_process_unhandled_input(false)
-#	set_physics_process(false)
+	set_physics_process(false)

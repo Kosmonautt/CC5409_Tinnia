@@ -5,10 +5,10 @@ signal player_updated(id)
 
 enum Role {
 	NONE,
-	ROLE_A,
-	ROLE_B,
-	ROLE_C,
-	ROLE_D
+	MAGE,
+	KNIGHT,
+	HUNTER,
+	BARBARIAN
 }
 
 # [ {id: int, name: string, rol: Rol} ]

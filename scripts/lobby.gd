@@ -60,10 +60,10 @@ func _ready():
 	back_join.pressed.connect(_back_menu)
 	back_ready.pressed.connect(_back_menu)
 	
-	role_a.pressed.connect(_on_role_selected.bind(Game.Role.ROLE_A))
-	role_b.pressed.connect(_on_role_selected.bind(Game.Role.ROLE_B))
-	role_c.pressed.connect(_on_role_selected.bind(Game.Role.ROLE_C))
-	role_d.pressed.connect(_on_role_selected.bind(Game.Role.ROLE_D))
+	role_a.pressed.connect(_on_role_selected.bind(Game.Role.MAGE))
+	role_b.pressed.connect(_on_role_selected.bind(Game.Role.KNIGHT))
+	role_c.pressed.connect(_on_role_selected.bind(Game.Role.HUNTER))
+	role_d.pressed.connect(_on_role_selected.bind(Game.Role.BARBARIAN))
 	
 	ready_toggle.pressed.connect(_on_ready_toggled)
 	

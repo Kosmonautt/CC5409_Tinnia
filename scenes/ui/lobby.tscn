@@ -191,23 +191,23 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Role A"
+text = "Mage"
 
 [node name="RoleB" type="Button" parent="CanvasLayer/Lobby/PanelContainer/Menus/ReadyMenu/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Role B"
+text = "Knight"
 
 [node name="RoleC" type="Button" parent="CanvasLayer/Lobby/PanelContainer/Menus/ReadyMenu/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Role C"
+text = "Hunter"
 
 [node name="RoleD" type="Button" parent="CanvasLayer/Lobby/PanelContainer/Menus/ReadyMenu/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Role D"
+text = "Barbarian"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Lobby/PanelContainer/Menus/ReadyMenu"]
 layout_mode = 2
