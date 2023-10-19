@@ -54,11 +54,11 @@ states/Idle/node = SubResource("AnimationNodeAnimation_af0q2")
 states/Idle/position = Vector2(354, 100)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_2a8fa"), "Idle", "Cheer", SubResource("AnimationNodeStateMachineTransition_0ay6d"), "Cheer", "Idle", SubResource("AnimationNodeStateMachineTransition_7wxp3")]
 
-[sub_resource type="Animation" id="Animation_6wcxq"]
-resource_name = "Idle"
-
 [sub_resource type="Animation" id="Animation_heigc"]
 resource_name = "Cheer"
+
+[sub_resource type="Animation" id="Animation_6wcxq"]
+resource_name = "Idle"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jaeqb"]
 _data = {
