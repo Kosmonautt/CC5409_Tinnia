@@ -43,14 +43,17 @@ bones/46/rotation = Quaternion(-0.551742, 0.442245, 0.551742, -0.442245)
 
 [node name="Spellbook" parent="Rig/Skeleton3D" index="0"]
 transform = Transform3D(-1.68202e-06, 0.999999, -3.35276e-07, -0.95998, -1.05684e-06, 0.280064, 0.280064, 6.52832e-07, 0.959981, 0.515551, 0.8042, 0.114793)
+visible = false
 bone_idx = 9
 
 [node name="Spellbook_open" parent="Rig/Skeleton3D" index="1"]
 transform = Transform3D(-1.68202e-06, 0.999999, -3.35276e-07, -0.95998, -1.05684e-06, 0.280064, 0.280064, 6.52832e-07, 0.959981, 0.515551, 0.770493, -0.000742272)
+visible = false
 bone_idx = 10
 
 [node name="1H_Wand" parent="Rig/Skeleton3D" index="2"]
 transform = Transform3D(2.09361e-06, -5.98031e-07, 0.999999, 0.217679, 0.97602, 4.08062e-09, -0.976019, 0.217679, 2.52907e-06, -0.490236, 0.912178, 0.377555)
+visible = false
 bone_idx = 16
 
 [node name="2H_Staff" parent="Rig/Skeleton3D" index="3"]
@@ -58,9 +61,9 @@ transform = Transform3D(2.09361e-06, -5.98031e-07, 0.999999, 0.217679, 0.97602, 
 bone_idx = 17
 
 [node name="Mage_Hat" parent="Rig/Skeleton3D" index="4"]
-transform = Transform3D(1, 7.19158e-09, 1.94749e-09, -1.62829e-17, 0.965926, 0.258819, -1.9817e-11, -0.258819, 0.965926, 0.0326824, 1.73732, -1.02156e-07)
+transform = Transform3D(1, -5.12901e-12, 1.91418e-11, -1.62829e-17, 0.965926, 0.258819, -1.9817e-11, -0.258819, 0.965926, 0.0326824, 1.73732, -1.02156e-07)
 bone_idx = 19
 
 [node name="Mage_Cape" parent="Rig/Skeleton3D" index="5"]
-transform = Transform3D(1, 7.45058e-09, 1.98153e-11, -1.62831e-17, 1, -4.53629e-10, -1.9817e-11, 4.53629e-10, 1, 0.0326824, 1.16909, -1.02414e-07)
+transform = Transform3D(1, 1.62921e-17, 1.9817e-11, -1.62831e-17, 1, -4.53629e-10, -1.9817e-11, 4.53629e-10, 1, 0.0326824, 1.16909, -1.02414e-07)
 bone_idx = 20
