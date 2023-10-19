@@ -72,7 +72,7 @@ func setup_model(role : Game.Role) -> void:
 	if is_multiplayer_authority():
 		model.visible = true
 	
-	player_animation = model.get_child(1)
+	player_animation = model.get_node("%AnimationPlayer")
 	anim_tree.anim_player = player_animation.get_path()
 
 func _ready():

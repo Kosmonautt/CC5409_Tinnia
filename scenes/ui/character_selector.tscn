@@ -1,10 +1,6 @@
-[gd_scene load_steps=24 format=3 uid="uid://cim65d4ta5cyp"]
+[gd_scene load_steps=29 format=3 uid="uid://cim65d4ta5cyp"]
 
-[ext_resource type="PackedScene" uid="uid://bsib3wvju1ij5" path="res://resources/playable_character/barbarian.tscn" id="1_t0s3s"]
 [ext_resource type="Script" path="res://scripts/character_selector.gd" id="1_u7y2q"]
-[ext_resource type="PackedScene" uid="uid://wft1lwu8g2n7" path="res://resources/playable_character/rogue.tscn" id="2_1e056"]
-[ext_resource type="PackedScene" uid="uid://q2b58cli3o3" path="res://resources/playable_character/knight.tscn" id="3_lysav"]
-[ext_resource type="PackedScene" uid="uid://bjhx0i1k84ymc" path="res://resources/playable_character/mage.tscn" id="4_s2dm5"]
 [ext_resource type="PackedScene" uid="uid://bew4vnfpunit4" path="res://resources/assets/wall/wall_cracked.gltf.glb" id="5_qhiba"]
 [ext_resource type="PackedScene" uid="uid://divfq3nk8wkcd" path="res://resources/assets/wall/wall_doorway.glb" id="6_cile6"]
 [ext_resource type="PackedScene" uid="uid://djjo27y3rf0j6" path="res://resources/assets/wall/wall_arched.gltf.glb" id="7_647s2"]
@@ -35,6 +31,40 @@ size = Vector3(1, 4, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fhn4q"]
 size = Vector3(0.7, 1.2, 0.7)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_00kbh"]
+animation = &"Cheer"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_af0q2"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2a8fa"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0ay6d"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7wxp3"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_8jl8x"]
+states/Cheer/node = SubResource("AnimationNodeAnimation_00kbh")
+states/Cheer/position = Vector2(614, 100)
+states/Idle/node = SubResource("AnimationNodeAnimation_af0q2")
+states/Idle/position = Vector2(354, 100)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_2a8fa"), "Idle", "Cheer", SubResource("AnimationNodeStateMachineTransition_0ay6d"), "Cheer", "Idle", SubResource("AnimationNodeStateMachineTransition_7wxp3")]
+
+[sub_resource type="Animation" id="Animation_6wcxq"]
+resource_name = "Idle"
+
+[sub_resource type="Animation" id="Animation_heigc"]
+resource_name = "Cheer"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jaeqb"]
+_data = {
+"Cheer": SubResource("Animation_heigc"),
+"Idle": SubResource("Animation_6wcxq")
+}
 
 [node name="character_selector" type="Node3D"]
 script = ExtResource("1_u7y2q")
@@ -903,14 +933,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -4)
 
 [node name="Characters" type="Node3D" parent="."]
 
-[node name="Mage" parent="Characters" instance=ExtResource("4_s2dm5")]
-visible = false
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_8jl8x")
+anim_player = NodePath("../AnimationPlayer")
+active = true
 
-[node name="Barbarian" parent="Characters" instance=ExtResource("1_t0s3s")]
-visible = false
-
-[node name="Rogue" parent="Characters" instance=ExtResource("2_1e056")]
-visible = false
-
-[node name="Knight" parent="Characters" instance=ExtResource("3_lysav")]
-visible = false
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jaeqb")
+}
