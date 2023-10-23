@@ -34,6 +34,8 @@ const PORT = 5409
 @onready var time_container: HBoxContainer = %TimeContainer
 @onready var time: Label = %Time
 
+@onready var character_selector : Node3D = %character_selector
+
 
 @export var lobby_player_scene: PackedScene
 
@@ -107,7 +109,7 @@ func _on_host_pressed() -> void:
 	
 	_go_to_menu(ready_menu)
 	
-	$"../CanvasLayer2/character_selector/SubViewportContainer".visible = true
+	$"../character_selector".visible = false
 
 
 func _on_join_pressed() -> void:
@@ -128,7 +130,7 @@ func _on_confirm_join_pressed() -> void:
 	
 	_go_to_menu(ready_menu)
 	
-	$"../CanvasLayer2/character_selector/SubViewportContainer".visible = true
+	character_selector.visible = false
 
 
 func _on_connected_to_server() -> void:
@@ -284,8 +286,8 @@ func _back_menu() -> void:
 	if menu:
 		menu.show()
 	_disconnect()
-	$"../CanvasLayer2/character_selector/SubViewportContainer".visible = false
-	$"../CanvasLayer2/character_selector".change_visible(0)
+	character_selector.visible = false
+	character_selector.change_visible(0)
 
 
 func _back_to_first_menu() -> void:
@@ -305,4 +307,5 @@ func _on_main_menu_pressed():
 func _on_role_selected(role: Game.Role) -> void:
 	ready_toggle.disabled = false
 	Game.set_current_player_role(role)
-	$"../CanvasLayer2/character_selector".change_visible(role)
+	character_selector.change_visible(role)
+	character_selector.visible = true

@@ -67,10 +67,12 @@ _data = {
 }
 
 [node name="character_selector" type="Node3D"]
+visible = false
 script = ExtResource("1_u7y2q")
 
 [node name="tower2" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+visible = false
 
 [node name="floor_1" type="Node3D" parent="tower2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)

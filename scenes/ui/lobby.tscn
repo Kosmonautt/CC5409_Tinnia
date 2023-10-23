@@ -16,6 +16,10 @@ offset_bottom = 598.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="character_selector" parent="CanvasLayer" instance=ExtResource("1_qou6y")]
+unique_name_in_owner = true
+transform = Transform3D(-1, 5.61943e-08, -6.69697e-08, 0, 0.766044, 0.642788, 8.74228e-08, 0.642788, -0.766044, -4.2, 24.5, -35.365)
+
 [node name="Background" parent="CanvasLayer" instance=ExtResource("1_o53xg")]
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer/Background"]
@@ -33,34 +37,9 @@ render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="CanvasLayer/Background/SubViewportContainer/SubViewport"]
 transform = Transform3D(-1, 5.61943e-08, -6.69697e-08, 0, 0.766044, 0.642788, 8.74228e-08, 0.642788, -0.766044, 0, 30, -40)
+cull_mask = 1048573
+current = true
 fov = 60.0
-
-[node name="CanvasLayer2" type="CanvasLayer" parent="CanvasLayer"]
-
-[node name="character_selector" parent="CanvasLayer/CanvasLayer2" instance=ExtResource("1_qou6y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 0)
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer/CanvasLayer2/character_selector"]
-visible = false
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -358.0
-offset_top = -359.0
-offset_right = 154.0
-offset_bottom = 153.0
-grow_horizontal = 0
-grow_vertical = 0
-scale = Vector2(0.7, 0.7)
-
-[node name="SubViewport" type="SubViewport" parent="CanvasLayer/CanvasLayer2/character_selector/SubViewportContainer"]
-handle_input_locally = false
-render_target_update_mode = 0
-
-[node name="Camera3D" type="Camera3D" parent="CanvasLayer/CanvasLayer2/character_selector/SubViewportContainer/SubViewport"]
-transform = Transform3D(0.923425, 0, 0.38378, 0, 1, 0, -0.38378, 0, 0.923425, 101.448, 1.36788, 3.55606)
 
 [node name="Lobby" type="MarginContainer" parent="CanvasLayer"]
 anchors_preset = 15
