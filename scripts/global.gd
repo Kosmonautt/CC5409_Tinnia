@@ -1,5 +1,6 @@
 extends Node
 
+const TIMER_TIME : int = 100
 @export var players_alive : Array = []
 @onready var global_timer : Timer = Timer.new()
 var bomb_carrier : int
@@ -19,7 +20,7 @@ func _process(_delta):
 func game_ready() -> void:
 	players_alive = Game.players.map(func(value): return value.id)
 	add_child(global_timer)
-	global_timer.start(30)
+	global_timer.start(TIMER_TIME)
 	# manage the timer on the multiplayer authority
 	if is_multiplayer_authority():
 		global_timer.timeout.connect(_on_global_timer_timeout)

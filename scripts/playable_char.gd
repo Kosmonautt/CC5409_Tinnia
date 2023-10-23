@@ -1,8 +1,10 @@
 extends CharacterBody3D
 
-@export var walking_speed : int = 6
-@export var gravity : int = 15
-@export var jump_impulse : int = 10
+var ACELERATION = 5
+const MAX_SPEED = 30
+@export var player_speed : int = 5
+@export var gravity : int = 18
+@export var jump_impulse : int = 8
 @export var mouse_sensibility : float = 0.05
 @export var target_velocity : Vector3 = Vector3.ZERO
 
@@ -10,6 +12,8 @@ extends CharacterBody3D
 var direction : Vector3
 # direction input
 var dir_input : Vector2
+# speed
+var speed : Vector3
 # model that change
 var model
 # showing mouse or not
@@ -18,8 +22,6 @@ var showing_mouse : bool = false
 var second_jump : bool = false
 # animation_player
 var player_animation
-# timeout
-var timeout : bool = false
 
 # we get the head node
 @onready var head = $Head
@@ -93,6 +95,14 @@ func _input(event):
 		# we clamp so we can look at most straight down and straight up
 		head.rotation.x = clamp(head.rotation.x, -PI/2, PI/2 )
 		
+		
+func amove_to(x: float, y: float, delta: float) -> float:
+	if x >= y:
+		return y
+	else:
+		x += delta
+		return x
+
 func _process(_delta):
 	if Global.bomb_carrier == name.to_int():
 		if is_multiplayer_authority():
@@ -106,13 +116,6 @@ func _physics_process(delta):
 	# return other players physics
 	if not is_multiplayer_authority():
 		return
-	# direction vector of movement
-	direction = Vector3.ZERO
-	# direction vector of input
-	dir_input = Vector2.ZERO
-	
-	# real movement speed of the character
-	var player_speed : int = walking_speed
 	
 	# if we try to exit
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -123,65 +126,77 @@ func _physics_process(delta):
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			showing_mouse = false
-	
-	dir_input = Input.get_vector("move_left", "move_right", "move_backwards", "move_forwards")
-	
-	# direction we are meant to move	
-	direction += transform.basis.z * -dir_input.y
-	direction += transform.basis.x * dir_input.x
-	
-	if is_on_floor():
-		target_velocity.y = 0
-	
+			
 	# when passing the bomb
 	if Input.is_action_just_pressed("action_1") and name.to_int() == Global.bomb_carrier:
 		for i in area.get_overlapping_bodies():
 			if i == self:
 				continue
 			elif i is CharacterBody3D and Global.is_player_alive(i.name.to_int()):
+				animation_state.rpc("Interact")
 				i.pass_the_bomb(i.name.to_int())
 				break
 	
-	# when sprinting
-	if Input.is_action_pressed("sprint"):
-		player_speed = 3 * walking_speed
-	
-	# jumping
+	# jumping Y
+	if is_on_floor():
+		target_velocity.y = 0
+		second_jump = false
+	else:
+		animation_state.rpc("Jump_Idle")
+		target_velocity.y -= gravity * delta
+		
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor():
+			animation_state.rpc("Jump_Start")
 			target_velocity.y += jump_impulse
 		elif is_on_wall() and !second_jump:
+			animation_state.rpc("Jump_Start")
 			second_jump = true
 			target_velocity.y += jump_impulse
 	
+	# when sprinting
+	if Input.is_action_pressed("sprint"):
+		ACELERATION = 10
+	
+	# direction vector of movement
+	direction = Vector3.ZERO
+	# direction vector of input
+	dir_input = Vector2.ZERO
+	
+	dir_input = Input.get_vector("move_left", "move_right", "move_backwards", "move_forwards")
+	direction = (transform.basis * Vector3(dir_input.x, 0, -dir_input.y))
+	
 	if is_on_floor():
-		second_jump = false
+		if dir_input:
+			speed.x = move_toward(speed.x, MAX_SPEED, ACELERATION * delta)
+			speed.z = move_toward(speed.z, MAX_SPEED, ACELERATION * delta)
 	
-	# gravity
-	if not is_on_floor():
-		target_velocity.y -= gravity * delta
-	
-	# we get the velocity vector of movement
-	target_velocity.x = direction.x * player_speed
-	target_velocity.z = direction.z * player_speed
-	
+			target_velocity.x = direction.x * speed.x
+			target_velocity.z = direction.z * speed.z
+		else:
+			target_velocity.x = move_toward(target_velocity.x, 0, ACELERATION * 5 * delta)
+			target_velocity.z = move_toward(target_velocity.z, 0, ACELERATION * 5 * delta)
+			speed = Vector3.ZERO
+			
 	velocity = target_velocity
+	print(velocity)
 	
-	anim_tree.set("parameters/conditions/is_idle", dir_input == Vector2.ZERO && is_on_floor())
-	anim_tree.set("parameters/conditions/is_walking", dir_input!= Vector2.ZERO && is_on_floor())
-#	anim_tree.set("parameters/conditions/is_walking_b", dir_input.x < 0 && is_on_floor())
-	anim_tree.set("parameters/conditions/is_jumping", Input.is_action_just_pressed("jump"))
-	anim_tree.set("parameters/conditions/is_falling", !is_on_floor())
-	anim_tree.set("parameters/conditions/is_landing", is_on_floor())
-	anim_tree.set("parameters/conditions/is_interact", Input.is_action_just_pressed("action_1") && name.to_int() == Global.bomb_carrier)
+	anim_tree.set("parameters/Movement/blend_position", Vector2(velocity.x, velocity.z))
+	anim_tree.set("parameters/conditions/is_landed", is_on_floor())
+	anim_tree.set("parameters/conditions/is_on_air", !is_on_floor())
 	
 	move_and_slide()
 
 func pass_the_bomb(player_id : int) -> void:
 	Global.update_the_bomb.rpc(player_id)
 	
+	
 func player_die() -> void:
-	anim_tree.set("parameters/conditions/is_dead", true)
+	animation_state.rpc("Death_A")
 	# disable input and process
 	set_process_unhandled_input(false)
 	set_physics_process(false)
+
+@rpc("call_local")
+func animation_state(current_animation : String):
+	playback.travel(current_animation)
