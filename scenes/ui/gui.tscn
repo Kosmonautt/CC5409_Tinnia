@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://utys7bhb5cx5"]
+[gd_scene load_steps=14 format=3 uid="uid://utys7bhb5cx5"]
 
 [ext_resource type="Script" path="res://scripts/GUI.gd" id="1_521sh"]
 [ext_resource type="Texture2D" uid="uid://b4nx8xytfn4uj" path="res://resources/assets/bomb/Sprite-0002.png" id="2_cijuq"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dq5ey8nd3lrsp" path="res://resources/assets/bomb/Sprite-0007.png" id="8_ohm2c"]
 [ext_resource type="Texture2D" uid="uid://cn0bkfg4puwc1" path="res://resources/assets/bomb/Sprite-0008.png" id="9_wp7hm"]
 [ext_resource type="Texture2D" uid="uid://c02v2s4ncikqf" path="res://resources/assets/chronometer/Sprite-0003.png" id="10_tyct0"]
+[ext_resource type="Texture2D" uid="uid://d3p5yw4ctrta6" path="res://icon.svg" id="11_r6835"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5r6e6"]
 font_size = 50
@@ -112,3 +113,17 @@ sprite_frames = SubResource("SpriteFrames_jhrwt")
 autoplay = "default"
 frame_progress = 0.0592929
 speed_scale = 2.0
+
+[node name="power" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+
+[node name="power_icon" type="Sprite2D" parent="power"]
+unique_name_in_owner = true
+visible = false
+texture = ExtResource("11_r6835")
+centered = false
+offset = Vector2(0, -200)

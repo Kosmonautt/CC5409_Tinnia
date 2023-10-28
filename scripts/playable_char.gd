@@ -7,6 +7,8 @@ const MAX_SPEED = 30
 @export var jump_impulse : int = 8
 @export var mouse_sensibility : float = 0.05
 @export var target_velocity : Vector3 = Vector3.ZERO
+@export var power_available : bool = true
+@export var movement : Vector2 = Vector2.ZERO
 
 # direction of the player
 var direction : Vector3
@@ -37,7 +39,8 @@ var player_animation
 @onready var area : Area3D = $Area3D
 # bomb sprite texture
 @onready var bomb_png : AnimatedSprite3D = $Playable_characters/Bomb_Sprite
-
+# power timer
+@onready var power_timer : Timer = $power_timer
 
 # this function gets called when players are playable characters are assigned to each player
 func setup(player_data: Game.PlayerData) -> void:
@@ -56,6 +59,8 @@ func setup(player_data: Game.PlayerData) -> void:
 	# connect to the emit die
 	if is_multiplayer_authority(): 
 		Global.die.connect(player_die)
+	# setting up the timer for the power
+	setup_icon(player_data.role)
 
 func setup_model(role : Game.Role) -> void:
 	match role:
@@ -70,12 +75,20 @@ func setup_model(role : Game.Role) -> void:
 
 	model.rotation = Vector3(0, PI, 0)
 	playable_character.add_child(model)
-	# Setting up model visibility
-	if is_multiplayer_authority():
-		model.visible = true
-	
 	player_animation = model.get_node("%AnimationPlayer")
 	anim_tree.anim_player = player_animation.get_path()
+	
+func setup_icon(role : Game.Role) -> void:
+	$GUI.setup_power(role)
+	match role:
+		1:
+			power_timer.wait_time = 10
+		2:
+			power_timer.wait_time = 15
+		3:
+			power_timer.wait_time = 20
+		4:
+			power_timer.wait_time = 25
 
 func _ready():
 	# we hide cursor so we can move the camera freely
@@ -84,6 +97,7 @@ func _ready():
 	anim_tree.active = true
 	# show bomb png
 	bomb_png.play()
+	
 
 func _input(event):
 	# if we detect mouse movement
@@ -106,11 +120,11 @@ func amove_to(x: float, y: float, delta: float) -> float:
 func _process(_delta):
 	if Global.bomb_carrier == name.to_int():
 		if is_multiplayer_authority():
-			bomb_png.visible = false
+			bomb_png.hide()
 		else:
-			bomb_png.visible = true
+			bomb_png.show()
 	else:
-		bomb_png.visible = false
+		bomb_png.hide()
 
 func _physics_process(delta):
 	# return other players physics
@@ -126,7 +140,12 @@ func _physics_process(delta):
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			showing_mouse = false
-			
+	
+	# power
+	if Input.is_action_just_pressed("action_2") and power_available:
+		character_power(Game.get_current_player().role)
+		
+	
 	# when passing the bomb
 	if Input.is_action_just_pressed("action_1") and name.to_int() == Global.bomb_carrier:
 		for i in area.get_overlapping_bodies():
@@ -179,11 +198,9 @@ func _physics_process(delta):
 			speed = Vector3.ZERO
 			
 	velocity = target_velocity
-	print(velocity)
 	
-	anim_tree.set("parameters/Movement/blend_position", Vector2(velocity.x, velocity.z))
+	anim_tree.set("parameters/Movement/blend_position", Vector2(target_velocity.x, target_velocity.z))
 	anim_tree.set("parameters/conditions/is_landed", is_on_floor())
-	anim_tree.set("parameters/conditions/is_on_air", !is_on_floor())
 	
 	move_and_slide()
 
@@ -200,3 +217,39 @@ func player_die() -> void:
 @rpc("call_local")
 func animation_state(current_animation : String):
 	playback.travel(current_animation)
+
+
+func mage_power():
+	Debug.dprint("MAGE")
+	pass
+
+func knight_power():
+	Debug.dprint("KNIGHT")
+	pass
+
+func rogue_power():
+	Debug.dprint("ROGUE")
+	pass
+
+func barbarian_power():
+	Debug.dprint("BARBARIAN")
+	pass
+	
+func character_power(role : Game.Role):
+	match role:
+		1:
+			mage_power()
+		2:
+			knight_power()
+		3:
+			rogue_power()
+		4:
+			barbarian_power()
+	power_timer.start()
+	power_available = false
+	$GUI.hide_power_icon()
+
+
+func _on_power_timer_timeout():
+	power_available = true
+	$GUI.show_power_icon()

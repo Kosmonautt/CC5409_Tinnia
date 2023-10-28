@@ -62,14 +62,10 @@ properties/3/path = NodePath("AnimationTree:parameters/conditions/is_landed")
 properties/3/spawn = true
 properties/3/sync = true
 properties/3/watch = false
-properties/4/path = NodePath("AnimationTree:parameters/conditions/is_on_air")
+properties/4/path = NodePath("AnimationTree:parameters/Movement/blend_position")
 properties/4/spawn = true
 properties/4/sync = true
 properties/4/watch = false
-properties/5/path = NodePath("AnimationPlayer:current_animation")
-properties/5/spawn = true
-properties/5/sync = true
-properties/5/watch = false
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2n0gf"]
 
@@ -285,3 +281,8 @@ parameters/Movement/blend_position = Vector2(0, 0)
 libraries = {
 "": SubResource("AnimationLibrary_ktuui")
 }
+
+[node name="power_timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="power_timer" to="." method="_on_power_timer_timeout"]
