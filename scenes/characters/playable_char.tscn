@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://cday53347fn87"]
+[gd_scene load_steps=59 format=3 uid="uid://cday53347fn87"]
 
 [ext_resource type="Script" path="res://scripts/playable_char.gd" id="1_cc565"]
 [ext_resource type="Texture2D" uid="uid://0jjienyapijm" path="res://resources/assets/bomb/Sprite-0001.png" id="2_qylr5"]
@@ -234,6 +234,20 @@ _data = {
 "Walking_A": SubResource("Animation_84itt")
 }
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_gcnu2"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ifpw1"]
+emission_shape = 1
+emission_sphere_radius = 4.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jfu0r"]
+albedo_color = Color(0.529412, 0, 0.533333, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_8i6it"]
+material = SubResource("StandardMaterial3D_jfu0r")
+radius = 0.25
+height = 0.5
+
 [node name="character_1" type="CharacterBody3D"]
 script = ExtResource("1_cc565")
 
@@ -284,5 +298,21 @@ libraries = {
 
 [node name="power_timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="Mage_TP" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -4)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mage_TP"]
+shape = SubResource("BoxShape3D_gcnu2")
+
+[node name="Particles" type="GPUParticles3D" parent="."]
+transform = Transform3D(0.0744046, 0, 0, 0, 0.270484, 0, 0, 0, 0.126813, 0, 2, 0)
+emitting = false
+amount = 32
+lifetime = 0.5
+one_shot = true
+visibility_aabb = AABB(-4, -1.12968, -3.35457, 8, 2.25935, 6.70915)
+process_material = SubResource("ParticleProcessMaterial_ifpw1")
+draw_pass_1 = SubResource("SphereMesh_8i6it")
 
 [connection signal="timeout" from="power_timer" to="." method="_on_power_timer_timeout"]

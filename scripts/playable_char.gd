@@ -24,6 +24,8 @@ var showing_mouse : bool = false
 var second_jump : bool = false
 # animation_player
 var player_animation
+# mage TP collision
+var mage_tp : Area3D = null
 
 # we get the head node
 @onready var head = $Head
@@ -41,6 +43,8 @@ var player_animation
 @onready var bomb_png : AnimatedSprite3D = $Playable_characters/Bomb_Sprite
 # power timer
 @onready var power_timer : Timer = $power_timer
+# particles
+@onready var particles : GPUParticles3D = $Particles
 
 # this function gets called when players are playable characters are assigned to each player
 func setup(player_data: Game.PlayerData) -> void:
@@ -66,6 +70,7 @@ func setup_model(role : Game.Role) -> void:
 	match role:
 		1:
 			model = load("res://resources/playable_character/mage.tscn").instantiate() as Node3D
+			mage_tp = $Mage_TP
 		2:
 			model = load("res://resources/playable_character/knight.tscn").instantiate() as Node3D
 		3:
@@ -82,7 +87,7 @@ func setup_icon(role : Game.Role) -> void:
 	$GUI.setup_power(role)
 	match role:
 		1:
-			power_timer.wait_time = 10
+			power_timer.wait_time = 1
 		2:
 			power_timer.wait_time = 15
 		3:
@@ -218,10 +223,15 @@ func player_die() -> void:
 func animation_state(current_animation : String):
 	playback.travel(current_animation)
 
-
+func is_valid_place():
+	return !mage_tp.has_overlapping_areas() and !mage_tp.has_overlapping_bodies()
+	
 func mage_power():
-	Debug.dprint("MAGE")
-	pass
+	# emit particles and sound
+	particles.emitting = true
+	particles.restart()
+	position = mage_tp.global_position
+	
 
 func knight_power():
 	Debug.dprint("KNIGHT")
@@ -238,7 +248,10 @@ func barbarian_power():
 func character_power(role : Game.Role):
 	match role:
 		1:
-			mage_power()
+			if is_valid_place():
+				mage_power()
+			else:
+				return
 		2:
 			knight_power()
 		3:
