@@ -134,7 +134,7 @@ func _process(_delta):
 		bomb_png.hide()
 		
 	if power_timer.time_left < 10 and power_active:
-		particle_emit(Color(255, 255, 255, 1))
+		particle_emit.rpc(Color(255, 255, 255, 1))
 		normal_state()
 		power_active = false
 		
@@ -244,6 +244,7 @@ func knight_power():
 	Debug.dprint("KNIGHT")
 	pass
 
+@rpc("call_local")
 func rogue_power():
 	particle_emit(Color(53, 94, 59, 1))
 	power_active = true
@@ -267,7 +268,7 @@ func character_power(role : Game.Role):
 		2:
 			knight_power()
 		3:
-			rogue_power()
+			rogue_power.rpc()
 		4:
 			barbarian_power()
 	power_timer.start()
@@ -281,6 +282,7 @@ func normal_state():
 	player_speed = 5
 	jump_impulse = 8
 	
+@rpc("call_local")
 func particle_emit(color : Color):
 	var s = SphereMesh.new()
 	var m = StandardMaterial3D.new()
