@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 var ACELERATION = 5
-const MAX_SPEED = 30
+var MAX_SPEED = 30
 @export var player_speed : int = 5
 @export var gravity : int = 18
 @export var jump_impulse : int = 8
@@ -26,6 +26,8 @@ var second_jump : bool = false
 var player_animation
 # mage TP collision
 var mage_tp : Area3D = null
+# power active
+var power_active : bool = false
 
 # we get the head node
 @onready var head = $Head
@@ -87,13 +89,13 @@ func setup_icon(role : Game.Role) -> void:
 	$GUI.setup_power(role)
 	match role:
 		1:
-			power_timer.wait_time = 1
+			power_timer.wait_time = 15
 		2:
 			power_timer.wait_time = 15
 		3:
-			power_timer.wait_time = 20
+			power_timer.wait_time = 15
 		4:
-			power_timer.wait_time = 25
+			power_timer.wait_time = 15
 
 func _ready():
 	# we hide cursor so we can move the camera freely
@@ -130,6 +132,13 @@ func _process(_delta):
 			bomb_png.show()
 	else:
 		bomb_png.hide()
+		
+	if power_timer.time_left < 10 and power_active:
+		particle_emit(Color(255, 255, 255, 1))
+		normal_state()
+		power_active = false
+		
+	print(power_timer.time_left)
 
 func _physics_process(delta):
 	# return other players physics
@@ -227,9 +236,7 @@ func is_valid_place():
 	return !mage_tp.has_overlapping_areas() and !mage_tp.has_overlapping_bodies()
 	
 func mage_power():
-	# emit particles and sound
-	particles.emitting = true
-	particles.restart()
+	particle_emit(Color(139, 0, 139, 1))
 	position = mage_tp.global_position
 	
 
@@ -238,13 +245,18 @@ func knight_power():
 	pass
 
 func rogue_power():
-	Debug.dprint("ROGUE")
-	pass
+	particle_emit(Color(53, 94, 59, 1))
+	power_active = true
+	self.scale *= 0.5
 
 func barbarian_power():
-	Debug.dprint("BARBARIAN")
-	pass
-	
+	particle_emit(Color(150, 121, 105, 1))
+	power_active = true
+	jump_impulse = 12
+	ACELERATION = 7
+	MAX_SPEED = 50
+	player_speed = 8
+
 func character_power(role : Game.Role):
 	match role:
 		1:
@@ -262,6 +274,21 @@ func character_power(role : Game.Role):
 	power_available = false
 	$GUI.hide_power_icon()
 
+func normal_state():
+	self.scale = Vector3(1, 1, 1)
+	ACELERATION = 5
+	MAX_SPEED = 30
+	player_speed = 5
+	jump_impulse = 8
+	
+func particle_emit(color : Color):
+	var s = SphereMesh.new()
+	var m = StandardMaterial3D.new()
+	m.albedo_color = color
+	s.material = m
+	particles.draw_pass_1 = s
+	particles.emitting = true
+	particles.restart()
 
 func _on_power_timer_timeout():
 	power_available = true
