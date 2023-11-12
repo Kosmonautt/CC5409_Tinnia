@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_ysfbh"]
 [ext_resource type="PackedScene" uid="uid://cday53347fn87" path="res://scenes/characters/playable_char.tscn" id="2_ra4jt"]
-[ext_resource type="PackedScene" uid="uid://cds31t0ynkb6x" path="res://scenes/level/stage2.tscn" id="3_c8tjm"]
+[ext_resource type="PackedScene" uid="uid://6yo0lcutptgy" path="res://scenes/level/stage3.tscn" id="3_p5xm1"]
 
 [node name="main" type="Node3D"]
 script = ExtResource("1_ysfbh")
@@ -10,15 +10,13 @@ player_scene = ExtResource("2_ra4jt")
 
 [node name="Players" type="Node3D" parent="."]
 
-[node name="stage_1" parent="." instance=ExtResource("3_c8tjm")]
-
 [node name="Spawn" type="Node3D" parent="."]
 
 [node name="Marker_P1" type="Marker3D" parent="Spawn"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 1, 0)
 
 [node name="Marker_P2" type="Marker3D" parent="Spawn"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 2, 0)
 
 [node name="Marker_P3" type="Marker3D" parent="Spawn"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 15)
@@ -28,3 +26,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -15)
 
 [node name="Marker_P5" type="Marker3D" parent="Spawn"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="stage_1" parent="." instance=ExtResource("3_p5xm1")]

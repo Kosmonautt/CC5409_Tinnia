@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1gx6aud0r0ld"]
+
+[ext_resource type="PackedScene" uid="uid://cd7nldm8nkmk" path="res://resources/assets/wall/wall_corner_gated.gltf.glb" id="1_d56dw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yriwj"]
+size = Vector3(1, 4, 1.5)
+
+[node name="wall_broken" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 2, 0)
+depth = 4.0
+polygon = PackedVector2Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0, 0, -0.5, -0.5, -0.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 1.25)
+shape = SubResource("BoxShape3D_yriwj")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.25, 2, 0)
+shape = SubResource("BoxShape3D_yriwj")
+
+[node name="wall_corner_gated_gltf" parent="." instance=ExtResource("1_d56dw")]
