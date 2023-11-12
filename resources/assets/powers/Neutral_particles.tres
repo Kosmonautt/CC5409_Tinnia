@@ -1,0 +1,12 @@
+[gd_resource type="SphereMesh" load_steps=2 format=3 uid="uid://chpiu6eg0apym"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_13mwp"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.392157)
+
+[resource]
+material = SubResource("StandardMaterial3D_13mwp")
+radius = 0.2
+height = 0.4
+radial_segments = 32
+rings = 16
