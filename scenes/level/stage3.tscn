@@ -1183,8 +1183,8 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8, -12
 
 [node name="Block" type="Node3D" parent="Under_Stairs"]
 
-[node name="Block_Right" parent="Under_Stairs/Block" instance=ExtResource("14_nw80x")]
-transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 16, -5.4, 0)
-
 [node name="Block_Left" parent="Under_Stairs/Block" instance=ExtResource("14_nw80x")]
-transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, -16, -5.4, 0)
+transform = Transform3D(1.8, 0, 0, 0, 2.2, 0, 0, 0, 1.8, -16, -5.8, 0)
+
+[node name="Block_Right" parent="Under_Stairs/Block" instance=ExtResource("14_nw80x")]
+transform = Transform3D(1.8, 0, 0, 0, 2.2, 0, 0, 0, 1.8, 16, -5.8, 0)
