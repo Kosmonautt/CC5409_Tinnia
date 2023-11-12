@@ -102,7 +102,7 @@ transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -10, 0, -8)
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -10, 0, 12)
 
 [node name="floor_tile_extralarge_grates_open_gltf" parent="Ground/down_left" instance=ExtResource("15_uxh41")]
-transform = Transform3D(2.5, 0, 0, 0, 5, 0, 0, 0, 2.5, 10, 0, -8)
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.5, 10, 0, -8)
 
 [node name="down_left_roof" type="Node3D" parent="Ground"]
 transform = Transform3D(4.37114e-08, -3.82137e-15, -1, -8.74228e-08, -1, 0, -1, 8.74228e-08, -4.37114e-08, -18, -0.35, 22)
@@ -213,7 +213,7 @@ transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -10, 0, -8)
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -10, 0, 12)
 
 [node name="floor_tile_extralarge_grates_open_gltf" parent="Ground/up_left" instance=ExtResource("15_uxh41")]
-transform = Transform3D(2.5, 0, 0, 0, 5, 0, 0, 0, 2.5, 10, 0, -8)
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.5, 10, 0, -8)
 
 [node name="down_right" type="Node3D" parent="Ground"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 20)
@@ -228,7 +228,7 @@ transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 10, 0, -8)
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -10, 0, 12)
 
 [node name="floor_tile_extralarge_grates_open_gltf" parent="Ground/down_right" instance=ExtResource("15_uxh41")]
-transform = Transform3D(2.5, 0, 0, 0, 5, 0, 0, 0, 2.5, -10, 0, -8)
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.5, -10, 0, -8)
 
 [node name="up_right" type="Node3D" parent="Ground"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 18, 0, -22)
@@ -243,7 +243,7 @@ transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 10, 0, -8)
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -10, 0, 12)
 
 [node name="floor_tile_extralarge_grates_open_gltf" parent="Ground/up_right" instance=ExtResource("15_uxh41")]
-transform = Transform3D(2.5, 0, 0, 0, 5, 0, 0, 0, 2.5, -10, 0, -8)
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.5, -10, 0, -8)
 
 [node name="Strip" type="Node3D" parent="Ground"]
 
