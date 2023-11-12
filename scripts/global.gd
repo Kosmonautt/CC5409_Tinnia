@@ -14,7 +14,7 @@ signal die()
 func _ready():
 	global_timer.one_shot = false
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+# Called every frame. 'delta' is the elapsed time since the previous frame
 func _process(_delta):
 	pass
 
