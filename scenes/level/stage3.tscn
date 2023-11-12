@@ -14,14 +14,11 @@
 [ext_resource type="PackedScene" uid="uid://da6p4xjwdvljc" path="res://scenes/level/stairs/wood_stair.tscn" id="16_0kchn"]
 [ext_resource type="PackedScene" uid="uid://c8r8i1h8bhxlr" path="res://scenes/level/gate.tscn" id="17_v5bpw"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_01toj"]
-sky_top_color = Color(0.670588, 0.345098, 0.188235, 1)
-sky_horizon_color = Color(0.719608, 0.626471, 0.589216, 1)
-ground_bottom_color = Color(0.207843, 0.160784, 0.168627, 1)
-ground_horizon_color = Color(0.719608, 0.626471, 0.589216, 1)
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f5kye"]
+sky_top_color = Color(0.313726, 0.447059, 0.666667, 1)
 
 [sub_resource type="Sky" id="Sky_gf2jv"]
-sky_material = SubResource("ProceduralSkyMaterial_01toj")
+sky_material = SubResource("ProceduralSkyMaterial_f5kye")
 
 [sub_resource type="Environment" id="Environment_8ps4j"]
 background_mode = 2
@@ -55,6 +52,7 @@ environment = SubResource("Environment_8ps4j")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.601819, -0.684012, 0.412239, -0.102997, 0.445395, 0.88939, -0.791963, -0.577711, 0.197596, 4.87358, 41.6662, 42.2514)
+light_angular_distance = 0.5
 shadow_enabled = true
 
 [node name="Ground" type="Node3D" parent="."]
