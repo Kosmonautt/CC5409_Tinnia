@@ -1,9 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dhxjqrbb8l2lx"]
+[gd_scene load_steps=2 format=3 uid="uid://dhxjqrbb8l2lx"]
 
 [ext_resource type="PackedScene" uid="uid://cub4d5vfumgbs" path="res://resources/assets/stairs/stairs_narrow.gltf.glb" id="1_6rp55"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_22v5w"]
-size = Vector3(3.4, 3.9, 0.5)
 
 [node name="stone_stair" type="Node3D"]
 
@@ -11,21 +8,17 @@ size = Vector3(3.4, 3.9, 0.5)
 
 [node name="stairs_gltf" parent="StaticBody3D" instance=ExtResource("1_6rp55")]
 
+[node name="Right" type="CollisionPolygon3D" parent="StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.5, 0, 1.7)
+depth = 0.5
+polygon = PackedVector2Array(-2.3, 0, -2.3, 1.1, 1.7, 5.1, 1.7, 0)
+
+[node name="Left" type="CollisionPolygon3D" parent="StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.5, 0, 1.7)
+depth = 0.5
+polygon = PackedVector2Array(-2.3, 0, -2.3, 1.1, 1.7, 5.1, 1.7, 0)
+
 [node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="StaticBody3D"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.841, 1.988)
-depth = 3.4
-polygon = PackedVector2Array(-2.51583, 0.844031, 2, 0.84, 1.48, 4.8)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0.253)
-shape = SubResource("BoxShape3D_22v5w")
-
-[node name="CollisionPolygon3D2" type="CollisionPolygon3D" parent="StaticBody3D"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 0, 1.7)
-depth = 0.5
-polygon = PackedVector2Array(-2.27126, 0.0268995, -2.3138, 1.07631, 1.69889, 5.09359, 1.68098, 0.0319024)
-
-[node name="CollisionPolygon3D3" type="CollisionPolygon3D" parent="StaticBody3D"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2, 0, 1.7)
-depth = 0.5
-polygon = PackedVector2Array(-2.27126, 0.0268995, -2.3138, 1.07631, 1.69889, 5.09359, 1.68098, 0.0319024)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+depth = 2.5
+polygon = PackedVector2Array(-4.4, 0, 0, 0, 0, 4.4)
