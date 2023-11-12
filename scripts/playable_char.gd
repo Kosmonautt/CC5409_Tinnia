@@ -6,46 +6,27 @@ var MAX_SPEED = 30
 @export var gravity : int = 18
 @export var jump_impulse : int = 8
 @export var mouse_sensibility : float = 0.05
-@export var target_velocity : Vector3 = Vector3.ZERO
-@export var power_available : bool = true
-@export var movement : Vector2 = Vector2.ZERO
 
-# direction of the player
 var direction : Vector3
-# direction input
 var dir_input : Vector2
-# speed
 var speed : Vector3
-# model that change
+var target_velocity : Vector3 = Vector3.ZERO
 var model
-# showing mouse or not
 var showing_mouse : bool = false
-# second jump
 var second_jump : bool = false
-# animation_player
 var player_animation
-# mage TP collision
 var mage_tp : Area3D = null
-# power active
 var power_active : bool = false
+var power_available : bool = true
 
-# we get the head node
 @onready var head = $Head
-# we get the camera node 
 @onready var camera : Camera3D = $Head/Camera3D
-# set the model
 @onready var playable_character = $Playable_characters
-# we get the animation tree
 @onready var anim_tree : AnimationTree = $AnimationTree
-# we get the animation playback of the animation tree 
 @onready var playback : AnimationNodeStateMachinePlayback = anim_tree.get("parameters/playback")
-# we get the area to pass the bomb
 @onready var area : Area3D = $Area3D
-# bomb sprite texture
 @onready var bomb_png : AnimatedSprite3D = $Playable_characters/Bomb_Sprite
-# power timer
 @onready var power_timer : Timer = $power_timer
-# particles
 @onready var particles : GPUParticles3D = $Particles
 
 # this function gets called when players are playable characters are assigned to each player
@@ -116,13 +97,6 @@ func _input(event):
 		# we clamp so we can look at most straight down and straight up
 		head.rotation.x = clamp(head.rotation.x, -PI/2, PI/2 )
 		
-		
-func amove_to(x: float, y: float, delta: float) -> float:
-	if x >= y:
-		return y
-	else:
-		x += delta
-		return x
 
 func _process(_delta):
 	if Global.bomb_carrier == name.to_int():
@@ -134,11 +108,11 @@ func _process(_delta):
 		bomb_png.hide()
 		
 	if power_timer.time_left < 10 and power_active:
-		particle_emit.rpc(Color(255, 255, 255, 1))
+		particle_emit.rpc("res://resources/assets/powers/Neutral_particles.tres")
 		normal_state()
 		power_active = false
 		
-	#print(power_timer.time_left)
+# print(power_timer.time_left)
 
 func _physics_process(delta):
 	# return other players physics
@@ -155,7 +129,7 @@ func _physics_process(delta):
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			showing_mouse = false
 	
-	# power
+	# activate power
 	if Input.is_action_just_pressed("action_2") and power_available:
 		character_power(Game.get_current_player().role)
 		
@@ -199,19 +173,20 @@ func _physics_process(delta):
 	dir_input = Input.get_vector("move_left", "move_right", "move_backwards", "move_forwards")
 	direction = (transform.basis * Vector3(dir_input.x, 0, -dir_input.y))
 	
-	if is_on_floor():
-		if dir_input:
-			speed.x = move_toward(speed.x, MAX_SPEED, ACELERATION * delta)
-			speed.z = move_toward(speed.z, MAX_SPEED, ACELERATION * delta)
-	
-			target_velocity.x = direction.x * speed.x
-			target_velocity.z = direction.z * speed.z
-		else:
-			target_velocity.x = move_toward(target_velocity.x, 0, ACELERATION * 5 * delta)
-			target_velocity.z = move_toward(target_velocity.z, 0, ACELERATION * 5 * delta)
-			speed = Vector3.ZERO
+	if not Global.on_prep_time:
+		if is_on_floor():
+			if dir_input:
+				speed.x = move_toward(speed.x, MAX_SPEED, ACELERATION * delta)
+				speed.z = move_toward(speed.z, MAX_SPEED, ACELERATION * delta)
+		
+				target_velocity.x = direction.x * speed.x
+				target_velocity.z = direction.z * speed.z
+			else:
+				target_velocity.x = move_toward(target_velocity.x, 0, ACELERATION * 5 * delta)
+				target_velocity.z = move_toward(target_velocity.z, 0, ACELERATION * 5 * delta)
+				speed = Vector3.ZERO
 			
-	velocity = target_velocity
+		velocity = target_velocity
 	
 	anim_tree.set("parameters/Movement/blend_position", Vector2(target_velocity.x, target_velocity.z))
 	anim_tree.set("parameters/conditions/is_landed", is_on_floor())
@@ -236,7 +211,7 @@ func is_valid_place():
 	return !mage_tp.has_overlapping_areas() and !mage_tp.has_overlapping_bodies()
 	
 func mage_power():
-	particle_emit(Color(139, 0, 139, 1))
+	particle_emit.rpc("res://resources/assets/powers/Mage_particles.tres")
 	position = mage_tp.global_position
 	
 
@@ -246,12 +221,12 @@ func knight_power():
 
 @rpc("call_local")
 func rogue_power():
-	particle_emit(Color(53, 94, 59, 1))
+	particle_emit("res://resources/assets/powers/Rogue_particles.tres")
 	power_active = true
 	self.scale *= 0.5
 
 func barbarian_power():
-	particle_emit(Color(150, 121, 105, 1))
+	particle_emit("res://resources/assets/powers/Barbarian_particles.tres")
 	power_active = true
 	jump_impulse = 12
 	ACELERATION = 7
@@ -283,12 +258,9 @@ func normal_state():
 	jump_impulse = 8
 	
 @rpc("call_local")
-func particle_emit(color : Color):
-	var s = SphereMesh.new()
-	var m = StandardMaterial3D.new()
-	m.albedo_color = color
-	s.material = m
-	particles.draw_pass_1 = s
+func particle_emit(material_path : String):
+	var material : SphereMesh = load(material_path)
+	particles.draw_pass_1 = material
 	particles.emitting = true
 	particles.restart()
 

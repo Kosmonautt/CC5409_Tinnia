@@ -1,14 +1,14 @@
 extends Control
 
 @onready var bomb_sprite : AnimatedSprite2D = $bomb/bomb_sprite
-@onready var time_label : Label = $CenterContainer/HBoxContainer/TimerLabel
+@onready var time_label : Label = $CenterContainer/bomb_timer/TimerLabel
 @onready var anim_player : AnimationPlayer = $AnimationPlayer
 @onready var power_icon : Sprite2D = %power_icon
+@onready var chronometer_sprite : Sprite2D = $CenterContainer/bomb_timer/chronometer_sprite
 
 # DEBUG
 @onready var bomb : Label = $VBoxContainer/Label
 @onready var pa : Label = $VBoxContainer/Label2
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,7 +17,12 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	update_gui()
-	time_label.text = str(int(Global.global_timer.time_left))
+	if Global.on_prep_time:
+		chronometer_sprite.hide()
+		time_label.text = "El juego comienza en " + str(int(Global.global_timer.time_left)-100) 
+	else:
+		chronometer_sprite.show()
+		time_label.text = str(int(Global.global_timer.time_left))
 	
 	# DEBUG
 	if is_multiplayer_authority():

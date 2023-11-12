@@ -62,18 +62,18 @@ script = ExtResource("1_521sh")
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 26.0
+offset_bottom = 64.0
 grow_horizontal = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer"]
+[node name="bomb_timer" type="HBoxContainer" parent="CenterContainer"]
 layout_mode = 2
 
-[node name="chronometer_sprite" type="Sprite2D" parent="CenterContainer/HBoxContainer"]
+[node name="chronometer_sprite" type="Sprite2D" parent="CenterContainer/bomb_timer"]
 position = Vector2(-46, 40)
 scale = Vector2(0.15, 0.15)
 texture = ExtResource("10_tyct0")
 
-[node name="TimerLabel" type="Label" parent="CenterContainer/HBoxContainer"]
+[node name="TimerLabel" type="Label" parent="CenterContainer/bomb_timer"]
 layout_mode = 2
 text = "Inserte timer aqui
 "
