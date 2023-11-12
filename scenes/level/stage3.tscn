@@ -89,199 +89,203 @@ shape = SubResource("BoxShape3D_2wu31")
 [node name="middle_strip" type="CollisionShape3D" parent="Ground/Ground"]
 shape = SubResource("BoxShape3D_ykuap")
 
-[node name="down_left" type="Node3D" parent="Ground"]
+[node name="Floor" type="Node3D" parent="Ground"]
+
+[node name="down_left" type="Node3D" parent="Ground/Floor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 20)
 
-[node name="floor_tile_large_gltf2" parent="Ground/down_left" instance=ExtResource("14_vt4fw")]
+[node name="floor_tile_large_gltf2" parent="Ground/Floor/down_left" instance=ExtResource("14_vt4fw")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 10, 0, 12)
 
-[node name="floor_tile_large_gltf3" parent="Ground/down_left" instance=ExtResource("14_vt4fw")]
+[node name="floor_tile_large_gltf3" parent="Ground/Floor/down_left" instance=ExtResource("14_vt4fw")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -10, 0, -8)
 
-[node name="floor_tile_large_gltf4" parent="Ground/down_left" instance=ExtResource("14_vt4fw")]
+[node name="floor_tile_large_gltf4" parent="Ground/Floor/down_left" instance=ExtResource("14_vt4fw")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -10, 0, 12)
 
-[node name="floor_tile_extralarge_grates_open_gltf" parent="Ground/down_left" instance=ExtResource("15_uxh41")]
+[node name="floor_tile_extralarge_grates_open_gltf" parent="Ground/Floor/down_left" instance=ExtResource("15_uxh41")]
 transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.5, 10, 0, -8)
 
-[node name="down_left_roof" type="Node3D" parent="Ground"]
-transform = Transform3D(4.37114e-08, -3.82137e-15, -1, -8.74228e-08, -1, 0, -1, 8.74228e-08, -4.37114e-08, -18, -0.35, 22)
-
-[node name="floor_tile_large_gltf2" parent="Ground/down_left_roof" instance=ExtResource("14_vt4fw")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 10, 0, 12)
-
-[node name="floor_tile_large_gltf3" parent="Ground/down_left_roof" instance=ExtResource("14_vt4fw")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -10, 0, -8)
-
-[node name="floor_tile_large_gltf4" parent="Ground/down_left_roof" instance=ExtResource("14_vt4fw")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -10, 0, 12)
-
-[node name="floor_tile_small_gltf" parent="Ground/down_left_roof" instance=ExtResource("3_s5qey")]
-transform = Transform3D(-2.7, -9.9476e-14, 4.07689e-07, -2.13163e-13, 2.7, 3.38813e-21, -4.07689e-07, -1.52466e-20, -2.7, 2.7, 0.1, -0.7)
-
-[node name="floor_tile_small_gltf2" parent="Ground/down_left_roof" instance=ExtResource("3_s5qey")]
-transform = Transform3D(-2.7, -9.9476e-14, 4.07688e-07, -3.2685e-13, 2.7, 1.35525e-20, -4.07688e-07, -1.52466e-20, -2.7, 2.7, 0.1, -15.3)
-
-[node name="floor_tile_small_gltf3" parent="Ground/down_left_roof" instance=ExtResource("3_s5qey")]
-transform = Transform3D(-2.7, -9.9476e-14, 4.07689e-07, -2.55795e-13, 2.7, 5.0822e-21, -4.07689e-07, -1.52466e-20, -2.7, 17.3, 0.1, -0.7)
-
-[node name="floor_tile_small_gltf4" parent="Ground/down_left_roof" instance=ExtResource("3_s5qey")]
-transform = Transform3D(-2.7, -9.9476e-14, 4.07688e-07, -3.69482e-13, 2.7, 1.69407e-20, -4.07688e-07, -1.52466e-20, -2.7, 17.3, 0.1, -15.3)
-
-[node name="down_right_roof" type="Node3D" parent="Ground"]
-transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 20, -0.35, 20)
-
-[node name="floor_tile_large_gltf2" parent="Ground/down_right_roof" instance=ExtResource("14_vt4fw")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 10, 0, 12)
-
-[node name="floor_tile_large_gltf3" parent="Ground/down_right_roof" instance=ExtResource("14_vt4fw")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -10, 0, -8)
-
-[node name="floor_tile_large_gltf4" parent="Ground/down_right_roof" instance=ExtResource("14_vt4fw")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -10, 0, 12)
-
-[node name="floor_tile_small_gltf" parent="Ground/down_right_roof" instance=ExtResource("3_s5qey")]
-transform = Transform3D(-2.7, -9.9476e-14, 4.07689e-07, -2.13163e-13, 2.7, 3.38813e-21, -4.07689e-07, -1.52466e-20, -2.7, 2.7, 0.1, -0.7)
-
-[node name="floor_tile_small_gltf2" parent="Ground/down_right_roof" instance=ExtResource("3_s5qey")]
-transform = Transform3D(-2.7, -9.9476e-14, 4.07688e-07, -3.2685e-13, 2.7, 1.35525e-20, -4.07688e-07, -1.52466e-20, -2.7, 2.7, 0.1, -15.3)
-
-[node name="floor_tile_small_gltf3" parent="Ground/down_right_roof" instance=ExtResource("3_s5qey")]
-transform = Transform3D(-2.7, -9.9476e-14, 4.07689e-07, -2.55795e-13, 2.7, 5.0822e-21, -4.07689e-07, -1.52466e-20, -2.7, 17.3, 0.1, -0.7)
-
-[node name="floor_tile_small_gltf4" parent="Ground/down_right_roof" instance=ExtResource("3_s5qey")]
-transform = Transform3D(-2.7, -9.9476e-14, 4.07688e-07, -3.69482e-13, 2.7, 1.69407e-20, -4.07688e-07, -1.52466e-20, -2.7, 17.3, 0.1, -15.3)
-
-[node name="up_right_roof" type="Node3D" parent="Ground"]
-transform = Transform3D(4.37114e-08, -3.82137e-15, 1, -8.74228e-08, -1, 0, 1, -8.74228e-08, -4.37114e-08, 18, -0.35, -22)
-
-[node name="floor_tile_large_gltf2" parent="Ground/up_right_roof" instance=ExtResource("14_vt4fw")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 10, 0, 12)
-
-[node name="floor_tile_large_gltf3" parent="Ground/up_right_roof" instance=ExtResource("14_vt4fw")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -10, 0, -8)
-
-[node name="floor_tile_large_gltf4" parent="Ground/up_right_roof" instance=ExtResource("14_vt4fw")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -10, 0, 12)
-
-[node name="floor_tile_small_gltf" parent="Ground/up_right_roof" instance=ExtResource("3_s5qey")]
-transform = Transform3D(-2.7, -9.9476e-14, 4.07689e-07, -2.13163e-13, 2.7, 3.38813e-21, -4.07689e-07, -1.52466e-20, -2.7, 2.7, 0.1, -0.7)
-
-[node name="floor_tile_small_gltf2" parent="Ground/up_right_roof" instance=ExtResource("3_s5qey")]
-transform = Transform3D(-2.7, -9.9476e-14, 4.07688e-07, -3.2685e-13, 2.7, 1.35525e-20, -4.07688e-07, -1.52466e-20, -2.7, 2.7, 0.1, -15.3)
-
-[node name="floor_tile_small_gltf3" parent="Ground/up_right_roof" instance=ExtResource("3_s5qey")]
-transform = Transform3D(-2.7, -9.9476e-14, 4.07689e-07, -2.55795e-13, 2.7, 5.0822e-21, -4.07689e-07, -1.52466e-20, -2.7, 17.3, 0.1, -0.7)
-
-[node name="floor_tile_small_gltf4" parent="Ground/up_right_roof" instance=ExtResource("3_s5qey")]
-transform = Transform3D(-2.7, -9.9476e-14, 4.07688e-07, -3.69482e-13, 2.7, 1.69407e-20, -4.07688e-07, -1.52466e-20, -2.7, 17.3, 0.1, -15.3)
-
-[node name="up_left_roof" type="Node3D" parent="Ground"]
-transform = Transform3D(1, 8.74228e-08, 8.74228e-08, 8.74228e-08, -1, 0, 8.74228e-08, 7.64274e-15, -1, -20, -0.35, -20)
-
-[node name="floor_tile_large_gltf2" parent="Ground/up_left_roof" instance=ExtResource("14_vt4fw")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 10, 0, 12)
-
-[node name="floor_tile_large_gltf3" parent="Ground/up_left_roof" instance=ExtResource("14_vt4fw")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -10, 0, -8)
-
-[node name="floor_tile_large_gltf4" parent="Ground/up_left_roof" instance=ExtResource("14_vt4fw")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -10, 0, 12)
-
-[node name="floor_tile_small_gltf" parent="Ground/up_left_roof" instance=ExtResource("3_s5qey")]
-transform = Transform3D(-2.7, -9.9476e-14, 4.07689e-07, -2.13163e-13, 2.7, 3.38813e-21, -4.07689e-07, -1.52466e-20, -2.7, 2.7, 0.1, -0.7)
-
-[node name="floor_tile_small_gltf2" parent="Ground/up_left_roof" instance=ExtResource("3_s5qey")]
-transform = Transform3D(-2.7, -9.9476e-14, 4.07688e-07, -3.2685e-13, 2.7, 1.35525e-20, -4.07688e-07, -1.52466e-20, -2.7, 2.7, 0.1, -15.3)
-
-[node name="floor_tile_small_gltf3" parent="Ground/up_left_roof" instance=ExtResource("3_s5qey")]
-transform = Transform3D(-2.7, -9.9476e-14, 4.07689e-07, -2.55795e-13, 2.7, 5.0822e-21, -4.07689e-07, -1.52466e-20, -2.7, 17.3, 0.1, -0.7)
-
-[node name="floor_tile_small_gltf4" parent="Ground/up_left_roof" instance=ExtResource("3_s5qey")]
-transform = Transform3D(-2.7, -9.9476e-14, 4.07688e-07, -3.69482e-13, 2.7, 1.69407e-20, -4.07688e-07, -1.52466e-20, -2.7, 17.3, 0.1, -15.3)
-
-[node name="up_left" type="Node3D" parent="Ground"]
+[node name="up_left" type="Node3D" parent="Ground/Floor"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -18, 0, -22)
 
-[node name="floor_tile_large_gltf2" parent="Ground/up_left" instance=ExtResource("14_vt4fw")]
+[node name="floor_tile_large_gltf2" parent="Ground/Floor/up_left" instance=ExtResource("14_vt4fw")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 10, 0, 12)
 
-[node name="floor_tile_large_gltf3" parent="Ground/up_left" instance=ExtResource("14_vt4fw")]
+[node name="floor_tile_large_gltf3" parent="Ground/Floor/up_left" instance=ExtResource("14_vt4fw")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -10, 0, -8)
 
-[node name="floor_tile_large_gltf4" parent="Ground/up_left" instance=ExtResource("14_vt4fw")]
+[node name="floor_tile_large_gltf4" parent="Ground/Floor/up_left" instance=ExtResource("14_vt4fw")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -10, 0, 12)
 
-[node name="floor_tile_extralarge_grates_open_gltf" parent="Ground/up_left" instance=ExtResource("15_uxh41")]
+[node name="floor_tile_extralarge_grates_open_gltf" parent="Ground/Floor/up_left" instance=ExtResource("15_uxh41")]
 transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.5, 10, 0, -8)
 
-[node name="down_right" type="Node3D" parent="Ground"]
+[node name="down_right" type="Node3D" parent="Ground/Floor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 20)
 
-[node name="floor_tile_large_gltf2" parent="Ground/down_right" instance=ExtResource("14_vt4fw")]
+[node name="floor_tile_large_gltf2" parent="Ground/Floor/down_right" instance=ExtResource("14_vt4fw")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 10, 0, 12)
 
-[node name="floor_tile_large_gltf3" parent="Ground/down_right" instance=ExtResource("14_vt4fw")]
+[node name="floor_tile_large_gltf3" parent="Ground/Floor/down_right" instance=ExtResource("14_vt4fw")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 10, 0, -8)
 
-[node name="floor_tile_large_gltf4" parent="Ground/down_right" instance=ExtResource("14_vt4fw")]
+[node name="floor_tile_large_gltf4" parent="Ground/Floor/down_right" instance=ExtResource("14_vt4fw")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -10, 0, 12)
 
-[node name="floor_tile_extralarge_grates_open_gltf" parent="Ground/down_right" instance=ExtResource("15_uxh41")]
+[node name="floor_tile_extralarge_grates_open_gltf" parent="Ground/Floor/down_right" instance=ExtResource("15_uxh41")]
 transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.5, -10, 0, -8)
 
-[node name="up_right" type="Node3D" parent="Ground"]
+[node name="up_right" type="Node3D" parent="Ground/Floor"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 18, 0, -22)
 
-[node name="floor_tile_large_gltf2" parent="Ground/up_right" instance=ExtResource("14_vt4fw")]
+[node name="floor_tile_large_gltf2" parent="Ground/Floor/up_right" instance=ExtResource("14_vt4fw")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 10, 0, 12)
 
-[node name="floor_tile_large_gltf3" parent="Ground/up_right" instance=ExtResource("14_vt4fw")]
+[node name="floor_tile_large_gltf3" parent="Ground/Floor/up_right" instance=ExtResource("14_vt4fw")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 10, 0, -8)
 
-[node name="floor_tile_large_gltf4" parent="Ground/up_right" instance=ExtResource("14_vt4fw")]
+[node name="floor_tile_large_gltf4" parent="Ground/Floor/up_right" instance=ExtResource("14_vt4fw")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -10, 0, 12)
 
-[node name="floor_tile_extralarge_grates_open_gltf" parent="Ground/up_right" instance=ExtResource("15_uxh41")]
+[node name="floor_tile_extralarge_grates_open_gltf" parent="Ground/Floor/up_right" instance=ExtResource("15_uxh41")]
 transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.5, -10, 0, -8)
 
-[node name="Strip" type="Node3D" parent="Ground"]
-
-[node name="roof_left_1" parent="Ground/Strip" instance=ExtResource("3_s5qey")]
-transform = Transform3D(3.25841e-07, 2.27997e-14, 3.25, 3.01992e-07, -2, -4.29015e-14, 2, 3.01992e-07, -5.29492e-07, -21.25, -0.45, 0)
-
-[node name="roof_middle_1" parent="Ground/Strip" instance=ExtResource("3_s5qey")]
-transform = Transform3D(3.25841e-07, 2.27997e-14, 2, 3.01992e-07, -2, -2.6401e-14, 2, 3.01992e-07, -3.25841e-07, -9, -0.45, 0)
-
-[node name="roof_middle_2" parent="Ground/Strip" instance=ExtResource("3_s5qey")]
-transform = Transform3D(3.25841e-07, 2.27997e-14, 2, 3.01992e-07, -2, -2.6401e-14, 2, 3.01992e-07, -3.25841e-07, -5, -0.45, 0)
-
-[node name="roof_middle_3" parent="Ground/Strip" instance=ExtResource("3_s5qey")]
-transform = Transform3D(3.25841e-07, 2.27997e-14, 2, 3.01992e-07, -2, -2.6401e-14, 2, 3.01992e-07, -3.25841e-07, -1, -0.45, 0)
-
-[node name="roof_middle_4" parent="Ground/Strip" instance=ExtResource("3_s5qey")]
-transform = Transform3D(3.25841e-07, 2.27997e-14, 2, 3.01992e-07, -2, -2.6401e-14, 2, 3.01992e-07, -3.25841e-07, 1, -0.45, 0)
-
-[node name="roof_middle_5" parent="Ground/Strip" instance=ExtResource("3_s5qey")]
-transform = Transform3D(3.25841e-07, 2.27997e-14, 2, 3.01992e-07, -2, -2.6401e-14, 2, 3.01992e-07, -3.25841e-07, 5, -0.45, 0)
-
-[node name="roof_middle_6" parent="Ground/Strip" instance=ExtResource("3_s5qey")]
-transform = Transform3D(3.25841e-07, 2.27997e-14, 2, 3.01992e-07, -2, -2.6401e-14, 2, 3.01992e-07, -3.25841e-07, 9, -0.45, 0)
-
-[node name="roof_left_2" parent="Ground/Strip" instance=ExtResource("3_s5qey")]
-transform = Transform3D(3.25841e-07, 2.27997e-14, 3.25, 3.01992e-07, -2, -4.29015e-14, 2, 3.01992e-07, -5.29492e-07, -27.75, -0.45, 0)
-
-[node name="roof_right_1" parent="Ground/Strip" instance=ExtResource("3_s5qey")]
-transform = Transform3D(3.25841e-07, 2.27997e-14, 3.25, 3.01992e-07, -2, -4.29015e-14, 2, 3.01992e-07, -5.29492e-07, 21.25, -0.45, 0)
-
-[node name="roof_right_2" parent="Ground/Strip" instance=ExtResource("3_s5qey")]
-transform = Transform3D(3.25841e-07, 2.27997e-14, 3.25, 3.01992e-07, -2, -4.29015e-14, 2, 3.01992e-07, -5.29492e-07, 27.75, -0.45, 0)
-
-[node name="strip_left" parent="Ground/Strip" instance=ExtResource("3_rdwr6")]
+[node name="strip_left" parent="Ground/Floor" instance=ExtResource("3_rdwr6")]
 transform = Transform3D(2.1, 0, 0, 0, 1, 0, 0, 0, 2, -35, 0.2, 0)
 
-[node name="strip_left2" parent="Ground/Strip" instance=ExtResource("3_rdwr6")]
+[node name="strip_right" parent="Ground/Floor" instance=ExtResource("3_rdwr6")]
 transform = Transform3D(2.1, 0, 0, 0, 1, 0, 0, 0, 2, 35, 0.2, 0)
+
+[node name="Roof" type="Node3D" parent="Ground"]
+
+[node name="Strip" type="Node3D" parent="Ground/Roof"]
+
+[node name="roof_left_1" parent="Ground/Roof/Strip" instance=ExtResource("3_s5qey")]
+transform = Transform3D(3.25841e-07, 2.27997e-14, 3.25, 3.01992e-07, -2, -4.29015e-14, 2, 3.01992e-07, -5.29492e-07, -21.25, -0.45, 0)
+
+[node name="roof_middle_1" parent="Ground/Roof/Strip" instance=ExtResource("3_s5qey")]
+transform = Transform3D(3.25841e-07, 2.27997e-14, 2, 3.01992e-07, -2, -2.6401e-14, 2, 3.01992e-07, -3.25841e-07, -9, -0.45, 0)
+
+[node name="roof_middle_2" parent="Ground/Roof/Strip" instance=ExtResource("3_s5qey")]
+transform = Transform3D(3.25841e-07, 2.27997e-14, 2, 3.01992e-07, -2, -2.6401e-14, 2, 3.01992e-07, -3.25841e-07, -5, -0.45, 0)
+
+[node name="roof_middle_3" parent="Ground/Roof/Strip" instance=ExtResource("3_s5qey")]
+transform = Transform3D(3.25841e-07, 2.27997e-14, 2, 3.01992e-07, -2, -2.6401e-14, 2, 3.01992e-07, -3.25841e-07, -1, -0.45, 0)
+
+[node name="roof_middle_4" parent="Ground/Roof/Strip" instance=ExtResource("3_s5qey")]
+transform = Transform3D(3.25841e-07, 2.27997e-14, 2, 3.01992e-07, -2, -2.6401e-14, 2, 3.01992e-07, -3.25841e-07, 1, -0.45, 0)
+
+[node name="roof_middle_5" parent="Ground/Roof/Strip" instance=ExtResource("3_s5qey")]
+transform = Transform3D(3.25841e-07, 2.27997e-14, 2, 3.01992e-07, -2, -2.6401e-14, 2, 3.01992e-07, -3.25841e-07, 5, -0.45, 0)
+
+[node name="roof_middle_6" parent="Ground/Roof/Strip" instance=ExtResource("3_s5qey")]
+transform = Transform3D(3.25841e-07, 2.27997e-14, 2, 3.01992e-07, -2, -2.6401e-14, 2, 3.01992e-07, -3.25841e-07, 9, -0.45, 0)
+
+[node name="roof_left_2" parent="Ground/Roof/Strip" instance=ExtResource("3_s5qey")]
+transform = Transform3D(3.25841e-07, 2.27997e-14, 3.25, 3.01992e-07, -2, -4.29015e-14, 2, 3.01992e-07, -5.29492e-07, -27.75, -0.45, 0)
+
+[node name="roof_right_1" parent="Ground/Roof/Strip" instance=ExtResource("3_s5qey")]
+transform = Transform3D(3.25841e-07, 2.27997e-14, 3.25, 3.01992e-07, -2, -4.29015e-14, 2, 3.01992e-07, -5.29492e-07, 21.25, -0.45, 0)
+
+[node name="roof_right_2" parent="Ground/Roof/Strip" instance=ExtResource("3_s5qey")]
+transform = Transform3D(3.25841e-07, 2.27997e-14, 3.25, 3.01992e-07, -2, -4.29015e-14, 2, 3.01992e-07, -5.29492e-07, 27.75, -0.45, 0)
+
+[node name="down_left_roof" type="Node3D" parent="Ground/Roof"]
+transform = Transform3D(4.37114e-08, -3.82137e-15, -1, -8.74228e-08, -1, 0, -1, 8.74228e-08, -4.37114e-08, -18, -0.35, 22)
+
+[node name="floor_tile_large_gltf2" parent="Ground/Roof/down_left_roof" instance=ExtResource("14_vt4fw")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 10, 0, 12)
+
+[node name="floor_tile_large_gltf3" parent="Ground/Roof/down_left_roof" instance=ExtResource("14_vt4fw")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -10, 0, -8)
+
+[node name="floor_tile_large_gltf4" parent="Ground/Roof/down_left_roof" instance=ExtResource("14_vt4fw")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -10, 0, 12)
+
+[node name="floor_tile_small_gltf" parent="Ground/Roof/down_left_roof" instance=ExtResource("3_s5qey")]
+transform = Transform3D(-2.7, -9.9476e-14, 4.07689e-07, -2.13163e-13, 2.7, 3.38813e-21, -4.07689e-07, -1.52466e-20, -2.7, 2.7, 0.1, -0.7)
+
+[node name="floor_tile_small_gltf2" parent="Ground/Roof/down_left_roof" instance=ExtResource("3_s5qey")]
+transform = Transform3D(-2.7, -9.9476e-14, 4.07688e-07, -3.2685e-13, 2.7, 1.35525e-20, -4.07688e-07, -1.52466e-20, -2.7, 2.7, 0.1, -15.3)
+
+[node name="floor_tile_small_gltf3" parent="Ground/Roof/down_left_roof" instance=ExtResource("3_s5qey")]
+transform = Transform3D(-2.7, -9.9476e-14, 4.07689e-07, -2.55795e-13, 2.7, 5.0822e-21, -4.07689e-07, -1.52466e-20, -2.7, 17.3, 0.1, -0.7)
+
+[node name="floor_tile_small_gltf4" parent="Ground/Roof/down_left_roof" instance=ExtResource("3_s5qey")]
+transform = Transform3D(-2.7, -9.9476e-14, 4.07688e-07, -3.69482e-13, 2.7, 1.69407e-20, -4.07688e-07, -1.52466e-20, -2.7, 17.3, 0.1, -15.3)
+
+[node name="down_right_roof" type="Node3D" parent="Ground/Roof"]
+transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 20, -0.35, 20)
+
+[node name="floor_tile_large_gltf2" parent="Ground/Roof/down_right_roof" instance=ExtResource("14_vt4fw")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 10, 0, 12)
+
+[node name="floor_tile_large_gltf3" parent="Ground/Roof/down_right_roof" instance=ExtResource("14_vt4fw")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -10, 0, -8)
+
+[node name="floor_tile_large_gltf4" parent="Ground/Roof/down_right_roof" instance=ExtResource("14_vt4fw")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -10, 0, 12)
+
+[node name="floor_tile_small_gltf" parent="Ground/Roof/down_right_roof" instance=ExtResource("3_s5qey")]
+transform = Transform3D(-2.7, -9.9476e-14, 4.07689e-07, -2.13163e-13, 2.7, 3.38813e-21, -4.07689e-07, -1.52466e-20, -2.7, 2.7, 0.1, -0.7)
+
+[node name="floor_tile_small_gltf2" parent="Ground/Roof/down_right_roof" instance=ExtResource("3_s5qey")]
+transform = Transform3D(-2.7, -9.9476e-14, 4.07688e-07, -3.2685e-13, 2.7, 1.35525e-20, -4.07688e-07, -1.52466e-20, -2.7, 2.7, 0.1, -15.3)
+
+[node name="floor_tile_small_gltf3" parent="Ground/Roof/down_right_roof" instance=ExtResource("3_s5qey")]
+transform = Transform3D(-2.7, -9.9476e-14, 4.07689e-07, -2.55795e-13, 2.7, 5.0822e-21, -4.07689e-07, -1.52466e-20, -2.7, 17.3, 0.1, -0.7)
+
+[node name="floor_tile_small_gltf4" parent="Ground/Roof/down_right_roof" instance=ExtResource("3_s5qey")]
+transform = Transform3D(-2.7, -9.9476e-14, 4.07688e-07, -3.69482e-13, 2.7, 1.69407e-20, -4.07688e-07, -1.52466e-20, -2.7, 17.3, 0.1, -15.3)
+
+[node name="up_right_roof" type="Node3D" parent="Ground/Roof"]
+transform = Transform3D(4.37114e-08, -3.82137e-15, 1, -8.74228e-08, -1, 0, 1, -8.74228e-08, -4.37114e-08, 18, -0.35, -22)
+
+[node name="floor_tile_large_gltf2" parent="Ground/Roof/up_right_roof" instance=ExtResource("14_vt4fw")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 10, 0, 12)
+
+[node name="floor_tile_large_gltf3" parent="Ground/Roof/up_right_roof" instance=ExtResource("14_vt4fw")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -10, 0, -8)
+
+[node name="floor_tile_large_gltf4" parent="Ground/Roof/up_right_roof" instance=ExtResource("14_vt4fw")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -10, 0, 12)
+
+[node name="floor_tile_small_gltf" parent="Ground/Roof/up_right_roof" instance=ExtResource("3_s5qey")]
+transform = Transform3D(-2.7, -9.9476e-14, 4.07689e-07, -2.13163e-13, 2.7, 3.38813e-21, -4.07689e-07, -1.52466e-20, -2.7, 2.7, 0.1, -0.7)
+
+[node name="floor_tile_small_gltf2" parent="Ground/Roof/up_right_roof" instance=ExtResource("3_s5qey")]
+transform = Transform3D(-2.7, -9.9476e-14, 4.07688e-07, -3.2685e-13, 2.7, 1.35525e-20, -4.07688e-07, -1.52466e-20, -2.7, 2.7, 0.1, -15.3)
+
+[node name="floor_tile_small_gltf3" parent="Ground/Roof/up_right_roof" instance=ExtResource("3_s5qey")]
+transform = Transform3D(-2.7, -9.9476e-14, 4.07689e-07, -2.55795e-13, 2.7, 5.0822e-21, -4.07689e-07, -1.52466e-20, -2.7, 17.3, 0.1, -0.7)
+
+[node name="floor_tile_small_gltf4" parent="Ground/Roof/up_right_roof" instance=ExtResource("3_s5qey")]
+transform = Transform3D(-2.7, -9.9476e-14, 4.07688e-07, -3.69482e-13, 2.7, 1.69407e-20, -4.07688e-07, -1.52466e-20, -2.7, 17.3, 0.1, -15.3)
+
+[node name="up_left_roof" type="Node3D" parent="Ground/Roof"]
+transform = Transform3D(1, 8.74228e-08, 8.74228e-08, 8.74228e-08, -1, 0, 8.74228e-08, 7.64274e-15, -1, -20, -0.35, -20)
+
+[node name="floor_tile_large_gltf2" parent="Ground/Roof/up_left_roof" instance=ExtResource("14_vt4fw")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 10, 0, 12)
+
+[node name="floor_tile_large_gltf3" parent="Ground/Roof/up_left_roof" instance=ExtResource("14_vt4fw")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -10, 0, -8)
+
+[node name="floor_tile_large_gltf4" parent="Ground/Roof/up_left_roof" instance=ExtResource("14_vt4fw")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -10, 0, 12)
+
+[node name="floor_tile_small_gltf" parent="Ground/Roof/up_left_roof" instance=ExtResource("3_s5qey")]
+transform = Transform3D(-2.7, -9.9476e-14, 4.07689e-07, -2.13163e-13, 2.7, 3.38813e-21, -4.07689e-07, -1.52466e-20, -2.7, 2.7, 0.1, -0.7)
+
+[node name="floor_tile_small_gltf2" parent="Ground/Roof/up_left_roof" instance=ExtResource("3_s5qey")]
+transform = Transform3D(-2.7, -9.9476e-14, 4.07688e-07, -3.2685e-13, 2.7, 1.35525e-20, -4.07688e-07, -1.52466e-20, -2.7, 2.7, 0.1, -15.3)
+
+[node name="floor_tile_small_gltf3" parent="Ground/Roof/up_left_roof" instance=ExtResource("3_s5qey")]
+transform = Transform3D(-2.7, -9.9476e-14, 4.07689e-07, -2.55795e-13, 2.7, 5.0822e-21, -4.07689e-07, -1.52466e-20, -2.7, 17.3, 0.1, -0.7)
+
+[node name="floor_tile_small_gltf4" parent="Ground/Roof/up_left_roof" instance=ExtResource("3_s5qey")]
+transform = Transform3D(-2.7, -9.9476e-14, 4.07688e-07, -3.69482e-13, 2.7, 1.69407e-20, -4.07688e-07, -1.52466e-20, -2.7, 17.3, 0.1, -15.3)
 
 [node name="Underground" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -16.5, 0)
