@@ -1,8 +1,9 @@
 extends Node
 
-const TIMER_TIME : int = 100
+const TIMER_TIME : int = 110
 @export var players_alive : Array = []
 @onready var global_timer : Timer = Timer.new()
+var on_prep_time : bool = true
 var bomb_carrier : int
 @onready var winner_name : String = "unname"
 
@@ -21,6 +22,8 @@ func game_ready() -> void:
 	players_alive = Game.players.map(func(value): return value.id)
 	add_child(global_timer)
 	global_timer.start(TIMER_TIME)
+	await get_tree().create_timer(TIMER_TIME-100).timeout
+	end_of_prep_time()
 	# manage the timer on the multiplayer authority
 	if is_multiplayer_authority():
 		global_timer.timeout.connect(_on_global_timer_timeout)
@@ -51,6 +54,9 @@ func _on_global_timer_timeout():
 	else:
 		var i : int = players_alive[randi() % players_alive.size()]
 		update_the_bomb.rpc(i)
+
+func end_of_prep_time():
+	on_prep_time = false
 
 func is_player_alive(player_id : int) -> bool:
 	for i in players_alive:

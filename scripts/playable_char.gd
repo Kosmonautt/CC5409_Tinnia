@@ -199,19 +199,20 @@ func _physics_process(delta):
 	dir_input = Input.get_vector("move_left", "move_right", "move_backwards", "move_forwards")
 	direction = (transform.basis * Vector3(dir_input.x, 0, -dir_input.y))
 	
-	if is_on_floor():
-		if dir_input:
-			speed.x = move_toward(speed.x, MAX_SPEED, ACELERATION * delta)
-			speed.z = move_toward(speed.z, MAX_SPEED, ACELERATION * delta)
-	
-			target_velocity.x = direction.x * speed.x
-			target_velocity.z = direction.z * speed.z
-		else:
-			target_velocity.x = move_toward(target_velocity.x, 0, ACELERATION * 5 * delta)
-			target_velocity.z = move_toward(target_velocity.z, 0, ACELERATION * 5 * delta)
-			speed = Vector3.ZERO
+	if not Global.on_prep_time:
+		if is_on_floor():
+			if dir_input:
+				speed.x = move_toward(speed.x, MAX_SPEED, ACELERATION * delta)
+				speed.z = move_toward(speed.z, MAX_SPEED, ACELERATION * delta)
+		
+				target_velocity.x = direction.x * speed.x
+				target_velocity.z = direction.z * speed.z
+			else:
+				target_velocity.x = move_toward(target_velocity.x, 0, ACELERATION * 5 * delta)
+				target_velocity.z = move_toward(target_velocity.z, 0, ACELERATION * 5 * delta)
+				speed = Vector3.ZERO
 			
-	velocity = target_velocity
+		velocity = target_velocity
 	
 	anim_tree.set("parameters/Movement/blend_position", Vector2(target_velocity.x, target_velocity.z))
 	anim_tree.set("parameters/conditions/is_landed", is_on_floor())
