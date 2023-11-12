@@ -138,7 +138,7 @@ func _process(_delta):
 		normal_state()
 		power_active = false
 		
-	print(power_timer.time_left)
+	#print(power_timer.time_left)
 
 func _physics_process(delta):
 	# return other players physics
