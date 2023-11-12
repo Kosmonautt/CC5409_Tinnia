@@ -247,6 +247,36 @@ transform = Transform3D(2.5, 0, 0, 0, 5, 0, 0, 0, 2.5, -10, 0, -8)
 
 [node name="Strip" type="Node3D" parent="Ground"]
 
+[node name="roof_left_1" parent="Ground/Strip" instance=ExtResource("3_s5qey")]
+transform = Transform3D(3.25841e-07, 2.27997e-14, 3.25, 3.01992e-07, -2, -4.29015e-14, 2, 3.01992e-07, -5.29492e-07, -21.25, -0.45, 0)
+
+[node name="roof_middle_1" parent="Ground/Strip" instance=ExtResource("3_s5qey")]
+transform = Transform3D(3.25841e-07, 2.27997e-14, 2, 3.01992e-07, -2, -2.6401e-14, 2, 3.01992e-07, -3.25841e-07, -9, -0.45, 0)
+
+[node name="roof_middle_2" parent="Ground/Strip" instance=ExtResource("3_s5qey")]
+transform = Transform3D(3.25841e-07, 2.27997e-14, 2, 3.01992e-07, -2, -2.6401e-14, 2, 3.01992e-07, -3.25841e-07, -5, -0.45, 0)
+
+[node name="roof_middle_3" parent="Ground/Strip" instance=ExtResource("3_s5qey")]
+transform = Transform3D(3.25841e-07, 2.27997e-14, 2, 3.01992e-07, -2, -2.6401e-14, 2, 3.01992e-07, -3.25841e-07, -1, -0.45, 0)
+
+[node name="roof_middle_4" parent="Ground/Strip" instance=ExtResource("3_s5qey")]
+transform = Transform3D(3.25841e-07, 2.27997e-14, 2, 3.01992e-07, -2, -2.6401e-14, 2, 3.01992e-07, -3.25841e-07, 1, -0.45, 0)
+
+[node name="roof_middle_5" parent="Ground/Strip" instance=ExtResource("3_s5qey")]
+transform = Transform3D(3.25841e-07, 2.27997e-14, 2, 3.01992e-07, -2, -2.6401e-14, 2, 3.01992e-07, -3.25841e-07, 5, -0.45, 0)
+
+[node name="roof_middle_6" parent="Ground/Strip" instance=ExtResource("3_s5qey")]
+transform = Transform3D(3.25841e-07, 2.27997e-14, 2, 3.01992e-07, -2, -2.6401e-14, 2, 3.01992e-07, -3.25841e-07, 9, -0.45, 0)
+
+[node name="roof_left_2" parent="Ground/Strip" instance=ExtResource("3_s5qey")]
+transform = Transform3D(3.25841e-07, 2.27997e-14, 3.25, 3.01992e-07, -2, -4.29015e-14, 2, 3.01992e-07, -5.29492e-07, -27.75, -0.45, 0)
+
+[node name="roof_right_1" parent="Ground/Strip" instance=ExtResource("3_s5qey")]
+transform = Transform3D(3.25841e-07, 2.27997e-14, 3.25, 3.01992e-07, -2, -4.29015e-14, 2, 3.01992e-07, -5.29492e-07, 21.25, -0.45, 0)
+
+[node name="roof_right_2" parent="Ground/Strip" instance=ExtResource("3_s5qey")]
+transform = Transform3D(3.25841e-07, 2.27997e-14, 3.25, 3.01992e-07, -2, -4.29015e-14, 2, 3.01992e-07, -5.29492e-07, 27.75, -0.45, 0)
+
 [node name="strip_left" parent="Ground/Strip" instance=ExtResource("3_rdwr6")]
 transform = Transform3D(2.1, 0, 0, 0, 1, 0, 0, 0, 2, -35, 0.2, 0)
 
