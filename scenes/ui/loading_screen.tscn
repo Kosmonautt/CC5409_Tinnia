@@ -1,0 +1,101 @@
+[gd_scene load_steps=11 format=3 uid="uid://cpnrelsbqfhdi"]
+
+[ext_resource type="Script" path="res://scripts/loading_screen.gd" id="1_ouri4"]
+[ext_resource type="Texture2D" uid="uid://0jjienyapijm" path="res://resources/assets/bomb/Sprite-0001.png" id="2_3hxhs"]
+[ext_resource type="Texture2D" uid="uid://b4nx8xytfn4uj" path="res://resources/assets/bomb/Sprite-0002.png" id="3_okurk"]
+[ext_resource type="Texture2D" uid="uid://jcyic0mjku1p" path="res://resources/assets/bomb/Sprite-0003.png" id="4_gupt6"]
+[ext_resource type="Texture2D" uid="uid://bjhyu5kt4ja0t" path="res://resources/assets/bomb/Sprite-0004.png" id="5_3m5qx"]
+[ext_resource type="Texture2D" uid="uid://b56hxk3t02tib" path="res://resources/assets/bomb/Sprite-0005.png" id="6_efvwn"]
+[ext_resource type="Texture2D" uid="uid://cc12kgk6w4tek" path="res://resources/assets/bomb/Sprite-0006.png" id="7_p6juw"]
+[ext_resource type="Texture2D" uid="uid://dq5ey8nd3lrsp" path="res://resources/assets/bomb/Sprite-0007.png" id="8_ra3sh"]
+[ext_resource type="Texture2D" uid="uid://cn0bkfg4puwc1" path="res://resources/assets/bomb/Sprite-0008.png" id="9_bm3ip"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6nthm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3hxhs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_okurk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_gupt6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_3m5qx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_efvwn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_p6juw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ra3sh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_bm3ip")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="loading_screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ouri4")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0666667, 0.0666667, 0.0666667, 1)
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1060.0
+offset_top = 593.0
+offset_right = 1139.0
+offset_bottom = 616.0
+text = "Loading ..."
+
+[node name="bomb" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -94.5
+offset_top = -82.0
+offset_right = 94.5
+offset_bottom = 82.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="bomb_sprite" type="AnimatedSprite2D" parent="bomb"]
+position = Vector2(80, 55)
+scale = Vector2(0.65, 0.65)
+sprite_frames = SubResource("SpriteFrames_6nthm")
+autoplay = "default"
+speed_scale = 2.0

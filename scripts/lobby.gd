@@ -84,6 +84,7 @@ func _ready():
 func _process(_delta: float) -> void:
 	if !start_timer.is_stopped():
 		time.text = str(ceil(start_timer.time_left))
+		#print(time.text)
 
 
 func _on_upnp_completed(_status) -> void:
@@ -109,7 +110,7 @@ func _on_host_pressed() -> void:
 	
 	_go_to_menu(ready_menu)
 	
-	$"../character_selector".visible = false
+	character_selector.visible = false
 
 
 func _on_join_pressed() -> void:
@@ -230,7 +231,7 @@ func starting_game(value: bool):
 	role_c.disabled = value
 	role_d.disabled = value
 	back_ready.disabled = value
-	time_container.visible = value
+	#time_container.visible = value
 	if value:
 		start_timer.start()
 	else:
@@ -264,8 +265,14 @@ func _disconnect():
 
 
 func _on_start_timer_timeout() -> void:
+	go_to_loading_scren()
+	return
 	if multiplayer.is_server():
 		start_game.rpc()
+
+
+func go_to_loading_scren() -> void:
+	get_tree().change_scene_to_file("res://scenes/ui/loading_screen.tscn")
 
 
 func _hide_menus():
