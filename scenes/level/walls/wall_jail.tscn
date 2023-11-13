@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://64bjtqivearv"]
+[gd_scene load_steps=4 format=3 uid="uid://64bjtqivearv"]
 
 [ext_resource type="PackedScene" uid="uid://ngga1jjuku18" path="res://resources/assets/wall/wall_gated.gltf.glb" id="1_uvga6"]
+[ext_resource type="PackedScene" uid="uid://blm2vsnhg8c6" path="res://resources/assets/others/floor_foundation_allsides.gltf.glb" id="2_uwxue"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7yxtf"]
 size = Vector3(4, 4, 1)
@@ -14,3 +15,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 shape = SubResource("BoxShape3D_7yxtf")
 
 [node name="wall_gated_gltf" parent="." instance=ExtResource("1_uvga6")]
+
+[node name="floor_foundation_allsides_gltf" parent="." instance=ExtResource("2_uwxue")]
+transform = Transform3D(1.81, 0, 0, 0, 0.01, 0, 0, 0, 0.45, 0, 0, 0)

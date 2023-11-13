@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5bynietxxq42"]
+
+[ext_resource type="PackedScene" uid="uid://blm2vsnhg8c6" path="res://resources/assets/others/floor_foundation_allsides.gltf.glb" id="1_to22k"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4l00m"]
+size = Vector3(2.2, 2, 2.2)
+
+[node name="wall_broken" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_4l00m")
+
+[node name="floor_foundation_allsides_gltf" parent="." instance=ExtResource("1_to22k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
