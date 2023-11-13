@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://6yo0lcutptgy"]
+[gd_scene load_steps=24 format=3 uid="uid://6yo0lcutptgy"]
 
 [ext_resource type="PackedScene" uid="uid://ciddgnmy7fe57" path="res://resources/assets/floor/floor_tile_grate_open.gltf.glb" id="3_rdwr6"]
 [ext_resource type="PackedScene" uid="uid://y0sy4evxyhpb" path="res://resources/assets/floor/tiles/floor_tile_small.gltf.glb" id="3_s5qey"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://64bjtqivearv" path="res://scenes/level/walls/wall_jail.tscn" id="5_ilf60"]
 [ext_resource type="PackedScene" uid="uid://beqt7ekewx7op" path="res://scenes/level/walls/wall_normal.tscn" id="5_ytmyh"]
 [ext_resource type="PackedScene" uid="uid://d0ag0wur4mpdf" path="res://scenes/level/walls/corner_normal.tscn" id="6_jmaau"]
+[ext_resource type="PackedScene" uid="uid://q67mnjjofub" path="res://scenes/level/walls/pillar.tscn" id="6_yd6gf"]
 [ext_resource type="PackedScene" uid="uid://bxj5esrhlx70h" path="res://scenes/level/doorways/gate.tscn" id="7_u11aw"]
 [ext_resource type="PackedScene" uid="uid://ca2qkfsdspn1x" path="res://resources/assets/floor/floor_wood_small.gltf.glb" id="8_m4k4i"]
 [ext_resource type="PackedScene" uid="uid://deibxabcmgjw7" path="res://scenes/level/walls/wall_window_cell.tscn" id="8_qh5nq"]
@@ -342,6 +343,73 @@ transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 2.5, 8.3, 1.6, -28)
 
 [node name="Fence_9" parent="Underground/Fences" instance=ExtResource("5_ilf60")]
 transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 2.5, -8.3, 1.6, -28)
+
+[node name="Pillars" type="Node3D" parent="Underground"]
+
+[node name="Pillars_Right" type="Node3D" parent="Underground/Pillars"]
+
+[node name="Pillar" parent="Underground/Pillars/Pillars_Right" instance=ExtResource("6_yd6gf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0.5, 8)
+
+[node name="Pillar6" parent="Underground/Pillars/Pillars_Right" instance=ExtResource("6_yd6gf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0.5, -8)
+
+[node name="Pillar2" parent="Underground/Pillars/Pillars_Right" instance=ExtResource("6_yd6gf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0.5, 4)
+
+[node name="Pillar3" parent="Underground/Pillars/Pillars_Right" instance=ExtResource("6_yd6gf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 4.5, 4)
+
+[node name="Pillar4" parent="Underground/Pillars/Pillars_Right" instance=ExtResource("6_yd6gf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0.5, -4)
+
+[node name="Pillar5" parent="Underground/Pillars/Pillars_Right" instance=ExtResource("6_yd6gf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 4.5, -4)
+
+[node name="Pillar7" parent="Underground/Pillars/Pillars_Right" instance=ExtResource("6_yd6gf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0.5, 0)
+
+[node name="Pillar8" parent="Underground/Pillars/Pillars_Right" instance=ExtResource("6_yd6gf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 4.5, 0)
+
+[node name="Pillar9" parent="Underground/Pillars/Pillars_Right" instance=ExtResource("6_yd6gf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0.5, 0)
+
+[node name="Pillar10" parent="Underground/Pillars/Pillars_Right" instance=ExtResource("6_yd6gf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 4.5, 0)
+
+[node name="Pillars_Left" type="Node3D" parent="Underground/Pillars"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Pillar" parent="Underground/Pillars/Pillars_Left" instance=ExtResource("6_yd6gf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0.5, 8)
+
+[node name="Pillar6" parent="Underground/Pillars/Pillars_Left" instance=ExtResource("6_yd6gf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0.5, -8)
+
+[node name="Pillar2" parent="Underground/Pillars/Pillars_Left" instance=ExtResource("6_yd6gf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0.5, 4)
+
+[node name="Pillar3" parent="Underground/Pillars/Pillars_Left" instance=ExtResource("6_yd6gf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 4.5, 4)
+
+[node name="Pillar4" parent="Underground/Pillars/Pillars_Left" instance=ExtResource("6_yd6gf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0.5, -4)
+
+[node name="Pillar5" parent="Underground/Pillars/Pillars_Left" instance=ExtResource("6_yd6gf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 4.5, -4)
+
+[node name="Pillar7" parent="Underground/Pillars/Pillars_Left" instance=ExtResource("6_yd6gf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0.5, 0)
+
+[node name="Pillar8" parent="Underground/Pillars/Pillars_Left" instance=ExtResource("6_yd6gf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 4.5, 0)
+
+[node name="Pillar9" parent="Underground/Pillars/Pillars_Left" instance=ExtResource("6_yd6gf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0.5, 0)
+
+[node name="Pillar10" parent="Underground/Pillars/Pillars_Left" instance=ExtResource("6_yd6gf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 4.5, 0)
 
 [node name="Walls" type="Node3D" parent="."]
 
