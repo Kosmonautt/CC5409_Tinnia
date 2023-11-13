@@ -196,12 +196,18 @@ func _physics_process(delta):
 func pass_the_bomb(player_id : int) -> void:
 	Global.update_the_bomb.rpc(player_id)
 	
-	
+
 func player_die() -> void:
 	animation_state.rpc("Death_A")
 	# disable input and process
 	set_process_unhandled_input(false)
 	set_physics_process(false)
+	disable_collision.rpc()
+	
+@rpc("call_local")
+func disable_collision():
+	gravity = 0
+	$CollisionShape3D.disabled = true
 
 @rpc("call_local")
 func animation_state(current_animation : String):
