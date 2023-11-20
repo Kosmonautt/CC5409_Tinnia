@@ -17,19 +17,13 @@ func _process(delta):
 		_ready_for_play()
 		#end_of_loading_screen()
 
+
 @rpc("any_peer", "reliable")
 func send_status(id : int) -> void:
 	if multiplayer.is_server():
 		status[id] = false
+		print(status)
  
-func end_of_loading_screen():
-	if scene_load_status == ResourceLoader.THREAD_LOAD_LOADED:
-		# get_tree().change_scene_to(ResourceLoader.load_threaded_get(scene))
-		start_game.rpc()
-		queue_free()
-	else:
-		print("Scene not loaded or in progress")
-
 
 func _ready_for_play() -> void:
 	if multiplayer.get_unique_id() == 1:
@@ -40,12 +34,22 @@ func _ready_for_play() -> void:
 @rpc("reliable", "any_peer", "call_local")
 func player_ready(id: int):
 	if multiplayer.is_server():
-		status[id] = !status[id]
+		status[id] = true
 		var all_ok = true
 		for ok in status.values():
 			all_ok = all_ok and ok
 		if all_ok:
 			end_of_loading_screen()
+
+
+func end_of_loading_screen():
+	if scene_load_status == ResourceLoader.THREAD_LOAD_LOADED:
+		# get_tree().change_scene_to(ResourceLoader.load_threaded_get(scene))
+		start_game.rpc()
+		queue_free()
+	else:
+		print("Scene not loaded or in progress")
+
 
 @rpc("any_peer", "call_local", "reliable")
 func start_game() -> void:
