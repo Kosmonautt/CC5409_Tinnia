@@ -1,0 +1,74 @@
+[gd_scene load_steps=4 format=3 uid="uid://bns02ktexnfvp"]
+
+[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_x7n3g"]
+[ext_resource type="Shader" path="res://resources/textures/pause_menu.gdshader" id="2_5fp4w"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ltxai"]
+shader = ExtResource("2_5fp4w")
+shader_parameter/amount = 1.5
+
+[node name="pause_menu" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_x7n3g")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_ltxai")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.054902, 0.105882, 0.105882, 0.607843)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="space" type="Label" parent="MarginContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="pause_titile" type="Label" parent="MarginContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 60
+text = "
+Pause"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="resumen" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Resumen"
+
+[node name="settings" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Settings"
+
+[node name="quit" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Quit"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/resumen" to="." method="_on_resumen_pressed"]

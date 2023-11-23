@@ -29,6 +29,9 @@ var power_available : bool = true
 @onready var power_timer : Timer = $power_timer
 @onready var particles : GPUParticles3D = $Particles
 
+@onready var pause_menu : Control = $CanvasLayer/pause_menu
+var pausa = false
+
 # this function gets called when players are playable characters are assigned to each player
 func setup(player_data: Game.PlayerData) -> void:
 	# multiplayer authority with the given id
@@ -96,7 +99,7 @@ func _input(event):
 		head.rotate_x(deg_to_rad(-event.relative.y * mouse_sensibility))
 		# we clamp so we can look at most straight down and straight up
 		head.rotation.x = clamp(head.rotation.x, -PI/2, PI/2 )
-		
+
 
 func _process(_delta):
 	if Global.bomb_carrier == name.to_int():
@@ -119,15 +122,18 @@ func _physics_process(delta):
 	if not is_multiplayer_authority():
 		return
 	
+	
 	# if we try to exit
-	if Input.is_action_just_pressed("ui_cancel"):
-		if not showing_mouse:
-			# the mouse becomes visible so we can click the X
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-			showing_mouse = true
-		else:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-			showing_mouse = false
+#	if Input.is_action_just_pressed("pause"):
+#		pauseMenu()
+#		if not showing_mouse:
+#			# the mouse becomes visible so we can click the X
+#			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+#			showing_mouse = true
+#		else:
+#			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+#			showing_mouse = false
+
 	
 	# activate power
 	if Input.is_action_just_pressed("action_2") and power_available:
@@ -152,7 +158,7 @@ func _physics_process(delta):
 		animation_state.rpc("Jump_Idle")
 		target_velocity.y -= gravity * delta
 		
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed("jump") and not pausa:
 		if is_on_floor():
 			animation_state.rpc("Jump_Start")
 			target_velocity.y += jump_impulse
@@ -172,6 +178,8 @@ func _physics_process(delta):
 	
 	dir_input = Input.get_vector("move_left", "move_right", "move_backwards", "move_forwards")
 	direction = (transform.basis * Vector3(dir_input.x, 0, -dir_input.y))
+	if pausa:
+		direction = (transform.basis * Vector3(0, 0, 0))
 	
 	if not Global.on_prep_time:
 		if is_on_floor():
@@ -185,7 +193,7 @@ func _physics_process(delta):
 				target_velocity.x = move_toward(target_velocity.x, 0, ACELERATION * 5 * delta)
 				target_velocity.z = move_toward(target_velocity.z, 0, ACELERATION * 5 * delta)
 				speed = Vector3.ZERO
-			
+		
 		velocity = target_velocity
 	
 	anim_tree.set("parameters/Movement/blend_position", Vector2(target_velocity.x, target_velocity.z))
@@ -273,3 +281,17 @@ func particle_emit(material_path : String):
 func _on_power_timer_timeout():
 	power_available = true
 	$GUI.show_power_icon()
+
+#func pauseMenu():
+#	if paused:
+#		pause_menu.hide()
+#		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+#		set_process_input(true)
+##		Engine.time_scale = 1
+#	else:
+#		pause_menu.show()
+#		set_process_input(false)
+#		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+##		Engine.time_scale = 0
+#
+#	paused = !paused

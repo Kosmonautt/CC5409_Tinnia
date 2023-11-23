@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://cday53347fn87"]
+[gd_scene load_steps=59 format=3 uid="uid://cday53347fn87"]
 
 [ext_resource type="Script" path="res://scripts/playable_char.gd" id="1_cc565"]
 [ext_resource type="Texture2D" uid="uid://0jjienyapijm" path="res://resources/assets/bomb/Sprite-0001.png" id="2_qylr5"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dq5ey8nd3lrsp" path="res://resources/assets/bomb/Sprite-0007.png" id="8_w7dbc"]
 [ext_resource type="Texture2D" uid="uid://cn0bkfg4puwc1" path="res://resources/assets/bomb/Sprite-0008.png" id="9_grohx"]
 [ext_resource type="SphereMesh" uid="uid://chpiu6eg0apym" path="res://resources/assets/powers/Neutral_particles.tres" id="11_0u04h"]
+[ext_resource type="PackedScene" uid="uid://bns02ktexnfvp" path="res://scenes/ui/pause_menu.tscn" id="12_iibur"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kjfdo"]
 animations = [{
@@ -310,5 +311,11 @@ lifetime = 0.5
 one_shot = true
 process_material = SubResource("ParticleProcessMaterial_ifpw1")
 draw_pass_1 = ExtResource("11_0u04h")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="pause_menu" parent="CanvasLayer" instance=ExtResource("12_iibur")]
+process_mode = 3
+visible = true
 
 [connection signal="timeout" from="power_timer" to="." method="_on_power_timer_timeout"]

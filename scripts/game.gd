@@ -2,6 +2,7 @@ extends Node
 
 signal players_updated
 signal player_updated(id)
+signal paused
 
 enum Role {
 	NONE,
@@ -109,4 +110,8 @@ class PlayerData:
 			"name": name,
 			"role": role
 		}
-	
+
+@rpc("any_peer", "call_local", "reliable")
+func pause(value: bool) -> void:
+	get_tree().paused = value
+	paused.emit()
