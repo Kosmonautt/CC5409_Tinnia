@@ -11,7 +11,7 @@ func _ready():
 	Game.paused.connect(_on_game_paused) # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 func _input(event):

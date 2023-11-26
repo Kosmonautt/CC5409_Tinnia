@@ -10,7 +10,7 @@ func _ready():
 	ResourceLoader.load_threaded_request(scene)
 
 
-func _process(delta):
+func _process(_delta):
 	scene_load_status = ResourceLoader.load_threaded_get_status(scene,progress)
 	progress_bar.value = progress[0] * 100
 	if scene_load_status == ResourceLoader.THREAD_LOAD_LOADED:
