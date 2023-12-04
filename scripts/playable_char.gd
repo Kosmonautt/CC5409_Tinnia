@@ -121,18 +121,6 @@ func _physics_process(delta):
 	# return other players physics
 	if not is_multiplayer_authority():
 		return
-		
-	# if we try to exit
-#	if Input.is_action_just_pressed("pause"):
-#		pauseMenu()
-#		if not showing_mouse:
-#			# the mouse becomes visible so we can click the X
-#			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-#			showing_mouse = true
-#		else:
-#			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-#			showing_mouse = false
-
 	
 	# activate power
 	if Input.is_action_just_pressed("action_2") and power_available:
@@ -272,7 +260,7 @@ func normal_state():
 	player_speed = 5
 	jump_impulse = 8
 	
-@rpc("call_local")
+@rpc("any_peer", "call_local")
 func particle_emit(material_path : String):
 	var material : SphereMesh = load(material_path)
 	particles.draw_pass_1 = material
