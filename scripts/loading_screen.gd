@@ -1,4 +1,5 @@
 extends Control
+
 @export var scene : String = "res://scenes/main.tscn"
 @onready var progress_bar : ProgressBar = %ProgressBar
 var progress = []

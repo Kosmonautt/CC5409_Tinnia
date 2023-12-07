@@ -69,3 +69,28 @@ func game_end(winner: String):
 	winner_name = winner
 	get_tree().change_scene_to_file("res://scenes/ui/endscreen.tscn")
 	global_timer.stop()
+	
+@rpc("any_peer", "call_local")
+func new_carrier(id : int):
+	if multiplayer.is_server():
+		var i : int = players_alive[randi() % players_alive.size()]
+		update_the_bomb.rpc(i)
+
+@rpc("any_peer", "call_local")
+func elim_people(id :int):
+	players_alive.erase(id)
+
+func player_disconect(id: int):
+	emit_die.rpc_id(id)
+	elim_people.rpc(id)
+	if id == bomb_carrier:
+		new_carrier.rpc(id)
+	if players_alive.size() == 1:
+		var id_aux : int = players_alive[0]
+		var player_name : String = "nada"
+		for i in Game.players:
+			if id_aux == i.id:
+				player_name = i.name
+				break
+		game_end.rpc(player_name)
+	
