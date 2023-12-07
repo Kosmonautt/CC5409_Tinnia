@@ -28,6 +28,7 @@ var power_available : bool = true
 @onready var bomb_png : AnimatedSprite3D = $Playable_characters/Bomb_Sprite
 @onready var power_timer : Timer = $power_timer
 @onready var particles : GPUParticles3D = $Particles
+@onready var bomb_body : RigidBody3D = $Knight_bomb/RigidBody3D
 
 @onready var pause_menu : Control = $CanvasLayer/pause_menu
 var pausa = false
@@ -88,7 +89,7 @@ func _ready():
 	anim_tree.active = true
 	# show bomb png
 	bomb_png.play()
-	
+	add_to_group("Players")
 
 func _input(event):
 	# if we detect mouse movement
@@ -115,25 +116,11 @@ func _process(_delta):
 		normal_state()
 		power_active = false
 		
-# print(power_timer.time_left)
-
+		
 func _physics_process(delta):
 	# return other players physics
 	if not is_multiplayer_authority():
 		return
-	
-	
-	# if we try to exit
-#	if Input.is_action_just_pressed("pause"):
-#		pauseMenu()
-#		if not showing_mouse:
-#			# the mouse becomes visible so we can click the X
-#			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-#			showing_mouse = true
-#		else:
-#			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-#			showing_mouse = false
-
 	
 	# activate power
 	if Input.is_action_just_pressed("action_2") and power_available:
@@ -228,10 +215,12 @@ func mage_power():
 	particle_emit.rpc("res://resources/assets/powers/Mage_particles.tres")
 	position = mage_tp.global_position
 	
-
 func knight_power():
-	Debug.dprint("KNIGHT")
-	pass
+	animation_state.rpc("Throw")
+	bomb_body.position = position + (1 * -transform.basis.z)
+	bomb_body.show()
+	bomb_body.freeze = false
+	bomb_body.linear_velocity += (20 * -head.get_global_transform().basis.z) + target_velocity
 
 @rpc("call_local")
 func rogue_power():
@@ -271,7 +260,7 @@ func normal_state():
 	player_speed = 5
 	jump_impulse = 8
 	
-@rpc("call_local")
+@rpc("any_peer", "call_local")
 func particle_emit(material_path : String):
 	var material : SphereMesh = load(material_path)
 	particles.draw_pass_1 = material
@@ -280,6 +269,10 @@ func particle_emit(material_path : String):
 
 func _on_power_timer_timeout():
 	power_available = true
+	if bomb_body.position != Vector3.ZERO:
+		bomb_body.freeze = true
+		bomb_body.hide()
+		bomb_body.position = Vector3(0, 0, 0)
 	$GUI.show_power_icon()
 
 #func pauseMenu():
@@ -295,3 +288,9 @@ func _on_power_timer_timeout():
 ##		Engine.time_scale = 0
 #
 #	paused = !paused
+
+
+func _on_rigid_body_3d_body_entered(body):
+	if body.is_in_group("Players"):
+		if Global.bomb_carrier == name.to_int():
+			pass_the_bomb(body.name.to_int())

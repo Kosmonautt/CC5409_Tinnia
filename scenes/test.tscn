@@ -1,305 +1,21 @@
-[gd_scene load_steps=71 format=3 uid="uid://cday53347fn87"]
+[gd_scene load_steps=7 format=3 uid="uid://b8adw208onxum"]
 
-[ext_resource type="Script" path="res://scripts/playable_char.gd" id="1_cc565"]
-[ext_resource type="Texture2D" uid="uid://0jjienyapijm" path="res://resources/assets/bomb/Sprite-0001.png" id="2_qylr5"]
-[ext_resource type="PackedScene" uid="uid://utys7bhb5cx5" path="res://scenes/ui/gui.tscn" id="2_usxjd"]
-[ext_resource type="Texture2D" uid="uid://b4nx8xytfn4uj" path="res://resources/assets/bomb/Sprite-0002.png" id="3_i60jv"]
-[ext_resource type="Texture2D" uid="uid://jcyic0mjku1p" path="res://resources/assets/bomb/Sprite-0003.png" id="4_gevrx"]
-[ext_resource type="Texture2D" uid="uid://bjhyu5kt4ja0t" path="res://resources/assets/bomb/Sprite-0004.png" id="5_m3lfk"]
-[ext_resource type="Texture2D" uid="uid://b56hxk3t02tib" path="res://resources/assets/bomb/Sprite-0005.png" id="6_eydq8"]
-[ext_resource type="Texture2D" uid="uid://cc12kgk6w4tek" path="res://resources/assets/bomb/Sprite-0006.png" id="7_e3b3r"]
-[ext_resource type="Texture2D" uid="uid://dq5ey8nd3lrsp" path="res://resources/assets/bomb/Sprite-0007.png" id="8_w7dbc"]
-[ext_resource type="Texture2D" uid="uid://cn0bkfg4puwc1" path="res://resources/assets/bomb/Sprite-0008.png" id="9_grohx"]
-[ext_resource type="SphereMesh" uid="uid://chpiu6eg0apym" path="res://resources/assets/powers/Neutral_particles.tres" id="11_0u04h"]
-[ext_resource type="PackedScene" uid="uid://bns02ktexnfvp" path="res://scenes/ui/pause_menu.tscn" id="12_iibur"]
-[ext_resource type="Texture2D" uid="uid://bfmjmr3t2s241" path="res://resources/assets/smoke_bomb_rogue_texture.png" id="13_cgrt3"]
+[ext_resource type="Texture2D" uid="uid://bfmjmr3t2s241" path="res://resources/assets/smoke_bomb_rogue_texture.png" id="1_1s8d1"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_kjfdo"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_qylr5")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_i60jv")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_gevrx")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_m3lfk")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_eydq8")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_e3b3r")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_w7dbc")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_grohx")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+[sub_resource type="BoxShape3D" id="BoxShape3D_up0jl"]
+size = Vector3(2.95445, 0.17468, 2.57323)
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kjoxj"]
-
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_clwe1"]
-properties/0/path = NodePath(".:position")
-properties/0/spawn = true
-properties/0/sync = true
-properties/0/watch = false
-properties/1/path = NodePath(".:rotation")
-properties/1/spawn = true
-properties/1/sync = true
-properties/1/watch = false
-properties/2/path = NodePath(".:target_velocity")
-properties/2/spawn = true
-properties/2/sync = true
-properties/2/watch = false
-properties/3/path = NodePath("AnimationTree:parameters/conditions/is_landed")
-properties/3/spawn = true
-properties/3/sync = true
-properties/3/watch = false
-properties/4/path = NodePath("AnimationTree:parameters/Movement/blend_position")
-properties/4/spawn = true
-properties/4/sync = true
-properties/4/watch = false
-properties/5/path = NodePath(".:scale")
-properties/5/spawn = true
-properties/5/sync = true
-properties/5/watch = false
-properties/6/path = NodePath("Knight_bomb/RigidBody3D:position")
-properties/6/spawn = true
-properties/6/sync = true
-properties/6/watch = false
-properties/7/path = NodePath("Knight_bomb/RigidBody3D:rotation")
-properties/7/spawn = true
-properties/7/sync = true
-properties/7/watch = false
-properties/8/path = NodePath("Knight_bomb/RigidBody3D:visible")
-properties/8/spawn = true
-properties/8/sync = true
-properties/8/watch = false
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_2n0gf"]
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qo01g"]
-animation = &"Death_A"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q5aep"]
-animation = &"Interact"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4y2ik"]
-animation = &"Jump_Idle"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7c0ja"]
-animation = &"Jump_Land"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3y428"]
-animation = &"Jump_Start"
-
-[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_8yf4a"]
-
-[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_ep267"]
-
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_c643i"]
-graph_offset = Vector2(-438, -42)
-nodes/Animation/node = SubResource("AnimationNodeAnimation_3y428")
-nodes/Animation/position = Vector2(-220, 140)
-nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_8yf4a")
-nodes/TimeScale/position = Vector2(140, 140)
-nodes/TimeSeek/node = SubResource("AnimationNodeTimeSeek_ep267")
-nodes/TimeSeek/position = Vector2(-20, 160)
-node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"TimeSeek", &"TimeSeek", 0, &"Animation"]
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_732k0"]
-animation = &"Idle"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_spo5w"]
-animation = &"Running_A"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7pkto"]
-animation = &"Running_A"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uquum"]
-animation = &"Running_A"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5fuwg"]
-animation = &"Running_A"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sxqsu"]
-animation = &"Walking_A"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_scnqr"]
-animation = &"Walking_A"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_b3dqy"]
-animation = &"Walking_A"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0hbtq"]
-animation = &"Walking_A"
-
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_hxw64"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_732k0")
-blend_point_0/pos = Vector2(0, 0)
-blend_point_1/node = SubResource("AnimationNodeAnimation_spo5w")
-blend_point_1/pos = Vector2(0, 15)
-blend_point_2/node = SubResource("AnimationNodeAnimation_7pkto")
-blend_point_2/pos = Vector2(0, -15)
-blend_point_3/node = SubResource("AnimationNodeAnimation_uquum")
-blend_point_3/pos = Vector2(15, 0)
-blend_point_4/node = SubResource("AnimationNodeAnimation_5fuwg")
-blend_point_4/pos = Vector2(-15, 0)
-blend_point_5/node = SubResource("AnimationNodeAnimation_sxqsu")
-blend_point_5/pos = Vector2(0, 7.3)
-blend_point_6/node = SubResource("AnimationNodeAnimation_scnqr")
-blend_point_6/pos = Vector2(7.5, 0)
-blend_point_7/node = SubResource("AnimationNodeAnimation_b3dqy")
-blend_point_7/pos = Vector2(0, -7.5)
-blend_point_8/node = SubResource("AnimationNodeAnimation_0hbtq")
-blend_point_8/pos = Vector2(-7.5, 0)
-min_space = Vector2(-15, -15)
-max_space = Vector2(15, 15)
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jduhs"]
-animation = &"Throw"
-
-[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_na8s4"]
-
-[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_pgwut"]
-
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_lhwja"]
-graph_offset = Vector2(-49.2119, 111.223)
-nodes/Animation/node = SubResource("AnimationNodeAnimation_jduhs")
-nodes/Animation/position = Vector2(200, 300)
-nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_na8s4")
-nodes/TimeScale/position = Vector2(560, 180)
-nodes/TimeSeek/node = SubResource("AnimationNodeTimeSeek_pgwut")
-nodes/TimeSeek/position = Vector2(380, 220)
-nodes/output/position = Vector2(720, 160)
-node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"TimeSeek", &"TimeSeek", 0, &"Animation"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_krvd5"]
-advance_mode = 2
-advance_condition = &"is_landed"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7ytwu"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bi5pv"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5ssfq"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5w1y4"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pbhn1"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u1k6i"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_htx58"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gnma2"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7wch7"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fi5w2"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hgar2"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dkkwj"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xouvf"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_tkr7g"]
-states/Death_A/node = SubResource("AnimationNodeAnimation_qo01g")
-states/Death_A/position = Vector2(879, -26.354)
-states/End/position = Vector2(1120, 107)
-states/Interact/node = SubResource("AnimationNodeAnimation_q5aep")
-states/Interact/position = Vector2(232, -26.354)
-states/Jump_Idle/node = SubResource("AnimationNodeAnimation_4y2ik")
-states/Jump_Idle/position = Vector2(559.14, 224.646)
-states/Jump_Land/node = SubResource("AnimationNodeAnimation_7c0ja")
-states/Jump_Land/position = Vector2(879, 224.646)
-states/Jump_Start/node = SubResource("AnimationNodeBlendTree_c643i")
-states/Jump_Start/position = Vector2(232, 224.646)
-states/Movement/node = SubResource("AnimationNodeBlendSpace2D_hxw64")
-states/Movement/position = Vector2(232, 107)
-states/Start/position = Vector2(15, 107)
-states/Throw/node = SubResource("AnimationNodeBlendTree_lhwja")
-states/Throw/position = Vector2(15, 224.646)
-transitions = ["Jump_Idle", "Jump_Land", SubResource("AnimationNodeStateMachineTransition_krvd5"), "Interact", "Death_A", SubResource("AnimationNodeStateMachineTransition_7ytwu"), "Jump_Land", "Death_A", SubResource("AnimationNodeStateMachineTransition_bi5pv"), "Jump_Start", "Death_A", SubResource("AnimationNodeStateMachineTransition_5ssfq"), "Jump_Start", "Jump_Idle", SubResource("AnimationNodeStateMachineTransition_5w1y4"), "Start", "Movement", SubResource("AnimationNodeStateMachineTransition_pbhn1"), "Movement", "Jump_Start", SubResource("AnimationNodeStateMachineTransition_u1k6i"), "Movement", "Interact", SubResource("AnimationNodeStateMachineTransition_htx58"), "Movement", "Jump_Idle", SubResource("AnimationNodeStateMachineTransition_gnma2"), "Movement", "Death_A", SubResource("AnimationNodeStateMachineTransition_7wch7"), "Interact", "Movement", SubResource("AnimationNodeStateMachineTransition_fi5w2"), "Jump_Land", "Movement", SubResource("AnimationNodeStateMachineTransition_hgar2"), "Movement", "Throw", SubResource("AnimationNodeStateMachineTransition_dkkwj"), "Throw", "Movement", SubResource("AnimationNodeStateMachineTransition_xouvf")]
-graph_offset = Vector2(-141.86, -69.354)
-
-[sub_resource type="Animation" id="Animation_oigqe"]
-resource_name = "Death_A"
-
-[sub_resource type="Animation" id="Animation_07kxd"]
-resource_name = "Idle"
-
-[sub_resource type="Animation" id="Animation_5272m"]
-resource_name = "Interact"
-
-[sub_resource type="Animation" id="Animation_xtajy"]
-resource_name = "Jump_Idle"
-
-[sub_resource type="Animation" id="Animation_u5hht"]
-resource_name = "Jump_Land"
-
-[sub_resource type="Animation" id="Animation_lcbbw"]
-resource_name = "Jump_Start"
-
-[sub_resource type="Animation" id="Animation_i4htw"]
-resource_name = "Running_A"
-
-[sub_resource type="Animation" id="Animation_kmi15"]
-resource_name = "Throw"
-
-[sub_resource type="Animation" id="Animation_84itt"]
-resource_name = "Walking_A"
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ktuui"]
-_data = {
-"Death_A": SubResource("Animation_oigqe"),
-"Idle": SubResource("Animation_07kxd"),
-"Interact": SubResource("Animation_5272m"),
-"Jump_Idle": SubResource("Animation_xtajy"),
-"Jump_Land": SubResource("Animation_u5hht"),
-"Jump_Start": SubResource("Animation_lcbbw"),
-"Running_A": SubResource("Animation_i4htw"),
-"Throw": SubResource("Animation_kmi15"),
-"Walking_A": SubResource("Animation_84itt")
-}
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_gcnu2"]
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ifpw1"]
-emission_shape = 1
-emission_sphere_radius = 4.0
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_hsw6b"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7blfr"]
 points = PackedVector3Array(-0.191293, -1.93864e-05, -2.5481e-06, -0.154779, -1.93864e-05, 0.112405, -0.18253, 0.038868, -2.5481e-06, -0.154779, -1.93864e-05, -0.112445, -0.18253, -0.0389068, -2.5481e-06, -0.0591322, -1.93864e-05, 0.181929, -0.147664, 0.038868, 0.107276, -0.147664, -0.0389068, 0.107276, -0.147664, 0.038868, -0.107316, -0.140099, 0.066698, 0.101755, -0.173167, 0.066698, -2.5481e-06, -0.140099, 0.066698, -0.101796, -0.0564359, 0.038868, -0.173599, -0.0591322, -1.93864e-05, -0.181934, -0.0564359, -0.0389068, -0.173599, -0.147664, -0.0389068, -0.107316, -0.140099, -0.0666539, -0.101796, -0.173167, -0.0666539, -2.5481e-06, -0.140099, -0.0666539, 0.101755, -0.0564359, -0.0389068, 0.173559, 0.0564006, -0.0389068, 0.173559, 0.0590969, -1.93864e-05, 0.181893, 0.0564006, 0.038868, 0.173559, -0.0564359, 0.038868, 0.173559, -0.0535148, 0.066698, 0.164655, -0.0472981, 0.106662, 0.145564, -0.123846, 0.106662, 0.0899302, -0.153094, 0.106662, -2.5481e-06, -0.123846, 0.106662, -0.0899709, -0.0472981, 0.106662, -0.145605, -0.0535148, 0.066698, -0.164695, 0.0564006, 0.038868, -0.173599, 0.0590969, -1.93864e-05, -0.181934, 0.0564006, -0.0389068, -0.173599, -0.0535148, -0.0666539, -0.164695, -0.0473356, -0.106742, -0.145605, -0.123846, -0.106742, -0.0900065, -0.153094, -0.106742, -2.5481e-06, -0.123846, -0.106742, 0.0899658, -0.0473356, -0.106742, 0.145564, -0.0535148, -0.0666539, 0.164655, 0.147628, -0.0389068, 0.107276, 0.154744, -1.93864e-05, 0.112405, 0.0534795, -0.0666539, 0.164655, 0.140064, -0.0666539, 0.101755, 0.147628, 0.038868, 0.107276, 0.140064, 0.066698, 0.101755, 0.0534795, 0.066698, 0.164655, 0.0472628, 0.106662, 0.145564, -0.0256146, 0.202328, 0.078889, -0.0671091, 0.202328, 0.048757, -0.0829504, 0.202328, -2.5481e-06, -0.0671091, 0.202328, -0.0487621, 0.0472628, 0.106662, -0.145605, -0.0256146, 0.202328, -0.078894, 0.0534795, 0.066698, -0.164695, 0.147628, 0.038868, -0.107316, 0.154744, -1.93864e-05, -0.112445, 0.140064, 0.066698, -0.101796, 0.147628, -0.0389068, -0.107316, 0.140064, -0.0666539, -0.101796, 0.0534795, -0.0666539, -0.164695, 0.0473002, -0.106742, -0.145605, -0.0321309, -0.146085, -0.0988752, -0.0841113, -0.146085, -0.0611212, -0.10396, -0.146085, -2.5481e-06, -0.0841113, -0.146085, 0.0610805, 0.0473002, -0.106742, 0.145564, -0.0321309, -0.146085, 0.0988344, 0.182494, -0.0389068, -2.5481e-06, 0.191295, -1.93864e-05, -3.81619e-05, 0.12381, -0.106742, 0.0899658, 0.153059, -0.106742, -2.5481e-06, 0.173132, -0.0666539, -2.5481e-06, 0.182494, 0.038868, -2.5481e-06, 0.173132, 0.066698, -2.5481e-06, 0.153059, 0.106662, -3.81619e-05, 0.12381, 0.106662, 0.0899302, 0.0256542, 0.202328, 0.078889, 1.07288e-06, 0.238275, 0.0501105, -0.0476726, 0.238275, 0.0154908, -0.0294345, 0.238275, -0.0405702, 0.12381, 0.106662, -0.0899709, 0.0256542, 0.202328, -0.078894, 0.12381, -0.106742, -0.0900065, 0.084076, -0.146085, -0.0611212, 0.0320956, -0.146085, -0.0988752, -0.0359508, -0.164473, -0.0494745, -0.0581586, -0.164473, 0.0188744, 0.0320956, -0.146085, 0.0988344, 0.084076, -0.146085, 0.0610805, 1.07288e-06, -0.164473, 0.0611161, 0.103924, -0.146085, -2.5481e-06, 0.0671112, 0.202328, -0.0487621, 0.0829525, 0.202328, -2.5481e-06, 0.0671112, 0.202328, 0.048757, 0.0476747, 0.238275, 0.0154908, 1.07288e-06, 0.251734, -2.5481e-06, 0.0294741, 0.238275, -0.0405702, 0.0581233, -0.164473, 0.0188744, 0.0359155, -0.164473, -0.0494745, 1.07288e-06, -0.171348, -2.5481e-06)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1rnjh"]
 resource_name = "rogue_texture.001"
 cull_mode = 2
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("13_cgrt3")
+albedo_texture = ExtResource("1_1s8d1")
 roughness = 0.5
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_l64vv"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_ry1b5"]
 _surfaces = [{
 "aabb": AABB(-0.191293, -0.171348, -0.181934, 0.382588, 0.423082, 0.363863),
 "format": 4097,
@@ -313,7 +29,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_xqgqs"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_lklmv"]
 resource_name = "smoke_bomb_Cylinder_001"
 _surfaces = [{
 "aabb": AABB(-0.191293, -0.171348, -0.181934, 0.382588, 0.423082, 0.363863),
@@ -329,97 +45,27 @@ _surfaces = [{
 "vertex_data": PackedByteArray(222, 20, 216, 188, 144, 179, 86, 62, 175, 217, 20, 189, 90, 13, 136, 86, 255, 255, 255, 191, 222, 20, 216, 188, 144, 179, 86, 62, 175, 217, 20, 189, 160, 239, 0, 0, 255, 255, 255, 63, 222, 20, 216, 188, 144, 179, 86, 62, 175, 217, 20, 189, 128, 104, 28, 246, 255, 255, 255, 191, 222, 20, 216, 188, 144, 179, 86, 62, 175, 217, 20, 189, 128, 104, 28, 246, 181, 250, 76, 47, 8, 228, 46, 189, 144, 179, 86, 62, 20, 146, 99, 60, 90, 13, 136, 86, 255, 255, 255, 191, 8, 228, 46, 189, 144, 179, 86, 62, 20, 146, 99, 60, 64, 79, 214, 115, 34, 202, 255, 191, 8, 228, 46, 189, 144, 179, 86, 62, 20, 146, 99, 60, 182, 111, 106, 234, 99, 159, 255, 191, 8, 228, 46, 189, 144, 179, 86, 62, 20, 146, 99, 60, 182, 111, 106, 234, 197, 196, 252, 195, 102, 104, 255, 55, 144, 179, 86, 62, 122, 12, 56, 61, 64, 79, 214, 115, 34, 202, 255, 191, 102, 104, 255, 55, 144, 179, 86, 62, 122, 12, 56, 61, 190, 176, 214, 115, 254, 255, 237, 218, 102, 104, 255, 55, 144, 179, 86, 62, 122, 12, 56, 61, 255, 127, 64, 238, 254, 255, 255, 191, 102, 104, 255, 55, 144, 179, 86, 62, 122, 12, 56, 61, 255, 127, 64, 238, 62, 198, 254, 187, 102, 104, 255, 55, 144, 179, 86, 62, 122, 12, 56, 61, 255, 127, 64, 238, 253, 247, 223, 220, 223, 35, 47, 61, 144, 179, 86, 62, 15, 146, 99, 60, 190, 176, 214, 115, 254, 255, 237, 218, 223, 35, 47, 61, 144, 179, 86, 62, 15, 146, 99, 60, 166, 242, 138, 86, 98, 159, 255, 63, 223, 35, 47, 61, 144, 179, 86, 62, 15, 146, 99, 60, 75, 144, 104, 234, 77, 156, 108, 68, 153, 148, 216, 60, 144, 179, 86, 62, 179, 217, 20, 189, 160, 239, 0, 0, 255, 255, 255, 63, 153, 148, 216, 60, 144, 179, 86, 62, 179, 217, 20, 189, 166, 242, 138, 86, 98, 159, 255, 63, 153, 148, 216, 60, 144, 179, 86, 62, 179, 217, 20, 189, 126, 151, 28, 246, 209, 243, 98, 69, 153, 148, 216, 60, 144, 179, 86, 62, 179, 217, 20, 189, 126, 151, 28, 246, 67, 178, 159, 61, 46, 200, 241, 55, 75, 227, 128, 62, 206, 200, 196, 54, 255, 127, 255, 255, 99, 159, 255, 63, 88, 143, 241, 60, 71, 4, 116, 62, 134, 13, 38, 189, 222, 162, 82, 241, 46, 236, 35, 72, 88, 143, 241, 60, 71, 4, 116, 62, 134, 13, 38, 189, 160, 239, 0, 0, 255, 255, 255, 63, 88, 143, 241, 60, 71, 4, 116, 62, 134, 13, 38, 189, 222, 162, 82, 241, 103, 158, 69, 57, 88, 143, 241, 60, 71, 4, 116, 62, 134, 13, 38, 189, 166, 242, 138, 86, 98, 159, 255, 63, 108, 22, 241, 188, 71, 4, 116, 62, 130, 13, 38, 189, 32, 93, 82, 241, 255, 255, 255, 191, 108, 22, 241, 188, 71, 4, 116, 62, 130, 13, 38, 189, 90, 13, 136, 86, 255, 255, 255, 191, 108, 22, 241, 188, 71, 4, 116, 62, 130, 13, 38, 189, 32, 93, 82, 241, 183, 239, 23, 54, 108, 22, 241, 188, 71, 4, 116, 62, 130, 13, 38, 189, 160, 239, 0, 0, 255, 255, 255, 63, 243, 29, 67, 189, 71, 4, 116, 62, 204, 214, 125, 60, 153, 103, 172, 223, 255, 255, 255, 63, 243, 29, 67, 189, 71, 4, 116, 62, 204, 214, 125, 60, 90, 13, 136, 86, 255, 255, 255, 191, 243, 29, 67, 189, 71, 4, 116, 62, 204, 214, 125, 60, 153, 103, 172, 223, 7, 193, 49, 198, 243, 29, 67, 189, 71, 4, 116, 62, 204, 214, 125, 60, 64, 79, 214, 115, 34, 202, 255, 191, 51, 206, 241, 55, 71, 4, 116, 62, 99, 78, 77, 61, 255, 127, 238, 228, 212, 196, 189, 185, 51, 206, 241, 55, 71, 4, 116, 62, 99, 78, 77, 61, 64, 79, 214, 115, 34, 202, 255, 191, 51, 206, 241, 55, 71, 4, 116, 62, 99, 78, 77, 61, 255, 127, 238, 228, 124, 243, 148, 221, 51, 206, 241, 55, 71, 4, 116, 62, 99, 78, 77, 61, 190, 176, 214, 115, 254, 255, 237, 218, 95, 90, 67, 61, 71, 4, 116, 62, 194, 214, 125, 60, 101, 152, 172, 223, 154, 153, 238, 70, 95, 90, 67, 61, 71, 4, 116, 62, 194, 214, 125, 60, 190, 176, 214, 115, 254, 255, 237, 218, 95, 90, 67, 61, 71, 4, 116, 62, 194, 214, 125, 60, 166, 242, 138, 86, 98, 159, 255, 63, 224, 214, 169, 189, 196, 55, 79, 62, 153, 161, 170, 54, 198, 107, 191, 236, 27, 157, 4, 195, 224, 214, 169, 189, 196, 55, 79, 62, 153, 161, 170, 54, 27, 26, 26, 154, 84, 130, 140, 196, 149, 100, 137, 189, 196, 55, 79, 62, 242, 178, 71, 189, 157, 102, 161, 240, 143, 250, 43, 35, 149, 100, 137, 189, 196, 55, 79, 62, 242, 178, 71, 189, 155, 102, 161, 240, 255, 255, 255, 191, 149, 100, 137, 189, 196, 55, 79, 62, 242, 178, 71, 189, 214, 19, 90, 193, 60, 249, 33, 26, 194, 201, 209, 188, 196, 55, 79, 62, 246, 144, 161, 189, 251, 104, 25, 251, 96, 255, 141, 51, 194, 201, 209, 188, 196, 55, 79, 62, 246, 144, 161, 189, 160, 21, 232, 229, 254, 255, 77, 48, 185, 241, 169, 61, 196, 55, 79, 62, 102, 106, 170, 54, 56, 148, 191, 236, 175, 157, 57, 66, 185, 241, 169, 61, 196, 55, 79, 62, 102, 106, 170, 54, 227, 229, 26, 154, 84, 130, 141, 68, 113, 127, 137, 61, 196, 55, 79, 62, 250, 178, 71, 189, 99, 153, 161, 240, 32, 176, 185, 63, 113, 127, 137, 61, 196, 55, 79, 62, 250, 178, 71, 189, 40, 236, 90, 193, 220, 181, 255, 63, 35, 53, 210, 60, 196, 55, 79, 62, 249, 144, 161, 189, 3, 151, 25, 251, 138, 249, 192, 66, 35, 53, 210, 60, 196, 55, 79, 62, 249, 144, 161, 189, 94, 234, 232, 229, 153, 224, 255, 63, 110, 127, 137, 61, 196, 55, 79, 62, 151, 189, 71, 61, 59, 142, 71, 230, 251, 251, 167, 163, 110, 127, 137, 61, 196, 55, 79, 62, 151, 189, 71, 61, 164, 190, 214, 147, 60, 249, 32, 154, 36, 53, 210, 60, 196, 55, 79, 62, 78, 150, 161, 61, 159, 134, 254, 231, 153, 248, 174, 187, 36, 53, 210, 60, 196, 55, 79, 62, 78, 150, 161, 61, 159, 134, 254, 231, 247, 251, 216, 219, 36, 53, 210, 60, 196, 55, 79, 62, 78, 150, 161, 61, 20, 154, 160, 149, 115, 248, 57, 174, 36, 53, 210, 60, 196, 55, 79, 62, 78, 150, 161, 61, 22, 154, 160, 149, 152, 248, 61, 211, 153, 100, 137, 189, 196, 55, 79, 62, 152, 189, 71, 61, 195, 113, 71, 230, 80, 199, 0, 194, 153, 100, 137, 189, 196, 55, 79, 62, 152, 189, 71, 61, 90, 65, 214, 147, 220, 181, 255, 191, 191, 201, 209, 188, 196, 55, 79, 62, 73, 150, 161, 61, 95, 121, 0, 232, 93, 247, 178, 195, 191, 201, 209, 188, 196, 55, 79, 62, 73, 150, 161, 61, 95, 121, 0, 232, 76, 200, 252, 189, 191, 201, 209, 188, 196, 55, 79, 62, 73, 150, 161, 61, 234, 101, 160, 149, 115, 220, 196, 195, 191, 201, 209, 188, 196, 55, 79, 62, 73, 150, 161, 61, 232, 101, 160, 149, 131, 217, 76, 188, 245, 60, 188, 61, 142, 131, 18, 62, 119, 196, 136, 189, 232, 190, 143, 219, 222, 181, 254, 191, 9, 52, 172, 61, 171, 150, 21, 190, 84, 59, 122, 189, 242, 186, 167, 34, 105, 179, 108, 64, 155, 173, 232, 61, 60, 131, 18, 62, 51, 171, 48, 182, 88, 180, 166, 203, 128, 148, 23, 71, 177, 218, 212, 61, 171, 150, 21, 190, 205, 36, 33, 182, 35, 177, 83, 48, 255, 255, 255, 191, 163, 61, 188, 61, 60, 131, 18, 62, 49, 194, 136, 61, 112, 164, 20, 193, 207, 243, 170, 158, 7, 52, 172, 61, 171, 150, 21, 190, 77, 54, 122, 61, 188, 161, 30, 59, 240, 244, 115, 224, 115, 205, 15, 61, 148, 131, 18, 62, 177, 71, 221, 61, 157, 142, 96, 196, 254, 255, 176, 207, 21, 142, 3, 61, 171, 150, 21, 190, 205, 109, 202, 61, 84, 142, 10, 56, 19, 255, 178, 174, 62, 203, 15, 189, 31, 132, 18, 62, 85, 70, 221, 61, 97, 113, 98, 196, 150, 224, 1, 64, 62, 139, 3, 189, 171, 150, 21, 190, 206, 109, 202, 61, 170, 113, 10, 56, 101, 221, 117, 192, 246, 57, 188, 189, 164, 132, 18, 62, 4, 192, 136, 61, 145, 91, 24, 193, 217, 181, 1, 64, 156, 50, 172, 189, 171, 150, 21, 190, 80, 54, 122, 61, 66, 94, 30, 59, 147, 183, 147, 191, 89, 168, 232, 189, 248, 132, 18, 62, 102, 62, 49, 182, 171, 75, 170, 203, 129, 148, 232, 56, 72, 217, 212, 189, 171, 150, 21, 190, 205, 108, 32, 182, 219, 78, 83, 48, 255, 255, 255, 191, 76, 57, 188, 189, 245, 132, 18, 62, 73, 194, 136, 189, 27, 65, 145, 219, 208, 243, 83, 225, 161, 50, 172, 189, 171, 150, 21, 190, 87, 59, 122, 189, 12, 69, 167, 34, 205, 243, 254, 96, 106, 202, 15, 189, 160, 132, 18, 62, 212, 71, 221, 189, 99, 68, 96, 241, 254, 255, 178, 79, 67, 139, 3, 189, 171, 150, 21, 190, 82, 112, 202, 189, 126, 72, 4, 13, 12, 255, 192, 78, 163, 204, 15, 61, 23, 132, 18, 62, 45, 73, 221, 189, 156, 187, 96, 241, 156, 224, 254, 191, 19, 142, 3, 61, 171, 150, 21, 190, 80, 112, 202, 189, 128, 183, 4, 13, 125, 226, 134, 63, 255, 52, 23, 62, 69, 70, 31, 61, 41, 184, 219, 189, 172, 216, 162, 204, 220, 181, 255, 63, 255, 52, 23, 62, 69, 70, 31, 61, 41, 184, 219, 189, 171, 216, 163, 204, 220, 181, 255, 63, 253, 52, 23, 62, 250, 62, 31, 189, 41, 184, 219, 189, 171, 216, 91, 51, 220, 181, 0, 64, 253, 52, 23, 62, 250, 62, 31, 189, 41, 184, 219, 189, 172, 216, 92, 51, 33, 182, 10, 58, 220, 230, 58, 62, 69, 70, 31, 61, 205, 220, 33, 182, 9, 207, 245, 176, 255, 255, 255, 191, 220, 230, 58, 62, 69, 70, 31, 61, 205, 220, 33, 182, 9, 207, 245, 176, 85, 137, 136, 71, 220, 230, 58, 62, 250, 62, 31, 189, 153, 73, 33, 182, 9, 207, 9, 79, 85, 137, 118, 56, 220, 230, 58, 62, 250, 62, 31, 189, 153, 73, 33, 182, 9, 207, 9, 79, 85, 137, 118, 56, 0, 53, 23, 62, 69, 70, 31, 61, 163, 181, 219, 61, 91, 179, 82, 167, 19, 244, 16, 155, 0, 53, 23, 62, 69, 70, 31, 61, 163, 181, 219, 61, 90, 179, 82, 167, 20, 244, 16, 155, 255, 52, 23, 62, 250, 62, 31, 189, 164, 181, 219, 61, 90, 179, 172, 88, 20, 244, 237, 228, 255, 52, 23, 62, 250, 62, 31, 189, 164, 181, 219, 61, 91, 179, 172, 88, 255, 255, 255, 63, 12, 7, 103, 61, 69, 70, 31, 61, 16, 192, 49, 62, 10, 149, 46, 170, 46, 242, 123, 174, 12, 7, 103, 61, 69, 70, 31, 61, 16, 192, 49, 62, 10, 149, 46, 170, 254, 255, 77, 176, 12, 7, 103, 61, 250, 62, 31, 189, 16, 192, 49, 62, 10, 149, 208, 85, 254, 255, 177, 207, 12, 7, 103, 61, 250, 62, 31, 189, 16, 192, 49, 62, 10, 149, 208, 85, 254, 255, 177, 207, 236, 3, 103, 189, 69, 70, 31, 61, 18, 192, 49, 62, 244, 106, 46, 170, 155, 224, 255, 191, 236, 3, 103, 189, 69, 70, 31, 61, 18, 192, 49, 62, 244, 106, 46, 170, 155, 224, 255, 191, 231, 3, 103, 189, 250, 62, 31, 189, 15, 192, 49, 62, 244, 106, 208, 85, 155, 224, 255, 191, 231, 3, 103, 189, 250, 62, 31, 189, 15, 192, 49, 62, 244, 106, 208, 85, 190, 208, 92, 198, 55, 52, 23, 190, 69, 70, 31, 61, 159, 181, 219, 61, 163, 76, 82, 167, 74, 171, 225, 185, 55, 52, 23, 190, 69, 70, 31, 61, 159, 181, 219, 61, 164, 76, 82, 167, 34, 182, 244, 197, 55, 52, 23, 190, 69, 70, 31, 61, 159, 181, 219, 61, 163, 76, 82, 167, 220, 181, 255, 191, 55, 52, 23, 190, 239, 62, 31, 189, 159, 181, 219, 61, 163, 76, 172, 88, 220, 181, 255, 191, 55, 52, 23, 190, 239, 62, 31, 189, 159, 181, 219, 61, 163, 76, 172, 88, 73, 171, 28, 198, 19, 230, 58, 190, 69, 70, 31, 61, 205, 108, 32, 182, 245, 48, 245, 176, 255, 255, 255, 191, 19, 230, 58, 190, 69, 70, 31, 61, 205, 108, 32, 182, 245, 48, 245, 176, 85, 137, 136, 199, 19, 230, 58, 190, 239, 62, 31, 189, 51, 35, 32, 182, 245, 48, 9, 79, 85, 137, 118, 184, 19, 230, 58, 190, 239, 62, 31, 189, 51, 35, 32, 182, 245, 48, 9, 79, 85, 137, 118, 184, 53, 52, 23, 190, 69, 70, 31, 61, 37, 184, 219, 189, 83, 39, 163, 204, 20, 244, 17, 27, 53, 52, 23, 190, 69, 70, 31, 61, 37, 184, 219, 189, 82, 39, 162, 204, 19, 244, 16, 27, 53, 52, 23, 190, 239, 62, 31, 189, 37, 184, 219, 189, 82, 39, 92, 51, 19, 244, 238, 100, 53, 52, 23, 190, 239, 62, 31, 189, 37, 184, 219, 189, 83, 39, 91, 51, 20, 244, 238, 100, 248, 3, 103, 189, 69, 70, 31, 61, 81, 193, 49, 190, 47, 42, 243, 234, 46, 242, 124, 46, 248, 3, 103, 189, 69, 70, 31, 61, 81, 193, 49, 190, 47, 42, 243, 234, 254, 255, 77, 48, 248, 3, 103, 189, 239, 62, 31, 189, 81, 193, 49, 190, 47, 42, 11, 21, 254, 255, 177, 79, 248, 3, 103, 189, 239, 62, 31, 189, 81, 193, 49, 190, 47, 42, 11, 21, 254, 255, 77, 48, 3, 7, 103, 61, 69, 70, 31, 61, 82, 193, 49, 190, 207, 213, 243, 234, 248, 220, 231, 70, 3, 7, 103, 61, 69, 70, 31, 61, 82, 193, 49, 190, 207, 213, 243, 234, 155, 224, 255, 63, 2, 7, 103, 61, 250, 62, 31, 189, 83, 193, 49, 190, 207, 213, 11, 21, 155, 224, 255, 63, 2, 7, 103, 61, 250, 62, 31, 189, 83, 193, 49, 190, 207, 213, 11, 21, 191, 208, 92, 70, 173, 121, 30, 62, 204, 108, 124, 54, 40, 72, 230, 189, 255, 255, 220, 181, 220, 181, 255, 63, 211, 226, 67, 62, 204, 108, 124, 54, 205, 236, 43, 182, 255, 255, 255, 127, 255, 127, 255, 63, 174, 121, 30, 62, 204, 108, 124, 54, 118, 69, 230, 61, 33, 202, 255, 127, 254, 255, 16, 229, 160, 33, 114, 61, 51, 179, 122, 54, 133, 75, 58, 62, 98, 159, 255, 127, 255, 255, 176, 207, 110, 31, 114, 189, 51, 179, 122, 54, 135, 75, 58, 62, 156, 96, 255, 127, 155, 224, 255, 191, 34, 121, 30, 190, 204, 108, 124, 54, 112, 69, 230, 61, 221, 53, 255, 127, 220, 181, 255, 191, 67, 226, 67, 190, 204, 108, 124, 54, 153, 233, 41, 182, 0, 0, 255, 127, 255, 127, 255, 191, 33, 121, 30, 190, 204, 108, 124, 54, 31, 72, 230, 189, 0, 0, 220, 181, 255, 255, 238, 26, 125, 31, 114, 189, 204, 108, 124, 54, 219, 76, 58, 190, 0, 0, 155, 224, 255, 255, 78, 48, 151, 33, 114, 61, 204, 108, 124, 54, 221, 76, 58, 190, 255, 255, 155, 224, 155, 224, 255, 63, 208, 81, 7, 62, 115, 59, 86, 61, 217, 161, 196, 189, 66, 191, 90, 219, 219, 181, 0, 64, 208, 81, 7, 62, 115, 59, 86, 61, 217, 161, 196, 189, 254, 213, 206, 49, 220, 181, 0, 64, 205, 81, 7, 62, 41, 51, 86, 189, 216, 161, 196, 189, 66, 191, 164, 36, 16, 163, 129, 70, 205, 81, 7, 62, 41, 51, 86, 189, 216, 161, 196, 189, 65, 191, 163, 36, 58, 189, 226, 57, 205, 81, 7, 62, 41, 51, 86, 189, 216, 161, 196, 189, 246, 213, 52, 206, 220, 181, 255, 63, 131, 67, 39, 62, 115, 59, 86, 61, 51, 195, 17, 182, 176, 180, 78, 203, 255, 255, 255, 191, 131, 67, 39, 62, 115, 59, 86, 61, 51, 195, 17, 182, 176, 180, 78, 203, 93, 148, 31, 71, 131, 67, 39, 62, 115, 59, 86, 61, 51, 195, 17, 182, 23, 204, 23, 76, 134, 138, 72, 56, 128, 67, 39, 62, 41, 51, 86, 189, 205, 156, 16, 182, 174, 180, 175, 52, 94, 148, 223, 56, 128, 67, 39, 62, 41, 51, 86, 189, 205, 156, 16, 182, 13, 204, 241, 179, 138, 138, 183, 71, 208, 81, 7, 62, 115, 59, 86, 61, 146, 159, 196, 61, 163, 164, 187, 192, 197, 243, 156, 158, 208, 81, 7, 62, 115, 59, 86, 61, 146, 159, 196, 61, 206, 177, 0, 86, 172, 243, 165, 228, 206, 81, 7, 62, 41, 51, 86, 189, 145, 159, 196, 61, 164, 164, 66, 63, 255, 255, 255, 63, 206, 81, 7, 62, 41, 51, 86, 189, 145, 159, 196, 61, 201, 177, 7, 170, 170, 243, 89, 155, 84, 193, 78, 61, 115, 59, 86, 61, 175, 18, 31, 62, 93, 148, 9, 83, 153, 241, 58, 209, 84, 193, 78, 61, 115, 59, 86, 61, 175, 18, 31, 62, 181, 142, 6, 196, 107, 243, 146, 219, 84, 193, 78, 61, 115, 59, 86, 61, 175, 18, 31, 62, 179, 142, 7, 196, 166, 240, 55, 179, 84, 193, 78, 61, 115, 59, 86, 61, 175, 18, 31, 62, 93, 148, 9, 83, 228, 242, 207, 167, 74, 193, 78, 61, 41, 51, 86, 189, 174, 18, 31, 62, 179, 142, 247, 59, 253, 255, 77, 176, 74, 193, 78, 61, 41, 51, 86, 189, 174, 18, 31, 62, 90, 148, 252, 172, 152, 241, 197, 174, 74, 193, 78, 61, 41, 51, 86, 189, 174, 18, 31, 62, 90, 148, 252, 172, 227, 242, 48, 216, 250, 188, 78, 189, 115, 59, 86, 61, 177, 18, 31, 62, 161, 107, 9, 83, 136, 221, 204, 184, 250, 188, 78, 189, 115, 59, 86, 61, 177, 18, 31, 62, 75, 113, 7, 196, 155, 224, 254, 191, 250, 188, 78, 189, 115, 59, 86, 61, 177, 18, 31, 62, 161, 107, 9, 83, 158, 207, 140, 198, 243, 188, 78, 189, 41, 51, 86, 189, 172, 18, 31, 62, 75, 113, 247, 59, 112, 230, 82, 184, 243, 188, 78, 189, 41, 51, 86, 189, 172, 18, 31, 62, 75, 113, 247, 59, 213, 200, 74, 198, 243, 188, 78, 189, 41, 51, 86, 189, 172, 18, 31, 62, 164, 107, 252, 172, 138, 221, 50, 199, 243, 188, 78, 189, 41, 51, 86, 189, 172, 18, 31, 62, 163, 107, 253, 172, 155, 207, 113, 185, 186, 80, 7, 190, 114, 59, 86, 61, 145, 159, 196, 61, 49, 78, 254, 85, 220, 181, 255, 191, 186, 80, 7, 190, 114, 59, 86, 61, 145, 159, 196, 61, 92, 91, 188, 192, 59, 189, 27, 198, 186, 80, 7, 190, 114, 59, 86, 61, 145, 159, 196, 61, 90, 91, 188, 192, 17, 163, 126, 185, 184, 80, 7, 190, 39, 51, 86, 189, 145, 159, 196, 61, 54, 78, 8, 170, 220, 181, 254, 191, 184, 80, 7, 190, 39, 51, 86, 189, 145, 159, 196, 61, 92, 91, 65, 63, 58, 189, 226, 185, 184, 80, 7, 190, 39, 51, 86, 189, 145, 159, 196, 61, 92, 91, 65, 63, 16, 163, 129, 198, 104, 66, 39, 190, 114, 59, 86, 61, 51, 83, 16, 182, 233, 51, 22, 76, 135, 138, 71, 184, 104, 66, 39, 190, 114, 59, 86, 61, 51, 83, 16, 182, 80, 75, 79, 203, 95, 148, 31, 199, 104, 66, 39, 190, 114, 59, 86, 61, 51, 83, 16, 182, 80, 75, 79, 203, 161, 107, 223, 184, 104, 66, 39, 190, 39, 51, 86, 189, 51, 83, 16, 182, 241, 51, 241, 179, 138, 138, 183, 199, 104, 66, 39, 190, 39, 51, 86, 189, 51, 83, 16, 182, 80, 75, 175, 52, 94, 148, 223, 184, 184, 80, 7, 190, 114, 59, 86, 61, 211, 161, 196, 189, 1, 42, 206, 49, 171, 243, 166, 100, 184, 80, 7, 190, 114, 59, 86, 61, 211, 161, 196, 189, 188, 64, 90, 219, 195, 243, 156, 30, 184, 80, 7, 190, 39, 51, 86, 189, 210, 161, 196, 189, 8, 42, 53, 206, 171, 243, 90, 27, 184, 80, 7, 190, 39, 51, 86, 189, 210, 161, 196, 189, 189, 64, 163, 36, 197, 243, 97, 97, 3, 189, 78, 189, 114, 59, 86, 61, 207, 19, 31, 190, 245, 44, 93, 20, 254, 255, 178, 79, 3, 189, 78, 189, 114, 59, 86, 61, 207, 19, 31, 190, 7, 68, 74, 241, 166, 240, 56, 51, 3, 189, 78, 189, 114, 59, 86, 61, 207, 19, 31, 190, 6, 68, 73, 241, 107, 243, 147, 91, 1, 189, 78, 189, 39, 51, 86, 189, 205, 19, 31, 190, 254, 44, 163, 235, 254, 255, 77, 48, 1, 189, 78, 189, 39, 51, 86, 189, 205, 19, 31, 190, 7, 68, 180, 14, 253, 255, 77, 48, 74, 193, 78, 61, 114, 59, 86, 61, 210, 19, 31, 190, 247, 187, 74, 241, 111, 230, 171, 71, 74, 193, 78, 61, 114, 59, 86, 61, 210, 19, 31, 190, 248, 187, 73, 241, 215, 200, 181, 57, 74, 193, 78, 61, 114, 59, 86, 61, 210, 19, 31, 190, 9, 211, 93, 20, 154, 224, 255, 63, 70, 193, 78, 61, 41, 51, 86, 189, 208, 19, 31, 190, 247, 187, 180, 14, 214, 200, 74, 70, 70, 193, 78, 61, 41, 51, 86, 189, 208, 19, 31, 190, 247, 187, 180, 14, 112, 230, 83, 56, 70, 193, 78, 61, 41, 51, 86, 189, 208, 19, 31, 190, 0, 211, 163, 235, 154, 224, 0, 64, 193, 116, 15, 62, 8, 154, 136, 61, 203, 116, 208, 189, 254, 213, 206, 49, 220, 181, 0, 64, 193, 116, 15, 62, 8, 154, 136, 61, 203, 116, 208, 189, 32, 222, 122, 201, 220, 181, 255, 63, 248, 154, 253, 61, 220, 130, 218, 61, 81, 66, 184, 189, 96, 212, 32, 207, 220, 181, 255, 63, 4, 160, 253, 61, 146, 142, 218, 189, 212, 69, 184, 189, 155, 210, 216, 47, 220, 181, 255, 63, 217, 112, 15, 62, 232, 126, 136, 189, 27, 111, 208, 189, 246, 213, 52, 206, 220, 181, 255, 63, 217, 112, 15, 62, 232, 126, 136, 189, 27, 111, 208, 189, 52, 222, 144, 54, 220, 181, 255, 63, 144, 188, 28, 62, 223, 130, 218, 61, 102, 54, 44, 182, 84, 202, 170, 181, 66, 139, 204, 71, 51, 82, 49, 62, 12, 154, 136, 61, 0, 64, 27, 182, 23, 204, 23, 76, 134, 138, 72, 56, 51, 82, 49, 62, 12, 154, 136, 61, 0, 64, 27, 182, 46, 213, 208, 170, 3, 135, 249, 70, 94, 77, 49, 62, 232, 126, 136, 189, 153, 25, 26, 182, 13, 204, 241, 179, 138, 138, 183, 71, 94, 77, 49, 62, 232, 126, 136, 189, 153, 25, 26, 182, 70, 213, 71, 85, 255, 255, 255, 191, 168, 191, 28, 62, 146, 142, 218, 189, 0, 80, 37, 182, 107, 200, 107, 72, 16, 140, 34, 56, 252, 154, 253, 61, 220, 130, 218, 61, 165, 63, 184, 61, 222, 176, 157, 171, 120, 243, 136, 155, 193, 116, 15, 62, 11, 154, 136, 61, 94, 114, 208, 61, 206, 177, 0, 86, 172, 243, 165, 228, 193, 116, 15, 62, 11, 154, 136, 61, 94, 114, 208, 61, 131, 182, 222, 161, 44, 245, 153, 154, 218, 112, 15, 62, 232, 126, 136, 189, 176, 108, 208, 61, 201, 177, 7, 170, 170, 243, 89, 155, 218, 112, 15, 62, 232, 126, 136, 189, 176, 108, 208, 61, 144, 182, 53, 94, 48, 245, 102, 229, 5, 160, 253, 61, 146, 142, 218, 189, 62, 67, 184, 61, 216, 175, 156, 82, 73, 243, 63, 228, 70, 189, 65, 61, 220, 130, 218, 61, 213, 15, 21, 62, 243, 147, 158, 174, 76, 241, 247, 174, 70, 189, 65, 61, 220, 130, 218, 61, 213, 15, 21, 62, 243, 147, 158, 174, 77, 250, 120, 211, 124, 47, 91, 61, 8, 154, 136, 61, 111, 163, 40, 62, 93, 148, 9, 83, 153, 241, 58, 209, 124, 47, 91, 61, 8, 154, 136, 61, 111, 163, 40, 62, 111, 150, 126, 164, 158, 243, 25, 174, 124, 47, 91, 61, 8, 154, 136, 61, 111, 163, 40, 62, 93, 148, 9, 83, 228, 242, 207, 167, 124, 47, 91, 61, 8, 154, 136, 61, 111, 163, 40, 62, 111, 150, 126, 164, 88, 244, 105, 214, 133, 41, 91, 61, 232, 126, 136, 189, 214, 158, 40, 62, 90, 148, 252, 172, 227, 242, 48, 216, 133, 41, 91, 61, 232, 126, 136, 189, 214, 158, 40, 62, 117, 150, 150, 91, 93, 244, 153, 169, 133, 41, 91, 61, 232, 126, 136, 189, 214, 158, 40, 62, 90, 148, 252, 172, 152, 241, 197, 174, 133, 41, 91, 61, 232, 126, 136, 189, 214, 158, 40, 62, 117, 150, 150, 91, 164, 243, 230, 209, 83, 193, 65, 61, 146, 142, 218, 189, 188, 18, 21, 62, 130, 147, 141, 79, 254, 255, 177, 207, 128, 187, 65, 189, 217, 130, 218, 61, 211, 15, 21, 62, 11, 108, 158, 174, 240, 221, 88, 199, 128, 187, 65, 189, 217, 130, 218, 61, 211, 15, 21, 62, 9, 108, 159, 174, 11, 217, 38, 189, 17, 44, 91, 189, 3, 154, 136, 61, 111, 163, 40, 62, 143, 105, 126, 164, 52, 220, 47, 198, 17, 44, 91, 189, 3, 154, 136, 61, 111, 163, 40, 62, 161, 107, 9, 83, 136, 221, 204, 184, 17, 44, 91, 189, 3, 154, 136, 61, 111, 163, 40, 62, 143, 105, 126, 164, 42, 211, 44, 186, 17, 44, 91, 189, 3, 154, 136, 61, 111, 163, 40, 62, 161, 107, 9, 83, 158, 207, 140, 198, 19, 38, 91, 189, 232, 126, 136, 189, 214, 158, 40, 62, 137, 105, 150, 91, 52, 211, 207, 197, 19, 38, 91, 189, 232, 126, 136, 189, 214, 158, 40, 62, 163, 107, 253, 172, 155, 207, 113, 185, 19, 38, 91, 189, 232, 126, 136, 189, 214, 158, 40, 62, 137, 105, 150, 91, 49, 220, 210, 185, 19, 38, 91, 189, 232, 126, 136, 189, 214, 158, 40, 62, 164, 107, 252, 172, 138, 221, 50, 199, 237, 190, 65, 189, 146, 142, 218, 189, 187, 18, 21, 62, 124, 108, 141, 79, 153, 224, 254, 191, 9, 154, 253, 189, 213, 130, 218, 61, 152, 63, 184, 61, 32, 79, 156, 171, 220, 181, 254, 191, 229, 115, 15, 190, 253, 153, 136, 61, 89, 114, 208, 61, 122, 73, 222, 161, 220, 181, 255, 191, 229, 115, 15, 190, 253, 153, 136, 61, 89, 114, 208, 61, 48, 78, 254, 85, 219, 181, 255, 191, 253, 111, 15, 190, 233, 126, 136, 189, 174, 108, 208, 61, 110, 73, 53, 94, 220, 181, 255, 191, 253, 111, 15, 190, 233, 126, 136, 189, 174, 108, 208, 61, 53, 78, 7, 170, 220, 181, 255, 191, 210, 158, 253, 189, 146, 142, 218, 189, 61, 67, 184, 61, 38, 80, 156, 82, 220, 181, 255, 191, 17, 188, 28, 190, 211, 130, 218, 61, 0, 16, 43, 182, 169, 53, 168, 181, 65, 139, 203, 199, 83, 81, 49, 190, 251, 153, 136, 61, 0, 208, 25, 182, 208, 42, 208, 170, 3, 135, 249, 198, 83, 81, 49, 190, 251, 153, 136, 61, 0, 208, 25, 182, 233, 51, 22, 76, 135, 138, 71, 184, 129, 76, 49, 190, 233, 126, 136, 189, 153, 169, 24, 182, 184, 42, 71, 85, 255, 255, 255, 191, 129, 76, 49, 190, 233, 126, 136, 189, 153, 169, 24, 182, 241, 51, 241, 179, 138, 138, 183, 199, 13, 191, 28, 190, 146, 142, 218, 189, 51, 115, 36, 182, 147, 55, 107, 72, 16, 140, 34, 184, 6, 154, 253, 189, 212, 130, 218, 61, 67, 66, 184, 189, 156, 43, 31, 207, 120, 243, 136, 27, 227, 115, 15, 190, 251, 153, 136, 61, 194, 116, 208, 189, 222, 33, 122, 201, 43, 245, 153, 26, 227, 115, 15, 190, 251, 153, 136, 61, 194, 116, 208, 189, 1, 42, 206, 49, 171, 243, 166, 100, 253, 111, 15, 190, 233, 126, 136, 189, 22, 111, 208, 189, 202, 33, 144, 54, 48, 245, 103, 101, 253, 111, 15, 190, 233, 126, 136, 189, 22, 111, 208, 189, 8, 42, 53, 206, 171, 243, 90, 27, 211, 158, 253, 189, 146, 142, 218, 189, 208, 69, 184, 189, 99, 45, 216, 47, 73, 243, 63, 100, 127, 187, 65, 189, 215, 130, 218, 61, 35, 17, 21, 190, 159, 46, 10, 236, 254, 255, 177, 79, 24, 44, 91, 189, 254, 153, 136, 61, 159, 164, 40, 190, 127, 36, 142, 233, 254, 255, 177, 79, 24, 44, 91, 189, 254, 153, 136, 61, 159, 164, 40, 190, 245, 44, 93, 20, 254, 255, 178, 79, 32, 38, 91, 189, 233, 126, 136, 189, 9, 160, 40, 190, 105, 36, 118, 22, 254, 255, 177, 79, 32, 38, 91, 189, 233, 126, 136, 189, 9, 160, 40, 190, 254, 44, 163, 235, 254, 255, 77, 48, 249, 190, 65, 189, 146, 142, 218, 189, 4, 20, 21, 190, 114, 48, 131, 19, 254, 255, 178, 79, 64, 189, 65, 61, 218, 130, 218, 61, 41, 17, 21, 190, 95, 209, 10, 236, 155, 224, 255, 63, 116, 47, 91, 61, 4, 154, 136, 61, 164, 164, 40, 190, 9, 211, 93, 20, 154, 224, 255, 63, 116, 47, 91, 61, 4, 154, 136, 61, 164, 164, 40, 190, 127, 219, 142, 233, 155, 224, 255, 63, 126, 41, 91, 61, 232, 126, 136, 189, 11, 160, 40, 190, 1, 211, 163, 235, 154, 224, 255, 63, 126, 41, 91, 61, 232, 126, 136, 189, 11, 160, 40, 190, 149, 219, 118, 22, 154, 224, 255, 63, 78, 193, 65, 61, 146, 142, 218, 189, 6, 20, 21, 190, 140, 207, 131, 19, 153, 224, 255, 63, 152, 216, 181, 189, 149, 200, 55, 62, 102, 198, 170, 54, 216, 5, 39, 122, 23, 128, 5, 191, 42, 161, 224, 188, 149, 200, 55, 62, 138, 1, 173, 61, 193, 97, 80, 123, 124, 223, 55, 191, 42, 161, 224, 188, 149, 200, 55, 62, 138, 1, 173, 61, 193, 97, 80, 123, 94, 223, 198, 192, 75, 27, 147, 189, 149, 200, 55, 62, 237, 218, 85, 61, 81, 56, 194, 123, 220, 181, 255, 191, 68, 12, 225, 60, 149, 200, 55, 62, 141, 1, 173, 61, 59, 158, 80, 123, 112, 254, 63, 208, 68, 12, 225, 60, 149, 200, 55, 62, 141, 1, 173, 61, 59, 158, 80, 123, 112, 254, 176, 175, 14, 54, 147, 61, 149, 200, 55, 62, 237, 218, 85, 61, 173, 199, 194, 123, 151, 254, 86, 229, 72, 12, 225, 60, 149, 200, 55, 62, 56, 252, 172, 189, 80, 251, 62, 30, 154, 224, 255, 63, 17, 54, 147, 61, 149, 200, 55, 62, 77, 208, 85, 189, 193, 251, 174, 71, 220, 181, 255, 63, 95, 243, 181, 61, 149, 200, 55, 62, 51, 143, 170, 54, 38, 250, 39, 122, 255, 255, 255, 191, 46, 161, 224, 188, 149, 200, 55, 62, 52, 252, 172, 189, 174, 4, 62, 30, 254, 255, 177, 79, 71, 27, 147, 189, 149, 200, 55, 62, 72, 208, 85, 189, 61, 4, 174, 71, 151, 254, 86, 101, 178, 144, 204, 60, 44, 55, 33, 62, 161, 57, 157, 189, 108, 173, 217, 244, 152, 224, 255, 191, 178, 144, 204, 60, 44, 55, 33, 62, 161, 57, 157, 189, 30, 227, 79, 24, 154, 224, 255, 63, 18, 206, 133, 61, 44, 55, 33, 62, 63, 85, 66, 189, 127, 176, 229, 227, 217, 181, 254, 191, 18, 206, 133, 61, 44, 55, 33, 62, 63, 85, 66, 189, 91, 229, 181, 58, 220, 181, 255, 63, 49, 97, 165, 61, 44, 55, 33, 62, 0, 36, 172, 54, 235, 166, 18, 217, 21, 153, 132, 186, 49, 97, 165, 61, 44, 55, 33, 62, 0, 36, 172, 54, 160, 221, 160, 93, 255, 255, 255, 191, 17, 206, 133, 61, 44, 55, 33, 62, 250, 95, 66, 61, 24, 156, 124, 207, 80, 246, 44, 95, 17, 206, 133, 61, 44, 55, 33, 62, 250, 95, 66, 61, 180, 186, 92, 101, 22, 247, 196, 229, 98, 70, 165, 189, 44, 55, 33, 62, 205, 72, 172, 54, 94, 34, 160, 93, 81, 132, 29, 186, 98, 70, 165, 189, 44, 55, 33, 62, 205, 72, 172, 54, 31, 89, 31, 217, 25, 153, 134, 58, 66, 179, 133, 189, 44, 55, 33, 62, 58, 85, 66, 189, 163, 26, 181, 58, 22, 247, 197, 101, 66, 179, 133, 189, 44, 55, 33, 62, 58, 85, 66, 189, 138, 79, 238, 227, 84, 246, 41, 223, 122, 37, 204, 188, 44, 55, 33, 62, 253, 62, 157, 61, 176, 103, 31, 99, 122, 214, 214, 196, 122, 37, 204, 188, 44, 55, 33, 62, 253, 62, 157, 61, 220, 116, 147, 210, 157, 224, 255, 63, 70, 179, 133, 189, 44, 55, 33, 62, 250, 95, 66, 61, 74, 69, 92, 101, 220, 181, 255, 191, 70, 179, 133, 189, 44, 55, 33, 62, 250, 95, 66, 61, 237, 99, 134, 207, 221, 181, 255, 63, 174, 144, 204, 60, 44, 55, 33, 62, 2, 63, 157, 61, 38, 139, 140, 210, 253, 255, 179, 79, 174, 144, 204, 60, 44, 55, 33, 62, 2, 63, 157, 61, 78, 152, 31, 99, 245, 245, 4, 210, 123, 37, 204, 188, 44, 55, 33, 62, 159, 57, 157, 189, 224, 28, 79, 24, 254, 255, 177, 79, 123, 37, 204, 188, 44, 55, 33, 62, 159, 57, 157, 189, 150, 82, 221, 244, 253, 255, 77, 176, 117, 54, 19, 61, 188, 101, 40, 190, 157, 159, 74, 189, 208, 163, 18, 15, 142, 222, 225, 58, 117, 54, 19, 61, 188, 101, 40, 190, 157, 159, 74, 189, 206, 163, 18, 15, 118, 158, 235, 70, 28, 49, 110, 61, 188, 101, 40, 190, 85, 195, 154, 60, 16, 153, 54, 33, 59, 243, 167, 223, 0, 208, 176, 53, 188, 101, 40, 190, 38, 111, 122, 61, 255, 127, 217, 27, 190, 196, 113, 198, 0, 208, 176, 53, 188, 101, 40, 190, 38, 111, 122, 61, 255, 127, 217, 27, 113, 246, 12, 170, 93, 46, 110, 189, 188, 101, 40, 190, 92, 195, 154, 60, 238, 102, 54, 33, 255, 255, 255, 63, 93, 46, 110, 189, 188, 101, 40, 190, 92, 195, 154, 60, 238, 102, 54, 33, 145, 182, 141, 187, 244, 217, 177, 53, 190, 117, 47, 190, 157, 244, 34, 182, 255, 127, 0, 0, 254, 255, 255, 63, 181, 51, 19, 189, 188, 101, 40, 190, 159, 159, 74, 189, 48, 92, 18, 15, 253, 255, 238, 90, 181, 51, 19, 189, 188, 101, 40, 190, 159, 159, 74, 189, 48, 92, 18, 15, 68, 239, 62, 74, 224, 214, 169, 189, 196, 55, 79, 62, 153, 161, 170, 54, 1, 14, 102, 80, 84, 130, 140, 196, 149, 100, 137, 189, 196, 55, 79, 62, 242, 178, 71, 189, 251, 1, 194, 64, 60, 249, 33, 26, 113, 127, 137, 61, 196, 55, 79, 62, 250, 178, 71, 189, 64, 239, 88, 36, 220, 181, 255, 63, 35, 53, 210, 60, 196, 55, 79, 62, 249, 144, 161, 189, 219, 254, 133, 5, 153, 224, 255, 63, 110, 127, 137, 61, 196, 55, 79, 62, 151, 189, 71, 61, 60, 176, 110, 135, 60, 249, 32, 154, 110, 127, 137, 61, 196, 55, 79, 62, 151, 189, 71, 61, 60, 223, 158, 97, 60, 249, 32, 154, 153, 100, 137, 189, 196, 55, 79, 62, 152, 189, 71, 61, 189, 79, 235, 133, 220, 181, 255, 191, 153, 100, 137, 189, 196, 55, 79, 62, 152, 189, 71, 61, 54, 29, 157, 98, 220, 181, 255, 191, 220, 230, 58, 62, 69, 70, 31, 61, 205, 220, 33, 182, 64, 193, 0, 249, 255, 255, 255, 191, 220, 230, 58, 62, 69, 70, 31, 61, 205, 220, 33, 182, 202, 184, 250, 181, 255, 255, 255, 191, 220, 230, 58, 62, 69, 70, 31, 61, 205, 220, 33, 182, 193, 71, 152, 254, 85, 137, 136, 71, 220, 230, 58, 62, 69, 70, 31, 61, 205, 220, 33, 182, 226, 203, 95, 126, 85, 137, 136, 71, 220, 230, 58, 62, 69, 70, 31, 61, 205, 220, 33, 182, 60, 248, 55, 59, 85, 137, 136, 71, 220, 230, 58, 62, 250, 62, 31, 189, 153, 73, 33, 182, 140, 198, 131, 99, 85, 137, 118, 56, 220, 230, 58, 62, 250, 62, 31, 189, 153, 73, 33, 182, 72, 233, 84, 54, 85, 137, 118, 56, 220, 230, 58, 62, 250, 62, 31, 189, 153, 73, 33, 182, 58, 217, 93, 46, 85, 137, 118, 56, 220, 230, 58, 62, 250, 62, 31, 189, 153, 73, 33, 182, 8, 190, 198, 78, 85, 137, 118, 56, 12, 7, 103, 61, 69, 70, 31, 61, 16, 192, 49, 62, 27, 163, 97, 174, 46, 242, 123, 174, 12, 7, 103, 61, 69, 70, 31, 61, 16, 192, 49, 62, 89, 159, 116, 145, 254, 255, 77, 176, 12, 7, 103, 61, 250, 62, 31, 189, 16, 192, 49, 62, 234, 152, 38, 116, 254, 255, 177, 207, 12, 7, 103, 61, 250, 62, 31, 189, 16, 192, 49, 62, 7, 189, 85, 100, 254, 255, 177, 207, 12, 7, 103, 61, 250, 62, 31, 189, 16, 192, 49, 62, 165, 188, 255, 97, 254, 255, 177, 207, 236, 3, 103, 189, 69, 70, 31, 61, 18, 192, 49, 62, 148, 111, 111, 182, 155, 224, 255, 191, 236, 3, 103, 189, 69, 70, 31, 61, 18, 192, 49, 62, 239, 67, 211, 154, 155, 224, 255, 191, 236, 3, 103, 189, 69, 70, 31, 61, 18, 192, 49, 62, 24, 68, 127, 102, 155, 224, 255, 191, 236, 3, 103, 189, 69, 70, 31, 61, 18, 192, 49, 62, 95, 127, 141, 128, 155, 224, 255, 191, 231, 3, 103, 189, 250, 62, 31, 189, 15, 192, 49, 62, 193, 74, 31, 103, 155, 224, 255, 191, 231, 3, 103, 189, 250, 62, 31, 189, 15, 192, 49, 62, 53, 117, 64, 100, 155, 224, 255, 191, 231, 3, 103, 189, 250, 62, 31, 189, 15, 192, 49, 62, 190, 100, 42, 83, 190, 208, 92, 198, 231, 3, 103, 189, 250, 62, 31, 189, 15, 192, 49, 62, 33, 59, 217, 81, 190, 208, 92, 198, 19, 230, 58, 190, 69, 70, 31, 61, 205, 108, 32, 182, 41, 68, 43, 173, 255, 255, 255, 191, 19, 230, 58, 190, 69, 70, 31, 61, 205, 108, 32, 182, 147, 52, 2, 231, 255, 255, 255, 191, 19, 230, 58, 190, 69, 70, 31, 61, 205, 108, 32, 182, 223, 57, 2, 225, 85, 137, 136, 199, 19, 230, 58, 190, 69, 70, 31, 61, 205, 108, 32, 182, 182, 48, 144, 96, 85, 137, 136, 199, 53, 52, 23, 190, 239, 62, 31, 189, 37, 184, 219, 189, 149, 50, 229, 222, 19, 244, 238, 100, 53, 52, 23, 190, 239, 62, 31, 189, 37, 184, 219, 189, 225, 57, 38, 92, 19, 244, 238, 100, 53, 52, 23, 190, 239, 62, 31, 189, 37, 184, 219, 189, 176, 229, 102, 27, 19, 244, 238, 100, 53, 52, 23, 190, 239, 62, 31, 189, 37, 184, 219, 189, 234, 47, 225, 67, 20, 244, 238, 100, 53, 52, 23, 190, 239, 62, 31, 189, 37, 184, 219, 189, 37, 205, 230, 10, 20, 244, 238, 100, 131, 67, 39, 62, 115, 59, 86, 61, 51, 195, 17, 182, 253, 191, 44, 235, 255, 255, 255, 191, 131, 67, 39, 62, 115, 59, 86, 61, 51, 195, 17, 182, 171, 180, 146, 171, 255, 255, 255, 191, 131, 67, 39, 62, 115, 59, 86, 61, 51, 195, 17, 182, 244, 207, 222, 149, 134, 138, 72, 56, 131, 67, 39, 62, 115, 59, 86, 61, 51, 195, 17, 182, 47, 208, 6, 27, 134, 138, 72, 56, 128, 67, 39, 62, 41, 51, 86, 189, 205, 156, 16, 182, 74, 183, 200, 87, 94, 148, 223, 56, 128, 67, 39, 62, 41, 51, 86, 189, 205, 156, 16, 182, 102, 211, 112, 28, 94, 148, 223, 56, 128, 67, 39, 62, 41, 51, 86, 189, 205, 156, 16, 182, 217, 185, 252, 99, 138, 138, 183, 71, 128, 67, 39, 62, 41, 51, 86, 189, 205, 156, 16, 182, 27, 226, 131, 132, 138, 138, 183, 71, 128, 67, 39, 62, 41, 51, 86, 189, 205, 156, 16, 182, 247, 238, 243, 86, 138, 138, 183, 71, 128, 67, 39, 62, 41, 51, 86, 189, 205, 156, 16, 182, 224, 193, 116, 228, 138, 138, 183, 71, 84, 193, 78, 61, 115, 59, 86, 61, 175, 18, 31, 62, 93, 171, 125, 152, 107, 243, 146, 219, 84, 193, 78, 61, 115, 59, 86, 61, 175, 18, 31, 62, 99, 200, 109, 147, 228, 242, 207, 167, 84, 193, 78, 61, 115, 59, 86, 61, 175, 18, 31, 62, 25, 165, 161, 92, 228, 242, 207, 167, 74, 193, 78, 61, 41, 51, 86, 189, 174, 18, 31, 62, 55, 176, 160, 106, 227, 242, 48, 216, 250, 188, 78, 189, 115, 59, 86, 61, 177, 18, 31, 62, 32, 79, 177, 145, 158, 207, 140, 198, 243, 188, 78, 189, 41, 51, 86, 189, 172, 18, 31, 62, 241, 79, 172, 100, 112, 230, 82, 184, 243, 188, 78, 189, 41, 51, 86, 189, 172, 18, 31, 62, 74, 90, 95, 174, 155, 207, 113, 185, 104, 66, 39, 190, 114, 59, 86, 61, 51, 83, 16, 182, 135, 77, 8, 155, 135, 138, 71, 184, 104, 66, 39, 190, 114, 59, 86, 61, 51, 83, 16, 182, 152, 43, 171, 112, 135, 138, 71, 184, 104, 66, 39, 190, 114, 59, 86, 61, 51, 83, 16, 182, 6, 50, 28, 19, 135, 138, 71, 184, 104, 66, 39, 190, 114, 59, 86, 61, 51, 83, 16, 182, 13, 64, 77, 238, 95, 148, 31, 199, 104, 66, 39, 190, 114, 59, 86, 61, 51, 83, 16, 182, 160, 71, 71, 167, 95, 148, 31, 199, 184, 80, 7, 190, 39, 51, 86, 189, 210, 161, 196, 189, 234, 22, 84, 177, 171, 243, 90, 27, 184, 80, 7, 190, 39, 51, 86, 189, 210, 161, 196, 189, 1, 64, 129, 245, 171, 243, 90, 27, 184, 80, 7, 190, 39, 51, 86, 189, 210, 161, 196, 189, 48, 24, 195, 39, 171, 243, 90, 27, 184, 80, 7, 190, 39, 51, 86, 189, 210, 161, 196, 189, 185, 69, 55, 178, 171, 243, 90, 27, 184, 80, 7, 190, 39, 51, 86, 189, 210, 161, 196, 189, 13, 57, 7, 79, 197, 243, 97, 97, 184, 80, 7, 190, 39, 51, 86, 189, 210, 161, 196, 189, 203, 44, 137, 19, 197, 243, 97, 97, 51, 82, 49, 62, 12, 154, 136, 61, 0, 64, 27, 182, 94, 208, 140, 105, 134, 138, 72, 56, 51, 82, 49, 62, 12, 154, 136, 61, 0, 64, 27, 182, 80, 183, 171, 96, 134, 138, 72, 56, 51, 82, 49, 62, 12, 154, 136, 61, 0, 64, 27, 182, 92, 211, 10, 37, 134, 138, 72, 56, 51, 82, 49, 62, 12, 154, 136, 61, 0, 64, 27, 182, 142, 213, 103, 15, 3, 135, 249, 70, 51, 82, 49, 62, 12, 154, 136, 61, 0, 64, 27, 182, 65, 175, 56, 186, 3, 135, 249, 70, 94, 77, 49, 62, 232, 126, 136, 189, 153, 25, 26, 182, 83, 203, 95, 163, 138, 138, 183, 71, 94, 77, 49, 62, 232, 126, 136, 189, 153, 25, 26, 182, 83, 227, 224, 178, 138, 138, 183, 71, 94, 77, 49, 62, 232, 126, 136, 189, 153, 25, 26, 182, 26, 184, 32, 67, 255, 255, 255, 191, 124, 47, 91, 61, 8, 154, 136, 61, 111, 163, 40, 62, 140, 163, 21, 89, 228, 242, 207, 167, 124, 47, 91, 61, 8, 154, 136, 61, 111, 163, 40, 62, 233, 160, 205, 177, 88, 244, 105, 214, 133, 41, 91, 61, 232, 126, 136, 189, 214, 158, 40, 62, 31, 188, 233, 122, 227, 242, 48, 216, 133, 41, 91, 61, 232, 126, 136, 189, 214, 158, 40, 62, 49, 195, 22, 141, 227, 242, 48, 216, 133, 41, 91, 61, 232, 126, 136, 189, 214, 158, 40, 62, 159, 169, 175, 87, 93, 244, 153, 169, 128, 187, 65, 189, 217, 130, 218, 61, 211, 15, 21, 62, 24, 116, 12, 195, 11, 217, 38, 189, 17, 44, 91, 189, 3, 154, 136, 61, 111, 163, 40, 62, 144, 89, 1, 168, 42, 211, 44, 186, 17, 44, 91, 189, 3, 154, 136, 61, 111, 163, 40, 62, 95, 72, 65, 126, 158, 207, 140, 198, 17, 44, 91, 189, 3, 154, 136, 61, 111, 163, 40, 62, 107, 67, 151, 109, 158, 207, 140, 198, 253, 111, 15, 190, 233, 126, 136, 189, 174, 108, 208, 61, 29, 84, 201, 75, 220, 181, 255, 191, 253, 111, 15, 190, 233, 126, 136, 189, 174, 108, 208, 61, 199, 33, 25, 171, 220, 181, 255, 191, 83, 81, 49, 190, 251, 153, 136, 61, 0, 208, 25, 182, 63, 35, 29, 20, 3, 135, 249, 198, 83, 81, 49, 190, 251, 153, 136, 61, 0, 208, 25, 182, 48, 78, 210, 178, 3, 135, 249, 198, 83, 81, 49, 190, 251, 153, 136, 61, 0, 208, 25, 182, 195, 58, 120, 103, 135, 138, 71, 184, 83, 81, 49, 190, 251, 153, 136, 61, 0, 208, 25, 182, 150, 56, 25, 3, 135, 138, 71, 184, 253, 111, 15, 190, 233, 126, 136, 189, 22, 111, 208, 189, 15, 54, 178, 41, 48, 245, 103, 101, 253, 111, 15, 190, 233, 126, 136, 189, 22, 111, 208, 189, 202, 34, 225, 203, 171, 243, 90, 27, 126, 41, 91, 61, 232, 126, 136, 189, 11, 160, 40, 190, 170, 252, 226, 74, 154, 224, 255, 63, 126, 41, 91, 61, 232, 126, 136, 189, 11, 160, 40, 190, 79, 194, 223, 242, 154, 224, 255, 63, 126, 41, 91, 61, 232, 126, 136, 189, 11, 160, 40, 190, 245, 2, 101, 31, 154, 224, 255, 63, 126, 41, 91, 61, 232, 126, 136, 189, 11, 160, 40, 190, 117, 198, 87, 19, 154, 224, 255, 63, 122, 37, 204, 188, 44, 55, 33, 62, 253, 62, 157, 61, 177, 52, 181, 96, 122, 214, 214, 196, 122, 37, 204, 188, 44, 55, 33, 62, 253, 62, 157, 61, 247, 103, 195, 193, 157, 224, 255, 63, 174, 144, 204, 60, 44, 55, 33, 62, 2, 63, 157, 61, 181, 148, 137, 201, 253, 255, 179, 79, 174, 144, 204, 60, 44, 55, 33, 62, 2, 63, 157, 61, 180, 235, 116, 94, 245, 245, 4, 210, 123, 37, 204, 188, 44, 55, 33, 62, 159, 57, 157, 189, 106, 225, 131, 82, 254, 255, 177, 79, 123, 37, 204, 188, 44, 55, 33, 62, 159, 57, 157, 189, 110, 15, 59, 101, 254, 255, 177, 79, 123, 37, 204, 188, 44, 55, 33, 62, 159, 57, 157, 189, 132, 9, 97, 28, 254, 255, 177, 79, 123, 37, 204, 188, 44, 55, 33, 62, 159, 57, 157, 189, 211, 30, 159, 14, 253, 255, 77, 176, 123, 37, 204, 188, 44, 55, 33, 62, 159, 57, 157, 189, 199, 158, 31, 231, 253, 255, 77, 176, 123, 37, 204, 188, 44, 55, 33, 62, 159, 57, 157, 189, 226, 39, 128, 167, 253, 255, 77, 176, 123, 37, 204, 188, 44, 55, 33, 62, 159, 57, 157, 189, 147, 87, 176, 200, 253, 255, 77, 176)
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_l64vv")
+shadow_mesh = SubResource("ArrayMesh_ry1b5")
 
-[node name="character_1" type="CharacterBody3D"]
-script = ExtResource("1_cc565")
+[node name="test" type="Node3D"]
 
-[node name="Playable_characters" type="Node3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.7446, 0)
 
-[node name="Bomb_Sprite" type="AnimatedSprite3D" parent="Playable_characters"]
-transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 3, 0)
-visible = false
-billboard = 1
-sprite_frames = SubResource("SpriteFrames_kjfdo")
-frame = 6
-frame_progress = 0.898015
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_kjoxj")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_up0jl")
 
-[node name="Head" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.442471, 2.59381)
 
-[node name="Camera3D" type="Camera3D" parent="Head"]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 2.5, 2.5)
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.951854, 0)
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_clwe1")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("ConvexPolygonShape3D_7blfr")
 
-[node name="GUI" parent="." instance=ExtResource("2_usxjd")]
-
-[node name="Area3D" type="Area3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1)
-shape = SubResource("BoxShape3D_2n0gf")
-
-[node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource("AnimationNodeStateMachine_tkr7g")
-anim_player = NodePath("../AnimationPlayer")
-active = true
-parameters/conditions/is_landed = false
-parameters/Jump_Start/TimeScale/scale = 1.5
-parameters/Jump_Start/TimeSeek/seek_request = -1.0
-parameters/Movement/blend_position = Vector2(0, 0)
-parameters/Throw/TimeScale/scale = 1.5
-parameters/Throw/TimeSeek/seek_request = -1.0
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_ktuui")
-}
-
-[node name="power_timer" type="Timer" parent="."]
-one_shot = true
-
-[node name="Mage_TP" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -4)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mage_TP"]
-shape = SubResource("BoxShape3D_gcnu2")
-
-[node name="Particles" type="GPUParticles3D" parent="."]
-transform = Transform3D(0.0744046, 0, 0, 0, 0.270484, 0, 0, 0, 0.126813, 0, 2, 0)
-emitting = false
-amount = 64
-lifetime = 0.5
-one_shot = true
-process_material = SubResource("ParticleProcessMaterial_ifpw1")
-draw_pass_1 = ExtResource("11_0u04h")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="pause_menu" parent="CanvasLayer" instance=ExtResource("12_iibur")]
-process_mode = 3
-visible = true
-
-[node name="Knight_bomb" type="Node" parent="."]
-
-[node name="RigidBody3D" type="RigidBody3D" parent="Knight_bomb"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75, 0)
-visible = false
-max_contacts_reported = 3
-contact_monitor = true
-freeze = true
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Knight_bomb/RigidBody3D"]
-shape = SubResource("ConvexPolygonShape3D_hsw6b")
-
-[node name="smokebomb" type="MeshInstance3D" parent="Knight_bomb/RigidBody3D"]
-mesh = SubResource("ArrayMesh_xqgqs")
+[node name="smokebomb" type="MeshInstance3D" parent="RigidBody3D"]
+mesh = SubResource("ArrayMesh_lklmv")
 skeleton = NodePath("")
-
-[connection signal="timeout" from="power_timer" to="." method="_on_power_timer_timeout"]
-[connection signal="body_entered" from="Knight_bomb/RigidBody3D" to="." method="_on_rigid_body_3d_body_entered"]

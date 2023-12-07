@@ -267,8 +267,8 @@ func _disconnect():
 func _on_start_timer_timeout() -> void:
 	go_to_loading_scren()
 	return
-	if multiplayer.is_server():
-		start_game.rpc()
+#	if multiplayer.is_server():
+#		start_game.rpc()
 
 
 func go_to_loading_scren() -> void:
