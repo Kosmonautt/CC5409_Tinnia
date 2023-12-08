@@ -92,11 +92,14 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 [sub_resource type="Animation" id="Animation_s6m1q"]
 resource_name = "Idle"
 
-[sub_resource type="Animation" id="Animation_silwr"]
-resource_name = "Running_A"
+[sub_resource type="Animation" id="Animation_si13a"]
+resource_name = "Interact"
 
 [sub_resource type="Animation" id="Animation_npfp6"]
 resource_name = "Jump_Full_Long"
+
+[sub_resource type="Animation" id="Animation_silwr"]
+resource_name = "Running_A"
 
 [sub_resource type="Animation" id="Animation_y17ch"]
 resource_name = "Running_B"
@@ -106,9 +109,6 @@ resource_name = "Running_Strafe_Left"
 
 [sub_resource type="Animation" id="Animation_tw0yw"]
 resource_name = "Running_Strafe_Right"
-
-[sub_resource type="Animation" id="Animation_si13a"]
-resource_name = "Interact"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3xn42"]
 _data = {

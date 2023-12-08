@@ -91,4 +91,5 @@ theme_override_font_sizes/font_size = 25
 text = "Exit"
 
 [connection signal="pressed" from="Control/MainMenu/VBoxContainer2/Start" to="Control" method="_on_start_pressed"]
+[connection signal="pressed" from="Control/MainMenu/VBoxContainer2/Settings" to="Control" method="_on_settings_pressed"]
 [connection signal="pressed" from="Control/MainMenu/VBoxContainer2/Exit" to="Control" method="_on_exit_pressed"]
