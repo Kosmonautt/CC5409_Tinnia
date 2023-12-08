@@ -120,6 +120,10 @@ func _process(_delta):
 		
 		
 func _physics_process(delta):
+	# to avoid getting stuck on the ceiling
+	if(not is_on_floor() and is_on_ceiling()):
+		target_velocity.y = 0
+	
 	# return other players physics
 	if not is_multiplayer_authority():
 		return
@@ -275,7 +279,7 @@ func normal_state():
 	ACELERATION = 5
 	MAX_SPEED = 30
 	player_speed = 5
-	jump_impulse = 8
+	jump_impulse = 12
 	
 @rpc("any_peer", "call_local")
 func particle_emit(material_path : String):
