@@ -159,7 +159,6 @@ func _physics_process(delta):
 			animation_state.rpc("Jump_Start")
 			target_velocity.y += jump_impulse
 			air_strafing_speed = Vector2(velocity.x, velocity.z).length()
-			print("air_strafing_speed", air_strafing_speed)
 			
 		elif is_on_wall() and !second_jump:
 			animation_state.rpc("Jump_Start")
