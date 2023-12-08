@@ -3,8 +3,9 @@ extends CharacterBody3D
 var ACELERATION = 5
 var MAX_SPEED = 30
 @export var player_speed : int = 5
-@export var gravity : int = 18
-@export var jump_impulse : int = 8
+@export var gravity : int = 20
+@export var jump_impulse : int = 12
+@export var max_up_speed : int = 20
 @export var mouse_sensibility : float = 0.05
 
 var direction : Vector3
@@ -18,6 +19,7 @@ var player_animation
 var mage_tp : Area3D = null
 var power_active : bool = false
 var power_available : bool = true
+var air_strafing_speed : int = 0
 
 @onready var head = $Head
 @onready var camera : Camera3D = $Head/Camera3D
@@ -149,10 +151,17 @@ func _physics_process(delta):
 		if is_on_floor():
 			animation_state.rpc("Jump_Start")
 			target_velocity.y += jump_impulse
+			
+			air_strafing_speed = Vector2(velocity.x, velocity.z).length()
+			print("air_strafing_speed", air_strafing_speed)
+			
 		elif is_on_wall() and !second_jump:
 			animation_state.rpc("Jump_Start")
 			second_jump = true
 			target_velocity.y += jump_impulse
+		
+		# max upward speed is limited
+		target_velocity.y = min(target_velocity.y, max_up_speed)
 	
 	# when sprinting
 	if Input.is_action_pressed("sprint"):
@@ -169,7 +178,7 @@ func _physics_process(delta):
 		direction = (transform.basis * Vector3(0, 0, 0))
 	
 	if not Global.on_prep_time:
-		if is_on_floor():
+		if is_on_floor():			
 			if dir_input:
 				speed.x = move_toward(speed.x, MAX_SPEED, ACELERATION * delta)
 				speed.z = move_toward(speed.z, MAX_SPEED, ACELERATION * delta)
@@ -180,7 +189,10 @@ func _physics_process(delta):
 				target_velocity.x = move_toward(target_velocity.x, 0, ACELERATION * 5 * delta)
 				target_velocity.z = move_toward(target_velocity.z, 0, ACELERATION * 5 * delta)
 				speed = Vector3.ZERO
-		
+		else:
+			target_velocity.x = -get_global_transform().basis.z[0]*air_strafing_speed
+			target_velocity.z = -get_global_transform().basis.z[2]*air_strafing_speed
+			
 		velocity = target_velocity
 	
 	anim_tree.set("parameters/Movement/blend_position", Vector2(target_velocity.x, target_velocity.z))
