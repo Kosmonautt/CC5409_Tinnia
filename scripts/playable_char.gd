@@ -31,7 +31,7 @@ var air_strafing_speed : int = 0
 @onready var power_timer : Timer = $power_timer
 @onready var particles : GPUParticles3D = $Particles
 @onready var bomb_body : RigidBody3D = $Knight_bomb/RigidBody3D
-
+@onready var sound : AudioStreamPlayer = $AudioStreamPlayer
 @onready var pause_menu : Control = $CanvasLayer/pause_menu
 var pausa = false
 
@@ -136,7 +136,10 @@ func _physics_process(delta):
 				continue
 			elif i is CharacterBody3D and Global.is_player_alive(i.name.to_int()):
 				animation_state.rpc("Interact")
+				sound.stream = load("res://resources/sounds/bomb_given.wav")
+				sound.play()
 				i.pass_the_bomb(i.name.to_int())
+				i.bomb_recibed()
 				break
 	
 	# jumping Y
@@ -178,7 +181,7 @@ func _physics_process(delta):
 		direction = (transform.basis * Vector3(0, 0, 0))
 	
 	if not Global.on_prep_time:
-		if is_on_floor():			
+		if is_on_floor():
 			if dir_input:
 				speed.x = move_toward(speed.x, MAX_SPEED, ACELERATION * delta)
 				speed.z = move_toward(speed.z, MAX_SPEED, ACELERATION * delta)
@@ -206,6 +209,7 @@ func pass_the_bomb(player_id : int) -> void:
 
 func player_die() -> void:
 	animation_state.rpc("Death_A")
+	
 	# disable input and process
 	set_process_unhandled_input(false)
 	set_physics_process(false)
@@ -262,6 +266,8 @@ func character_power(role : Game.Role):
 		4:
 			barbarian_power()
 	power_timer.start()
+	sound.stream = load("res://resources/sounds/pop.wav")
+	sound.play()
 	power_available = false
 	$GUI.hide_power_icon()
 
@@ -306,3 +312,7 @@ func _on_rigid_body_3d_body_entered(body):
 	if body.is_in_group("Players"):
 		if Global.bomb_carrier == name.to_int():
 			pass_the_bomb(body.name.to_int())
+
+func bomb_recibed():
+	sound.stream = load("res://resources/sounds/bomb_recibed.wav")
+	sound.play()

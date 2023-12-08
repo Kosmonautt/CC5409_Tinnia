@@ -421,5 +421,8 @@ shape = SubResource("ConvexPolygonShape3D_hsw6b")
 mesh = SubResource("ArrayMesh_xqgqs")
 skeleton = NodePath("")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+
 [connection signal="timeout" from="power_timer" to="." method="_on_power_timer_timeout"]
 [connection signal="body_entered" from="Knight_bomb/RigidBody3D" to="." method="_on_rigid_body_3d_body_entered"]
