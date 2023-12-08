@@ -19,7 +19,7 @@ var player_animation
 var mage_tp : Area3D = null
 var power_active : bool = false
 var power_available : bool = true
-var air_strafing_speed : int = 0
+var air_strafing_speed : float = 0
 
 @onready var head = $Head
 @onready var camera : Camera3D = $Head/Camera3D
@@ -141,7 +141,7 @@ func _physics_process(delta):
 				sound.stream = load("res://resources/sounds/bomb_given.wav")
 				sound.play()
 				i.pass_the_bomb(i.name.to_int())
-				i.bomb_recibed()
+				bomb_recibed.rpc_id(i.name.to_int())
 				break
 	
 	# jumping Y
@@ -207,12 +207,12 @@ func _physics_process(delta):
 
 func pass_the_bomb(player_id : int) -> void:
 	Global.update_the_bomb.rpc(player_id)
-	
 
 func player_die() -> void:
 	animation_state.rpc("Death_A")
-	sound.stream = load("res://resources/sounds/explosion.wav")
-	sound.play()
+	if is_multiplayer_authority():
+		sound.stream = load("res://resources/sounds/explosion.wav")
+		sound.play()
 	# disable input and process
 	set_process_unhandled_input(false)
 	set_physics_process(false)
@@ -318,7 +318,7 @@ func _on_rigid_body_3d_body_entered(body):
 		if Global.bomb_carrier == name.to_int():
 			pass_the_bomb(body.name.to_int())
 
+@rpc("any_peer", "reliable")
 func bomb_recibed():
-	if is_multiplayer_authority():
-		sound.stream = load("res://resources/sounds/bomb_recibed.wav")
-		sound.play()
+	sound.stream = load("res://resources/sounds/bomb_recibed.wav")
+	sound.play()
