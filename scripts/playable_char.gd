@@ -250,9 +250,9 @@ func rogue_power():
 func barbarian_power():
 	particle_emit("res://resources/assets/powers/Barbarian_particles.tres")
 	power_active = true
-	jump_impulse = 12
-	ACELERATION = 7
-	MAX_SPEED = 50
+	jump_impulse = 20
+	ACELERATION = 12
+	MAX_SPEED = 60
 	player_speed = 8
 
 func character_power(role : Game.Role):
