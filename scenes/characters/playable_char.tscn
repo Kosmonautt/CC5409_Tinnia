@@ -424,5 +424,7 @@ skeleton = NodePath("")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+
 [connection signal="timeout" from="power_timer" to="." method="_on_power_timer_timeout"]
 [connection signal="body_entered" from="Knight_bomb/RigidBody3D" to="." method="_on_rigid_body_3d_body_entered"]

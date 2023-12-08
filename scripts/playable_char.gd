@@ -32,6 +32,7 @@ var air_strafing_speed : int = 0
 @onready var particles : GPUParticles3D = $Particles
 @onready var bomb_body : RigidBody3D = $Knight_bomb/RigidBody3D
 @onready var sound : AudioStreamPlayer = $AudioStreamPlayer
+@onready var sound3d : AudioStreamPlayer3D = $AudioStreamPlayer3D
 @onready var pause_menu : Control = $CanvasLayer/pause_menu
 var pausa = false
 
@@ -120,6 +121,7 @@ func _process(_delta):
 		
 		
 func _physics_process(delta):
+	sound3d.position = position
 	# return other players physics
 	if not is_multiplayer_authority():
 		return
@@ -209,7 +211,8 @@ func pass_the_bomb(player_id : int) -> void:
 
 func player_die() -> void:
 	animation_state.rpc("Death_A")
-	
+	sound.stream = load("res://resources/sounds/explosion.wav")
+	sound.play()
 	# disable input and process
 	set_process_unhandled_input(false)
 	set_physics_process(false)
@@ -280,6 +283,8 @@ func normal_state():
 	
 @rpc("any_peer", "call_local")
 func particle_emit(material_path : String):
+	sound.stream = load("res://resources/sounds/pop.wav")
+	sound.play()
 	var material : SphereMesh = load(material_path)
 	particles.draw_pass_1 = material
 	particles.emitting = true
@@ -314,5 +319,6 @@ func _on_rigid_body_3d_body_entered(body):
 			pass_the_bomb(body.name.to_int())
 
 func bomb_recibed():
-	sound.stream = load("res://resources/sounds/bomb_recibed.wav")
-	sound.play()
+	if is_multiplayer_authority():
+		sound.stream = load("res://resources/sounds/bomb_recibed.wav")
+		sound.play()
