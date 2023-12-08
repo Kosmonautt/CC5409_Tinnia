@@ -32,7 +32,7 @@ var air_strafing_speed : float = 0
 @onready var particles : GPUParticles3D = $Particles
 @onready var bomb_body : RigidBody3D = $Knight_bomb/RigidBody3D
 @onready var sound : AudioStreamPlayer = $AudioStreamPlayer
-@onready var sound3d : AudioStreamPlayer3D = $AudioStreamPlayer3D
+@onready var sound3d : AudioStreamPlayer3D = $Playable_characters/AudioStreamPlayer3D
 @onready var pause_menu : Control = $CanvasLayer/pause_menu
 var pausa = false
 
@@ -104,7 +104,6 @@ func _input(event):
 		# we clamp so we can look at most straight down and straight up
 		head.rotation.x = clamp(head.rotation.x, -PI/2, PI/2 )
 
-
 func _process(_delta):
 	if Global.bomb_carrier == name.to_int():
 		if is_multiplayer_authority():
@@ -121,7 +120,6 @@ func _process(_delta):
 		
 		
 func _physics_process(delta):
-	sound3d.position = position
 	# return other players physics
 	if not is_multiplayer_authority():
 		return
@@ -156,7 +154,6 @@ func _physics_process(delta):
 		if is_on_floor():
 			animation_state.rpc("Jump_Start")
 			target_velocity.y += jump_impulse
-			
 			air_strafing_speed = Vector2(velocity.x, velocity.z).length()
 			print("air_strafing_speed", air_strafing_speed)
 			
@@ -210,9 +207,8 @@ func pass_the_bomb(player_id : int) -> void:
 
 func player_die() -> void:
 	animation_state.rpc("Death_A")
-	if is_multiplayer_authority():
-		sound.stream = load("res://resources/sounds/explosion.wav")
-		sound.play()
+	sound.stream = load("res://resources/sounds/explosion.wav")
+	sound.play()
 	# disable input and process
 	set_process_unhandled_input(false)
 	set_physics_process(false)
