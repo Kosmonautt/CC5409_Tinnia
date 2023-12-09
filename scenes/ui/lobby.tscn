@@ -58,6 +58,7 @@ lobby_player_scene = ExtResource("3_r1sja")
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_1dj2f")
 theme_override_font_sizes/font_size = 100
 text = "TIÑA"

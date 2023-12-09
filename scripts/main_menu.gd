@@ -21,3 +21,6 @@ func _on_exit_pressed():
 
 func _on_settings_pressed():
 	get_tree().change_scene_to_file("res://scenes/test.tscn")
+
+func _on_credits_pressed():
+	get_tree().change_scene_to_file("res://scenes/ui/credits.tscn")
