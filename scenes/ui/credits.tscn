@@ -1,0 +1,121 @@
+[gd_scene load_steps=6 format=3 uid="uid://27tyhjjnsegj"]
+
+[ext_resource type="PackedScene" uid="uid://cds31t0ynkb6x" path="res://scenes/level/stage2.tscn" id="1_k8xmp"]
+[ext_resource type="Script" path="res://scripts/credits.gd" id="2_le8t0"]
+[ext_resource type="FontFile" uid="uid://lybuas372tda" path="res://resources/fonts/Medieval Sharp/MedievalSharp-Bold.ttf" id="3_ul3wo"]
+[ext_resource type="Theme" uid="uid://bwgdrcgopd0s1" path="res://resources/theme.tres" id="4_4jg75"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_irva1"]
+bg_color = Color(0.0862745, 0.0862745, 0.0862745, 0.811765)
+border_width_left = 20
+border_width_top = 10
+border_width_right = 20
+border_width_bottom = 10
+border_color = Color(0.0862745, 0.0862745, 0.0862745, 0.811765)
+
+[node name="Credits" type="CanvasLayer"]
+
+[node name="Background" parent="." instance=ExtResource("1_k8xmp")]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="SubViewport" type="SubViewport" parent="Background/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Background/SubViewportContainer/SubViewport"]
+transform = Transform3D(-1, 5.61943e-08, -6.69697e-08, 0, 0.766044, 0.642788, 8.74228e-08, 0.642788, -0.766044, 0, 30, -40)
+fov = 60.0
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.0
+script = ExtResource("2_le8t0")
+
+[node name="Game_name" type="Label" parent="Control"]
+layout_mode = 2
+offset_left = 459.0
+offset_top = 50.0
+offset_right = 692.0
+offset_bottom = 174.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_ul3wo")
+theme_override_font_sizes/font_size = 100
+text = "TIÑA"
+
+[node name="MainMenu" type="MarginContainer" parent="Control"]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 158.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control/MainMenu"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme = ExtResource("4_4jg75")
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/MainMenu/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_irva1")
+bbcode_enabled = true
+text = "## Models
+Character Pack: Adventurers:
+- Author: Kay Lousberg (has more packs available)
+- Link: [url]https://kaylousberg.itch.io/kaykit-adventurers[/url]
+
+
+## Map Assets:
+Dungeon Remastered Pack 
+- Author: Kay Lousberg (has more packs available
+- Link: [url]https://kaylousberg.itch.io/kaykit-dungeon-remastered[/url]
+
+## Abilities and Bomb Icons:
+Author: a_littlecharm
+Link: @a_littlecharm
+
+## Font:
+Medieval Sharp
+- Author: wmk69
+- Link: [url]https://fontlibrary.org/en/font/medievalsharp[/url]
+
+## Music and Sound Effects:
+- Author:
+- Link:"
+
+[node name="Back" type="Button" parent="Control/MainMenu/VBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 25
+text = "Back"
+
+[connection signal="meta_clicked" from="Control/MainMenu/VBoxContainer2/RichTextLabel" to="Control" method="_on_rich_text_label_meta_clicked"]
+[connection signal="pressed" from="Control/MainMenu/VBoxContainer2/Back" to="Control" method="_on_back_pressed"]

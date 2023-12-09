@@ -55,6 +55,7 @@ theme_override_constants/margin_bottom = 50
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_ml1xi")
 theme_override_font_sizes/font_size = 100
 text = "TIÑA"
@@ -92,4 +93,5 @@ text = "Exit"
 
 [connection signal="pressed" from="Control/MainMenu/VBoxContainer2/Start" to="Control" method="_on_start_pressed"]
 [connection signal="pressed" from="Control/MainMenu/VBoxContainer2/Settings" to="Control" method="_on_settings_pressed"]
+[connection signal="pressed" from="Control/MainMenu/VBoxContainer2/Credits" to="Control" method="_on_credits_pressed"]
 [connection signal="pressed" from="Control/MainMenu/VBoxContainer2/Exit" to="Control" method="_on_exit_pressed"]
