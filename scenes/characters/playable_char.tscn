@@ -425,5 +425,10 @@ skeleton = NodePath("")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
+[node name="Pass_timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
 [connection signal="timeout" from="power_timer" to="." method="_on_power_timer_timeout"]
 [connection signal="body_entered" from="Knight_bomb/RigidBody3D" to="." method="_on_rigid_body_3d_body_entered"]
+[connection signal="timeout" from="Pass_timer" to="." method="_on_pass_timer_timeout"]

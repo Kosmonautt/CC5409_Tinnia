@@ -20,6 +20,7 @@ var mage_tp : Area3D = null
 var power_active : bool = false
 var power_available : bool = true
 var air_strafing_speed : float = 0
+var pass_bomb : bool = true
 
 @onready var head = $Head
 @onready var camera : Camera3D = $Head/Camera3D
@@ -123,14 +124,13 @@ func _physics_process(delta):
 	# return other players physics
 	if not is_multiplayer_authority():
 		return
-	
 	# activate power
 	if Input.is_action_just_pressed("action_2") and power_available:
 		character_power(Game.get_current_player().role)
 		
 	
 	# when passing the bomb
-	if Input.is_action_just_pressed("action_1") and name.to_int() == Global.bomb_carrier:
+	if Input.is_action_just_pressed("action_1") and name.to_int() == Global.bomb_carrier and pass_bomb:
 		for i in area.get_overlapping_bodies():
 			if i == self:
 				continue
@@ -140,6 +140,7 @@ func _physics_process(delta):
 				sound.play()
 				i.pass_the_bomb(i.name.to_int())
 				bomb_recibed.rpc_id(i.name.to_int())
+				i.start_pass_timer.rpc()
 				break
 	
 	# jumping Y
@@ -318,3 +319,11 @@ func _on_rigid_body_3d_body_entered(body):
 func bomb_recibed():
 	sound.stream = load("res://resources/sounds/bomb_recibed.wav")
 	sound.play()
+
+@rpc("any_peer", "reliable")
+func start_pass_timer():
+	$Pass_timer.start()
+	pass_bomb = false
+
+func _on_pass_timer_timeout():
+	pass_bomb = true

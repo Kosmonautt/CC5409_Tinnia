@@ -71,7 +71,7 @@ func game_end(winner: String):
 	global_timer.stop()
 	
 @rpc("any_peer", "call_local")
-func new_carrier(id : int):
+func new_carrier():
 	if multiplayer.is_server():
 		var i : int = players_alive[randi() % players_alive.size()]
 		update_the_bomb.rpc(i)
@@ -84,7 +84,7 @@ func player_disconect(id: int):
 	emit_die.rpc_id(id)
 	elim_people.rpc(id)
 	if id == bomb_carrier:
-		new_carrier.rpc(id)
+		new_carrier.rpc()
 	if players_alive.size() == 1:
 		var id_aux : int = players_alive[0]
 		var player_name : String = "nada"
