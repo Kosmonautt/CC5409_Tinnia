@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://b8adw208onxum"]
+[gd_scene load_steps=57 format=3 uid="uid://b8adw208onxum"]
 
 [ext_resource type="PackedScene" uid="uid://bjhx0i1k84ymc" path="res://resources/playable_character/mage.tscn" id="1_41vyr"]
 [ext_resource type="Script" path="res://scripts/test.gd" id="1_fqtb5"]
@@ -15,6 +15,10 @@
 [ext_resource type="Texture2D" uid="uid://dkbkev8f1507r" path="res://resources/assets/keys/mouse1.png" id="13_1b5jf"]
 [ext_resource type="Texture2D" uid="uid://bucq0h6d1ijya" path="res://resources/assets/keys/mouse2.png" id="14_otafw"]
 [ext_resource type="Texture2D" uid="uid://bdmpoob8a4tao" path="res://resources/assets/keys/mouse3.png" id="15_1u1dv"]
+[ext_resource type="Texture2D" uid="uid://crhkanv22hxir" path="res://resources/assets/tutorial_powers/POWERS1.png" id="16_im4js"]
+[ext_resource type="Texture2D" uid="uid://cgocq4mupnq0u" path="res://resources/assets/tutorial_powers/POWERS2.png" id="17_0whdy"]
+[ext_resource type="Texture2D" uid="uid://c17ljoyivhf1b" path="res://resources/assets/tutorial_powers/POWERS3.png" id="18_nx3mv"]
+[ext_resource type="Texture2D" uid="uid://c1kayla4kvgbc" path="res://resources/assets/tutorial_powers/POWERS4.png" id="19_gml6l"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_up0jl"]
 size = Vector3(2.95445, 0.17468, 2.57323)
@@ -208,6 +212,26 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_pyfuj"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": ExtResource("16_im4js")
+}, {
+"duration": 2.0,
+"texture": ExtResource("17_0whdy")
+}, {
+"duration": 2.0,
+"texture": ExtResource("18_nx3mv")
+}, {
+"duration": 2.0,
+"texture": ExtResource("19_gml6l")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
 [node name="test" type="Node3D"]
 script = ExtResource("1_fqtb5")
 
@@ -267,3 +291,48 @@ sprite_frames = SubResource("SpriteFrames_t7dff")
 [node name="mouse" type="AnimatedSprite2D" parent="Control"]
 position = Vector2(382, 148)
 sprite_frames = SubResource("SpriteFrames_ef6nb")
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 497.0
+offset_top = 549.0
+offset_right = 586.0
+offset_bottom = 571.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+text = "Placeholder"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 544.0
+offset_right = 126.0
+offset_bottom = 589.0
+theme_override_font_sizes/font_size = 30
+text = "Back"
+
+[node name="powers" type="AnimatedSprite2D" parent="Control"]
+visible = false
+position = Vector2(980, 321)
+scale = Vector2(2.42188, 2.42188)
+sprite_frames = SubResource("SpriteFrames_pyfuj")
+frame = 3
+frame_progress = 1.0
+
+[node name="Label2" type="Label" parent="Control"]
+visible = false
+layout_mode = 0
+offset_left = 895.0
+offset_top = 5.0
+offset_right = 1074.0
+offset_bottom = 67.0
+theme_override_font_sizes/font_size = 48
+text = "Powers"
+
+[connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]
