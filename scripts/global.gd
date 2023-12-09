@@ -3,16 +3,19 @@ extends Node
 const TIMER_TIME : int = 110
 @export var players_alive : Array = []
 @onready var global_timer : Timer = Timer.new()
+@onready var sound_timer : Timer = Timer.new()
 var on_prep_time : bool = true
 var bomb_carrier : int
 @onready var winner_name : String = "unname"
 
 # signal that connect to timeout
 signal die()
+signal sound_tick()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	global_timer.one_shot = false
+	sound_timer.one_shot = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame
 func _process(_delta):
@@ -22,11 +25,16 @@ func game_ready() -> void:
 	players_alive = Game.players.map(func(value): return value.id)
 	add_child(global_timer)
 	global_timer.start(TIMER_TIME)
+	add_child(sound_timer)
+	sound_timer.start(TIMER_TIME-8)
 	await get_tree().create_timer(TIMER_TIME-100).timeout
 	end_of_prep_time()
 	# manage the timer on the multiplayer authority
 	if is_multiplayer_authority():
 		global_timer.timeout.connect(_on_global_timer_timeout)
+		
+	if is_multiplayer_authority():
+		sound_timer.timeout.connect(_on_sound_timer_timeout)
 
 @rpc("call_local")
 func start_bomb(player_id : int):
@@ -39,6 +47,10 @@ func update_the_bomb(player_id : int):
 @rpc("call_local")
 func emit_die() -> void:
 	die.emit()
+	
+@rpc("call_local")
+func emit_sound_tick() -> void:
+	sound_tick.emit()
 	
 func _on_global_timer_timeout():
 	emit_die.rpc_id(bomb_carrier)
@@ -93,4 +105,6 @@ func player_disconect(id: int):
 				player_name = i.name
 				break
 		game_end.rpc(player_name)
-	
+
+func _on_sound_timer_timeout():
+	emit_sound_tick.rpc_id(bomb_carrier)
