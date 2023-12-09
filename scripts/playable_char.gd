@@ -122,17 +122,17 @@ func _process(_delta):
 		
 func _physics_process(delta):
 	# to avoid getting stuck on the ceiling
-	if(not is_on_floor() and is_on_ceiling()):
+	if not is_on_floor() and is_on_ceiling():
 		target_velocity.y = 0
 	
 	# return other players physics
 	if not is_multiplayer_authority():
 		return
+		
 	# activate power
 	if Input.is_action_just_pressed("action_2") and power_available and not Global.on_prep_time:
 		character_power(Game.get_current_player().role)
-		
-	
+
 	# when passing the bomb
 	if Input.is_action_just_pressed("action_1") and name.to_int() == Global.bomb_carrier and pass_bomb:
 		for i in area.get_overlapping_bodies():
@@ -166,6 +166,7 @@ func _physics_process(delta):
 			second_jump = true
 			target_velocity.y += jump_impulse
 		
+		emit_sound.rpc("res://resources/sounds/jump.wav")
 		# max upward speed is limited
 		target_velocity.y = min(target_velocity.y, max_up_speed)
 	
@@ -182,6 +183,9 @@ func _physics_process(delta):
 	direction = (transform.basis * Vector3(dir_input.x, 0, -dir_input.y))
 	if pausa:
 		direction = (transform.basis * Vector3(0, 0, 0))
+	
+#	if dir_input:
+#		emit_sound.rpc("res://resources/sounds/walk.wav")
 	
 	if not Global.on_prep_time:
 		if is_on_floor():
@@ -319,3 +323,9 @@ func _on_pass_timer_timeout():
 func sound_tick():
 	sound.stream = load("res://resources/sounds/tick.wav")
 	sound.play()
+
+@rpc("any_peer","call_local", "reliable")
+func emit_sound(sound_path : String):
+	if !is_multiplayer_authority():
+		sound3d.stream = load(sound_path)
+		sound3d.play()
