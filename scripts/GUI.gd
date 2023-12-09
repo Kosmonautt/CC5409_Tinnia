@@ -27,7 +27,8 @@ func _process(_delta):
 	# DEBUG
 	if is_multiplayer_authority():
 #		var bomba : bool = $"../".pass_bomb
-		var bomba : int = Global.bomb_carrier
+#		var bomba : int = Global.bomb_carrier
+		var bomba : int = $"../".is_walking
 		bomb.text = str("BOMB CARRIER: %s" % bomba)
 
 func update_gui() -> void:
