@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://cstlj4mmuhde"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_1wwee"]
-[ext_resource type="PackedScene" uid="uid://cds31t0ynkb6x" path="res://scenes/level/stage2.tscn" id="2_5vcc3"]
+[ext_resource type="PackedScene" uid="uid://6yo0lcutptgy" path="res://scenes/level/stage3.tscn" id="1_p53ou"]
 [ext_resource type="FontFile" uid="uid://lybuas372tda" path="res://resources/fonts/Medieval Sharp/MedievalSharp-Bold.ttf" id="3_ml1xi"]
 [ext_resource type="Theme" uid="uid://bwgdrcgopd0s1" path="res://resources/theme.tres" id="4_ruyvi"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 
-[node name="Background" parent="." instance=ExtResource("2_5vcc3")]
+[node name="Background" parent="." instance=ExtResource("1_p53ou")]
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="Background"]
 anchors_preset = 15
@@ -24,7 +24,7 @@ render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="Background/SubViewportContainer/SubViewport"]
 transform = Transform3D(-1, 5.61943e-08, -6.69697e-08, 0, 0.766044, 0.642788, 8.74228e-08, 0.642788, -0.766044, 0, 30, -40)
-fov = 60.0
+fov = 50.0
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

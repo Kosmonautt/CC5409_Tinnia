@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://bbeb3ybqcik63"]
 
 [ext_resource type="Script" path="res://scripts/endscreen.gd" id="1_6hfbm"]
-[ext_resource type="PackedScene" uid="uid://cds31t0ynkb6x" path="res://scenes/level/stage2.tscn" id="1_cp7bg"]
 [ext_resource type="FontFile" uid="uid://cxqg41eudgk1d" path="res://resources/fonts/Medieval Sharp/MedievalSharp-BoldOblique.ttf" id="2_efjeg"]
+[ext_resource type="PackedScene" uid="uid://6yo0lcutptgy" path="res://scenes/level/stage3.tscn" id="2_g3htw"]
 
 [sub_resource type="Animation" id="Animation_1wt4j"]
 resource_name = "background_move"
@@ -10,7 +10,7 @@ length = 10.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Control/stage_1/SubViewportContainer/SubViewport/Camera3D:position")
+tracks/0/path = NodePath("Control/stage_2/SubViewportContainer/SubViewport/Camera3D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -36,24 +36,27 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="stage_1" parent="Control" instance=ExtResource("1_cp7bg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.75314)
+[node name="stage_2" parent="Control" instance=ExtResource("2_g3htw")]
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="Control/stage_1"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Control/stage_2"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -576.0
+offset_top = -324.0
+offset_right = 576.0
+offset_bottom = 324.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="SubViewport" type="SubViewport" parent="Control/stage_1/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="Control/stage_2/SubViewportContainer"]
 handle_input_locally = false
 size = Vector2i(2304, 1296)
 render_target_update_mode = 4
 
-[node name="Camera3D" type="Camera3D" parent="Control/stage_1/SubViewportContainer/SubViewport"]
+[node name="Camera3D" type="Camera3D" parent="Control/stage_2/SubViewportContainer/SubViewport"]
 transform = Transform3D(-0.999985, -0.000108777, -0.00540942, 1.15912e-10, 0.999798, -0.0201048, 0.00541051, -0.0201045, -0.999783, 21.8091, 2.85828, -23.4611)
 fov = 74.0276
 
