@@ -187,17 +187,15 @@ func _physics_process(delta):
 	
 	if is_on_floor():
 		if !is_walking and dir_input:
+			is_walking = true
 			emit_sound.rpc("res://resources/sounds/walk.wav")
 		elif is_walking and dir_input == Vector2.ZERO:
-			stop_sound()
-	else:
-		is_walking = false
-		stop_sound()
+			stop_sound.rpc()
+			is_walking = false
 	
 	if not Global.on_prep_time:
 		if is_on_floor():
 			if dir_input:
-				is_walking = true
 				speed.x = move_toward(speed.x, MAX_SPEED, ACELERATION * delta)
 				speed.z = move_toward(speed.z, MAX_SPEED, ACELERATION * delta)
 		
