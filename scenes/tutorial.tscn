@@ -272,27 +272,33 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="w_key" type="AnimatedSprite2D" parent="Control"]
+texture_filter = 1
 position = Vector2(160, 64)
 sprite_frames = SubResource("SpriteFrames_iodin")
 
 [node name="a_key" type="AnimatedSprite2D" parent="Control"]
+texture_filter = 1
 position = Vector2(80, 144)
 sprite_frames = SubResource("SpriteFrames_rpcqs")
 
 [node name="d_key" type="AnimatedSprite2D" parent="Control"]
+texture_filter = 1
 position = Vector2(240, 144)
 sprite_frames = SubResource("SpriteFrames_s6dep")
 
 [node name="s_key" type="AnimatedSprite2D" parent="Control"]
+texture_filter = 1
 position = Vector2(160, 144)
 sprite_frames = SubResource("SpriteFrames_ocfmi")
 
 [node name="space_key" type="AnimatedSprite2D" parent="Control"]
+texture_filter = 1
 position = Vector2(166, 224)
 scale = Vector2(1.36936, 1.32422)
 sprite_frames = SubResource("SpriteFrames_t7dff")
 
 [node name="mouse" type="AnimatedSprite2D" parent="Control"]
+texture_filter = 1
 position = Vector2(382, 148)
 sprite_frames = SubResource("SpriteFrames_ef6nb")
 
@@ -323,6 +329,7 @@ text = "Back"
 
 [node name="powers" type="AnimatedSprite2D" parent="Control"]
 visible = false
+texture_filter = 1
 position = Vector2(980, 321)
 scale = Vector2(2.42188, 2.42188)
 sprite_frames = SubResource("SpriteFrames_pyfuj")

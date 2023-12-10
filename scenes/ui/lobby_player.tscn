@@ -29,6 +29,7 @@ text = "Role"
 [node name="Ready" type="TextureRect" parent="HBoxContainer"]
 unique_name_in_owner = true
 modulate = Color(0, 1, 0, 1)
+texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 10
 texture = ExtResource("2_ry1k1")

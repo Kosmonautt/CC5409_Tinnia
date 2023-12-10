@@ -94,6 +94,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="bomb_sprite" type="AnimatedSprite2D" parent="bomb"]
+texture_filter = 1
 position = Vector2(80, 55)
 scale = Vector2(0.65, 0.65)
 sprite_frames = SubResource("SpriteFrames_6nthm")
