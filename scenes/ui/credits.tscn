@@ -85,11 +85,13 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/normal = SubResource("StyleBoxFlat_irva1")
 bbcode_enabled = true
-text = "## Models
+text = "By Cinnamon Studio
+Vicente-VA, Reik0, ksmnt
+
+## Models
 Character Pack: Adventurers:
 - Author: Kay Lousberg (has more packs available)
 - Link: [url]https://kaylousberg.itch.io/kaykit-adventurers[/url]
-
 
 ## Map Assets:
 Dungeon Remastered Pack 
@@ -98,7 +100,7 @@ Dungeon Remastered Pack
 
 ## Abilities and Bomb Icons:
 Author: a_littlecharm
-Link: @a_littlecharm
+Link: @a_littlecharm on IG
 
 ## Font:
 Medieval Sharp
@@ -106,8 +108,14 @@ Medieval Sharp
 - Link: [url]https://fontlibrary.org/en/font/medievalsharp[/url]
 
 ## Music and Sound Effects:
-- Author:
-- Link:"
+Walking Sound: 
+- https://freesound.org/people/Disagree/sounds/433725/
+Jumping Sound: 
+- https://freesound.org/people/kfatehi/sounds/363921/
+Explosion Sound: 
+- https://freesound.org/people/eardeer/sounds/402004/
+Ticking Sound: 
+- https://freesound.org/people/MATRIXXX_/sounds/487725/"
 
 [node name="Back" type="Button" parent="Control/MainMenu/VBoxContainer2"]
 unique_name_in_owner = true
