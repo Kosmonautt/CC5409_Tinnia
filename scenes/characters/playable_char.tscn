@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://cday53347fn87"]
+[gd_scene load_steps=72 format=3 uid="uid://cday53347fn87"]
 
 [ext_resource type="Script" path="res://scripts/playable_char.gd" id="1_cc565"]
 [ext_resource type="Texture2D" uid="uid://0jjienyapijm" path="res://resources/assets/bomb/Sprite-0001.png" id="2_qylr5"]
@@ -13,6 +13,7 @@
 [ext_resource type="SphereMesh" uid="uid://chpiu6eg0apym" path="res://resources/assets/powers/Neutral_particles.tres" id="11_0u04h"]
 [ext_resource type="PackedScene" uid="uid://bns02ktexnfvp" path="res://scenes/ui/pause_menu.tscn" id="12_iibur"]
 [ext_resource type="Texture2D" uid="uid://bfmjmr3t2s241" path="res://resources/assets/smoke_bomb_rogue_texture.png" id="13_cgrt3"]
+[ext_resource type="AudioStream" uid="uid://dabb5ii2farbi" path="res://resources/music/game_song.wav" id="14_amx52"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kjfdo"]
 animations = [{
@@ -429,6 +430,11 @@ skeleton = NodePath("")
 wait_time = 2.0
 one_shot = true
 
+[node name="GlobalSongPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_amx52")
+volume_db = -15.0
+
 [connection signal="timeout" from="power_timer" to="." method="_on_power_timer_timeout"]
 [connection signal="body_entered" from="Knight_bomb/RigidBody3D" to="." method="_on_rigid_body_3d_body_entered"]
 [connection signal="timeout" from="Pass_timer" to="." method="_on_pass_timer_timeout"]
+[connection signal="finished" from="GlobalSongPlayer" to="." method="_on_global_song_player_finished"]

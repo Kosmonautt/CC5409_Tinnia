@@ -36,6 +36,7 @@ var is_walking : bool = false
 @onready var sound : AudioStreamPlayer = $AudioStreamPlayer
 @onready var sound3d : AudioStreamPlayer3D = $Playable_characters/AudioStreamPlayer3D
 @onready var pause_menu : Control = $CanvasLayer/pause_menu
+@onready var music : AudioStreamPlayer = $GlobalSongPlayer
 var pausa = false
 
 # this function gets called when players are playable characters are assigned to each player
@@ -58,6 +59,7 @@ func setup(player_data: Game.PlayerData) -> void:
 		Global.sound_tick.connect(sound_tick)
 	# setting up the timer for the power
 	setup_icon(player_data.role)
+	music.play()
 
 func setup_model(role : Game.Role) -> void:
 	match role:
@@ -340,3 +342,7 @@ func emit_sound(sound_path : String):
 @rpc("any_peer","call_local", "reliable")
 func stop_sound():
 	sound3d.stop()
+
+
+func _on_global_song_player_finished():
+	music.play()
