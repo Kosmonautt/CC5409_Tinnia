@@ -17,7 +17,7 @@ func _process(_delta):
 		$Control/w_key.frame = 1
 		$Control/Label.text = "Movement"
 	elif Input.is_action_pressed("move_backwards"):
-		playback.travel("Running_B")
+		playback.travel("Walking_Backwards")
 		$Control/s_key.frame = 1
 		$Control/Label.text = "Movement"
 	elif Input.is_action_pressed("move_left"):

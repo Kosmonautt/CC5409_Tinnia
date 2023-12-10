@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://b8adw208onxum"]
+[gd_scene load_steps=58 format=3 uid="uid://b8adw208onxum"]
 
 [ext_resource type="PackedScene" uid="uid://bjhx0i1k84ymc" path="res://resources/playable_character/mage.tscn" id="1_41vyr"]
 [ext_resource type="Script" path="res://scripts/test.gd" id="1_fqtb5"]
@@ -35,14 +35,14 @@ animation = &"Jump_Full_Long"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_upn33"]
 animation = &"Running_A"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fp0i8"]
-animation = &"Running_B"
-
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_damox"]
 animation = &"Running_Strafe_Left"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_e02iy"]
 animation = &"Running_Strafe_Right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fp0i8"]
+animation = &"Walking_Backwards"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_awoxa"]
 advance_mode = 2
@@ -84,14 +84,14 @@ states/Jump_Full_Long/node = SubResource("AnimationNodeAnimation_mhqd8")
 states/Jump_Full_Long/position = Vector2(532, 100)
 states/Running_A/node = SubResource("AnimationNodeAnimation_upn33")
 states/Running_A/position = Vector2(314, 20)
-states/Running_B/node = SubResource("AnimationNodeAnimation_fp0i8")
-states/Running_B/position = Vector2(314, 176)
 states/Running_Strafe_Left/node = SubResource("AnimationNodeAnimation_damox")
 states/Running_Strafe_Left/position = Vector2(107, 176)
 states/Running_Strafe_Right/node = SubResource("AnimationNodeAnimation_e02iy")
 states/Running_Strafe_Right/position = Vector2(532, 176)
 states/Start/position = Vector2(107, 100)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_awoxa"), "Idle", "Running_A", SubResource("AnimationNodeStateMachineTransition_kwi4j"), "Running_A", "Idle", SubResource("AnimationNodeStateMachineTransition_gjj0j"), "Idle", "Jump_Full_Long", SubResource("AnimationNodeStateMachineTransition_vveqr"), "Jump_Full_Long", "Idle", SubResource("AnimationNodeStateMachineTransition_iv6dq"), "Idle", "Running_B", SubResource("AnimationNodeStateMachineTransition_87gfq"), "Running_B", "Idle", SubResource("AnimationNodeStateMachineTransition_0qj33"), "Idle", "Running_Strafe_Right", SubResource("AnimationNodeStateMachineTransition_fkw11"), "Running_Strafe_Right", "Idle", SubResource("AnimationNodeStateMachineTransition_hytph"), "Idle", "Running_Strafe_Left", SubResource("AnimationNodeStateMachineTransition_tmrlb"), "Running_Strafe_Left", "Idle", SubResource("AnimationNodeStateMachineTransition_ktfyk"), "Idle", "Interact", SubResource("AnimationNodeStateMachineTransition_84daj"), "Interact", "Idle", SubResource("AnimationNodeStateMachineTransition_eyk33")]
+states/Walking_Backwards/node = SubResource("AnimationNodeAnimation_fp0i8")
+states/Walking_Backwards/position = Vector2(314, 176)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_awoxa"), "Idle", "Running_A", SubResource("AnimationNodeStateMachineTransition_kwi4j"), "Running_A", "Idle", SubResource("AnimationNodeStateMachineTransition_gjj0j"), "Idle", "Jump_Full_Long", SubResource("AnimationNodeStateMachineTransition_vveqr"), "Jump_Full_Long", "Idle", SubResource("AnimationNodeStateMachineTransition_iv6dq"), "Idle", "Walking_Backwards", SubResource("AnimationNodeStateMachineTransition_87gfq"), "Walking_Backwards", "Idle", SubResource("AnimationNodeStateMachineTransition_0qj33"), "Idle", "Running_Strafe_Right", SubResource("AnimationNodeStateMachineTransition_fkw11"), "Running_Strafe_Right", "Idle", SubResource("AnimationNodeStateMachineTransition_hytph"), "Idle", "Running_Strafe_Left", SubResource("AnimationNodeStateMachineTransition_tmrlb"), "Running_Strafe_Left", "Idle", SubResource("AnimationNodeStateMachineTransition_ktfyk"), "Idle", "Interact", SubResource("AnimationNodeStateMachineTransition_84daj"), "Interact", "Idle", SubResource("AnimationNodeStateMachineTransition_eyk33")]
 
 [sub_resource type="Animation" id="Animation_s6m1q"]
 resource_name = "Idle"
@@ -114,6 +114,9 @@ resource_name = "Running_Strafe_Left"
 [sub_resource type="Animation" id="Animation_tw0yw"]
 resource_name = "Running_Strafe_Right"
 
+[sub_resource type="Animation" id="Animation_jc0j7"]
+resource_name = "Walking_Backwards"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3xn42"]
 _data = {
 "Idle": SubResource("Animation_s6m1q"),
@@ -122,7 +125,8 @@ _data = {
 "Running_A": SubResource("Animation_silwr"),
 "Running_B": SubResource("Animation_y17ch"),
 "Running_Strafe_Left": SubResource("Animation_yus50"),
-"Running_Strafe_Right": SubResource("Animation_tw0yw")
+"Running_Strafe_Right": SubResource("Animation_tw0yw"),
+"Walking_Backwards": SubResource("Animation_jc0j7")
 }
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_iodin"]
@@ -245,6 +249,7 @@ shape = SubResource("BoxShape3D_up0jl")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 3.4179e-08, 2.96591e-08, -3.1999e-08, 0.997503, -0.0706269, -3.1999e-08, 0.0706269, 0.997503, 0, 1.70673, 4.60884)
+current = true
 
 [node name="Node3D" type="Node3D" parent="."]
 
