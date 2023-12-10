@@ -1,7 +1,6 @@
 extends Control
 
 @onready var playable_character = $"../../"
-@onready var settings = $MarginContainer/VBoxContainer/settings
 var pausa = false
 
 
