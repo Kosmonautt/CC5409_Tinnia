@@ -265,12 +265,12 @@ func _disconnect():
 
 
 func _on_start_timer_timeout() -> void:
-	go_to_loading_scren()
+	go_to_loading_scren.rpc()
 	return
 #	if multiplayer.is_server():
 #		start_game.rpc()
 
-
+@rpc("any_peer", "call_local", "reliable")
 func go_to_loading_scren() -> void:
 	get_tree().change_scene_to_file("res://scenes/ui/loading_screen.tscn")
 
