@@ -1489,6 +1489,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -8)
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 10, 0, 8)
 
 [node name="Floor" type="Node3D" parent="Building/Tower_2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
 
 [node name="floor_wood_large_gltf4" parent="Building/Tower_2/Floor" instance=ExtResource("12_5qgyu")]
 transform = Transform3D(3, 0, 0, 0, 3.5, 0, 0, 0, 4, 0.5, 0.1, 0.087)
