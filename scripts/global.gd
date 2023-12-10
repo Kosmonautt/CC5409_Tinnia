@@ -80,6 +80,7 @@ func is_player_alive(player_id : int) -> bool:
 func game_end(winner: String):
 	winner_name = winner
 	get_tree().change_scene_to_file("res://scenes/ui/endscreen.tscn")
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	global_timer.stop()
 	
 @rpc("any_peer", "call_local")

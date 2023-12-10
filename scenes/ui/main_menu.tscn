@@ -73,11 +73,11 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "Start"
 
-[node name="Settings" type="Button" parent="Control/MainMenu/VBoxContainer2"]
+[node name="Tutorial" type="Button" parent="Control/MainMenu/VBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
-text = "Settings"
+text = "Tutorial"
 
 [node name="Credits" type="Button" parent="Control/MainMenu/VBoxContainer2"]
 unique_name_in_owner = true
@@ -92,6 +92,6 @@ theme_override_font_sizes/font_size = 25
 text = "Exit"
 
 [connection signal="pressed" from="Control/MainMenu/VBoxContainer2/Start" to="Control" method="_on_start_pressed"]
-[connection signal="pressed" from="Control/MainMenu/VBoxContainer2/Settings" to="Control" method="_on_settings_pressed"]
+[connection signal="pressed" from="Control/MainMenu/VBoxContainer2/Tutorial" to="Control" method="_on_settings_pressed"]
 [connection signal="pressed" from="Control/MainMenu/VBoxContainer2/Credits" to="Control" method="_on_credits_pressed"]
 [connection signal="pressed" from="Control/MainMenu/VBoxContainer2/Exit" to="Control" method="_on_exit_pressed"]

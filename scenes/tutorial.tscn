@@ -1,24 +1,24 @@
 [gd_scene load_steps=58 format=3 uid="uid://b8adw208onxum"]
 
-[ext_resource type="PackedScene" uid="uid://bjhx0i1k84ymc" path="res://resources/playable_character/mage.tscn" id="1_41vyr"]
-[ext_resource type="Script" path="res://scripts/test.gd" id="1_fqtb5"]
-[ext_resource type="Texture2D" uid="uid://c7qjuf52l6tj" path="res://resources/assets/keys/w_key1.png" id="3_givne"]
-[ext_resource type="Texture2D" uid="uid://crtwfpaeplwqi" path="res://resources/assets/keys/w_key2.png" id="4_s4i37"]
-[ext_resource type="Texture2D" uid="uid://cd28qcfbol705" path="res://resources/assets/keys/a_key1.png" id="5_ta1g0"]
-[ext_resource type="Texture2D" uid="uid://kb305uacyb6x" path="res://resources/assets/keys/a_key2.png" id="6_er21e"]
-[ext_resource type="Texture2D" uid="uid://b4d6ef35wavpl" path="res://resources/assets/keys/d_key1.png" id="7_w32tb"]
-[ext_resource type="Texture2D" uid="uid://hyiuprgf3lok" path="res://resources/assets/keys/d_key2.png" id="8_qqxfp"]
-[ext_resource type="Texture2D" uid="uid://dclhf6vcae8lo" path="res://resources/assets/keys/s_key1.png" id="9_rk3xt"]
-[ext_resource type="Texture2D" uid="uid://dt71hghqdvq3w" path="res://resources/assets/keys/s_key2.png" id="10_g0cpc"]
-[ext_resource type="Texture2D" uid="uid://b5taydlj1rwpc" path="res://resources/assets/keys/space_key1.png" id="11_23vpr"]
-[ext_resource type="Texture2D" uid="uid://kopjh22lwlfb" path="res://resources/assets/keys/space_key2.png" id="12_sho04"]
-[ext_resource type="Texture2D" uid="uid://dkbkev8f1507r" path="res://resources/assets/keys/mouse1.png" id="13_1b5jf"]
-[ext_resource type="Texture2D" uid="uid://bucq0h6d1ijya" path="res://resources/assets/keys/mouse2.png" id="14_otafw"]
-[ext_resource type="Texture2D" uid="uid://bdmpoob8a4tao" path="res://resources/assets/keys/mouse3.png" id="15_1u1dv"]
-[ext_resource type="Texture2D" uid="uid://crhkanv22hxir" path="res://resources/assets/tutorial_powers/POWERS1.png" id="16_im4js"]
-[ext_resource type="Texture2D" uid="uid://cgocq4mupnq0u" path="res://resources/assets/tutorial_powers/POWERS2.png" id="17_0whdy"]
-[ext_resource type="Texture2D" uid="uid://c17ljoyivhf1b" path="res://resources/assets/tutorial_powers/POWERS3.png" id="18_nx3mv"]
-[ext_resource type="Texture2D" uid="uid://c1kayla4kvgbc" path="res://resources/assets/tutorial_powers/POWERS4.png" id="19_gml6l"]
+[ext_resource type="Script" path="res://scripts/tutorial.gd" id="1_5c3ov"]
+[ext_resource type="PackedScene" uid="uid://bjhx0i1k84ymc" path="res://resources/playable_character/mage.tscn" id="2_wv6pq"]
+[ext_resource type="Texture2D" uid="uid://c7qjuf52l6tj" path="res://resources/assets/keys/w_key1.png" id="3_12l6t"]
+[ext_resource type="Texture2D" uid="uid://crtwfpaeplwqi" path="res://resources/assets/keys/w_key2.png" id="4_n7fp1"]
+[ext_resource type="Texture2D" uid="uid://cd28qcfbol705" path="res://resources/assets/keys/a_key1.png" id="5_rd11e"]
+[ext_resource type="Texture2D" uid="uid://kb305uacyb6x" path="res://resources/assets/keys/a_key2.png" id="6_n88ly"]
+[ext_resource type="Texture2D" uid="uid://b4d6ef35wavpl" path="res://resources/assets/keys/d_key1.png" id="7_11l01"]
+[ext_resource type="Texture2D" uid="uid://hyiuprgf3lok" path="res://resources/assets/keys/d_key2.png" id="8_ilol0"]
+[ext_resource type="Texture2D" uid="uid://dclhf6vcae8lo" path="res://resources/assets/keys/s_key1.png" id="9_b1akf"]
+[ext_resource type="Texture2D" uid="uid://dt71hghqdvq3w" path="res://resources/assets/keys/s_key2.png" id="10_g582n"]
+[ext_resource type="Texture2D" uid="uid://b5taydlj1rwpc" path="res://resources/assets/keys/space_key1.png" id="11_bsp7c"]
+[ext_resource type="Texture2D" uid="uid://kopjh22lwlfb" path="res://resources/assets/keys/space_key2.png" id="12_6nyky"]
+[ext_resource type="Texture2D" uid="uid://dkbkev8f1507r" path="res://resources/assets/keys/mouse1.png" id="13_8vkjv"]
+[ext_resource type="Texture2D" uid="uid://bucq0h6d1ijya" path="res://resources/assets/keys/mouse2.png" id="14_md6ov"]
+[ext_resource type="Texture2D" uid="uid://bdmpoob8a4tao" path="res://resources/assets/keys/mouse3.png" id="15_gprxl"]
+[ext_resource type="Texture2D" uid="uid://crhkanv22hxir" path="res://resources/assets/tutorial_powers/POWERS1.png" id="16_0ha2v"]
+[ext_resource type="Texture2D" uid="uid://cgocq4mupnq0u" path="res://resources/assets/tutorial_powers/POWERS2.png" id="17_bjbtx"]
+[ext_resource type="Texture2D" uid="uid://c17ljoyivhf1b" path="res://resources/assets/tutorial_powers/POWERS3.png" id="18_4b1fv"]
+[ext_resource type="Texture2D" uid="uid://c1kayla4kvgbc" path="res://resources/assets/tutorial_powers/POWERS4.png" id="19_bk2ja"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_up0jl"]
 size = Vector3(2.95445, 0.17468, 2.57323)
@@ -133,10 +133,10 @@ _data = {
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_givne")
+"texture": ExtResource("3_12l6t")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_s4i37")
+"texture": ExtResource("4_n7fp1")
 }],
 "loop": true,
 "name": &"default",
@@ -147,10 +147,10 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("5_ta1g0")
+"texture": ExtResource("5_rd11e")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_er21e")
+"texture": ExtResource("6_n88ly")
 }],
 "loop": true,
 "name": &"default",
@@ -161,10 +161,10 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("7_w32tb")
+"texture": ExtResource("7_11l01")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_qqxfp")
+"texture": ExtResource("8_ilol0")
 }],
 "loop": true,
 "name": &"default",
@@ -175,10 +175,10 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("9_rk3xt")
+"texture": ExtResource("9_b1akf")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_g0cpc")
+"texture": ExtResource("10_g582n")
 }],
 "loop": true,
 "name": &"default",
@@ -189,10 +189,10 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("11_23vpr")
+"texture": ExtResource("11_bsp7c")
 }, {
 "duration": 1.0,
-"texture": ExtResource("12_sho04")
+"texture": ExtResource("12_6nyky")
 }],
 "loop": true,
 "name": &"default",
@@ -203,13 +203,13 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("13_1b5jf")
+"texture": ExtResource("13_8vkjv")
 }, {
 "duration": 1.0,
-"texture": ExtResource("14_otafw")
+"texture": ExtResource("14_md6ov")
 }, {
 "duration": 1.0,
-"texture": ExtResource("15_1u1dv")
+"texture": ExtResource("15_gprxl")
 }],
 "loop": true,
 "name": &"default",
@@ -220,16 +220,16 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 2.0,
-"texture": ExtResource("16_im4js")
+"texture": ExtResource("16_0ha2v")
 }, {
 "duration": 2.0,
-"texture": ExtResource("17_0whdy")
+"texture": ExtResource("17_bjbtx")
 }, {
 "duration": 2.0,
-"texture": ExtResource("18_nx3mv")
+"texture": ExtResource("18_4b1fv")
 }, {
 "duration": 2.0,
-"texture": ExtResource("19_gml6l")
+"texture": ExtResource("19_bk2ja")
 }],
 "loop": false,
 "name": &"default",
@@ -237,7 +237,7 @@ animations = [{
 }]
 
 [node name="test" type="Node3D"]
-script = ExtResource("1_fqtb5")
+script = ExtResource("1_5c3ov")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.7446, 0)
@@ -253,7 +253,7 @@ current = true
 
 [node name="Node3D" type="Node3D" parent="."]
 
-[node name="Mage" parent="Node3D" instance=ExtResource("1_41vyr")]
+[node name="Mage" parent="Node3D" instance=ExtResource("2_wv6pq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.207364, 0)
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
