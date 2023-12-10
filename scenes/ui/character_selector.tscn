@@ -15,14 +15,14 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7wxp3"]
 switch_mode = 2
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_8jl8x"]
 states/Cheer/node = SubResource("AnimationNodeAnimation_00kbh")
 states/Cheer/position = Vector2(614, 100)
 states/Idle/node = SubResource("AnimationNodeAnimation_af0q2")
-states/Idle/position = Vector2(354, 100)
+states/Idle/position = Vector2(353, 100)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_2a8fa"), "Idle", "Cheer", SubResource("AnimationNodeStateMachineTransition_0ay6d"), "Cheer", "Idle", SubResource("AnimationNodeStateMachineTransition_7wxp3")]
+graph_offset = Vector2(22, -91)
 
 [sub_resource type="Animation" id="Animation_heigc"]
 resource_name = "Cheer"

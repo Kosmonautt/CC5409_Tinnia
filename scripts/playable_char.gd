@@ -21,6 +21,7 @@ var power_active : bool = false
 var power_available : bool = true
 var air_strafing_speed : float = 0
 var pass_bomb : bool = true
+var is_walking : bool = false
 
 @onready var head = $Head
 @onready var camera : Camera3D = $Head/Camera3D
@@ -35,6 +36,7 @@ var pass_bomb : bool = true
 @onready var sound : AudioStreamPlayer = $AudioStreamPlayer
 @onready var sound3d : AudioStreamPlayer3D = $Playable_characters/AudioStreamPlayer3D
 @onready var pause_menu : Control = $CanvasLayer/pause_menu
+@onready var music : AudioStreamPlayer = $GlobalSongPlayer
 var pausa = false
 
 # this function gets called when players are playable characters are assigned to each player
@@ -55,6 +57,7 @@ func setup(player_data: Game.PlayerData) -> void:
 	if is_multiplayer_authority(): 
 		Global.die.connect(player_die)
 		Global.sound_tick.connect(sound_tick)
+		music.play()
 	# setting up the timer for the power
 	setup_icon(player_data.role)
 
@@ -122,17 +125,17 @@ func _process(_delta):
 		
 func _physics_process(delta):
 	# to avoid getting stuck on the ceiling
-	if(not is_on_floor() and is_on_ceiling()):
+	if not is_on_floor() and is_on_ceiling():
 		target_velocity.y = 0
 	
 	# return other players physics
 	if not is_multiplayer_authority():
 		return
+		
 	# activate power
 	if Input.is_action_just_pressed("action_2") and power_available and not Global.on_prep_time:
 		character_power(Game.get_current_player().role)
-		
-	
+
 	# when passing the bomb
 	if Input.is_action_just_pressed("action_1") and name.to_int() == Global.bomb_carrier and pass_bomb:
 		for i in area.get_overlapping_bodies():
@@ -145,6 +148,8 @@ func _physics_process(delta):
 				i.pass_the_bomb(i.name.to_int())
 				bomb_recibed.rpc_id(i.name.to_int())
 				i.start_pass_timer.rpc()
+				await anim_tree.animation_finished
+				animation_state.rpc("Movement")
 				break
 	
 	# jumping Y
@@ -166,6 +171,7 @@ func _physics_process(delta):
 			second_jump = true
 			target_velocity.y += jump_impulse
 		
+		emit_sound.rpc("res://resources/sounds/jump.wav")
 		# max upward speed is limited
 		target_velocity.y = min(target_velocity.y, max_up_speed)
 	
@@ -183,6 +189,14 @@ func _physics_process(delta):
 	if pausa:
 		direction = (transform.basis * Vector3(0, 0, 0))
 	
+	if is_on_floor():
+		if !is_walking and dir_input:
+			is_walking = true
+			emit_sound.rpc("res://resources/sounds/walk.wav")
+		elif is_walking and dir_input == Vector2.ZERO:
+			stop_sound.rpc()
+			is_walking = false
+	
 	if not Global.on_prep_time:
 		if is_on_floor():
 			if dir_input:
@@ -192,6 +206,7 @@ func _physics_process(delta):
 				target_velocity.x = direction.x * speed.x
 				target_velocity.z = direction.z * speed.z
 			else:
+				is_walking = false
 				target_velocity.x = move_toward(target_velocity.x, 0, ACELERATION * 5 * delta)
 				target_velocity.z = move_toward(target_velocity.z, 0, ACELERATION * 5 * delta)
 				speed = Vector3.ZERO
@@ -213,6 +228,7 @@ func player_die() -> void:
 	animation_state.rpc("Death_A")
 	sound.stream = load("res://resources/sounds/explosion.wav")
 	sound.play()
+	emit_sound.rpc("res://resources/sounds/explosion.wav")
 	# disable input and process
 	set_process_unhandled_input(false)
 	set_physics_process(false)
@@ -240,6 +256,8 @@ func knight_power():
 	bomb_body.show()
 	bomb_body.freeze = false
 	bomb_body.linear_velocity += (20 * -head.get_global_transform().basis.z) + target_velocity
+	await anim_tree.animation_finished
+	animation_state.rpc("Movement")
 
 @rpc("call_local")
 func rogue_power():
@@ -317,5 +335,23 @@ func _on_pass_timer_timeout():
 	pass_bomb = true
 
 func sound_tick():
+	rpc_sound_tick.rpc()
+
+@rpc("any_peer", "call_local", "reliable")
+func rpc_sound_tick():
 	sound.stream = load("res://resources/sounds/tick.wav")
 	sound.play()
+
+@rpc("any_peer","call_local", "reliable")
+func emit_sound(sound_path : String):
+	if !is_multiplayer_authority():
+		sound3d.stream = load(sound_path)
+		sound3d.play()
+
+@rpc("any_peer","call_local", "reliable")
+func stop_sound():
+	sound3d.stop()
+
+func _on_global_song_player_finished():
+	if is_multiplayer_authority():
+		music.play()

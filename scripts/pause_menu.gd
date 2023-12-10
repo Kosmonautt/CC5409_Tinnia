@@ -1,7 +1,6 @@
 extends Control
 
 @onready var playable_character = $"../../"
-@onready var settings = $MarginContainer/VBoxContainer/settings
 var pausa = false
 
 
@@ -52,7 +51,7 @@ func pauseMenu():
 
 func _on_quit_pressed():
 	Global.player_disconect(multiplayer.get_unique_id())
-	print(Global.players_alive.size())
+	#print(Global.players_alive.size())
 	if multiplayer.is_server() and Global.players_alive.size() > 1:
 		return
 	get_tree().quit()

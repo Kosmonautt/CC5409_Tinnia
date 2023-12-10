@@ -15,7 +15,7 @@ signal sound_tick()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	global_timer.one_shot = false
-	sound_timer.one_shot = false
+	sound_timer.one_shot = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame
 func _process(_delta):
@@ -53,6 +53,7 @@ func emit_sound_tick() -> void:
 	sound_tick.emit()
 	
 func _on_global_timer_timeout():
+	sound_timer.start(TIMER_TIME-8)
 	emit_die.rpc_id(bomb_carrier)
 	players_alive.erase(bomb_carrier)
 	if players_alive.size() == 1:
@@ -80,6 +81,7 @@ func is_player_alive(player_id : int) -> bool:
 func game_end(winner: String):
 	winner_name = winner
 	get_tree().change_scene_to_file("res://scenes/ui/endscreen.tscn")
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	global_timer.stop()
 	
 @rpc("any_peer", "call_local")

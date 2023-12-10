@@ -39,3 +39,5 @@ func change_visible(role) -> void:
 	animation_tree.anim_player = active_animation_player.get_path()
 	animation_tree.active = true
 	playback.travel("Cheer")
+	await animation_tree.animation_finished
+	playback.travel("Idle")

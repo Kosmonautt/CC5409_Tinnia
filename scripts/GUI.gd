@@ -19,7 +19,7 @@ func _process(_delta):
 	update_gui()
 	if Global.on_prep_time:
 		chronometer_sprite.hide()
-		time_label.text = "El juego comienza en " + str(int(Global.global_timer.time_left)-100) 
+		time_label.text = "The Game starts in " + str(int(Global.global_timer.time_left)-100) 
 	else:
 		chronometer_sprite.show()
 		time_label.text = str(int(Global.global_timer.time_left))
@@ -27,7 +27,8 @@ func _process(_delta):
 	# DEBUG
 	if is_multiplayer_authority():
 #		var bomba : bool = $"../".pass_bomb
-		var bomba : int = Global.bomb_carrier
+#		var bomba : int = Global.bomb_carrier
+		var bomba : int = $"../".is_walking
 		bomb.text = str("BOMB CARRIER: %s" % bomba)
 
 func update_gui() -> void:
