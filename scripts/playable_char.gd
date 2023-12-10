@@ -148,6 +148,8 @@ func _physics_process(delta):
 				i.pass_the_bomb(i.name.to_int())
 				bomb_recibed.rpc_id(i.name.to_int())
 				i.start_pass_timer.rpc()
+				await anim_tree.animation_finished
+				animation_state.rpc("Movement")
 				break
 	
 	# jumping Y
@@ -254,6 +256,8 @@ func knight_power():
 	bomb_body.show()
 	bomb_body.freeze = false
 	bomb_body.linear_velocity += (20 * -head.get_global_transform().basis.z) + target_velocity
+	await anim_tree.animation_finished
+	animation_state.rpc("Movement")
 
 @rpc("call_local")
 func rogue_power():

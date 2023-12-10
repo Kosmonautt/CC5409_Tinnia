@@ -55,7 +55,6 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iv6dq"]
 switch_mode = 2
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_87gfq"]
 
@@ -73,7 +72,6 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_eyk33"]
 switch_mode = 2
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_lat04"]
 states/Idle/node = SubResource("AnimationNodeAnimation_3lep4")
@@ -92,6 +90,7 @@ states/Start/position = Vector2(107, 100)
 states/Walking_Backwards/node = SubResource("AnimationNodeAnimation_fp0i8")
 states/Walking_Backwards/position = Vector2(314, 176)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_awoxa"), "Idle", "Running_A", SubResource("AnimationNodeStateMachineTransition_kwi4j"), "Running_A", "Idle", SubResource("AnimationNodeStateMachineTransition_gjj0j"), "Idle", "Jump_Full_Long", SubResource("AnimationNodeStateMachineTransition_vveqr"), "Jump_Full_Long", "Idle", SubResource("AnimationNodeStateMachineTransition_iv6dq"), "Idle", "Walking_Backwards", SubResource("AnimationNodeStateMachineTransition_87gfq"), "Walking_Backwards", "Idle", SubResource("AnimationNodeStateMachineTransition_0qj33"), "Idle", "Running_Strafe_Right", SubResource("AnimationNodeStateMachineTransition_fkw11"), "Running_Strafe_Right", "Idle", SubResource("AnimationNodeStateMachineTransition_hytph"), "Idle", "Running_Strafe_Left", SubResource("AnimationNodeStateMachineTransition_tmrlb"), "Running_Strafe_Left", "Idle", SubResource("AnimationNodeStateMachineTransition_ktfyk"), "Idle", "Interact", SubResource("AnimationNodeStateMachineTransition_84daj"), "Interact", "Idle", SubResource("AnimationNodeStateMachineTransition_eyk33")]
+graph_offset = Vector2(-49, -82)
 
 [sub_resource type="Animation" id="Animation_s6m1q"]
 resource_name = "Idle"

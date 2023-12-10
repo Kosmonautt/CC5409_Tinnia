@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=3 uid="uid://cday53347fn87"]
+[gd_scene load_steps=74 format=3 uid="uid://cday53347fn87"]
 
 [ext_resource type="Script" path="res://scripts/playable_char.gd" id="1_cc565"]
 [ext_resource type="Texture2D" uid="uid://0jjienyapijm" path="res://resources/assets/bomb/Sprite-0001.png" id="2_qylr5"]
@@ -109,7 +109,7 @@ animation = &"Jump_Start"
 [sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_ep267"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_c643i"]
-graph_offset = Vector2(-438, -42)
+graph_offset = Vector2(-321, -23)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_3y428")
 nodes/Animation/position = Vector2(-220, 140)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_8yf4a")
@@ -130,9 +130,6 @@ animation = &"Running_A"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uquum"]
 animation = &"Running_A"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5fuwg"]
-animation = &"Running_A"
-
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sxqsu"]
 animation = &"Walking_A"
 
@@ -145,6 +142,9 @@ animation = &"Walking_A"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0hbtq"]
 animation = &"Walking_A"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mllw3"]
+animation = &"Running_A"
+
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_hxw64"]
 blend_point_0/node = SubResource("AnimationNodeAnimation_732k0")
 blend_point_0/pos = Vector2(0, 0)
@@ -154,18 +154,19 @@ blend_point_2/node = SubResource("AnimationNodeAnimation_7pkto")
 blend_point_2/pos = Vector2(0, -15)
 blend_point_3/node = SubResource("AnimationNodeAnimation_uquum")
 blend_point_3/pos = Vector2(15, 0)
-blend_point_4/node = SubResource("AnimationNodeAnimation_5fuwg")
-blend_point_4/pos = Vector2(-15, 0)
-blend_point_5/node = SubResource("AnimationNodeAnimation_sxqsu")
-blend_point_5/pos = Vector2(0, 7.3)
-blend_point_6/node = SubResource("AnimationNodeAnimation_scnqr")
-blend_point_6/pos = Vector2(7.5, 0)
-blend_point_7/node = SubResource("AnimationNodeAnimation_b3dqy")
-blend_point_7/pos = Vector2(0, -7.5)
-blend_point_8/node = SubResource("AnimationNodeAnimation_0hbtq")
-blend_point_8/pos = Vector2(-7.5, 0)
+blend_point_4/node = SubResource("AnimationNodeAnimation_sxqsu")
+blend_point_4/pos = Vector2(0, 7.3)
+blend_point_5/node = SubResource("AnimationNodeAnimation_scnqr")
+blend_point_5/pos = Vector2(7.5, 0)
+blend_point_6/node = SubResource("AnimationNodeAnimation_b3dqy")
+blend_point_6/pos = Vector2(0, -7.5)
+blend_point_7/node = SubResource("AnimationNodeAnimation_0hbtq")
+blend_point_7/pos = Vector2(-7.5, 0)
+blend_point_8/node = SubResource("AnimationNodeAnimation_mllw3")
+blend_point_8/pos = Vector2(-15, 0)
 min_space = Vector2(-15, -15)
 max_space = Vector2(15, 15)
+snap = Vector2(1, 1)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jduhs"]
 animation = &"Throw"
@@ -212,7 +213,6 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fi5w2"]
 switch_mode = 2
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hgar2"]
 switch_mode = 2
@@ -222,7 +222,6 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xouvf"]
 switch_mode = 2
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_tkr7g"]
 states/Death_A/node = SubResource("AnimationNodeAnimation_qo01g")
@@ -242,7 +241,7 @@ states/Start/position = Vector2(15, 107)
 states/Throw/node = SubResource("AnimationNodeBlendTree_lhwja")
 states/Throw/position = Vector2(15, 224.646)
 transitions = ["Jump_Idle", "Jump_Land", SubResource("AnimationNodeStateMachineTransition_krvd5"), "Interact", "Death_A", SubResource("AnimationNodeStateMachineTransition_7ytwu"), "Jump_Land", "Death_A", SubResource("AnimationNodeStateMachineTransition_bi5pv"), "Jump_Start", "Death_A", SubResource("AnimationNodeStateMachineTransition_5ssfq"), "Jump_Start", "Jump_Idle", SubResource("AnimationNodeStateMachineTransition_5w1y4"), "Start", "Movement", SubResource("AnimationNodeStateMachineTransition_pbhn1"), "Movement", "Jump_Start", SubResource("AnimationNodeStateMachineTransition_u1k6i"), "Movement", "Interact", SubResource("AnimationNodeStateMachineTransition_htx58"), "Movement", "Jump_Idle", SubResource("AnimationNodeStateMachineTransition_gnma2"), "Movement", "Death_A", SubResource("AnimationNodeStateMachineTransition_7wch7"), "Interact", "Movement", SubResource("AnimationNodeStateMachineTransition_fi5w2"), "Jump_Land", "Movement", SubResource("AnimationNodeStateMachineTransition_hgar2"), "Movement", "Throw", SubResource("AnimationNodeStateMachineTransition_dkkwj"), "Throw", "Movement", SubResource("AnimationNodeStateMachineTransition_xouvf")]
-graph_offset = Vector2(-141.86, -69.354)
+graph_offset = Vector2(-130.86, -130.354)
 
 [sub_resource type="Animation" id="Animation_oigqe"]
 resource_name = "Death_A"
@@ -265,6 +264,12 @@ resource_name = "Jump_Start"
 [sub_resource type="Animation" id="Animation_i4htw"]
 resource_name = "Running_A"
 
+[sub_resource type="Animation" id="Animation_styih"]
+resource_name = "Running_Strafe_Left"
+
+[sub_resource type="Animation" id="Animation_cpqe6"]
+resource_name = "Running_Strafe_Right"
+
 [sub_resource type="Animation" id="Animation_kmi15"]
 resource_name = "Throw"
 
@@ -280,6 +285,8 @@ _data = {
 "Jump_Land": SubResource("Animation_u5hht"),
 "Jump_Start": SubResource("Animation_lcbbw"),
 "Running_A": SubResource("Animation_i4htw"),
+"Running_Strafe_Left": SubResource("Animation_styih"),
+"Running_Strafe_Right": SubResource("Animation_cpqe6"),
 "Throw": SubResource("Animation_kmi15"),
 "Walking_A": SubResource("Animation_84itt")
 }
@@ -375,7 +382,7 @@ active = true
 parameters/conditions/is_landed = false
 parameters/Jump_Start/TimeScale/scale = 1.5
 parameters/Jump_Start/TimeSeek/seek_request = -1.0
-parameters/Movement/blend_position = Vector2(0, 0)
+parameters/Movement/blend_position = Vector2(0.0240002, 0)
 parameters/Throw/TimeScale/scale = 1.5
 parameters/Throw/TimeSeek/seek_request = -1.0
 
