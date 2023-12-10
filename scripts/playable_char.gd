@@ -57,9 +57,9 @@ func setup(player_data: Game.PlayerData) -> void:
 	if is_multiplayer_authority(): 
 		Global.die.connect(player_die)
 		Global.sound_tick.connect(sound_tick)
+		music.play()
 	# setting up the timer for the power
 	setup_icon(player_data.role)
-	music.play()
 
 func setup_model(role : Game.Role) -> void:
 	match role:
@@ -226,6 +226,7 @@ func player_die() -> void:
 	animation_state.rpc("Death_A")
 	sound.stream = load("res://resources/sounds/explosion.wav")
 	sound.play()
+	emit_sound.rpc("res://resources/sounds/explosion.wav")
 	# disable input and process
 	set_process_unhandled_input(false)
 	set_physics_process(false)
@@ -330,6 +331,10 @@ func _on_pass_timer_timeout():
 	pass_bomb = true
 
 func sound_tick():
+	rpc_sound_tick.rpc()
+
+@rpc("any_peer", "call_local", "reliable")
+func rpc_sound_tick():
 	sound.stream = load("res://resources/sounds/tick.wav")
 	sound.play()
 
@@ -343,6 +348,6 @@ func emit_sound(sound_path : String):
 func stop_sound():
 	sound3d.stop()
 
-
 func _on_global_song_player_finished():
-	music.play()
+	if is_multiplayer_authority():
+		music.play()

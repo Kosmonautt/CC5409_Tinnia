@@ -15,7 +15,7 @@ signal sound_tick()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	global_timer.one_shot = false
-	sound_timer.one_shot = false
+	sound_timer.one_shot = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame
 func _process(_delta):
@@ -53,6 +53,7 @@ func emit_sound_tick() -> void:
 	sound_tick.emit()
 	
 func _on_global_timer_timeout():
+	sound_timer.start(TIMER_TIME-8)
 	emit_die.rpc_id(bomb_carrier)
 	players_alive.erase(bomb_carrier)
 	if players_alive.size() == 1:
