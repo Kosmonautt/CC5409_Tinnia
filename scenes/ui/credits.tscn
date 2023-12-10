@@ -31,8 +31,8 @@ size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="Background/SubViewportContainer/SubViewport"]
-transform = Transform3D(0.671953, 0, 0.740594, 0, 1, 0, -0.740594, 0, 0.671953, 18.0627, 2.45299, 5.64885)
-fov = 60.0
+transform = Transform3D(-1, 5.61943e-08, -6.69697e-08, 0, 0.766044, 0.642788, 8.74228e-08, 0.642788, -0.766044, 0, 30, -40)
+fov = 50.0
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
