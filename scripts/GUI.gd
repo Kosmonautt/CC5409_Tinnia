@@ -43,7 +43,7 @@ func setup_power(role : Game.Role) -> void:
 		1:
 			power = "res://resources/assets/powers/Mage.png"
 		2:
-			power = "res://icon.svg"
+			power = "res://resources/assets/powers/Knight.png"
 		3:
 			power = "res://resources/assets/powers/Rogue.png"
 		4:
