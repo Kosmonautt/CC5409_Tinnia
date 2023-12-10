@@ -31,8 +31,8 @@ size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="Background/SubViewportContainer/SubViewport"]
-transform = Transform3D(0.671953, 0, 0.740594, 0, 1, 0, -0.740594, 0, 0.671953, 18.0627, 2.45299, 5.64885)
-fov = 60.0
+transform = Transform3D(-1, 5.61943e-08, -6.69697e-08, 0, 0.766044, 0.642788, 8.74228e-08, 0.642788, -0.766044, 0, 30, -40)
+fov = 50.0
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -85,11 +85,13 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/normal = SubResource("StyleBoxFlat_irva1")
 bbcode_enabled = true
-text = "## Models
+text = "By Cinnamon Studio
+Vicente-VA, Reik0, ksmnt
+
+## Models
 Character Pack: Adventurers:
 - Author: Kay Lousberg (has more packs available)
 - Link: [url]https://kaylousberg.itch.io/kaykit-adventurers[/url]
-
 
 ## Map Assets:
 Dungeon Remastered Pack 
@@ -97,8 +99,8 @@ Dungeon Remastered Pack
 - Link: [url]https://kaylousberg.itch.io/kaykit-dungeon-remastered[/url]
 
 ## Abilities and Bomb Icons:
-Author: a_littlecharm
-Link: @a_littlecharm
+- Author: a_littlecharm
+- Link: @a_littlecharm on IG
 
 ## Font:
 Medieval Sharp
@@ -106,8 +108,16 @@ Medieval Sharp
 - Link: [url]https://fontlibrary.org/en/font/medievalsharp[/url]
 
 ## Music and Sound Effects:
-- Author:
-- Link:"
+Main Theme: Brim
+- Link: [url]https://soundcloud.com/tomas-duran-101977212/4a1 [/url]
+Walking Sound: 
+- [url]https://freesound.org/people/Disagree/sounds/433725/ [/url]
+Jumping Sound: 
+- [url]https://freesound.org/people/kfatehi/sounds/363921/ [/url]
+Explosion Sound: 
+- [url]https://freesound.org/people/eardeer/sounds/402004/ [url]
+Ticking Sound: 
+- [url]https://freesound.org/people/MATRIXXX_/sounds/487725/ [/url]"
 
 [node name="Back" type="Button" parent="Control/MainMenu/VBoxContainer2"]
 unique_name_in_owner = true
