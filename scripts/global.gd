@@ -1,6 +1,6 @@
 extends Node
 
-const TIMER_TIME : int = 110
+const TIMER_TIME : int = 50
 @export var players_alive : Array = []
 @onready var global_timer : Timer = Timer.new()
 @onready var sound_timer : Timer = Timer.new()
@@ -27,7 +27,7 @@ func game_ready() -> void:
 	global_timer.start(TIMER_TIME)
 	add_child(sound_timer)
 	sound_timer.start(TIMER_TIME-8)
-	await get_tree().create_timer(TIMER_TIME-100).timeout
+	await get_tree().create_timer(TIMER_TIME-40).timeout
 	end_of_prep_time()
 	# manage the timer on the multiplayer authority
 	if is_multiplayer_authority():

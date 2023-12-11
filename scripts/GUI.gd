@@ -19,10 +19,10 @@ func _process(_delta):
 	update_gui()
 	if Global.on_prep_time:
 		chronometer_sprite.hide()
-		time_label.text = "The Game starts in " + str(int(Global.global_timer.time_left)-100) 
+		time_label.text = "The Game starts in " + str(int(Global.global_timer.time_left)-40+1) 
 	else:
 		chronometer_sprite.show()
-		time_label.text = str(int(Global.global_timer.time_left))
+		time_label.text = str(int(Global.global_timer.time_left)+1)
 	
 	# DEBUG
 	if is_multiplayer_authority():

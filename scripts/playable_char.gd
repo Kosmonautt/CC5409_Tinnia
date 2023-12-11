@@ -37,6 +37,7 @@ var is_walking : bool = false
 @onready var sound3d : AudioStreamPlayer3D = $Playable_characters/AudioStreamPlayer3D
 @onready var pause_menu : Control = $CanvasLayer/pause_menu
 @onready var music : AudioStreamPlayer = $GlobalSongPlayer
+@onready var tick_sound_player : AudioStreamPlayer = $AudioStreamPlayer2
 var pausa = false
 
 # this function gets called when players are playable characters are assigned to each player
@@ -82,13 +83,13 @@ func setup_icon(role : Game.Role) -> void:
 	$GUI.setup_power(role)
 	match role:
 		1:
-			power_timer.wait_time = 15
+			power_timer.wait_time = 10
 		2:
-			power_timer.wait_time = 15
+			power_timer.wait_time = 10
 		3:
-			power_timer.wait_time = 15
+			power_timer.wait_time = 10
 		4:
-			power_timer.wait_time = 15
+			power_timer.wait_time = 10
 
 func _ready():
 	# we hide cursor so we can move the camera freely
@@ -118,7 +119,7 @@ func _process(_delta):
 	else:
 		bomb_png.hide()
 		
-	if power_timer.time_left < 10 and power_active:
+	if power_timer.time_left < 5 and power_active:
 		particle_emit.rpc("res://resources/assets/powers/Neutral_particles.tres")
 		normal_state()
 		power_active = false
@@ -287,8 +288,7 @@ func character_power(role : Game.Role):
 		4:
 			barbarian_power()
 	power_timer.start()
-	sound.stream = load("res://resources/sounds/pop.wav")
-	sound.play()
+	emit_sound.rpc("res://resources/sounds/pop.wav")
 	power_available = false
 	$GUI.hide_power_icon()
 
@@ -339,8 +339,8 @@ func sound_tick():
 
 @rpc("any_peer", "call_local", "reliable")
 func rpc_sound_tick():
-	sound.stream = load("res://resources/sounds/tick.wav")
-	sound.play()
+	tick_sound_player.stream = load("res://resources/sounds/tick.wav")
+	tick_sound_player.play()
 
 @rpc("any_peer","call_local", "reliable")
 func emit_sound(sound_path : String):

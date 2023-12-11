@@ -86,7 +86,7 @@ size_flags_vertical = 3
 theme_override_styles/normal = SubResource("StyleBoxFlat_irva1")
 bbcode_enabled = true
 text = "By Cinnamon Studio
-Vicente-VA, Reik0, ksmnt
+Vicente-VA, Reik0, ksmnt, Cristian
 
 ## Models
 Character Pack: Adventurers:
@@ -108,15 +108,20 @@ Medieval Sharp
 - Link: [url]https://fontlibrary.org/en/font/medievalsharp[/url]
 
 ## Music and Sound Effects:
-Main Theme: Brim
+Main Theme:
+- Author: Brim
 - Link: [url]https://soundcloud.com/tomas-duran-101977212/4a1 [/url]
 Walking Sound: 
+- Author: Disagree
 - [url]https://freesound.org/people/Disagree/sounds/433725/ [/url]
 Jumping Sound: 
+- Author: kfatehi
 - [url]https://freesound.org/people/kfatehi/sounds/363921/ [/url]
-Explosion Sound: 
+Explosion Sound:
+- Author: eardeer 
 - [url]https://freesound.org/people/eardeer/sounds/402004/ [url]
 Ticking Sound: 
+- Author: MATRIXXX_
 - [url]https://freesound.org/people/MATRIXXX_/sounds/487725/ [/url]"
 
 [node name="Back" type="Button" parent="Control/MainMenu/VBoxContainer2"]
