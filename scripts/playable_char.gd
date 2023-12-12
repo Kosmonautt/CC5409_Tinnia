@@ -5,7 +5,7 @@ var MAX_SPEED = 30
 const TIME_RECOVER : int = 10
 const POWER_TIME : int = 5
 const ROGUE_SCALE : float = 0.5
-const SPEED_BUFF : int = 10
+const SPEED_BUFF : int = 8
 @export var player_speed : int = 5
 @export var gravity : int = 20
 @export var jump_impulse : int = 12
@@ -202,6 +202,9 @@ func _physics_process(delta):
 		elif is_walking and dir_input == Vector2.ZERO:
 			stop_sound.rpc()
 			is_walking = false
+			
+	if Global.bomb_carrier == self.name.to_int():
+		ACELERATION = SPEED_BUFF
 	
 	if not Global.on_prep_time:
 		if is_on_floor():
