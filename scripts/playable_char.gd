@@ -74,7 +74,7 @@ func setup(player_data: Game.PlayerData) -> void:
 	# connect to the emit die
 	if is_multiplayer_authority(): 
 		Global.die.connect(player_die)
-		Global.sound_tick.connect(func(): sound_tick.rpc())
+		Global.sound_tick.connect(tick_rpc)
 		music.play()
 	# setting up icon
 	$GUI.setup_power(player_data.role)
@@ -118,13 +118,13 @@ func _process(_delta):
 		power_active = false
 		
 func _physics_process(delta):
-	# to avoid getting stuck on the ceiling
-	if not is_on_floor() and is_on_ceiling():
-		target_velocity.y = 0
-	
 	# return other players physics
 	if not is_multiplayer_authority():
 		return
+		
+	# to avoid getting stuck on the ceiling
+	if not is_on_floor() and is_on_ceiling():
+		target_velocity.y = 0
 		
 	# activate power
 	if Input.is_action_just_pressed("action_2") and power_available and not Global.on_prep_time:
@@ -239,6 +239,9 @@ func player_die() -> void:
 	
 func is_valid_place():
 	return !mage_tp.has_overlapping_areas() and !mage_tp.has_overlapping_bodies()
+	
+func tick_rpc():
+	sound_tick.rpc()
 	
 func mage_power():
 	particle_emit.rpc("res://resources/assets/powers/Mage_particles.tres")
