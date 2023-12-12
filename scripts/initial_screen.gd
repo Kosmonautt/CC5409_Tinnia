@@ -38,19 +38,6 @@ func _process(_delta):
 	if scene_load_status == ResourceLoader.THREAD_LOAD_LOADED and scene_load_status2 == ResourceLoader.THREAD_LOAD_LOADED and seconds_passed == 2.5:
 		starting_game()
 
-#	if progress_bar.value > 15:
-#		knight.visible = true
-#		animation_knight.play("2H_Melee_Attack_Chop")
-#	if progress_bar.value > 30:
-#		rogue.visible = true
-#		animation_rogue.play("1H_Ranged_Shoot")
-#	if progress_bar.value > 45:
-#		mage.visible = true
-#		animation_mage.play("2H_Melee_Attack_Chop")
-#	if progress_bar.value > 60:
-#		barbarian.visible = true
-#		animation_barbarian.play("1H_Melee_Attack_Slice_Horizontal")
-
 func _on_timer_timeout():
 	seconds_passed += 0.5
 	if seconds_passed == 0.5:

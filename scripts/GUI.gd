@@ -19,7 +19,7 @@ func _process(_delta):
 	update_gui()
 	if Global.on_prep_time:
 		chronometer_sprite.hide()
-		time_label.text = "The Game starts in " + str(int(Global.global_timer.time_left)-40+1) 
+		time_label.text = "The Game starts in " + str(int(Global.global_timer.time_left)-Global.TIMER_TIME+Global.PREP_TIME+1) 
 	else:
 		chronometer_sprite.show()
 		time_label.text = str(int(Global.global_timer.time_left)+1)

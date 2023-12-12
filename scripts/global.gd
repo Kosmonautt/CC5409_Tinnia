@@ -1,6 +1,8 @@
 extends Node
 
 const TIMER_TIME : int = 50
+const TICK_TIME : int = 8
+const PREP_TIME : int = 10
 @export var players_alive : Array = []
 @onready var global_timer : Timer = Timer.new()
 @onready var sound_timer : Timer = Timer.new()
@@ -26,8 +28,8 @@ func game_ready() -> void:
 	add_child(global_timer)
 	global_timer.start(TIMER_TIME)
 	add_child(sound_timer)
-	sound_timer.start(TIMER_TIME-8)
-	await get_tree().create_timer(TIMER_TIME-40).timeout
+	sound_timer.start(TIMER_TIME-TICK_TIME)
+	await get_tree().create_timer(PREP_TIME).timeout
 	end_of_prep_time()
 	# manage the timer on the multiplayer authority
 	if is_multiplayer_authority():
@@ -53,7 +55,7 @@ func emit_sound_tick() -> void:
 	sound_tick.emit()
 	
 func _on_global_timer_timeout():
-	sound_timer.start(TIMER_TIME-8)
+	sound_timer.start(TIMER_TIME-TICK_TIME)
 	emit_die.rpc_id(bomb_carrier)
 	players_alive.erase(bomb_carrier)
 	if players_alive.size() == 1:

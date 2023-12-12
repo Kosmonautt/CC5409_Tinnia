@@ -2,6 +2,10 @@ extends CharacterBody3D
 
 var ACELERATION = 5
 var MAX_SPEED = 30
+const TIME_RECOVER : int = 10
+const POWER_TIME : int = 5
+const ROGUE_SCALE : float = 0.5
+const SPEED_BUFF : int = 10
 @export var player_speed : int = 5
 @export var gravity : int = 20
 @export var jump_impulse : int = 12
@@ -22,6 +26,7 @@ var power_available : bool = true
 var air_strafing_speed : float = 0
 var pass_bomb : bool = true
 var is_walking : bool = false
+var pausa = false
 
 @onready var head = $Head
 @onready var camera : Camera3D = $Head/Camera3D
@@ -38,7 +43,6 @@ var is_walking : bool = false
 @onready var pause_menu : Control = $CanvasLayer/pause_menu
 @onready var music : AudioStreamPlayer = $GlobalSongPlayer
 @onready var tick_sound_player : AudioStreamPlayer = $AudioStreamPlayer2
-var pausa = false
 
 # this function gets called when players are playable characters are assigned to each player
 func setup(player_data: Game.PlayerData) -> void:
@@ -53,17 +57,7 @@ func setup(player_data: Game.PlayerData) -> void:
 	# the name also gets saved
 	name = str(player_data.id)
 	# Setting up model character
-	setup_model(player_data.role)
-	# connect to the emit die
-	if is_multiplayer_authority(): 
-		Global.die.connect(player_die)
-		Global.sound_tick.connect(sound_tick)
-		music.play()
-	# setting up the timer for the power
-	setup_icon(player_data.role)
-
-func setup_model(role : Game.Role) -> void:
-	match role:
+	match player_data.role:
 		1:
 			model = load("res://resources/playable_character/mage.tscn").instantiate() as Node3D
 			mage_tp = $Mage_TP
@@ -73,23 +67,18 @@ func setup_model(role : Game.Role) -> void:
 			model = load("res://resources/playable_character/rogue.tscn").instantiate() as Node3D
 		4:
 			model = load("res://resources/playable_character/barbarian.tscn").instantiate() as Node3D
-
 	model.rotation = Vector3(0, PI, 0)
 	playable_character.add_child(model)
 	player_animation = model.get_node("%AnimationPlayer")
 	anim_tree.anim_player = player_animation.get_path()
-	
-func setup_icon(role : Game.Role) -> void:
-	$GUI.setup_power(role)
-	match role:
-		1:
-			power_timer.wait_time = 10
-		2:
-			power_timer.wait_time = 10
-		3:
-			power_timer.wait_time = 10
-		4:
-			power_timer.wait_time = 10
+	# connect to the emit die
+	if is_multiplayer_authority(): 
+		Global.die.connect(player_die)
+		Global.sound_tick.connect(func(): sound_tick.rpc())
+		music.play()
+	# setting up icon
+	$GUI.setup_power(player_data.role)
+	power_timer.wait_time = TIME_RECOVER
 
 func _ready():
 	# we hide cursor so we can move the camera freely
@@ -119,9 +108,13 @@ func _process(_delta):
 	else:
 		bomb_png.hide()
 		
-	if power_timer.time_left < 5 and power_active:
+	if power_timer.time_left < POWER_TIME and power_active:
 		particle_emit.rpc("res://resources/assets/powers/Neutral_particles.tres")
-		normal_state()
+		self.scale = Vector3(1, 1, 1)
+		ACELERATION = 5
+		MAX_SPEED = 30
+		player_speed = 5
+		jump_impulse = 12
 		power_active = false
 		
 func _physics_process(delta):
@@ -135,7 +128,22 @@ func _physics_process(delta):
 		
 	# activate power
 	if Input.is_action_just_pressed("action_2") and power_available and not Global.on_prep_time:
-		character_power(Game.get_current_player().role)
+		match Game.get_current_player().role:
+			1:
+				if is_valid_place():
+					mage_power()
+				else:
+					return
+			2:
+				knight_power()
+			3:
+				rogue_power.rpc()
+			4:
+				barbarian_power()
+		power_timer.start()
+		emit_sound.rpc("res://resources/sounds/pop.wav")
+		power_available = false
+		$GUI.hide_power_icon()
 
 	# when passing the bomb
 	if Input.is_action_just_pressed("action_1") and name.to_int() == Global.bomb_carrier and pass_bomb:
@@ -146,7 +154,7 @@ func _physics_process(delta):
 				animation_state.rpc("Interact")
 				sound.stream = load("res://resources/sounds/bomb_given.wav")
 				sound.play()
-				i.pass_the_bomb(i.name.to_int())
+				i.Global.update_the_bomb.rpc(i.name.to_int())
 				bomb_recibed.rpc_id(i.name.to_int())
 				i.start_pass_timer.rpc()
 				await anim_tree.animation_finished
@@ -166,20 +174,17 @@ func _physics_process(delta):
 			animation_state.rpc("Jump_Start")
 			target_velocity.y += jump_impulse
 			air_strafing_speed = Vector2(velocity.x, velocity.z).length()
+			emit_sound.rpc("res://resources/sounds/jump.wav")
 			
 		elif is_on_wall() and !second_jump:
 			animation_state.rpc("Jump_Start")
 			second_jump = true
 			target_velocity.y += jump_impulse
+			emit_sound.rpc("res://resources/sounds/jump.wav")
 		
-		emit_sound.rpc("res://resources/sounds/jump.wav")
 		# max upward speed is limited
 		target_velocity.y = min(target_velocity.y, max_up_speed)
-	
-	# when sprinting
-	if Input.is_action_pressed("sprint"):
-		ACELERATION = 10
-	
+		
 	# direction vector of movement
 	direction = Vector3.ZERO
 	# direction vector of input
@@ -222,9 +227,6 @@ func _physics_process(delta):
 	
 	move_and_slide()
 
-func pass_the_bomb(player_id : int) -> void:
-	Global.update_the_bomb.rpc(player_id)
-
 func player_die() -> void:
 	animation_state.rpc("Death_A")
 	sound.stream = load("res://resources/sounds/explosion.wav")
@@ -235,15 +237,6 @@ func player_die() -> void:
 	set_physics_process(false)
 	disable_collision.rpc()
 	
-@rpc("call_local")
-func disable_collision():
-	gravity = 0
-	$CollisionShape3D.disabled = true
-
-@rpc("call_local")
-func animation_state(current_animation : String):
-	playback.travel(current_animation)
-
 func is_valid_place():
 	return !mage_tp.has_overlapping_areas() and !mage_tp.has_overlapping_bodies()
 	
@@ -260,44 +253,18 @@ func knight_power():
 	await anim_tree.animation_finished
 	animation_state.rpc("Movement")
 
-@rpc("call_local")
 func rogue_power():
-	particle_emit("res://resources/assets/powers/Rogue_particles.tres")
+	particle_emit.rpc("res://resources/assets/powers/Rogue_particles.tres")
 	power_active = true
-	self.scale *= 0.5
+	self.scale *= ROGUE_SCALE
 
 func barbarian_power():
-	particle_emit("res://resources/assets/powers/Barbarian_particles.tres")
+	particle_emit.rpc("res://resources/assets/powers/Barbarian_particles.tres")
 	power_active = true
 	jump_impulse = 20
 	ACELERATION = 12
 	MAX_SPEED = 60
 	player_speed = 8
-
-func character_power(role : Game.Role):
-	match role:
-		1:
-			if is_valid_place():
-				mage_power()
-			else:
-				return
-		2:
-			knight_power()
-		3:
-			rogue_power.rpc()
-		4:
-			barbarian_power()
-	power_timer.start()
-	emit_sound.rpc("res://resources/sounds/pop.wav")
-	power_available = false
-	$GUI.hide_power_icon()
-
-func normal_state():
-	self.scale = Vector3(1, 1, 1)
-	ACELERATION = 5
-	MAX_SPEED = 30
-	player_speed = 5
-	jump_impulse = 12
 	
 @rpc("any_peer", "call_local")
 func particle_emit(material_path : String):
@@ -307,19 +274,6 @@ func particle_emit(material_path : String):
 	particles.draw_pass_1 = material
 	particles.emitting = true
 	particles.restart()
-
-func _on_power_timer_timeout():
-	power_available = true
-	if bomb_body.position != Vector3.ZERO:
-		bomb_body.freeze = true
-		bomb_body.hide()
-		bomb_body.position = Vector3(0, 0, 0)
-	$GUI.show_power_icon()
-
-func _on_rigid_body_3d_body_entered(body):
-	if body.is_in_group("Players"):
-		if Global.bomb_carrier == name.to_int():
-			pass_the_bomb(body.name.to_int())
 
 @rpc("any_peer", "reliable")
 func bomb_recibed():
@@ -331,14 +285,8 @@ func start_pass_timer():
 	$Pass_timer.start()
 	pass_bomb = false
 
-func _on_pass_timer_timeout():
-	pass_bomb = true
-
-func sound_tick():
-	rpc_sound_tick.rpc()
-
 @rpc("any_peer", "call_local", "reliable")
-func rpc_sound_tick():
+func sound_tick():
 	tick_sound_player.stream = load("res://resources/sounds/tick.wav")
 	tick_sound_player.play()
 
@@ -351,7 +299,32 @@ func emit_sound(sound_path : String):
 @rpc("any_peer","call_local", "reliable")
 func stop_sound():
 	sound3d.stop()
+	
+@rpc("call_local")
+func disable_collision():
+	gravity = 0
+	$CollisionShape3D.disabled = true
 
+@rpc("call_local")
+func animation_state(current_animation : String):
+	playback.travel(current_animation)
+
+func _on_pass_timer_timeout():
+	pass_bomb = true
+	
 func _on_global_song_player_finished():
 	if is_multiplayer_authority():
 		music.play()
+		
+func _on_power_timer_timeout():
+	power_available = true
+	if bomb_body.position != Vector3.ZERO:
+		bomb_body.freeze = true
+		bomb_body.hide()
+		bomb_body.position = Vector3(0, 0, 0)
+	$GUI.show_power_icon()
+
+func _on_rigid_body_3d_body_entered(body):
+	if body.is_in_group("Players"):
+		if Global.bomb_carrier == name.to_int():
+			Global.update_the_bomb.rpc(body.name.to_int())
