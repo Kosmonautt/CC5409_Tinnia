@@ -2,19 +2,19 @@
 
 [ext_resource type="Script" path="res://scripts/tutorial.gd" id="1_5c3ov"]
 [ext_resource type="PackedScene" uid="uid://bjhx0i1k84ymc" path="res://resources/playable_character/mage.tscn" id="2_wv6pq"]
-[ext_resource type="Texture2D" uid="uid://c7qjuf52l6tj" path="res://resources/assets/keys/w_key1.png" id="3_12l6t"]
-[ext_resource type="Texture2D" uid="uid://crtwfpaeplwqi" path="res://resources/assets/keys/w_key2.png" id="4_n7fp1"]
-[ext_resource type="Texture2D" uid="uid://cd28qcfbol705" path="res://resources/assets/keys/a_key1.png" id="5_rd11e"]
-[ext_resource type="Texture2D" uid="uid://kb305uacyb6x" path="res://resources/assets/keys/a_key2.png" id="6_n88ly"]
-[ext_resource type="Texture2D" uid="uid://b4d6ef35wavpl" path="res://resources/assets/keys/d_key1.png" id="7_11l01"]
-[ext_resource type="Texture2D" uid="uid://hyiuprgf3lok" path="res://resources/assets/keys/d_key2.png" id="8_ilol0"]
-[ext_resource type="Texture2D" uid="uid://dclhf6vcae8lo" path="res://resources/assets/keys/s_key1.png" id="9_b1akf"]
-[ext_resource type="Texture2D" uid="uid://dt71hghqdvq3w" path="res://resources/assets/keys/s_key2.png" id="10_g582n"]
-[ext_resource type="Texture2D" uid="uid://b5taydlj1rwpc" path="res://resources/assets/keys/space_key1.png" id="11_bsp7c"]
-[ext_resource type="Texture2D" uid="uid://kopjh22lwlfb" path="res://resources/assets/keys/space_key2.png" id="12_6nyky"]
-[ext_resource type="Texture2D" uid="uid://dkbkev8f1507r" path="res://resources/assets/keys/mouse1.png" id="13_8vkjv"]
-[ext_resource type="Texture2D" uid="uid://bucq0h6d1ijya" path="res://resources/assets/keys/mouse2.png" id="14_md6ov"]
-[ext_resource type="Texture2D" uid="uid://bdmpoob8a4tao" path="res://resources/assets/keys/mouse3.png" id="15_gprxl"]
+[ext_resource type="Texture2D" uid="uid://bsymh35titxj5" path="res://resources/assets/keys/W.png" id="3_sl77m"]
+[ext_resource type="Texture2D" uid="uid://bpyna7jnels4q" path="res://resources/assets/keys/W_PRESS.png" id="4_lcrjp"]
+[ext_resource type="Texture2D" uid="uid://cii5jstg6sf1u" path="res://resources/assets/keys/A.png" id="5_bcaak"]
+[ext_resource type="Texture2D" uid="uid://dya5e4ipi4kqx" path="res://resources/assets/keys/A_PRESS.png" id="6_78eb6"]
+[ext_resource type="Texture2D" uid="uid://c1yd0h5cxxbb" path="res://resources/assets/keys/D.png" id="7_k4lj3"]
+[ext_resource type="Texture2D" uid="uid://peekh37uyrwr" path="res://resources/assets/keys/D_PRESS.png" id="8_umgnq"]
+[ext_resource type="Texture2D" uid="uid://h4kntu4bfy6o" path="res://resources/assets/keys/S.png" id="9_3b108"]
+[ext_resource type="Texture2D" uid="uid://udhp5jehevqt" path="res://resources/assets/keys/S_PRESS.png" id="10_ddmj2"]
+[ext_resource type="Texture2D" uid="uid://sk08i4c61rk0" path="res://resources/assets/keys/SPACE.png" id="11_dj4hj"]
+[ext_resource type="Texture2D" uid="uid://cvp45hvm00kt4" path="res://resources/assets/keys/SPACE_PRESS.png" id="12_mels2"]
+[ext_resource type="Texture2D" uid="uid://hpakqmdlddms" path="res://resources/assets/keys/MOUSE.png" id="13_6t8x1"]
+[ext_resource type="Texture2D" uid="uid://88hgpmnqxppf" path="res://resources/assets/keys/MOUSE_PRESS1.png" id="14_tnjjv"]
+[ext_resource type="Texture2D" uid="uid://csj8e4he31r1d" path="res://resources/assets/keys/MOUSE_PRESS2.png" id="15_xtxy1"]
 [ext_resource type="Texture2D" uid="uid://crhkanv22hxir" path="res://resources/assets/tutorial_powers/POWERS1.png" id="16_0ha2v"]
 [ext_resource type="Texture2D" uid="uid://cgocq4mupnq0u" path="res://resources/assets/tutorial_powers/POWERS2.png" id="17_bjbtx"]
 [ext_resource type="Texture2D" uid="uid://c17ljoyivhf1b" path="res://resources/assets/tutorial_powers/POWERS3.png" id="18_4b1fv"]
@@ -132,10 +132,10 @@ _data = {
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_12l6t")
+"texture": ExtResource("3_sl77m")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_n7fp1")
+"texture": ExtResource("4_lcrjp")
 }],
 "loop": true,
 "name": &"default",
@@ -146,10 +146,10 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("5_rd11e")
+"texture": ExtResource("5_bcaak")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_n88ly")
+"texture": ExtResource("6_78eb6")
 }],
 "loop": true,
 "name": &"default",
@@ -160,10 +160,10 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("7_11l01")
+"texture": ExtResource("7_k4lj3")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_ilol0")
+"texture": ExtResource("8_umgnq")
 }],
 "loop": true,
 "name": &"default",
@@ -174,10 +174,10 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("9_b1akf")
+"texture": ExtResource("9_3b108")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_g582n")
+"texture": ExtResource("10_ddmj2")
 }],
 "loop": true,
 "name": &"default",
@@ -188,10 +188,10 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("11_bsp7c")
+"texture": ExtResource("11_dj4hj")
 }, {
 "duration": 1.0,
-"texture": ExtResource("12_6nyky")
+"texture": ExtResource("12_mels2")
 }],
 "loop": true,
 "name": &"default",
@@ -202,13 +202,13 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("13_8vkjv")
+"texture": ExtResource("13_6t8x1")
 }, {
 "duration": 1.0,
-"texture": ExtResource("14_md6ov")
+"texture": ExtResource("14_tnjjv")
 }, {
 "duration": 1.0,
-"texture": ExtResource("15_gprxl")
+"texture": ExtResource("15_xtxy1")
 }],
 "loop": true,
 "name": &"default",
@@ -274,32 +274,37 @@ offset_bottom = 40.0
 [node name="w_key" type="AnimatedSprite2D" parent="Control"]
 texture_filter = 1
 position = Vector2(160, 64)
+scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_iodin")
 
 [node name="a_key" type="AnimatedSprite2D" parent="Control"]
 texture_filter = 1
 position = Vector2(80, 144)
+scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_rpcqs")
 
 [node name="d_key" type="AnimatedSprite2D" parent="Control"]
 texture_filter = 1
 position = Vector2(240, 144)
+scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_s6dep")
 
 [node name="s_key" type="AnimatedSprite2D" parent="Control"]
 texture_filter = 1
 position = Vector2(160, 144)
+scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_ocfmi")
 
 [node name="space_key" type="AnimatedSprite2D" parent="Control"]
 texture_filter = 1
-position = Vector2(166, 224)
-scale = Vector2(1.36936, 1.32422)
+position = Vector2(160, 224)
+scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_t7dff")
 
 [node name="mouse" type="AnimatedSprite2D" parent="Control"]
 texture_filter = 1
-position = Vector2(382, 148)
+position = Vector2(360, 114)
+scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_ef6nb")
 
 [node name="Label" type="Label" parent="Control"]

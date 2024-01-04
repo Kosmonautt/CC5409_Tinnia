@@ -241,7 +241,7 @@ states/Start/position = Vector2(15, 107)
 states/Throw/node = SubResource("AnimationNodeBlendTree_lhwja")
 states/Throw/position = Vector2(15, 224.646)
 transitions = ["Jump_Idle", "Jump_Land", SubResource("AnimationNodeStateMachineTransition_krvd5"), "Interact", "Death_A", SubResource("AnimationNodeStateMachineTransition_7ytwu"), "Jump_Land", "Death_A", SubResource("AnimationNodeStateMachineTransition_bi5pv"), "Jump_Start", "Death_A", SubResource("AnimationNodeStateMachineTransition_5ssfq"), "Jump_Start", "Jump_Idle", SubResource("AnimationNodeStateMachineTransition_5w1y4"), "Start", "Movement", SubResource("AnimationNodeStateMachineTransition_pbhn1"), "Movement", "Jump_Start", SubResource("AnimationNodeStateMachineTransition_u1k6i"), "Movement", "Interact", SubResource("AnimationNodeStateMachineTransition_htx58"), "Movement", "Jump_Idle", SubResource("AnimationNodeStateMachineTransition_gnma2"), "Movement", "Death_A", SubResource("AnimationNodeStateMachineTransition_7wch7"), "Interact", "Movement", SubResource("AnimationNodeStateMachineTransition_fi5w2"), "Jump_Land", "Movement", SubResource("AnimationNodeStateMachineTransition_hgar2"), "Movement", "Throw", SubResource("AnimationNodeStateMachineTransition_dkkwj"), "Throw", "Movement", SubResource("AnimationNodeStateMachineTransition_xouvf")]
-graph_offset = Vector2(-130.86, -130.354)
+graph_offset = Vector2(-117.86, -3.354)
 
 [sub_resource type="Animation" id="Animation_oigqe"]
 resource_name = "Death_A"
@@ -383,7 +383,7 @@ active = true
 parameters/conditions/is_landed = false
 parameters/Jump_Start/TimeScale/scale = 1.5
 parameters/Jump_Start/TimeSeek/seek_request = -1.0
-parameters/Movement/blend_position = Vector2(0.0240002, 0)
+parameters/Movement/blend_position = Vector2(-14.976, 0.0655031)
 parameters/Throw/TimeScale/scale = 1.5
 parameters/Throw/TimeSeek/seek_request = -1.0
 

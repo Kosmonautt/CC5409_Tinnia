@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cd28qcfbol705"
-path="res://.godot/imported/a_key1.png-8da35c096bd73ccd9c35e92fb69d4dbf.ctex"
+uid="uid://cvp45hvm00kt4"
+path="res://.godot/imported/SPACE_PRESS.png-13cc9098e4517a8847d327dde3c7e36d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/assets/keys/a_key1.png"
-dest_files=["res://.godot/imported/a_key1.png-8da35c096bd73ccd9c35e92fb69d4dbf.ctex"]
+source_file="res://resources/assets/keys/SPACE_PRESS.png"
+dest_files=["res://.godot/imported/SPACE_PRESS.png-13cc9098e4517a8847d327dde3c7e36d.ctex"]
 
 [params]
 
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

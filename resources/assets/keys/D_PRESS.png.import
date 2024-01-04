@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bucq0h6d1ijya"
-path="res://.godot/imported/mouse2.png-8e1b6f1da18cc68d87587104e6066dd2.ctex"
+uid="uid://peekh37uyrwr"
+path="res://.godot/imported/D_PRESS.png-02ec2a572ad111e85b4f305ffa69717e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/assets/keys/mouse2.png"
-dest_files=["res://.godot/imported/mouse2.png-8e1b6f1da18cc68d87587104e6066dd2.ctex"]
+source_file="res://resources/assets/keys/D_PRESS.png"
+dest_files=["res://.godot/imported/D_PRESS.png-02ec2a572ad111e85b4f305ffa69717e.ctex"]
 
 [params]
 
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0
